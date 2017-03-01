@@ -20,8 +20,13 @@
 (show-paren-mode t)
 (column-number-mode t)
 (windmove-default-keybindings)
-(require 'smooth-scrolling)
-(setq smooth-scroll-margin 4)
+
+;;; Smooth scrolling
+(use-package smooth-scrolling
+  :init
+  (setq smooth-scroll-margin 4)
+  :config
+  (smooth-scrolling-mode))
 
 ;;; Helm
 (require 'setup-helm)
