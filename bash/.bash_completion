@@ -1,0 +1,10 @@
+#!/bin/bash
+if [ -d "${HOME}/.bash_completion.d" ]; then
+    for f in "${HOME}/.bash_completion.d/*"; do
+	if [ -r "$f" ]; then
+	    source "$f"
+	fi
+    done
+    unset f
+fi
+
