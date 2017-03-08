@@ -9,9 +9,9 @@ path+=(/usr/local/cuda/bin)
 export LANG=en_US.UTF-8
 
 # Set up our editor.
-export EDITOR=emacs
-export GIT_EDITOR='emacsclient -t'
-export VISUAL=emacs
+export EDITOR=vim
+# export GIT_EDITOR='emacsclient -t'
+# export VISUAL=emacs
 
 # Set up for Python and virtual environments.
 export WORKON_HOME=${HOME}/.virtualenvs
