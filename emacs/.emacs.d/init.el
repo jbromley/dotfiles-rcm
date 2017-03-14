@@ -3,7 +3,7 @@
 ;;; Commentary:
 
 ;;; Code:
-(server-start)
+(unless (server-running-p) (server-start))
 
 ;; Set up Emacs package manager.
 (require 'package)
