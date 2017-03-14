@@ -1,2 +1,6 @@
+*~
+emacs/.emacs.d/.python-environments/
+emacs/.emacs.d/ac-comphist.dat
 emacs/.emacs.d/elpa
 emacs/.emacs.d/auto-save-list/
+emacs/.emacs.d/semanticdb
