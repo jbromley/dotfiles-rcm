@@ -1,3 +1,10 @@
+;;; setup-helm --- Helm configuration
+
+;;; Commentary:
+;;; This file sets up Helm.
+
+;;; Code:
+
 (use-package helm
   :init
   (progn
@@ -94,7 +101,7 @@
               #'(lambda ()
                   (define-key eshell-mode-map (kbd "M-l")  'helm-eshell-history)))
 
-;;; Save current position to mark ring
+    ;; Save current position to mark ring
     (add-hook 'helm-goto-line-before-hook 'helm-save-current-pos-to-mark-ring)
 
     ;; show minibuffer history with Helm
@@ -105,10 +112,7 @@
 
     (define-key global-map [remap list-buffers] 'helm-buffers-list)
 
-    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-    ;; PACKAGE: helm-swoop                ;;
-    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-    ;; Locate the helm-swoop folder to your path
+    ;; PACKAGE: helm-swoop
     (use-package helm-swoop
       :bind (("C-c h o" . helm-swoop)
              ("C-c s" . helm-multi-swoop-all))
@@ -131,6 +135,11 @@
       ;; If nil, you can slightly boost invoke speed in exchange for text color
       (setq helm-swoop-speed-or-color t))
 
+    (use-package helm-company
+      :bind (:map company-mode-map ("C-:" . helm-company)
+	     :map company-active-map ("C-:" . helm-company)))
+
     (helm-mode 1)))
 
 (provide 'setup-helm)
+;;; setup-helm.el ends here
