@@ -3,6 +3,7 @@
 ;;; Commentary:
 
 ;;; Code:
+
 (unless (server-running-p) (server-start))
 
 ;; Set up Emacs package manager.
@@ -51,12 +52,10 @@
 	  (autoload 'jedi:setup "jedi" nil t)
 	  (setq jedi:complete-on-dot t)
 	  (defun jb/python-mode-hook ()
-	    (add-to-list 'company-backends 'company-jedi)))
+	    (add-to-list 'company-backends 'company-jedi)
+	    (company-jedi)))
   :config (progn
-	    (add-hook 'python-mode-hook 'jb/python-mode-hook)
-	    (add-hook 'python-mode-hook 'company-jedi)))
-
-	    
+	    (add-hook 'python-mode-hook 'jb/python-mode-hook))
 
 ;; Markdown mode
 (use-package markdown-mode
@@ -68,6 +67,9 @@
 
 ;; Helm
 (require 'setup-helm)
+
+;; Themes
+(require 'setup-themes)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
