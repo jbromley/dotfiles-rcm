@@ -14,10 +14,10 @@ ZGEN_DIR=${HOME}/.zgen
 DOTFILES_DIR=${HOME}/.dotfiles
 
 # easy_packages="bash gdb git readline tmux executables pylint x"
-easy_packages="bash git tmux x11 zsh"
+easy_packages="emacs git tmux x11 zsh"
 
 install_easy() {
-	${STOW} ${STOWARGS} ${1}
+        ${STOW} ${STOWARGS} ${1}
 }
 
 install_zgen() {
@@ -54,12 +54,12 @@ install_tpm
 
 # pushd git && cp .gitconfig.template .gitconfig ; popd
 
-if [ -x "$(which vim)" -a -x "$(which git)" ] && vim --version | grep -q +python; then
-    echo "Installing complete vim configuration."
-    install_vim
-else
-    echo "Installing simple vim configuration."
-    install_easy vim
-fi
+# if [ -x "$(which vim)" -a -x "$(which git)" ] && vim --version | grep -q +python; then
+#     echo "Installing complete vim configuration."
+#     install_vim
+# else
+#     echo "Installing simple vim configuration."
+#     install_easy vim
+# fi
 
 
