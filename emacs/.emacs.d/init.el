@@ -4,6 +4,7 @@
 
 ;;; Code:
 
+(load "server")
 (unless (server-running-p) (server-start))
 
 ;; Set up Emacs package manager.
@@ -55,7 +56,7 @@
 	    (add-to-list 'company-backends 'company-jedi)
 	    (company-jedi)))
   :config (progn
-	    (add-hook 'python-mode-hook 'jb/python-mode-hook))
+	    (add-hook 'python-mode-hook 'jb/python-mode-hook)))
 
 ;; Markdown mode
 (use-package markdown-mode
@@ -65,11 +66,16 @@
 	 ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown"))
 
+;; YAML mode
+(use-package yaml-mode
+  :mode (("\\.yml\\'" . yaml-mode)
+	 ("\\.yaml\\'" . yaml-mode)))
+
 ;; Helm
 (require 'setup-helm)
 
 ;; Themes
-(require 'setup-themes)
+;(require 'setup-themes)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
