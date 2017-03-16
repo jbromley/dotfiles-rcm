@@ -32,6 +32,7 @@
 (show-paren-mode t)
 (column-number-mode t)
 (windmove-default-keybindings)
+(setq-default fill-column 80)
 
 ;; Smooth scrolling
 (use-package smooth-scrolling
@@ -86,14 +87,14 @@
 	 ("\\.yaml\\'" . yaml-mode)))
 
 ;; Fill Column Indicator
-(use-package fill-column-indicator
-  :init (setq fci-rule-use-dashes t
-	      fci-dash-pattern 0.5
-	      fci-rule-color "red"
-	      fci-rule-character ?\.
-	      fci-rule-character-color nil)
-  :config (progn
-	    (add-hook 'after-change-major-mode-hook 'fci-mode)))
+;; (use-package fill-column-indicator
+;;   :init (setq fci-rule-use-dashes t
+;; 	      fci-dash-pattern 0.25
+;; 	      fci-rule-color "red")
+;;   :config (progn
+;; 	    (define-globalized-minor-mode global-fci-mode fci-mode
+;; 	      (lambda () (fci-mode 1)))
+;; 	    (global-fci-mode 1)))
 
 ;; Helm
 (require 'setup-helm)
@@ -118,7 +119,7 @@
     ("c5a886cc9044d8e6690a60f33db45506221aa0777a82ad1f7fe11a96d203fa44" "3d5307e5d6eb221ce17b0c952aa4cf65dbb3fa4a360e12a71e03aab78e0176c5" "3cddc1775f6c26573a69315dacd5fd45a6cd04df539b6354281d316985f254f3" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
  '(package-selected-packages
    (quote
-    (fill-column-indicator company-ycmd ycmd dockerfile-mode company-jedi jedi ubuntu-theme eziam-theme monochrome-theme quasi-monochrome-theme markdown-mode use-package hydandata-light-theme flycheck-python flycheck helm-swoop helm yaml-mode cmake-mode yasnippet smooth-scrolling color-theme-sanityinc-tomorrow magit solarized-theme)))
+    (column-marker company-ycmd ycmd dockerfile-mode company-jedi jedi ubuntu-theme eziam-theme monochrome-theme quasi-monochrome-theme markdown-mode use-package hydandata-light-theme flycheck-python flycheck helm-swoop helm yaml-mode cmake-mode yasnippet smooth-scrolling color-theme-sanityinc-tomorrow magit solarized-theme)))
  '(semantic-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
