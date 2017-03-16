@@ -47,16 +47,30 @@
   :config (global-flycheck-mode)
   :diminish flycheck-mode)
 
+;; Company mode
+(use-package company
+  :bind (("C-." . company-complete))
+  :config (global-company-mode))
+
 ;; JEDI for Python autocompletion
 (use-package jedi
   :init (progn
-	  (autoload 'jedi:setup "jedi" nil t)
 	  (setq jedi:complete-on-dot t)
 	  (defun jb/python-mode-hook ()
 	    (add-to-list 'company-backends 'company-jedi)
-	    (company-jedi)))
+	    (jedi:setup)))
   :config (progn
 	    (add-hook 'python-mode-hook 'jb/python-mode-hook)))
+
+;; ;; YCMD
+;; (use-package ycmd
+;;   :init (progn
+;; 	  (set-variable 'ycmd-server-command '("/usr/bin/ycmd"))
+;; 	  (require 'ycmd-next-error))
+;;   :config (global-ycmd-mode))
+
+;; (use-package company-ycmd
+;;   :config (company-ycmd-setup))
 
 ;; Markdown mode
 (use-package markdown-mode
@@ -70,6 +84,16 @@
 (use-package yaml-mode
   :mode (("\\.yml\\'" . yaml-mode)
 	 ("\\.yaml\\'" . yaml-mode)))
+
+;; Fill Column Indicator
+(use-package fill-column-indicator
+  :init (setq fci-rule-use-dashes t
+	      fci-dash-pattern 0.5
+	      fci-rule-color "red"
+	      fci-rule-character ?\.
+	      fci-rule-character-color nil)
+  :config (progn
+	    (add-hook 'after-change-major-mode-hook 'fci-mode)))
 
 ;; Helm
 (require 'setup-helm)
@@ -91,10 +115,10 @@
      (other . "gnu"))))
  '(custom-safe-themes
    (quote
-    ("3d5307e5d6eb221ce17b0c952aa4cf65dbb3fa4a360e12a71e03aab78e0176c5" "3cddc1775f6c26573a69315dacd5fd45a6cd04df539b6354281d316985f254f3" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
+    ("c5a886cc9044d8e6690a60f33db45506221aa0777a82ad1f7fe11a96d203fa44" "3d5307e5d6eb221ce17b0c952aa4cf65dbb3fa4a360e12a71e03aab78e0176c5" "3cddc1775f6c26573a69315dacd5fd45a6cd04df539b6354281d316985f254f3" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
  '(package-selected-packages
    (quote
-    (dockerfile-mode company-jedi jedi ubuntu-theme eziam-theme monochrome-theme quasi-monochrome-theme markdown-mode use-package hydandata-light-theme flycheck-python flycheck helm-swoop helm yaml-mode cmake-mode yasnippet smooth-scrolling color-theme-sanityinc-tomorrow magit solarized-theme)))
+    (fill-column-indicator company-ycmd ycmd dockerfile-mode company-jedi jedi ubuntu-theme eziam-theme monochrome-theme quasi-monochrome-theme markdown-mode use-package hydandata-light-theme flycheck-python flycheck helm-swoop helm yaml-mode cmake-mode yasnippet smooth-scrolling color-theme-sanityinc-tomorrow magit solarized-theme)))
  '(semantic-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
