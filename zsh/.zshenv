@@ -4,6 +4,7 @@
 typeset -U path
 path=(${HOME}/.local/bin "$path[@]")
 path+=(/usr/local/cuda/bin)
+path+=(${HOME}/.npm/bin)
 
 # Make sure language is set properly.
 export LANG=en_US.UTF-8
