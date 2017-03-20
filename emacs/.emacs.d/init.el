@@ -99,6 +99,9 @@
 ;; Helm
 (require 'setup-helm)
 
+;; Magit
+(use-package magit)
+  
 ;; Themes
 ;(require 'setup-themes)
 
