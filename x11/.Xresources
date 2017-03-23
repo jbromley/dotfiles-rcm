@@ -32,11 +32,11 @@
 *.color15:      #ffffff
 
 ! XFT
-Xft.rgba: none
-Xft.hintstyle: hintfull
+! Xft.rgba: none
+! Xft.hintstyle: hintfull
 
 ! Emacs
-Emacs.font: Ubuntu Mono-12:pixelsize=16
+Emacs*font: Ubuntu Mono-12:pixelsize=16
 Emacs*menuBar: off
 Emacs*toolBar: off
 Emacs*verticalScrollBars: off
@@ -45,6 +45,7 @@ Emacs*verticalScrollBars: off
 URxvt*background: black
 URxvt*foreground: white
 URxvt*cursorColor: magenta
+URxvt*letterSpace: -1
 URxvt*font: xft:Ubuntu Mono:size=12:style=Regular
 URxvt*boldFont: xft:Ubuntu Mono:size=12:style=Bold
 URxvt*italicFont: xft:Ubuntu Mono:size=12:style=Italic
@@ -54,4 +55,3 @@ URxvt*transparent: on
 URxvt*tintColor: white
 URxvt*shading: 25
 URxvt*blurRadius: 7x7
-
