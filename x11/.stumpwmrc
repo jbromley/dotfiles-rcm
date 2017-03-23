@@ -32,19 +32,6 @@
 (load "/home/jay/.stumpwm.d/modules/media/amixer/amixer.lisp")
 (load "/home/jay/.stumpwm.d/modules/util/ttf-fonts/ttf-fonts.lisp")
 
-;; Use XFT fonts
-(set-font (make-instance 'xft:font :family "Ubuntu Mono" :subfamily "Regular" :size 12))
-
-;; Use multimedia controls for Spotify and volume
-(define-key *top-map* (kbd "XF86AudioPlay") "exec /home/jay/.local/bin/spotify-ctrl toggle")
-(define-key *top-map* (kbd "XF86AudioStop") "exec /home/jay/.local/bin/spotify-ctrl stop")
-(define-key *top-map* (kbd "XF86AudioNext") "exec /home/jay/.local/bin/spotify-ctrl next")
-(define-key *top-map* (kbd "XF86AudioPrev") "exec /home/jay/.local/bin/spotify-ctrl previous")
-
-(define-key *top-map* (kbd "XF86AudioLowerVolume") "amixer-Front-1-")
-(define-key *top-map* (kbd "XF86AudioRaiseVolume") "amixer-Front-1+")
-(define-key *top-map* (kbd "XF86AudioMute") "amixer-Master-toggle pulse")
-
 ;; change the prefix key to something else
 (set-prefix-key (kbd "C-t"))
 
@@ -54,6 +41,15 @@
   (let ((cmd (read-one-line (current-screen) ": " :initial-input initial)))
     (when cmd
       (eval-command cmd t))))
+
+;; Use multimedia controls for Spotify and volume
+(define-key *top-map* (kbd "XF86AudioPlay") "exec /home/jay/.local/bin/spotify-ctrl toggle")
+(define-key *top-map* (kbd "XF86AudioStop") "exec /home/jay/.local/bin/spotify-ctrl stop")
+(define-key *top-map* (kbd "XF86AudioNext") "exec /home/jay/.local/bin/spotify-ctrl next")
+(define-key *top-map* (kbd "XF86AudioPrev") "exec /home/jay/.local/bin/spotify-ctrl previous")
+(define-key *top-map* (kbd "XF86AudioLowerVolume") "amixer-Front-1-")
+(define-key *top-map* (kbd "XF86AudioRaiseVolume") "amixer-Front-1+")
+(define-key *top-map* (kbd "XF86AudioMute") "amixer-Master-toggle pulse")
 
 ;; Terminal emulator
 (define-key *root-map* (kbd "c") "exec x-terminal-emulator")
@@ -85,7 +81,8 @@
 ;; (define-key *root-map* (kbd "M-s") "google")
 
 ;; Message window font
-(set-font "-xos4-terminus-medium-r-normal--16-*-*-*-c-80-iso8859-15")
+;; (set-font "-xos4-terminus-medium-r-normal--16-*-*-*-c-80-iso8859-15")
+(set-font (make-instance 'xft:font :family "Ubuntu Mono" :subfamily "Regular" :size 12))
 
 ;;; Define window placement policy.
 
