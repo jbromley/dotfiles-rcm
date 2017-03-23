@@ -5,8 +5,10 @@ export SSH_AUTH_SOCK
 export GPG_AGENT_INFO
 export GNOME_KEYRING_PID
 
-/usr/bin/compton -b
+xsettingsd &
+compton -b
 nitrogen --restore
+urxvtd -q -f -o 
 #/usr/local/bin/st -e tmux &
 #emacs &
 exec ssh-agent /usr/bin/stumpwm
