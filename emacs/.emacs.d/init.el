@@ -102,6 +102,10 @@
 ;; Magit
 (use-package magit)
   
+;; SLIME
+(load (expand-file-name "~/Development/Quicklisp/slime-helper.el"))
+(setq inferior-lisp-program "sbcl")
+
 ;; Themes
 ;(require 'setup-themes)
 
