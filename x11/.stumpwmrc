@@ -28,14 +28,16 @@
 ;; Other
 (setf *mouse-focus-policy* :sloppy)
 
-;; Load modules
-(load "/home/jay/.stumpwm.d/modules/media/amixer/amixer.lisp")
-(load "/home/jay/.stumpwm.d/modules/util/ttf-fonts/ttf-fonts.lisp")
-
 ;; change the prefix key to something else
 (set-prefix-key (kbd "C-t"))
 
-;; prompt the user for an interactive command. The first arg is an
+;; Load modules
+(setf *module-dir* #p"/home/jay/.stumpwm.d/modules/")
+(init-load-path *module-dir*)
+(load-module "amixer.lisp")
+;; (load-module "ttf-fonts.lisp")
+
+;; Prompt the user for an interactive command. The first arg is an
 ;; optional initial contents.
 (defcommand colon1 (&optional (initial "")) (:rest)
   (let ((cmd (read-one-line (current-screen) ": " :initial-input initial)))
@@ -47,18 +49,20 @@
 (define-key *top-map* (kbd "XF86AudioStop") "exec /home/jay/.local/bin/spotify-ctrl stop")
 (define-key *top-map* (kbd "XF86AudioNext") "exec /home/jay/.local/bin/spotify-ctrl next")
 (define-key *top-map* (kbd "XF86AudioPrev") "exec /home/jay/.local/bin/spotify-ctrl previous")
-(define-key *top-map* (kbd "XF86AudioLowerVolume") "amixer-Front-1-")
-(define-key *top-map* (kbd "XF86AudioRaiseVolume") "amixer-Front-1+")
+(define-key *top-map* (kbd "XF86AudioLowerVolume") "amixer-Master-1-")
+(define-key *top-map* (kbd "XF86AudioRaiseVolume") "amixer-Master-1+")
 (define-key *top-map* (kbd "XF86AudioMute") "amixer-Master-toggle pulse")
 
 ;; Terminal emulator
 (define-key *root-map* (kbd "c") "exec x-terminal-emulator")
 (undefine-key *root-map* (kbd "C-c"))
-
+;; Tmux
+(define-key *root-map* (kbd "u") "exec urxvtcd -e tmux")
 ;; Read some doc
 (define-key *root-map* (kbd "d") "exec evince")
 ;; Browse somewhere
-(define-key *root-map* (kbd "b") "colon1 exec x-www-browser http://www.")
+(define-key *root-map* (kbd "b") "exec x-www-browser")
+(define-key *root-map* (kbd "B") "colon1 exec x-www-browser http://www.")
 ;; Ssh somewhere
 (define-key *root-map* (kbd "C-s") "colon1 exec x-terminal-emulator -e ssh ")
 ;; Lock screen
@@ -81,8 +85,9 @@
 ;; (define-key *root-map* (kbd "M-s") "google")
 
 ;; Message window font
-;; (set-font "-xos4-terminus-medium-r-normal--16-*-*-*-c-80-iso8859-15")
-(set-font (make-instance 'xft:font :family "Ubuntu Mono" :subfamily "Regular" :size 12))
+;;(set-font "-xos4-terminus-medium-r-normal--16-*-*-*-c-80-iso8859-15")
+(set-font "-schumacher-clean-medium-r-normal--16-*-*-*-*-*-*-*")
+;;(set-font (make-instance 'xft:font :family "Ubuntu Mono" :subfamily "Regular" :size 12))
 
 ;;; Define window placement policy.
 
@@ -101,3 +106,4 @@
 ;;   (0 t nil :class "Konqueror" :role "...konqueror-mainwindow")
 ;;   (1 t nil :class "XTerm"))
 
+(mode-line)
