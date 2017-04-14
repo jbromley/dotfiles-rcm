@@ -11,4 +11,4 @@ nitrogen --restore
 urxvtd -q -f -o 
 #/usr/local/bin/st -e tmux &
 #emacs &
-exec ssh-agent /usr/bin/stumpwm
+exec ssh-agent /usr/local/bin/stumpwm
