@@ -42,16 +42,17 @@ Emacs*toolBar: off
 Emacs*verticalScrollBars: off
 
 ! Rxvt-unicode
-URxvt*background: black
+URxvt.depth: 32
+URxvt*background: [85]#000000
 URxvt*foreground: white
 URxvt*cursorColor: magenta
-URxvt*letterSpace: -1
+!URxvt*letterSpace: 0
 URxvt*font: xft:Ubuntu Mono:size=12:style=Regular
 URxvt*boldFont: xft:Ubuntu Mono:size=12:style=Bold
 URxvt*italicFont: xft:Ubuntu Mono:size=12:style=Italic
 URxvt*boldItalicFont: xft:Ubuntu Mono:size=12:style=Bold Italic
 URxvt*scrollBar: off
-URxvt*transparent: on
-URxvt*tintColor: white
-URxvt*shading: 25
-URxvt*blurRadius: 7x7
+URxvt.iconFile: /usr/share/icons/Humanity/apps/128/utilities-terminal.svg
+
+! Simple Terminal
+st-256color.background: white
