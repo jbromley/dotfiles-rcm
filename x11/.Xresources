@@ -2,34 +2,34 @@
 
 ! General color settings
 
-! special
-*.foreground:   #c5c8c6
-*.background:   #1d1f21
-*.cursorColor:  #c5c8c6
-! black
-*.color0:       #1d1f21
-*.color8:       #969896
-! red
-*.color1:       #cc6666
-*.color9:       #cc6666
-! green
-*.color2:       #b5bd68
-*.color10:      #b5bd68
-! yellow
-*.color3:       #f0c674
-*.color11:      #f0c674
-! blue
-*.color4:       #81a2be
-*.color12:      #81a2be
-! magenta
-*.color5:       #b294bb
-*.color13:      #b294bb
-! cyan
-*.color6:       #8abeb7
-*.color14:      #8abeb7
-! white
-*.color7:       #c5c8c6
-*.color15:      #ffffff
+! ! special
+! *.foreground:   #c5c8c6
+! *.background:   #1d1f21
+! *.cursorColor:  #c5c8c6
+! ! black
+! *.color0:       #1d1f21
+! *.color8:       #969896
+! ! red
+! *.color1:       #cc6666
+! *.color9:       #cc6666
+! ! green
+! *.color2:       #b5bd68
+! *.color10:      #b5bd68
+! ! yellow
+! *.color3:       #f0c674
+! *.color11:      #f0c674
+! ! blue
+! *.color4:       #81a2be
+! *.color12:      #81a2be
+! ! magenta
+! *.color5:       #b294bb
+! *.color13:      #b294bb
+! ! cyan
+! *.color6:       #8abeb7
+! *.color14:      #8abeb7
+! ! white
+! *.color7:       #c5c8c6
+! *.color15:      #ffffff
 
 ! XFT
 ! Xft.rgba: none
@@ -42,10 +42,8 @@ Emacs*toolBar: off
 Emacs*verticalScrollBars: off
 
 ! Rxvt-unicode
+URxvt.geometry: 100x40
 URxvt.depth: 32
-URxvt*background: [85]#000000
-URxvt*foreground: white
-URxvt*cursorColor: magenta
 !URxvt*letterSpace: 0
 URxvt*font: xft:Ubuntu Mono:size=12:style=Regular
 URxvt*boldFont: xft:Ubuntu Mono:size=12:style=Bold
@@ -54,5 +52,31 @@ URxvt*boldItalicFont: xft:Ubuntu Mono:size=12:style=Bold Italic
 URxvt*scrollBar: off
 URxvt.iconFile: /usr/share/icons/Humanity/apps/128/utilities-terminal.svg
 
-! Simple Terminal
-st-256color.background: white
+! special
+URxvt.foreground:   #c5c8c6
+URxvt.background:   #1d1f21
+URxvt.cursorColor:  #c5c8c6
+! black
+URxvt.color0:       #1d1f21
+URxvt.color8:       #969896
+! red
+URxvt.color1:       #cc6666
+URxvt.color9:       #cc6666
+! green
+URxvt.color2:       #b5bd68
+URxvt.color10:      #b5bd68
+! yellow
+URxvt.color3:       #f0c674
+URxvt.color11:      #f0c674
+! blue
+URxvt.color4:       #81a2be
+URxvt.color12:      #81a2be
+! magenta
+URxvt.color5:       #b294bb
+URxvt.color13:      #b294bb
+! cyan
+URxvt.color6:       #8abeb7
+URxvt.color14:      #8abeb7
+! white
+URxvt.color7:       #c5c8c6
+URxvt.color15:      #ffffff
