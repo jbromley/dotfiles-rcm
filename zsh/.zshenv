@@ -24,3 +24,14 @@ function hexview () { hexdump -C $1 | less; }
 function pidinfo {
     ps -eo pid,ppid,euser,comm,etime,cputime,%cpu,%mem,rss | grep -i "$1" | grep -v grep;
 }
+
+function dockerid {
+    docker ps | grep "$1" | gawk -F' ' '{print $1;}';
+}
+
+function clrd {
+    while [[ "$?" == 0 ]]; do
+	popd > /dev/null 2&>1
+    done
+    cd
+}
