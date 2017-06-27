@@ -31,7 +31,11 @@ function dockerid {
 
 function clrd {
     while [[ "$?" == 0 ]]; do
-	popd > /dev/null 2&>1
+	popd > /dev/null 2>&1
     done
     cd
+}
+
+function o {
+    xdg-open "$*" > /dev/null 2>&1
 }
