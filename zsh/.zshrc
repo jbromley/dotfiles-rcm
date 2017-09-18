@@ -13,18 +13,18 @@ if ! zgen saved; then
     zgen oh-my-zsh
 
     # plugins
-    zgen oh-my-zsh plugins/emacs
-    zgen oh-my-zsh plugins/tmux
-    zgen oh-my-zsh plugins/git
-    zgen oh-my-zsh plugins/sudo
-    zgen oh-my-zsh plugins/python
+    # zgen oh-my-zsh plugins/emacs
+    # zgen oh-my-zsh plugins/tmux
+    # zgen oh-my-zsh plugins/git
+    # zgen oh-my-zsh plugins/sudo
+    # zgen oh-my-zsh plugins/python
     zgen oh-my-zsh plugins/virtualenv
     zgen oh-my-zsh plugins/virtualenvwrapper
     zgen oh-my-zsh plugins/colorize
     zgen oh-my-zsh plugins/colored-man-pages
     zgen oh-my-zsh plugins/command-not-found
-    zgen oh-my-zsh plugins/docker
-    zgen oh-my-zsh plugins/docker-compose
+    # zgen oh-my-zsh plugins/docker
+    # zgen oh-my-zsh plugins/docker-compose
     zgen oh-my-zsh plugins/web-search
     zgen oh-my-zsh plugins/themes
     #zgen load zsh-users/zsh-syntax-highlighting
