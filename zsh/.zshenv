@@ -19,6 +19,9 @@ export WORKON_HOME=${HOME}/.virtualenvs
 export PROJECT_HOME=${HOME}/Code
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.5m
 
+# Choose a light theme.
+export SOLARIZED_THEME=light
+
 # Useful functions
 function hexview () { hexdump -C $1 | less; }
 
