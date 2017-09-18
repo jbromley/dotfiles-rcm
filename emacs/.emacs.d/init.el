@@ -4,7 +4,8 @@
 
 ;;; Code:
 (require 'server)
-(unless (server-running-p) (server-start))
+(unless (server-running-p)
+  (server-start))
 
 ;; Set up Emacs package manager.
 (require 'package)
@@ -22,7 +23,6 @@
 (setq use-package-always-ensure t)
 
 ;; Set up load paths and other paths.
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/custom"))
 (defvar local-bin (concat (file-name-as-directory (getenv "HOME"))
 			  ".local/bin"))
 (setq exec-path (append (list local-bin) exec-path))
@@ -33,49 +33,101 @@
 (windmove-default-keybindings)
 (setq-default fill-column 80)
 
+;; cc-mode selection
+(setq c-default-style (quote
+		       ((c-mode . "k&r")
+			(c++-mode . "stroustrup")
+			(java-mode . "java")
+			(awk-mode . "awk")
+			(other . "gnu"))))
+
 ;; Smooth scrolling
 (use-package smooth-scrolling
   :init (setq smooth-scroll-margin 4)
   :config (smooth-scrolling-mode))
 
-;; Flycheck
-(use-package flycheck
-  :init (progn
-	  (setq flycheck-python-flake8-executable
-		(concat (file-name-as-directory local-bin) "flake8")
-		flycheck-c/c++-clang-executable "/usr/bin/clang"))
-  :config (global-flycheck-mode)
-  :diminish flycheck-mode)
-
-;; Company mode
+;; Company
 (use-package company
-  :bind (("C-." . company-complete))
-  :config (global-company-mode))
+  :init
+  (add-hook 'after-init-hook 'global-company-mode))
 
-;; JEDI for Python autocompletion
-(use-package jedi
-  :init (progn
-	  (setq jedi:complete-on-dot t)
-	  (defun jb/python-mode-hook ()
-	    (add-to-list 'company-backends 'company-jedi)
-	    (jedi:setup)))
-  :config (progn
-	    (add-hook 'python-mode-hook 'jb/python-mode-hook)))
+;; Helm
+(use-package helm
+  :init
+  (progn
+    (require 'helm-config)
+    (require 'helm-grep)
 
-;; ;; YCMD
-;; (use-package ycmd
-;;   :init (progn
-;; 	  (set-variable 'ycmd-server-command '("/usr/bin/ycmd"))
-;; 	  (require 'ycmd-next-error))
-;;   :config (global-ycmd-mode))
+    ; Use curl when available
+    (when (executable-find "curl")
+      (setq helm-google-suggest-use-curl-p t))
 
-;; (use-package company-ycmd
-;;   :config (company-ycmd-setup))
+    ; Helm configuration variables
+    (setq helm-candidate-number-limit 64
+	  helm-google-suggest-use-curl-p t
+	  helm-scroll-amount 4
+	  helm-split-window-in-side-p t
+	  helm-echo-input-in-header-line t
+          helm-ff-file-name-history-use-recentf t
+          helm-move-to-line-cycle-in-source t
+          helm-buffer-skip-remote-checking t
+          helm-mode-fuzzy-match t
+          helm-buffers-fuzzy-matching t
+          helm-org-headings-fontify t
+          ;; helm-find-files-sort-directories t
+          ;; ido-use-virtual-buffers t
+          helm-semantic-fuzzy-match t
+          helm-M-x-fuzzy-match t
+          helm-imenu-fuzzy-match t
+          helm-lisp-fuzzy-completion t
+          helm-apropos-fuzzy-match t
+          helm-locate-fuzzy-match t
+          helm-display-header-line nil)
 
-;; Emacs Speaks Statistics (ESS) mode
-(require 'ess-site)
+    ; Key bindings for particular maps.
+    (define-key 'help-command (kbd "C-f") 'helm-apropos)
+    (define-key 'help-command (kbd "r") 'helm-info-emacs)
+    (define-key 'help-command (kbd "C-l") 'helm-locate-library)
 
-;; Markdown mode
+    ; (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
+    ; (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
+    ; (define-key helm-map (kbd "C-z") 'helm-select-action)
+
+    ; (define-key helm-grep-mode-map (kbd "<return>")
+    ;   'helm-grep-mode-jump-other-window)
+    ; (define-key helm-grep-mode-map (kbd "n")
+    ;   'helm-grep-mode-jump-other-window-forward)
+    ; (define-key helm-grep-mode-map (kbd "p")
+    ;   'helm-grep-mode-jump-other-window-backward)
+
+    (unless (boundp 'completion-in-region-function)
+      (define-key lisp-interaction-mode-map [remap completion-at-point]
+	'helm-lisp-completion-at-point)
+      (define-key emacs-lisp-mode-map [remap completion-at-point]
+	'helm-lisp-completion-at-point))
+
+    (helm-mode 1))
+  :bind (("M-x" . helm-M-x)
+	 ("C-x C-f" . helm-find-files)
+	 ("C-x b" . helm-buffers-list)
+	 ("C-x C-b" . helm-buffers-list)
+	 ("C-x c o" . helm-occur)
+	 ("M-/" . helm-dabbrev)
+	 ("M-y" . helm-show-kill-ring)
+	 ("C-x c r" . helm-recentf)
+	 ("C-x c SPC" . helm-all-mark-rings)
+	 ("C-x c w" . helm-wikipedia-suggest)
+	 ("C-x c g" . helm-google-suggest)
+	 ("C-x c x" . helm-register)
+	 :map helm-map
+	 ("<tab>" . helm-execute-persistent-action)
+	 ("C-i" . helm-execute-persistent-action)
+	 ("C-z" . helm-select-action)
+	 :map helm-grep-mode-map
+	 ("<return>" . helm-grep-mode-jump-other-window)
+	 ("n" . helm-grep-mode-jump-other-window-forward)
+	 ("p" . helm-grep-mode-jump-other-window-backward)))
+
 (use-package markdown-mode
   :commands (markdown-mode gfm-mode)
   :mode (("README\\.md\\'" . gfm-mode)
@@ -83,59 +135,69 @@
 	 ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown"))
 
+;; Emacs Speaks Statistics (ESS) mode
+(use-package ess
+  :init (require 'ess-site))
+
+(use-package polymode
+  :init (progn
+	  (require 'poly-R)
+	  (require 'poly-markdown))
+  :config (progn
+	    (add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
+	    (eval-when-compile
+	      (require 'polymode-core)
+	      (defvar pm/chunkmode))
+	    (declare-function pm-map-over-spans "polymode-core")
+	    (declare-function pm-narrow-to-span "polymode-core")
+
+	    (defun rmd-send-chunk ()
+	      "Send current R chunk to ESS process."
+	      (interactive)
+	      (and (eq (oref pm/chunkmode :mode) 'r-mode)
+		   (pm-with-narrowed-to-span nil
+		     (goto-char (point-min))
+		     (forward-line)
+		     (ess-eval-region (point) (point-max) nil nil 'R))))
+
+	    (defun rmd-send-buffer (arg)
+	      "Send all R code blocks in buffer to ESS process. With prefix send regions above point."
+	      (interactive "P")
+	      (save-restriction
+		(widen)
+		(save-excursion
+		  (pm-map-over-spans 'rmd-send-chunk (point-min)
+				     (if arg (point) (point-max))))))))
+
 ;; YAML mode
 (use-package yaml-mode
   :mode (("\\.yml\\'" . yaml-mode)
 	 ("\\.yaml\\'" . yaml-mode)))
 
-;; Fill Column Indicator
-;; (use-package fill-column-indicator
-;;   :init (setq fci-rule-use-dashes t
-;; 	      fci-dash-pattern 0.25
-;; 	      fci-rule-color "red")
-;;   :config (progn
-;; 	    (define-globalized-minor-mode global-fci-mode fci-mode
-;; 	      (lambda () (fci-mode 1)))
-;; 	    (global-fci-mode 1)))
-
-;; Helm
-(require 'setup-helm)
-
-;; Magit
+;; Magit mode
 (use-package magit)
-  
-;; SLIME
-(load (expand-file-name "~/Development/Quicklisp/slime-helper.el"))
-(setq inferior-lisp-program "sbcl")
 
-;; Themes
-;(require 'setup-themes)
+(use-package slime
+  :init
+  (progn
+    (load (expand-file-name "~/Code/Quicklisp/slime-helper.el"))
+    (setq inferior-lisp-program "sbcl")))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(c-default-style
-   (quote
-    ((c-mode . "k&r")
-     (c++-mode . "stroustrup")
-     (java-mode . "java")
-     (awk-mode . "awk")
-     (other . "gnu"))))
  '(custom-safe-themes
    (quote
-    ("c5a886cc9044d8e6690a60f33db45506221aa0777a82ad1f7fe11a96d203fa44" "3d5307e5d6eb221ce17b0c952aa4cf65dbb3fa4a360e12a71e03aab78e0176c5" "3cddc1775f6c26573a69315dacd5fd45a6cd04df539b6354281d316985f254f3" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
+    ("82d2cac368ccdec2fcc7573f24c3f79654b78bf133096f9b40c20d97ec1d8016" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "ba7917b02812fee8da4827fdf7867d3f6f282694f679b5d73f9965f45590843a" default)))
  '(package-selected-packages
    (quote
-    (chess ess ess-R-data-view paper-theme pdf-tools cider clojure-mode clojure-mode-extra-font-locking column-marker company-ycmd ycmd dockerfile-mode company-jedi jedi ubuntu-theme eziam-theme monochrome-theme quasi-monochrome-theme markdown-mode use-package hydandata-light-theme flycheck-python flycheck helm-swoop helm yaml-mode cmake-mode yasnippet smooth-scrolling color-theme-sanityinc-tomorrow magit solarized-theme)))
- '(semantic-mode t))
+    (chess color-theme-sanityinc-tomorrow company ess magit markdown-mode polymode slime smooth-scrolling yaml-mode leuven-theme async helm use-package)))
+ '(tramp-syntax (quote default) nil (tramp)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-(put 'narrow-to-region 'disabled nil)
-
-;;; init.el ends here
