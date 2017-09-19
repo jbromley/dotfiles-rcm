@@ -1,0 +1,7 @@
+[user]
+	name = J. Bromley
+	email = jay@ai.co
+[push]
+	default = simple
+[color]
+	ui = auto
