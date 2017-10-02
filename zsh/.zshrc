@@ -16,7 +16,7 @@ if ! zgen saved; then
     # zgen oh-my-zsh plugins/emacs
     # zgen oh-my-zsh plugins/tmux
     # zgen oh-my-zsh plugins/git
-    # zgen oh-my-zsh plugins/sudo
+    zgen oh-my-zsh plugins/sudo
     # zgen oh-my-zsh plugins/python
     zgen oh-my-zsh plugins/virtualenv
     zgen oh-my-zsh plugins/virtualenvwrapper
