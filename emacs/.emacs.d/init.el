@@ -177,6 +177,11 @@
 ;; Magit mode
 (use-package magit)
 
+(use-package todotxt
+  :init (progn
+	  (add-to-list 'auto-mode-alist '("\\todo.txt\\'" . todotxt-mode))
+	  (setq todotxt-file (expand-file-name "~/Documents/todo/todo.txt"))))
+
 (use-package slime
   :init
   (progn
@@ -193,7 +198,7 @@
     ("82d2cac368ccdec2fcc7573f24c3f79654b78bf133096f9b40c20d97ec1d8016" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "ba7917b02812fee8da4827fdf7867d3f6f282694f679b5d73f9965f45590843a" default)))
  '(package-selected-packages
    (quote
-    (chess color-theme-sanityinc-tomorrow company ess magit markdown-mode polymode slime smooth-scrolling yaml-mode leuven-theme async helm use-package)))
+    (todotxt chess color-theme-sanityinc-tomorrow company ess magit markdown-mode polymode slime smooth-scrolling yaml-mode leuven-theme async helm use-package)))
  '(tramp-syntax (quote default) nil (tramp)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -201,3 +206,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(put 'narrow-to-region 'disabled nil)
