@@ -32,6 +32,3 @@ done
 
 install_zgen
 install_tpm
-
-# pushd git && cp .gitconfig.template .gitconfig ; popd
-
