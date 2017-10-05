@@ -22,8 +22,9 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.5m
 # Choose a light theme.
 export SOLARIZED_THEME=dark
 
-# Aliases
+# Todo.txt
 alias t='todo.sh'
+export TODOTXT_DEFAULT_ACTION=list
 
 # Useful functions
 function hexview () { hexdump -C $1 | less; }
