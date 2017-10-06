@@ -10,7 +10,7 @@ ZGEN_DIR=${HOME}/.zgen
 DOTFILES_DIR=${HOME}/.dotfiles
 
 # easy_packages="bash gdb git readline tmux executables pylint x"
-easy_packages="emacs git tmux x11 zsh misc"
+easy_packages="emacs git tmux x11 zsh misc todo.sh"
 
 install_easy() {
         ${STOW} ${STOWARGS} ${1}
