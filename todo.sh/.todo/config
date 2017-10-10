@@ -7,6 +7,7 @@ export TODO_DIR="${HOME}/Documents/todo"
 # Your todo/done/report.txt locations
 export TODO_FILE="$TODO_DIR/todo.txt"
 export DONE_FILE="$TODO_DIR/done.txt"
+export CANCEL_FILE="$TODO_DIR/canceled.txt"
 export REPORT_FILE="$TODO_DIR/report.txt"
 
 # You can customize your actions directory location
@@ -83,5 +84,5 @@ export COLOR_CONTEXT=$GREEN
 #
 # export TODOTXT_FINAL_FILTER='cat'
 
-export TODOTXT_DATE_ON_ADD=TRUE
+export TODOTXT_DATE_ON_ADD=1
 export TODOTXT_DEFAULT_ACTION=list
