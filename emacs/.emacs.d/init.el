@@ -167,7 +167,9 @@
 		(widen)
 		(save-excursion
 		  (pm-map-over-spans 'rmd-send-chunk (point-min)
-				     (if arg (point) (point-max))))))))
+				     (if arg (point) (point-max)))))))
+  :bind (("C-c M-c" . rmd-send-chunk)
+	 ("C-c M-b" . rmd-send-buffer)))
 
 ;; YAML mode
 (use-package yaml-mode
@@ -195,7 +197,7 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("82d2cac368ccdec2fcc7573f24c3f79654b78bf133096f9b40c20d97ec1d8016" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "ba7917b02812fee8da4827fdf7867d3f6f282694f679b5d73f9965f45590843a" default)))
+    ("1bd383f15ee7345c270b82c5e41554754b2a56e14c2ddaa2127c3590d0303b95" "82d2cac368ccdec2fcc7573f24c3f79654b78bf133096f9b40c20d97ec1d8016" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "ba7917b02812fee8da4827fdf7867d3f6f282694f679b5d73f9965f45590843a" default)))
  '(package-selected-packages
    (quote
     (inkpot-theme todotxt chess color-theme-sanityinc-tomorrow company ess magit markdown-mode polymode slime smooth-scrolling yaml-mode leuven-theme async helm use-package)))
