@@ -1,8 +1,14 @@
+
 ;;; init.el --- Emacs custom configuration
 
 ;;; Commentary:
 
 ;;; Code:
+
+;; No startup screen.
+(setq inhibit-startup-screen t)
+
+;; Run the Emacs server.,
 (require 'server)
 (unless (server-running-p)
   (server-start))
@@ -167,9 +173,19 @@
 		(widen)
 		(save-excursion
 		  (pm-map-over-spans 'rmd-send-chunk (point-min)
-				     (if arg (point) (point-max)))))))
+				     (if arg (point) (point-max))))))
+
+	    (defun jb/polymode-insert-new-chunk (&optional chunk-params)
+	      "Insert a new R chunk into the file. CHUNK-PARAMS provides any parameters that will be applied to the chunk."
+	      (interactive "sChunk params: ")
+	      (insert (concat "\n```{r" (if (not (null chunk-params)) (concat " " chunk-params) "") "}\n"))
+	      (save-excursion
+		(newline)
+		(insert "```\n")
+		(previous-line))))
   :bind (("C-c M-c" . rmd-send-chunk)
-	 ("C-c M-b" . rmd-send-buffer)))
+	 ("C-c M-b" . rmd-send-buffer)
+	 ("M-n M-i" . jb/polymode-insert-new-chunk)))
 
 ;; YAML mode
 (use-package yaml-mode
@@ -179,6 +195,36 @@
 ;; Magit mode
 (use-package magit)
 
+;; Org mode
+(use-package org
+  :init (progn
+	  (use-package org-bullets)
+	  (use-package org-present
+	    :config (progn
+		      (add-hook 'org-present-mode-hook
+				(lambda ()
+				  (org-present-big)
+				  (org-display-inline-images)
+				  (org-present-hide-cursor)
+				  (org-present-read-only)))
+		      (add-hook 'org-present-mode-quit-hook
+				(lambda ()
+				  (org-present-small)
+				  (org-remove-inline-images)
+				  (org-present-show-cursor)
+				  (org-present-read-write))))))
+  :config (progn
+	    ;; Use UTF-8 bullets.
+	    (add-hook 'org-mode-hook
+		      (lambda () (org-bullets-mode 1)))
+
+	    ;; Org-babel configuration
+	    (org-babel-do-load-languages
+	     'org-babel-load-languages
+	     '((R . t)
+	       (latex . t)))
+	    (setq org-confirm-babel-evaluate nil)))
+  
 (use-package todotxt
   :init (progn
 	  (add-to-list 'auto-mode-alist '("\\todo.txt\\'" . todotxt-mode))
@@ -200,7 +246,7 @@
     ("1bd383f15ee7345c270b82c5e41554754b2a56e14c2ddaa2127c3590d0303b95" "82d2cac368ccdec2fcc7573f24c3f79654b78bf133096f9b40c20d97ec1d8016" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "ba7917b02812fee8da4827fdf7867d3f6f282694f679b5d73f9965f45590843a" default)))
  '(package-selected-packages
    (quote
-    (inkpot-theme todotxt chess color-theme-sanityinc-tomorrow company ess magit markdown-mode polymode slime smooth-scrolling yaml-mode leuven-theme async helm use-package)))
+    (json-mode org org-bullets org-present htmlize inkpot-theme todotxt chess color-theme-sanityinc-tomorrow company ess magit markdown-mode polymode slime smooth-scrolling yaml-mode leuven-theme async helm use-package)))
  '(tramp-syntax (quote default) nil (tramp)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
