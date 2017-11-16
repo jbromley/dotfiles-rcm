@@ -145,7 +145,7 @@
 (use-package ess
   :init (progn
 	  (require 'ess-site)
-	  (setq ess-default-style "RStudio")))
+	  (setq ess-default-style 'RStudio)))
 
 ;; Polymode for R/Markdown code
 (use-package polymode
