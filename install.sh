@@ -4,16 +4,17 @@ if [ ! -x ${STOW} ]; then
     echo "Need to apt install stow"
     exit 1
 fi
-STOWARGS="-v -t ${HOME}"
+STOWARGS="-v -t"
 
 ZGEN_DIR=${HOME}/.zgen
 DOTFILES_DIR=${HOME}/.dotfiles
 
 # easy_packages="bash gdb git readline tmux executables pylint x"
 easy_packages="emacs git tmux x11 zsh misc todo.sh"
+config_packages="alacritty"
 
 install_easy() {
-        ${STOW} ${STOWARGS} ${1}
+    ${STOW} ${STOWARGS} ${1} ${2}
 }
 
 install_zgen() {
@@ -27,7 +28,11 @@ install_tpm() {
 }
 
 for pkg in ${easy_packages}; do
-    install_easy $pkg
+    install_easy ${HOME} $pkg
+done
+
+for pkg in ${config_packages}; do
+    install_easy ${HOME}/config $pkg
 done
 
 install_zgen
