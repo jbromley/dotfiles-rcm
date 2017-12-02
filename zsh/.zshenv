@@ -20,7 +20,7 @@ export PROJECT_HOME=${HOME}/Code
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.5m
 
 # Choose a light theme.
-export SOLARIZED_THEME=dark
+export SOLARIZED_THEME=light
 
 # Todo.txt
 alias t='todo.sh'
