@@ -38,7 +38,7 @@ Xft.dpi: 96
 
 ! Emacs
 ! Emacs*font: Ubuntu Mono-12:pixelsize=16
-Emacs*font: Ubuntu Mono-13
+! Emacs*font: Ubuntu Mono-13
 Emacs*menuBar: off
 Emacs*toolBar: off
 Emacs*verticalScrollBars: off
