@@ -1,0 +1,3 @@
+#! /usr/bin/env bash
+color_theme="${1}"
+sed $'/^COLOR_SCHEME/{r $color_theme\nd}' alacritty-template.yml | less
