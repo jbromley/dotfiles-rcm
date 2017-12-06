@@ -1,8 +1,10 @@
 *~
-emacs/.emacs.d/.python-environments/
-emacs/.emacs.d/ac-comphist.dat
-emacs/.emacs.d/elpa
-emacs/.emacs.d/auto-save-list/
-emacs/.emacs.d/semanticdb
-emacs/.emacs.d/recentf
 emacs/.emacs.d/.emacs.desktop
+emacs/.emacs.d/.python-environments/
+emacs/.emacs.d/abbrev_defs
+emacs/.emacs.d/ac-comphist.dat
+emacs/.emacs.d/auto-save-list/
+emacs/.emacs.d/elpa
+emacs/.emacs.d/recentf
+emacs/.emacs.d/semanticdb
+todo.sh/.todo/actions.d/pom
