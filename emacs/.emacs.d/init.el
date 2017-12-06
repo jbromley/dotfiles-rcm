@@ -32,6 +32,7 @@
 (defvar local-bin (concat (file-name-as-directory (getenv "HOME"))
 			  ".local/bin"))
 (setq exec-path (append (list local-bin) exec-path))
+(setq custom-file (concat (expand-file-name "~/.emacs.d/custom.el")))
 
 ;; Basic editing configuration
 (show-paren-mode t)
@@ -267,116 +268,4 @@ opacity that is greater than zero."
 (global-set-key (kbd "C-9") '(lambda() (interactive) (change-alpha 1)))
 (global-set-key (kbd "C-0") '(lambda() (interactive) (set-alpha 100)))
 
-
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default bold shadow italic underline bold bold-italic bold])
- '(ansi-color-names-vector
-   ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
- '(ansi-term-color-vector
-   [unspecified "#1F1611" "#660000" "#144212" "#EFC232" "#5798AE" "#BE73FD" "#93C1BC" "#E6E1DC"])
- '(custom-safe-themes
-   (quote
-    ("1bd383f15ee7345c270b82c5e41554754b2a56e14c2ddaa2127c3590d0303b95" "82d2cac368ccdec2fcc7573f24c3f79654b78bf133096f9b40c20d97ec1d8016" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "ba7917b02812fee8da4827fdf7867d3f6f282694f679b5d73f9965f45590843a" default)))
- '(diary-entry-marker (quote font-lock-variable-name-face))
- '(emms-mode-line-icon-image-cache
-   (quote
-    (image :type xpm :ascent center :data "/* XPM */
-static char *note[] = {
-/* width height num_colors chars_per_pixel */
-\"    10   11        2            1\",
-/* colors */
-\". c #358d8d\",
-\"# c None s None\",
-/* pixels */
-\"###...####\",
-\"###.#...##\",
-\"###.###...\",
-\"###.#####.\",
-\"###.#####.\",
-\"#...#####.\",
-\"....#####.\",
-\"#..######.\",
-\"#######...\",
-\"######....\",
-\"#######..#\" };")))
- '(fci-rule-character-color "#452E2E")
- '(fci-rule-color "#452E2E" t)
- '(font-use-system-font nil)
- '(gnus-logo-colors (quote ("#0d7b72" "#adadad")))
- '(gnus-mode-line-image-cache
-   (quote
-    (image :type xpm :ascent center :data "/* XPM */
-static char *gnus-pointer[] = {
-/* width height num_colors chars_per_pixel */
-\"    18    13        2            1\",
-/* colors */
-\". c #358d8d\",
-\"# c None s None\",
-/* pixels */
-\"##################\",
-\"######..##..######\",
-\"#####........#####\",
-\"#.##.##..##...####\",
-\"#...####.###...##.\",
-\"#..###.######.....\",
-\"#####.########...#\",
-\"###########.######\",
-\"####.###.#..######\",
-\"######..###.######\",
-\"###....####.######\",
-\"###..######.######\",
-\"###########.######\" };")))
- '(hl-paren-background-colors (quote ("#2492db" "#95a5a6" nil)))
- '(hl-paren-colors
-   (quote
-    ("#B9F" "#B8D" "#B7B" "#B69" "#B57" "#B45" "#B33" "#B11")))
- '(linum-format "%3i")
- '(notmuch-search-line-faces
-   (quote
-    (("unread" :foreground "#aeee00")
-     ("flagged" :foreground "#0a9dff")
-     ("deleted" :foreground "#ff2c4b" :bold t))))
- '(nrepl-message-colors
-   (quote
-    ("#336c6c" "#205070" "#0f2050" "#806080" "#401440" "#6c1f1c" "#6b400c" "#23733c")))
- '(package-selected-packages
-   (quote
-    (eziam-theme minimal-theme basic-theme atom-one-dark-theme rust-mode flatui-theme pomidor json-mode org org-bullets org-present htmlize inkpot-theme todotxt chess color-theme-sanityinc-tomorrow company ess magit markdown-mode polymode slime smooth-scrolling yaml-mode leuven-theme async helm use-package)))
- '(pdf-view-midnight-colors (quote ("#232333" . "#c7c7c7")))
- '(powerline-color1 "#3d3d68")
- '(powerline-color2 "#292945")
- '(red "#ffffff")
- '(sml/active-background-color "#34495e")
- '(sml/active-foreground-color "#ecf0f1")
- '(sml/inactive-background-color "#dfe4ea")
- '(sml/inactive-foreground-color "#34495e")
- '(tramp-syntax (quote default) nil (tramp))
- '(vc-annotate-background "#ffffff")
- '(vc-annotate-color-map
-   (quote
-    ((20 . "#ab4642")
-     (50 . "#dc9656")
-     (80 . "#f7ca88")
-     (110 . "#a1b56c")
-     (140 . "#86c1b9")
-     (170 . "#7cafc2")
-     (200 . "#ba8baf")
-     (230 . "#a16046")
-     (260 . "#181818")
-     (290 . "#282828")
-     (320 . "#383838")
-     (350 . "#585858"))))
- '(vc-annotate-very-old-color "#585858"))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-(put 'narrow-to-region 'disabled nil)
+(load custom-file)
