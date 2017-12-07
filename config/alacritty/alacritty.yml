@@ -57,7 +57,7 @@ font:
     style: Italic
 
   # Point size of the font
-  size: 11.0
+  size: 12.0
 
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
@@ -110,6 +110,7 @@ colors:
     magenta: '0x6855de'
     cyan:     '0x4fb8cc'
     white:    '0xf1f1f1'
+
 # Visual Bell
 #
 # Any time the BEL code is received, Alacritty "rings" the visual bell. Once

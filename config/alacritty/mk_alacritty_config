@@ -1,3 +1,4 @@
 #! /usr/bin/env bash
 color_theme="${1}"
-sed $'/^COLOR_SCHEME/{r $color_theme\nd}' alacritty-template.yml | less
+gawk 'NR==FNR { a[n++]=$0; next } /COLOR_THEME/ { for (i = 0; i < n; ++i) print a[i]; next } 1' $color_theme alacritty-template.yml
+
