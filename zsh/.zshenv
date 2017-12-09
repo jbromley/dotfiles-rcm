@@ -1,4 +1,5 @@
 # Environment customizations
+unsetopt auto_pushd
 
 # Customize our path. 
 typeset -U path
@@ -25,6 +26,13 @@ export SOLARIZED_THEME=light
 # Todo.txt
 alias t='todo.sh'
 export TODOTXT_DEFAULT_ACTION=list
+
+# ls
+alias ls='ls -F'
+alias lsa='ls -lahF'
+alias l='ls -lahF'
+alias ll='ls -lhF'
+alias la='ls -lAhF'
 
 # Useful functions
 function hexview () { hexdump -C $1 | less; }
