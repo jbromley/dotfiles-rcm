@@ -28,7 +28,7 @@ alias t='todo.sh'
 export TODOTXT_DEFAULT_ACTION=list
 
 # ls
-alias ls='ls -F'
+alias ls='ls --color=tty -F'
 alias lsa='ls -lahF'
 alias l='ls -lahF'
 alias ll='ls -lhF'
