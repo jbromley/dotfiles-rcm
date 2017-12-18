@@ -1,5 +1,5 @@
 # Environment customizations
-unsetopt auto_pushd
+unsetopt autopushd
 
 # Customize our path. 
 typeset -U path
