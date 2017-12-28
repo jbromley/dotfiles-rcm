@@ -39,7 +39,7 @@ EOPLUGINS
     zgen load zsh-users/zsh-completions src
 
     # theme
-    zgen oh-my-zsh themes/blinks
+    zgen oh-my-zsh themes/dpoggi
 
     # save all to init script
     zgen save
