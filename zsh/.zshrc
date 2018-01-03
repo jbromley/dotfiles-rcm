@@ -22,7 +22,7 @@ if ! zgen saved; then
     zgen oh-my-zsh plugins/virtualenvwrapper
     zgen oh-my-zsh plugins/colorize
     zgen oh-my-zsh plugins/colored-man-pages
-    zgen oh-my-zsh plugins/command-not-found
+    # zgen oh-my-zsh plugins/command-not-found
     # zgen oh-my-zsh plugins/docker
     # zgen oh-my-zsh plugins/docker-compose
     zgen oh-my-zsh plugins/web-search
