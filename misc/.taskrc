@@ -34,3 +34,7 @@ taskd.key=\/home\/jay\/.task\/freecinc_99ab8914.key.pem
 taskd.certificate=\/home\/jay\/.task\/freecinc_99ab8914.cert.pem
 taskd.ca=\/home\/jay\/.task\/freecinc_99ab8914.ca.pem
 taskd.credentials=FreeCinc\/freecinc_99ab8914\/1c4bb1d8-280b-4d69-8733-b794e911520a
+uda.est_pomodoros.type=numeric
+uda.est_pomodoros.label=Estimated pomodoros
+uda.pomodoros.type=numeric
+uda.pomodoros.label=Pomodoros
