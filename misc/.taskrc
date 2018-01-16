@@ -41,5 +41,5 @@ uda.pomodoros.label=Pomodoros
 report.pomodoros.description=List of pomodoros by task
 report.pomodoros.columns=id,priority,project,description,pomodoros,est_pomodoros
 report.pomodoros.labels=ID,P,Project,Description,Pomos,Est pomos
-report.pomodoros.sort=project+,entry+
+report.pomodoros.sort=urgency-,project+
 report.pomodoros.filter=status:pending
