@@ -19,8 +19,8 @@ window:
   # Falls back to size specified by window manager if set to 0x0.
   # (changes require restart)
   dimensions:
-    columns: 80
-    lines: 24
+    columns: 0
+    lines: 0
 
   # Adds this many blank pixels of padding around the window
   # Units are physical pixels; this is not DPI aware.
@@ -90,33 +90,33 @@ render_timer: false
 # and cursor.background colors, otherwise invert the colors of the cursor.
 custom_cursor_colors: false
 
-# Colors (Dichromacy)
 colors:
-  # Default Colors
+  # Default colors
   primary:
-    background: '0xffffff'
-    foreground: '0x000000'
+    background: '0x001100'
+    foreground: '0x00bb00'
+
   # Normal colors
   normal:
-    black:    '0x000000'
-    red:      '0xe69f00'
-    green:    '0x009e73'
-    yellow:   '0xf8ec59'
-    blue:     '0x0072b2'
-    magenta:  '0xcc79a7'
-    cyan:     '0x56b4e9'
-    # white:    '0x848ea9'
-    white:    '0xd55e00'
+    black:   '0x001100'
+    red:     '0x007700'
+    green:   '0x00bb00'
+    yellow:  '0x007700'
+    blue:    '0x009900'
+    magenta: '0x00bb00'
+    cyan:    '0x005500'
+    white:   '0x00bb00'
+
   # Bright colors
   bright:
-    black:    '0x202020'
-    red:      '0xfeaf00'
-    green:    '0x00daa0'
-    yellow:   '0xf8e820'
-    blue:     '0x008cda'
-    magenta:  '0xcc4089'
-    cyan:     '0x56d0e9'
-    white:    '0xf56c00'
+    black:   '0x007700'
+    red:     '0x007700'
+    green:   '0x00bb00'
+    yellow:  '0x007700'
+    blue:    '0x009900'
+    magenta: '0x00bb00'
+    cyan:    '0x005500'
+    white:   '0x00ff00'
 
 # Visual Bell
 #
