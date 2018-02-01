@@ -249,6 +249,37 @@
 		(setq sql-prompt-regexp "^[[:alnum:]_]*=[#>] ")
 		(setq sql-prompt-cont-regexp "^[[:alnum:]_]*[-(][#>] "))))
 
+(defun jb/clojure-setup ()
+  (setq inferior-lisp-program "lein repl")
+  (font-lock-add-keywords
+   nil
+   '(("(\\(facts?\\)"
+      (1 font-lock-keyword-face))
+     ("(\\(background?\\)"
+      (1 font-lock-keyword-face))))
+  (define-clojure-indent (fact 1))
+  (define-clojure-indent (facts 1)))
+
+(use-package clojure-mode
+  :hook ((clojure-mode . enable-paredit-mode)
+	 (clojure-mode . jb/clojure-setup))
+  :config
+  (progn
+    (add-to-list 'auto-mode-alist '("\\.edn$" . clojure-mode))
+    (add-to-list 'auto-mode-alist '("\\.boot$" . clojure-mode))
+    (add-to-list 'auto-mode-alist '("\\.cljs.*$" . clojure-mode))))
+  ;;(add-to-list 'auto-mode-alist '("lein-env" . enh-ruby-mode)))
+
+(use-package cider
+  :hook ((cider-mode . cider-turn-on-eldoc-mode)
+	 (cider-repl-mode . paredit-mode))
+  :config
+  (progn
+    (setq cider-repl-pop-to-buffer-on-connect t
+	  cider-show-error-buffer t
+	  cider-auto-select-error-buffer t
+	  cider-repl-wrap-history t)))
+
 ;; Toggle mode-line colors for basic theme.
 (defun mode-line-visual-toggle ()
   (interactive)
