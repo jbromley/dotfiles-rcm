@@ -1,26 +1,43 @@
-function git_prompt_info {
-  local ref=$(=git symbolic-ref HEAD 2> /dev/null)
-  local gitst="$(=git status 2> /dev/null)"
+# kphoen.zsh-theme
 
-  if [[ -f .git/MERGE_HEAD ]]; then
-    if [[ ${gitst} =~ "unmerged" ]]; then
-      gitstatus=" %{$fg[red]%}unmerged%{$reset_color%}"
-    else
-      gitstatus=" %{$fg[green]%}merged%{$reset_color%}"
-    fi
-  elif [[ ${gitst} =~ "Changes to be committed" ]]; then
-    gitstatus=" %{$fg[blue]%}!%{$reset_color%}"
-  elif [[ ${gitst} =~ "use \"git add" ]]; then
-    gitstatus=" %{$fg[red]%}!%{$reset_color%}"
-  elif [[ -n `git checkout HEAD 2> /dev/null | grep ahead` ]]; then
-    gitstatus=" %{$fg[yellow]%}*%{$reset_color%}"
-  else
-    gitstatus=''
-  fi
+if [[ "$TERM" != "dumb" ]] && [[ "$DISABLE_LS_COLORS" != "true" ]]; then
+    PROMPT='[%{$fg[red]%}%n%{$reset_color%}@%{$fg[magenta]%}%m%{$reset_color%}:%{$fg[blue]%}%~%{$reset_color%}$(git_prompt_info)]
+%# '
 
-  if [[ -n $ref ]]; then
-    echo "%{$fg_bold[green]%}/${ref#refs/heads/}%{$reset_color%}$gitstatus"
-  fi
-}
+    ZSH_THEME_GIT_PROMPT_PREFIX=" on %{$fg[green]%}"
+    ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
+    ZSH_THEME_GIT_PROMPT_DIRTY=""
+    ZSH_THEME_GIT_PROMPT_CLEAN=""
 
-PROMPT='%~%<< $(git_prompt_info)${PR_BOLD_WHITE}>%{${reset_color}%} '
+    # display exitcode on the right when >0
+    return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
+
+    RPROMPT='${return_code}$(git_prompt_status)%{$reset_color%}'
+
+    ZSH_THEME_GIT_PROMPT_ADDED="%{$fg[green]%} ✚"
+    ZSH_THEME_GIT_PROMPT_MODIFIED="%{$fg[blue]%} ✹"
+    ZSH_THEME_GIT_PROMPT_DELETED="%{$fg[red]%} ✖"
+    ZSH_THEME_GIT_PROMPT_RENAMED="%{$fg[magenta]%} ➜"
+    ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[yellow]%} ═"
+    ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[cyan]%} ✭"
+else
+    PROMPT='[%n@%m:%~$(git_prompt_info)]
+%# '
+
+    ZSH_THEME_GIT_PROMPT_PREFIX=" on"
+    ZSH_THEME_GIT_PROMPT_SUFFIX=""
+    ZSH_THEME_GIT_PROMPT_DIRTY=""
+    ZSH_THEME_GIT_PROMPT_CLEAN=""
+
+    # display exitcode on the right when >0
+    return_code="%(?..%? ↵)"
+
+    RPROMPT='${return_code}$(git_prompt_status)'
+
+    ZSH_THEME_GIT_PROMPT_ADDED=" ✚"
+    ZSH_THEME_GIT_PROMPT_MODIFIED=" ✹"
+    ZSH_THEME_GIT_PROMPT_DELETED=" ✖"
+    ZSH_THEME_GIT_PROMPT_RENAMED=" ➜"
+    ZSH_THEME_GIT_PROMPT_UNMERGED=" ═"
+    ZSH_THEME_GIT_PROMPT_UNTRACKED=" ✭"
+fi
