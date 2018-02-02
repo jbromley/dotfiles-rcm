@@ -9,3 +9,4 @@ emacs/.emacs.d/recentf
 emacs/.emacs.d/semanticdb
 emacs/.emacs.d/custom.el
 todo.sh/.todo/actions.d/pom
+*.zwc
