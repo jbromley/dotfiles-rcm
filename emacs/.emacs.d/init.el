@@ -1,4 +1,3 @@
-
 ;;; init.el --- Emacs custom configuration
 
 ;;; Commentary:
@@ -27,6 +26,8 @@
   (package-install 'use-package))
 (require 'use-package)
 (setq use-package-always-ensure t)
+
+(load-theme 'green-screen t)
 
 ;; Set up load paths and other paths.
 (defvar local-bin (concat (file-name-as-directory (getenv "HOME"))
@@ -230,10 +231,10 @@
 	       (latex . t)))
 	    (setq org-confirm-babel-evaluate nil)))
   
-(use-package todotxt
-  :init (progn
-	  (add-to-list 'auto-mode-alist '("\\todo.txt\\'" . todotxt-mode))
-	  (setq todotxt-file (expand-file-name "~/Documents/todo/todo.txt"))))
+;; (use-package todotxt
+;;   :init (progn
+;; 	  (add-to-list 'auto-mode-alist '("\\todo.txt\\'" . todotxt-mode))
+;; 	  (setq todotxt-file (expand-file-name "~/Documents/todo/todo.txt"))))
 
 (use-package slime
   :init
@@ -260,25 +261,25 @@
   (define-clojure-indent (fact 1))
   (define-clojure-indent (facts 1)))
 
-(use-package clojure-mode
+(use-package paredit
   :hook ((clojure-mode . enable-paredit-mode)
-	 (clojure-mode . jb/clojure-setup))
-  :config
-  (progn
-    (add-to-list 'auto-mode-alist '("\\.edn$" . clojure-mode))
-    (add-to-list 'auto-mode-alist '("\\.boot$" . clojure-mode))
-    (add-to-list 'auto-mode-alist '("\\.cljs.*$" . clojure-mode))))
-  ;;(add-to-list 'auto-mode-alist '("lein-env" . enh-ruby-mode)))
+  	 (cider-repl-mode . paredit-mode)))
+
+(use-package clojure-mode
+  :hook (clojure-mode . jb/clojure-setup)
+  :config (progn
+	    (add-to-list 'auto-mode-alist '("\\.edn$" . clojure-mode))
+	    (add-to-list 'auto-mode-alist '("\\.boot$" . clojure-mode))
+	    (add-to-list 'auto-mode-alist '("\\.cljs.*$" . clojure-mode))))
+;;(add-to-list 'auto-mode-alist '("lein-env" . enh-ruby-mode)))
 
 (use-package cider
-  :hook ((cider-mode . cider-turn-on-eldoc-mode)
-	 (cider-repl-mode . paredit-mode))
-  :config
-  (progn
-    (setq cider-repl-pop-to-buffer-on-connect t
-	  cider-show-error-buffer t
-	  cider-auto-select-error-buffer t
-	  cider-repl-wrap-history t)))
+  :hook (cider-mode . cider-turn-on-eldoc-mode)
+  :config (progn
+	    (setq cider-repl-pop-to-buffer-on-connect t
+		  cider-show-error-buffer t
+		  cider-auto-select-error-buffer t
+		  cider-repl-wrap-history t)))
 
 ;; Toggle mode-line colors for basic theme.
 (defun mode-line-visual-toggle ()
