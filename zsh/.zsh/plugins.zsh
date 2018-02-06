@@ -1,4 +1,10 @@
-plugins=(sudo colored-man-pages virtualenv virtualenvwrapper web-search zsh-history-substring-search)
+plugins=(sudo \
+	     colored-man-pages \
+	     virtualenv \
+	     virtualenvwrapper \
+	     web-search \
+	     zsh-history-substring-search \
+	     lein)
 
 for plugin in $plugins; do
     if [ -f ${HOME}/.zsh/plugins/${plugin}.plugin.zsh ]; then
