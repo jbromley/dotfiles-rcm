@@ -19,8 +19,8 @@ window:
   # Falls back to size specified by window manager if set to 0x0.
   # (changes require restart)
   dimensions:
-    columns: 0
-    lines: 0
+    columns: 80
+    lines: 24
 
   # Adds this many blank pixels of padding around the window
   # Units are physical pixels; this is not DPI aware.
@@ -31,7 +31,7 @@ window:
 
   # Window decorations
   # Setting this to false will result in window without borders and title bar.
-  decorations: false
+  decorations: true
 
 # The FreeType rasterizer needs to know the device DPI for best results
 # (changes require restart)
@@ -90,33 +90,34 @@ render_timer: false
 # and cursor.background colors, otherwise invert the colors of the cursor.
 custom_cursor_colors: false
 
+# Colors (Material Theme)
 colors:
   # Default colors
   primary:
-    background: '0x001100'
-    foreground: '0x00bb00'
+    background: '0x1e282d'
+    foreground: '0xc4c7d1'
 
   # Normal colors
   normal:
-    black:   '0x001100'
-    red:     '0x007700'
-    green:   '0x00bb00'
-    yellow:  '0x007700'
-    blue:    '0x009900'
-    magenta: '0x00bb00'
-    cyan:    '0x005500'
-    white:   '0x00bb00'
+    black:   '0x666666'
+    red:     '0xeb606b'
+    green:   '0xc3e88d'
+    yellow:  '0xf7eb95'
+    blue:    '0x80cbc4'
+    magenta: '0xff2f90'
+    cyan:    '0xaeddff'
+    white:   '0xffffff'
 
   # Bright colors
   bright:
-    black:   '0x007700'
-    red:     '0x007700'
-    green:   '0x00bb00'
-    yellow:  '0x007700'
-    blue:    '0x009900'
-    magenta: '0x00bb00'
-    cyan:    '0x005500'
-    white:   '0x00ff00'
+    black:   '0xff262b'
+    red:     '0xeb606b'
+    green:   '0xc3e88d'
+    yellow:  '0xf7eb95'
+    blue:    '0x7dc6bf'
+    magenta: '0x6c71c4'
+    cyan:    '0x35434d'
+    white:   '0xffffff'
 
 # Visual Bell
 #
