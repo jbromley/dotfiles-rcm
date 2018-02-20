@@ -27,7 +27,7 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
-(load-theme 'green-screen t)
+;; (load-theme 'green-screen t)
 
 ;; Set up load paths and other paths.
 (defvar local-bin (concat (file-name-as-directory (getenv "HOME"))
