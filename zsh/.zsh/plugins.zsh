@@ -4,6 +4,7 @@ plugins=(sudo \
 	     virtualenvwrapper \
 	     web-search \
 	     zsh-history-substring-search \
+	     kubectl \
 	     lein)
 
 for plugin in $plugins; do
