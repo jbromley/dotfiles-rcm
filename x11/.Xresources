@@ -1,9 +1,48 @@
-!! X Resource File
+!!! X Resource File
+
+! Paraiso Dark colors
+
+! special
+*.foreground:   #a39e9b
+*.background:   #2f1e2e
+*.cursorColor:  #a39e9b
+
+! black
+*.color0:       #2f1e2e
+*.color8:       #776e71
+
+! red
+*.color1:       #ef6155
+*.color9:       #ef6155
+
+! green
+*.color2:       #48b685
+*.color10:      #48b685
+
+! yellow
+*.color3:       #fec418
+*.color11:      #fec418
+
+! blue
+*.color4:       #06b6ef
+*.color12:      #06b6ef
+
+! magenta
+*.color5:       #815ba4
+*.color13:      #815ba4
+
+! cyan
+*.color6:       #5bc4bf
+*.color14:      #5bc4bf
+
+! white
+*.color7:       #a39e9b
+*.color15:      #e7e9db
 
 ! XFT
 ! Xft.rgba: none
 ! Xft.hintstyle: hintfull
-Xft.dpi: 96
+!Xft.dpi: 96
 
 ! Emacs
 ! Emacs*font: Ubuntu Mono-12:pixelsize=16
@@ -15,7 +54,7 @@ Emacs*verticalScrollBars: off
 ! Rxvt-unicode
 URxvt.geometry: 100x40
 URxvt.depth: 32
-!URxvt*letterSpace: 0
+URxvt*letterSpace: -1
 URxvt*font: xft:Ubuntu Mono:size=12:style=Regular
 URxvt*boldFont: xft:Ubuntu Mono:size=12:style=Bold
 URxvt*italicFont: xft:Ubuntu Mono:size=12:style=Italic
