@@ -10,7 +10,7 @@ if [[ "$TERM" != "dumb" ]] && [[ "$DISABLE_LS_COLORS" != "true" ]]; then
     ZSH_THEME_GIT_PROMPT_CLEAN=""
 
     # display exitcode on the right when >0
-    return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
+    return_code="%(?. .%{$fg[red]%}%? ↵%{$reset_color%})"
 
     RPROMPT='${return_code}$(git_prompt_status)%{$reset_color%}'
 
