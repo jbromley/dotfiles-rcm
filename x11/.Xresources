@@ -40,9 +40,13 @@
 *.color15:      #e7e9db
 
 ! XFT
-! Xft.rgba: none
-! Xft.hintstyle: hintfull
-!Xft.dpi: 96
+Xft.dpi: 96
+Xft.antialias: true
+Xft.hinting: true
+Xft.rgba: rgb
+Xft.autohint: false
+Xft.hintstyle: hintslight
+Xft.lcdfilter: lcddefault
 
 ! Emacs
 ! Emacs*font: Ubuntu Mono-12:pixelsize=16
