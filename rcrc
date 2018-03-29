@@ -1,1 +1,1 @@
-EXCLUDES=emacs.d/elpa stumpwm.d/contrib
+EXCLUDES="emacs.d/elpa stumpwm.d/contrib"
