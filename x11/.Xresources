@@ -66,3 +66,7 @@ URxvt*boldItalicFont: xft:Ubuntu Mono:size=12:style=Bold Italic
 URxvt*scrollBar: off
 URxvt.iconFile: /usr/share/icons/Humanity/apps/128/utilities-terminal.svg
 
+! Rofi
+rofi.font: Ubuntu Mono 12
+rofi.terminal: urxvtc
+rofi.fuzzy: true
