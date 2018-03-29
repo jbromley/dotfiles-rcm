@@ -20,17 +20,12 @@
 
 ;; Message bar and window decorations
 (set-msg-border-width 2)
-(set-fg-color "white")
-(set-bg-color "black")
-(set-border-color "purple")
-(set-focus-color "purple")
-(set-unfocus-color "black")
+(set-font (make-instance 'xft:font :family "Menlo" :subfamily "Regular" :size 10))
+
 
 ;; Modeline
-(setf *screen-mode-line-format* "^[^2%n^] | ^[^2%W^] ^> %d | %T"
-      ;; *screen-mode-line-format* "%d | ^[^2%n^] | ^[^2%W^]"
-      *time-modeline-string* "%a %b %e %I:%M %P"
-      *mode-line-foreground-color* "Gray75")
+(setf *screen-mode-line-format* "%n | %W ^> %d | %T"
+      *time-modeline-string* "%a, %b %e, %I:%M %P")
 
 ;; Other
 (setf *mouse-focus-policy* :sloppy)
@@ -75,8 +70,6 @@
 	       (run-shell-command (concatenate 'string ,prefix search))))
 
 (make-web-jump "ddg" "firefox http://www.duckduckgo.com/?q=")
-
-(set-font (make-instance 'xft:font :family "DejaVu Sans Mono" :subfamily "Book" :size 12))
 
 ;;; Define window placement policy.
 
