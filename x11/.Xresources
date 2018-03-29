@@ -1,3 +1,4 @@
+
 !!! X Resource File
 
 ! Paraiso Dark colors
@@ -50,7 +51,7 @@ Xft.lcdfilter: lcddefault
 
 ! Emacs
 ! Emacs*font: Ubuntu Mono-12:pixelsize=16
-! Emacs*font: Ubuntu Mono-13
+Emacs*font: Ubuntu Mono-12
 Emacs*menuBar: off
 Emacs*toolBar: off
 Emacs*verticalScrollBars: off
