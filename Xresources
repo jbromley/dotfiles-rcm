@@ -50,8 +50,7 @@ Xft.hintstyle: hintslight
 Xft.lcdfilter: lcddefault
 
 ! Emacs
-! Emacs*font: Ubuntu Mono-12:pixelsize=16
-Emacs*font: Ubuntu Mono-12
+Emacs*font: Menlo-10
 Emacs*menuBar: off
 Emacs*toolBar: off
 Emacs*verticalScrollBars: off
@@ -60,14 +59,14 @@ Emacs*verticalScrollBars: off
 URxvt.geometry: 100x40
 URxvt.depth: 32
 URxvt*letterSpace: -1
-URxvt*font: xft:Ubuntu Mono:size=12:style=Regular
-URxvt*boldFont: xft:Ubuntu Mono:size=12:style=Bold
-URxvt*italicFont: xft:Ubuntu Mono:size=12:style=Italic
-URxvt*boldItalicFont: xft:Ubuntu Mono:size=12:style=Bold Italic
+URxvt*font: xft:Menlo:size=10:style=Regular
+URxvt*boldFont: xft:Menlo:size=10:style=Bold
+URxvt*italicFont: xft:Menlo:size=10:style=Italic
+URxvt*boldItalicFont: xft:Menlo:size=10:style=Bold Italic
 URxvt*scrollBar: off
-URxvt.iconFile: /usr/share/icons/Humanity/apps/128/utilities-terminal.svg
+URxvt.iconFile: /usr/share/icons/gnome/256x256/apps/utilities-terminal.png
 
 ! Rofi
-rofi.font: Ubuntu Mono 12
+rofi.font: Menlo 10
 rofi.terminal: urxvtc
 rofi.fuzzy: true
