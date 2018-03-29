@@ -1,0 +1,6 @@
+#! /usr/bin/env bash
+color_theme="${1}"
+gawk 'NR==FNR { a[n++]=$0; next } /COLOR_THEME/ { for (i = 0; i < n; ++i) print a[i]; next } 1' $color_theme alacritty-template.yml > alacritty.yml
+gawk 'NR==FNR { a[n++]=$0; next } /COLOR_THEME/ { for (i = 0; i < n; ++i) print a[i]; next } 1' $color_theme alacritty-bigfont-template.yml > alacritty-bigfont.yml
+
+

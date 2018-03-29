@@ -1,0 +1,26 @@
+# Colors (Pencil Light)
+colors:
+  # Default Colors
+  primary:
+    background: '0xffffff'
+    foreground: '0x303030'
+  # Normal colors
+  normal:
+    black:    '0x151515'
+    red:      '0x353535'
+    green:    '0x848484'
+    yellow:   '0x959595'
+    blue:     '0x737373'
+    magenta:  '0x444444'
+    cyan:     '0x8a8a8a'
+    white:    '0xe0e0e0'
+  # Bright colors
+  bright:
+    black:    '0x151515'
+    red:      '0x3d3d3d'
+    green:    '0xbababa'
+    yellow:   '0xdadada'
+    blue:     '0x9f9f9f'
+    magenta:  '0x626262'
+    cyan:     '0xa3a3a3'
+    white:    '0xf1f1f1'

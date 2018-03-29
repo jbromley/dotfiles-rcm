@@ -1,0 +1,26 @@
+# Colors (Mar)
+colors:
+  # Default Colors
+  primary:
+    background: '0xffffff'
+    foreground: '0x23476a'
+  # Normal colors
+  normal:
+    black:    '0x000000'
+    red:      '0xb5407b'
+    green:    '0x7bb540'
+    yellow:   '0xb57b40'
+    blue:     '0x407bb5'
+    magenta:  '0x7b40b5'
+    cyan:     '0x40b57b'
+    white:    '0xf8f8f8'
+  # Bright colors
+  bright:
+    black:    '0x737373'
+    red:      '0xcd73a0'
+    green:    '0xa0cd73'
+    yellow:   '0xcda073'
+    blue:     '0x73a0cd'
+    magenta:  '0xa073cd'
+    cyan:     '0x73cda0'
+    white:    '0xffffff'
