@@ -13,7 +13,6 @@
 
 ;; Message bar and window decorations
 (set-msg-border-width 2)
-(set-font (make-instance 'xft:font :family "DejaVu Sans Mono" :subfamily "Book" :size 12))
 (set-fg-color "white")
 (set-bg-color "black")
 (set-border-color "purple")
@@ -76,6 +75,8 @@
 
 (make-web-jump "ddg" "firefox http://www.duckduckgo.com/?q=")
 
+(set-font (make-instance 'xft:font :family "DejaVu Sans Mono" :subfamily "Book" :size 12))
+
 ;;; Define window placement policy.
 
 ;; Clear rules.
@@ -94,4 +95,3 @@
 ;;   (1 t nil :class "XTerm"))
 
 (mode-line)
-(stumptray)
