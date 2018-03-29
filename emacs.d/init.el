@@ -319,4 +319,3 @@ opacity that is greater than zero."
 (global-set-key (kbd "C-0") '(lambda() (interactive) (set-alpha 100)))
 
 (load custom-file)
-(put 'narrow-to-region 'disabled nil)
