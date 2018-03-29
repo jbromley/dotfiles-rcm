@@ -1,0 +1,2 @@
+#! /usr/bin/env bash
+etags --lang=none -r "/^\([A-Za-z0-9\._]+\)[ \t]*<\-[ \t]*function(/\1/" "$@"

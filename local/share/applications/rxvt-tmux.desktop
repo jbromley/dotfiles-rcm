@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=Rxvt tmux
+Comment=Terminal multiplexer
+Exec=urxvtc -e tmux
+Icon=utilities-terminal
+Terminal=false
+Type=Application
+Categories=Utility;
+X-Desktop-File-Install-Version=0.22

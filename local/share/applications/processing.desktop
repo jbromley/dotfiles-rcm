@@ -1,0 +1,13 @@
+[Desktop Entry]
+Comment=Electronic Sketchbook
+Exec=/opt/processing/processing
+Icon=/opt/processing/lib/icons/pde-512.png
+Name=Processing
+NoDisplay=false
+Path=/opt/processing
+StartupNotify=true
+Terminal=false
+Type=Application
+X-KDE-SubstituteUID=false
+X-KDE-Username=
+X-Desktop-File-Install-Version=0.22
