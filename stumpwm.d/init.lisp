@@ -4,6 +4,13 @@
 
 (in-package :stumpwm)
 
+;; Load modules
+(setf *module-dir* #p"/home/jay/.stumpwm.d/contrib/")
+(init-load-path *module-dir*)
+(load-module "ttf-fonts")
+(load-module "notify")
+(load-module "stumptray")
+
 ;; Change appearance.
 (setq *message-window-gravity* :top
       *message-window-padding 2
@@ -20,7 +27,8 @@
 (set-unfocus-color "black")
 
 ;; Modeline
-(setf *screen-mode-line-format* "%d | ^[^2%n^] | ^[^2%W^]"
+(setf *screen-mode-line-format* "^[^2%n^] | ^[^2%W^] ^> %d | %T"
+      ;; *screen-mode-line-format* "%d | ^[^2%n^] | ^[^2%W^]"
       *time-modeline-string* "%a %b %e %I:%M %P"
       *mode-line-foreground-color* "Gray75")
 
@@ -29,13 +37,6 @@
 
 ;; change the prefix key to something else
 (set-prefix-key (kbd "C-t"))
-
-;; Load modules
-(setf *module-dir* #p"/home/jay/.stumpwm.d/contrib/")
-(init-load-path *module-dir*)
-(load-module "ttf-fonts")
-(load-module "notify")
-(load-module "stumptray")
 
 ;; Prompt the user for an interactive command. The first arg is an
 ;; optional initial contents.
@@ -59,7 +60,7 @@
 (define-key *root-map* (kbd "b") "exec firefox")
 (define-key *root-map* (kbd "B") "colon1 exec firefox http://www.")
 (define-key *root-map* (kbd "C-s") "colon1 exec urxvtc -e ssh ")
-(define-key *root-map* (kbd "C-l") "exec i3lock -c a020f0 -d -e")
+(define-key *root-map* (kbd "C-l") "exec i3lock -c 14041e -d -e")
 (define-key *root-map* (kbd "C-m") "exec rofi -show run")
 (define-key *root-map* (kbd "C-w") "exec rofi -show window")
 
