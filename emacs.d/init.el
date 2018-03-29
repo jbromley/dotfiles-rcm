@@ -204,21 +204,7 @@
 ;; Org mode
 (use-package org
   :init (progn
-          (use-package org-bullets)
-          (use-package org-present
-            :config (progn
-                      (add-hook 'org-present-mode-hook
-                                (lambda ()
-                                  (org-present-big)
-                                  (org-display-inline-images)
-                                  (org-present-hide-cursor)
-                                  (org-present-read-only)))
-                      (add-hook 'org-present-mode-quit-hook
-                                (lambda ()
-                                  (org-present-small)
-                                  (org-remove-inline-images)
-                                  (org-present-show-cursor)
-                                  (org-present-read-write))))))
+          (use-package org-bullets))
   :config (progn
             ;; Use UTF-8 bullets.
             (add-hook 'org-mode-hook
