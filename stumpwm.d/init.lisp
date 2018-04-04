@@ -56,7 +56,7 @@
 (define-key *root-map* (kbd "B") "colon1 exec firefox http://www.")
 (define-key *root-map* (kbd "C-s") "colon1 exec urxvtc -e ssh ")
 (define-key *root-map* (kbd "C-l") "exec i3lock -c 14041e -d -e")
-(define-key *root-map* (kbd "C-m") "exec rofi -show run")
+(define-key *root-map* (kbd "m") "exec rofi -show run")
 (define-key *root-map* (kbd "C-w") "exec rofi -show window")
 
 ;; Group creation and navigation
