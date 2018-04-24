@@ -217,11 +217,11 @@
                (latex . t)))
             (setq org-confirm-babel-evaluate nil)))
 
-;; (use-package todotxt
-;;   :init (progn
-;;        (add-to-list 'auto-mode-alist '("\\todo.txt\\'" . todotxt-mode))
-;;        (setq todotxt-file (expand-file-name "~/Documents/todo/todo.txt"))))
-
+(use-package fsharp-mode
+  :mode (("\\.fs[iylx]?$" . fsharp-mode))
+  :config (setq inferior-fsharp-program "/usr/bin/fsharpi --readline-"
+		fsharp-compiler "/usr/bin/fsharpc"))
+  
 (use-package slime
   :init
   (progn
