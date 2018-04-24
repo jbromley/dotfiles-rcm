@@ -49,17 +49,17 @@ draw_bold_text_with_bright_colors: true
 font:
   # The normal (roman) font face to use.
   normal:
-    family: Ubuntu Mono
+    family: Anonymous Pro
     style: Regular
 
   # The bold font face
   bold:
-    family: Ubuntu Mono
+    family: Anonymous Pro
     style: Bold
 
   # The italic font face
   italic:
-    family: Ubuntu Mono
+    family: Anonymous Pro
     style: Italic
 
   # Point size of the font
