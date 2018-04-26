@@ -1,9 +1,9 @@
 !!! X Resource File
 
 ! Font defines
-#define FONT_NAME Unispace
+#define FONT_NAME Ubuntu Mono
 #define FONT_STYLE Regular
-#define FONT_SIZE 10
+#define FONT_SIZE 12
 
 ! Color theme
 #include "/home/jay/.Xresources.d/ocean_dark.colortheme"
@@ -24,9 +24,9 @@ Emacs*toolBar: off
 Emacs*verticalScrollBars: off
 
 ! Rxvt-unicode
-!URxvt.geometry: 100x40
+URxvt.geometry: 100x40
 URxvt.depth: 32
-URxvt*letterSpace: 0
+URxvt*letterSpace: -1
 URxvt*font: xft:FONT_NAME:size=FONT_SIZE:style=Regular
 URxvt*boldFont: xft:FONT_NAME:size=FONT_SIZE:style=Bold
 URxvt*italicFont: xft:FONT_NAME:size=FONT_SIZE:style=Italic
