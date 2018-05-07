@@ -1,6 +1,6 @@
 [Desktop Entry]
 Version=1.0
-Name=tmux
+Name=tmux (alacritty)
 Comment=Terminal multiplexer
 Exec=alacritty -e tmux
 Icon=utilities-terminal
