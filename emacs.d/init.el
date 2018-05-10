@@ -214,8 +214,26 @@
             (org-babel-do-load-languages
              'org-babel-load-languages
              '((R . t)
-               (latex . t)))
-            (setq org-confirm-babel-evaluate nil)))
+               (latex . t)
+	       (ditaa . t)))
+            (setq org-confirm-babel-evaluate nil
+		  org-todo-keywords '((sequence "TODO(t)"
+						"IN-PROGRESS(i)"
+						"WAITING(w@/!)"
+						"|"
+						"DONE(d!)"
+						"CANCELED(c@)"))
+		  org-todo-keyword-faces '(("IN-PROGRESS" . "cyan")
+					   ("WAITING" . "orange")
+					   ("CANCELED" . "red"))
+		  org-agenda-exporter-settings '((ps-print-color-p nil)
+						 (org-agenda-add-entry-text-maxlines 0)
+						 (htmlize-output-type 'css))
+		  org-enforce-todo-dependencies t
+		  org-enforce-todo-checkbox-dependencies t
+		  org-agenda-dim-blocked-tasks t
+		  org-log-done t))
+  :bind (("C-c a" . org-agenda)))
 
 (use-package fsharp-mode
   :mode (("\\.fs[iylx]?$" . fsharp-mode))
