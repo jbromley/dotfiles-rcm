@@ -10,12 +10,12 @@
 
 ! XFT
 Xft.dpi: 96
-Xft.antialias: true
-Xft.hinting: true
-Xft.rgba: rgb
-Xft.autohint: true
-Xft.hintstyle: hintslight
-Xft.lcdfilter: lcddefault
+! Xft.antialias: true
+! Xft.hinting: true
+! Xft.rgba: rgb
+! Xft.autohint: true
+! Xft.hintstyle: hintslight
+! Xft.lcdfilter: lcddefault
 
 ! Emacs
 Emacs*font: FONT_NAME-FONT_SIZE
