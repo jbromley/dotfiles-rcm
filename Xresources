@@ -3,10 +3,10 @@
 ! Font defines
 #define FONT_NAME Ubuntu Mono
 #define FONT_STYLE Regular
-#define FONT_SIZE 12
+#define FONT_SIZE 10
 
 ! Color theme
-#include "/home/jay/.Xresources.d/ocean_dark.colortheme"
+#include "/home/jay/.Xresources.d/dark_lakeside.colortheme"
 
 ! XFT
 Xft.dpi: 96
@@ -27,14 +27,8 @@ Emacs*verticalScrollBars: off
 URxvt.geometry: 100x40
 URxvt.depth: 32
 URxvt*letterSpace: -1
-URxvt*font: xft:FONT_NAME:size=FONT_SIZE:style=Regular
-URxvt*boldFont: xft:FONT_NAME:size=FONT_SIZE:style=Bold
-URxvt*italicFont: xft:FONT_NAME:size=FONT_SIZE:style=Italic
-URxvt*boldItalicFont: xft:FONT_NAME:size=FONT_SIZE:style=Bold Italic
+URxvt*font: xft:FONT_NAME:style=FONT_STYLE:size=FONT_SIZE
+URxvt*boldFont: xft:FONT_NAME:style=Bold:size=FONT_SIZE
+URxvt*italicFont: xft:FONT_NAME:style=Italic:size=FONT_SIZE
+URxvt*boldItalicFont: xft:FONT_NAME:style=Bold Italic:size=FONT_SIZE
 URxvt*scrollBar: off
-URxvt.iconFile: /usr/share/icons/gnome/256x256/apps/utilities-terminal.png
-
-! Rofi
-rofi.font: FONT_NAME 8
-rofi.terminal: urxvtc
-rofi.fuzzy: true
