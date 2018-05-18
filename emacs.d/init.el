@@ -207,8 +207,7 @@
           (use-package org-bullets))
   :config (progn
             ;; Use UTF-8 bullets.
-            (add-hook 'org-mode-hook
-                      (lambda () (org-bullets-mode 1)))
+            (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
             ;; Org-babel configuration
             (org-babel-do-load-languages
@@ -216,7 +215,8 @@
              '((R . t)
                (latex . t)
 	       (ditaa . t)))
-            (setq org-confirm-babel-evaluate nil
+            (setq org-directory "~/Org"
+		  org-confirm-babel-evaluate nil
 		  org-todo-keywords '((sequence "TODO(t)"
 						"IN-PROGRESS(i)"
 						"WAITING(w@/!)"
@@ -229,11 +229,14 @@
 		  org-agenda-exporter-settings '((ps-print-color-p nil)
 						 (org-agenda-add-entry-text-maxlines 0)
 						 (htmlize-output-type 'css))
+		  org-hierarchical-todo-statistics nil
 		  org-enforce-todo-dependencies t
 		  org-enforce-todo-checkbox-dependencies t
 		  org-agenda-dim-blocked-tasks t
-		  org-log-done t))
-  :bind (("C-c a" . org-agenda)))
+		  org-log-done t
+		  org-default-notes-file (concat org-directory "/Notes.org")))
+  :bind (("C-c a" . org-agenda)
+	 ("C-c c" . org-capture)))
 
 (use-package fsharp-mode
   :mode (("\\.fs[iylx]?$" . fsharp-mode))
