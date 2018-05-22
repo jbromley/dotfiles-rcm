@@ -3,7 +3,7 @@
 ! Font defines
 #define FONT_NAME Ubuntu Mono
 #define FONT_STYLE Regular
-#define FONT_SIZE 10
+#define FONT_SIZE 12
 
 ! Color theme
 #include "/home/jay/.Xresources.d/dark_lakeside.colortheme"
