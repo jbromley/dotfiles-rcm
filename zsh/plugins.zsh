@@ -1,7 +1,5 @@
 plugins=(sudo \
 	     colored-man-pages \
-	     virtualenv \
-	     virtualenvwrapper \
 	     web-search \
 	     zsh-history-substring-search \
 	     kubectl \
