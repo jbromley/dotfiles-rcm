@@ -246,7 +246,7 @@
 (use-package slime
   :init
   (progn
-    (load (expand-file-name "~/Code/Quicklisp/slime-helper.el"))
+    (load (expand-file-name "~/Quicklisp/slime-helper.el"))
     (setq inferior-lisp-program "sbcl")))
 
 ;; Fix the prompt for sql-interactive-mode with PostgreSQL.
