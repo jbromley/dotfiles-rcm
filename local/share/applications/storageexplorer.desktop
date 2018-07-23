@@ -2,8 +2,8 @@
 Name=Azure Storage Explorer
 GenericName=Storage Explorer
 Comment=Manage storage
-Exec=/opt/storageexplorer/StorageExplorer
-Icon=/opt/storageexplorer/resources/app/out/app/icon.png
+Exec=/opt/AzureStorageExplorer/StorageExplorer
+Icon=/opt/AzureStorageExplorer/resources/app/out/app/icon.png
 Type=Application
 Terminal=false
 Categories=FileManager;
