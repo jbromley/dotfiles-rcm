@@ -3,7 +3,7 @@
 if [[ "$TERM" != "dumb" ]] && [[ "$DISABLE_LS_COLORS" != "true" ]]; then
 #     PROMPT='[$(virtualenv_prompt_info)%{$fg[red]%}%n%{$reset_color%}@%{$fg[magenta]%}%m%{$reset_color%}:%{$fg[blue]%}%~%{$reset_color%}$(git_prompt_info)]
 # %# '
-    PROMPT='[$(virtualenv_prompt_info)%{$PR_BOLD_GREEN%}%n@%m%{$reset_color%}:%{$PR_BOLD_BLUE%}%~%{$reset_color%}$(git_prompt_info)]
+    PROMPT='[$(virtualenv_prompt_info)%{$PR_BOLD_MAGENTA%}%n@%m%{$reset_color%}:%{$PR_BOLD_BLUE%}%~%{$reset_color%}$(git_prompt_info)]
 %# '
 
     ZSH_THEME_GIT_PROMPT_PREFIX=" on %{$fg[yellow]%}"
