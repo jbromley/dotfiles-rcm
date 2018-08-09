@@ -32,3 +32,10 @@ URxvt*boldFont: xft:FONT_NAME:style=Bold:size=FONT_SIZE
 URxvt*italicFont: xft:FONT_NAME:style=Italic:size=FONT_SIZE
 URxvt*boldItalicFont: xft:FONT_NAME:style=Bold Italic:size=FONT_SIZE
 URxvt*scrollBar: off
+
+! rofi
+rofi.modi: window,run,drun,ssh
+rofi.opacity: 90
+rofi.font: mono 10
+!rofi.fuzzy: true
+rofi.bgalt: #180f17
