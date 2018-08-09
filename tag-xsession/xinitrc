@@ -1,4 +1,4 @@
-[ -f ~/.fehbg ] && sh ~/.fehbg
+[ -f ~/.fehbg ] && sh ~/.fehbg &
 eval $(gnome-keyring-daemon --components=gpg,pkcs11,secrets,ssh --daemonize --login)
 export GNOME_KEYRING_CONTROL
 export SSH_AUTH_SOCK
