@@ -1,0 +1,42 @@
+Config { font = "xft:DejaVu Sans Mono-10"
+       , additionalFonts = []
+       , borderColor = "black"
+       , border = TopB
+       , bgColor = "black"
+       , fgColor = "grey"
+       , alpha = 192
+       , position = TopW L 97
+       , textOffset = -1
+       , iconOffset = -1
+       , lowerOnStart = True
+       , pickBroadest = False
+       , persistent = False
+       , hideOnStart = False
+       , iconRoot = "."
+       , allDesktops = True
+       , overrideRedirect = True
+       , commands = [ Run Network "eno1" [ "--template", "Network: <rx>↓ <tx>↑"
+       	                                 , "-S", "True"
+					 , "--width", "6"
+					 , "--Low", "1024"
+					 , "--High", "4096"
+					 , "--normal", "cyan"
+					 , "--high","orange"
+					 ] 10
+                    , Run Cpu [ "--template", "CPU: <total>%"
+		              , "--ppad", "3"
+		              , "--Low", "33"
+		              , "--High","67"
+			      , "--normal", "cyan"
+			      , "--high", "orange"
+			      ] 10
+                    , Run Memory [ "--template", "RAM: <usedratio>% (<cache>M)"
+		                 , "--ppad", "3"
+				 ] 10
+    		    , Run Date "%a %b %_d %Y %I:%M %P" "date" 10
+		    , Run StdinReader
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%StdinReader% }{ %cpu% | %memory% | %eno1% | <fc=#ee9a00>%date%</fc>"
+       }

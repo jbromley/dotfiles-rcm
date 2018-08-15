@@ -1,6 +1,6 @@
 ;; -*-lisp-*-
 ;;
-;; Here is a sample .stumpwmrc file
+;; Stumpwm init file
 
 (in-package :stumpwm)
 
@@ -9,7 +9,7 @@
 (init-load-path *module-dir*)
 (load-module "ttf-fonts")
 (load-module "notify")
-(load-module "stumptray")
+;; (load-module "stumptray")
 
 ;; Change appearance.
 (setq *message-window-gravity* :top
@@ -20,11 +20,10 @@
 
 ;; Message bar and window decorations
 (set-msg-border-width 2)
-(set-font (make-instance 'xft:font :family "Menlo" :subfamily "Regular" :size 10))
-
+(set-font (make-instance 'xft:font :family "DejaVu Sans Mono" :subfamily "Book" :size 10))
 
 ;; Modeline
-(setf *screen-mode-line-format* "%n | %W ^> %d | %T"
+(setf *screen-mode-line-format* "^[^2%n^] | %W ^> %d"
       *time-modeline-string* "%a, %b %e, %I:%M %P")
 
 ;; Other
@@ -49,19 +48,19 @@
 (define-key *top-map* (kbd "XF86AudioMute") "exec /home/jay/.local/bin/pavol mute")
 
 ;; Key mappings
+(define-key *root-map* (kbd "b") "exec firefox")
+(define-key *root-map* (kbd "B") "colon1 exec firefox http://www.")
 (define-key *root-map* (kbd "c") "exec urxvtc")
 (define-key *root-map* (kbd "C-c") "exec urxvtc -e tmux")
 (define-key *root-map* (kbd "d") "exec evince")
-(define-key *root-map* (kbd "b") "exec firefox")
-(define-key *root-map* (kbd "B") "colon1 exec firefox http://www.")
-(define-key *root-map* (kbd "C-s") "colon1 exec urxvtc -e ssh ")
 (define-key *root-map* (kbd "C-l") "exec i3lock -c 14041e -d -e")
-(define-key *root-map* (kbd "m") "exec rofi -show run")
+(define-key *root-map* (kbd "C-s") "colon1 exec urxvtc -e ssh ")
+(define-key *root-map* (kbd "m") "exec rofi -show drun")
 (define-key *root-map* (kbd "C-w") "exec rofi -show window")
 
 ;; Group creation and navigation
-(define-key *root-map* (kbd "C-Right") "gnext")
-(define-key *root-map* (kbd "C-Left") "gprev")
+(define-key *root-map* (kbd "C-Down") "gnext")
+(define-key *root-map* (kbd "C-Up") "gprev")
 
 ;; Web jump (works for Google and Imdb)
 (defmacro make-web-jump (name prefix)
