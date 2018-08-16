@@ -47,6 +47,7 @@ beautiful.init("/home/jay/.config/awesome/theme.lua")
 terminal = "urxvtc"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
+locker = "/home/jay/.local/bin/fuzzylock.sh"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -58,12 +59,12 @@ modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 local layouts =
 {
-    awful.layout.suit.floating,
     awful.layout.suit.tile,
     --awful.layout.suit.tile.left,
     --awful.layout.suit.tile.bottom,
     --awful.layout.suit.tile.top,
     awful.layout.suit.fair,
+    awful.layout.suit.floating,
     --awful.layout.suit.fair.horizontal,
     --awful.layout.suit.spiral,
     --awful.layout.suit.spiral.dwindle,
@@ -100,8 +101,9 @@ myawesomemenu = {
 }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "Debian", debian.menu.Debian_menu.Debian },
-                                    { "open terminal", terminal }
+                                    { "Applications", debian.menu.Debian_menu.Debian },
+                                    { "Open terminal", terminal },
+				    { "Lock screen", locker }
                                   }
                         })
 
@@ -275,7 +277,16 @@ globalkeys = awful.util.table.join(
                   awful.util.getdir("cache") .. "/history_eval")
               end),
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end)
+    awful.key({ modkey }, "p", function() menubar.show() end),
+    -- Screen locking
+    awful.key({ modkey,           }, "Pause", function () awful.util.spawn(locker) end),
+    -- Multimedia controls
+    awful.key({}, "XF86AudioPrev", function () awful.util.spawn("/home/jay/.local/bin/sp prev") end),
+    awful.key({}, "XF86AudioNext", function () awful.util.spawn("/home/jay/.local/bin/sp next") end),
+    awful.key({}, "XF86AudioPlay", function () awful.util.spawn("/home/jay/.local/bin/sp play") end),
+    awful.key({}, "XF86AudioRaiseVolume", function () awful.util.spawn("/home/jay/.local/bin/pavol up") end),
+    awful.key({}, "XF86AudioLowerVolume", function () awful.util.spawn("/home/jay/.local/bin/pavol down") end),
+    awful.key({}, "XF86AudioMute", function () awful.util.spawn("/home/jay/.local/bin/pavol mute") end)
 )
 
 clientkeys = awful.util.table.join(
@@ -369,6 +380,8 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { class = "gimp" },
       properties = { floating = true } },
+    { rule = { class = "Spotify" },
+      properties = { floating = true} },
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { tag = tags[1][2] } },
