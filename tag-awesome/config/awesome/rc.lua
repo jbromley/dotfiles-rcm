@@ -116,7 +116,9 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 -- {{{ Wibox
 -- Create a textclock widget
-mytextclock = awful.widget.textclock()
+mytextclock = awful.widget.textclock("%a %b %d, %l:%M %p")
+mytextclock:connect_signal("button::press",
+			   function () awful.util.spawn("xdg-open https://calendar.google.com/calendar/r") end)
 
 -- Create a wibox for each screen and add it
 mywibox = {}
