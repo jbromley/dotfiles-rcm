@@ -8,10 +8,11 @@ export GNOME_KEYRING_PID
 dbus-daemon --print-address 4 --session
 gnome-settings-daemon &
 urxvtd -q -o -f
-
-trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 3 --transparent true --alpha 64 --tint 0x000000 --height 19 &
+trayer --edge top --align right --SetDockType true --SetPartialStrut true \
+       --expand true --width 3 --transparent true --alpha 64 --tint 0x000000 \
+       --height 19 &
 pasystray &
 blueman-applet &
 nm-applet &
-# exec ssh-agent /usr/local/bin/stumpwm
+xautolock -time 10 -locker /home/jay/.local/bin/fuzzylock.sh &
 exec ssh-agent /usr/bin/xmonad
