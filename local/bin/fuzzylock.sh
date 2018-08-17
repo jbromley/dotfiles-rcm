@@ -1,0 +1,7 @@
+#! /usr/bin/env bash
+screenshot=$(mktemp --suffix=.png)
+lockscreen=$(mktemp --suffix=.png)
+scrot ${screenshot}
+convert -grayscale Rec709Luminance -scale 12.5% -scale 800% ${screenshot} ${lockscreen}
+rm ${screenshot}
+i3lock -e -i ${lockscreen}
