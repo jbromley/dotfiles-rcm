@@ -1,11 +1,10 @@
 [Desktop Entry]
 Name=Rxvt (tmux)
 Comment=Terminal multiplexer
-TryExec=urxvt -e tmux
+TryExec=urxvtc -e tmux
 Exec=urxvtc -e tmux
-Icon=urxvt_48x48.xpm
+Icon=urxvt_48x48
 Type=Application
 Categories=Utility;TerminalEmulator;
 StartupNotify=true
 Keywords=Run;
-Actions=New
