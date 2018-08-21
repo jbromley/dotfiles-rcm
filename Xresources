@@ -5,9 +5,6 @@
 #define FONT_STYLE Regular
 #define FONT_SIZE 12
 
-! Color theme
-#include "/home/jay/.Xresources.d/paraiso_dark.colortheme"
-
 ! XFT
 Xft.dpi: 96
 ! Xft.antialias: true
@@ -34,8 +31,45 @@ URxvt*boldItalicFont: xft:FONT_NAME:style=Bold Italic:size=FONT_SIZE
 URxvt*scrollBar: off
 
 ! rofi
-rofi.modi: window,run,drun,ssh
+rofi.modi:    window,run,drun,ssh
 rofi.opacity: 90
-rofi.font: mono 10
-!rofi.fuzzy: true
-rofi.bgalt: #180f17
+rofi.width:   32
+rofi.lines:   8
+rofi.columns: 1
+rofi.font:    Ubuntu Mono 16
+rofi.fg:      gray50
+rofi.bg:      black
+rofi.hlbg:    gray16
+rofi.hlfg:    white
+rofi.bc:      blue2
+rofi.bw:      2
+! Location on screen
+rofi.location:                       0
+! Use levenshtein sorting
+rofi.levenshtein-sort:               true
+! Set case-sensitivity
+rofi.case-sensitive:                 false
+! Enable sidebar-mode
+rofi.sidebar-mode:                   false
+! Row height (in chars)
+rofi.eh:                             1
+! Parse hosts file for ssh mode
+rofi.parse-hosts:                    false
+! Parse known_hosts file for ssh mode
+rofi.parse-known-hosts:              true
+! Do a more fuzzy matching
+rofi.fuzzy:                          true
+! Use glob matching
+rofi.glob:                           false
+! Tokenize input string
+rofi.tokenize:                       true
+! Monitor id to show on
+rofi.m:                              -1
+! Separator style (none, dash, solid)
+rofi.separator-style:                none
+! Hide scroll-bar
+rofi.hide-scrollbar:                 false
+
+! Color theme
+! #include "/home/jay/.Xresources.d/paraiso_dark.colortheme"
+
