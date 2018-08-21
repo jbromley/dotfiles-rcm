@@ -104,6 +104,7 @@ if [[ $? -eq 0 && ! -z ${selection} ]]; then
               ${menu_confirm} =~ (^|[[:space:]])"${menu[${selection}]}"($|[[:space:]]) ]]; then
 	ask_confirmation
     else
-	i3-msg -q "exec ${cmds[${selection}]}"
+	cmdindex=$(get_index "${selection}" "${menu[@]}")
+	i3-msg -q "exec ${cmds[${cmdindex}]}"
     fi
 fi
