@@ -24,17 +24,18 @@ set $right semicolon
 floating_modifier Mod4
 
 # start a terminal
-bindsym Mod4+Return exec urxvtc
-bindsym Mod4+Shift+Return exec urxvtc -e tmux
+bindsym Mod4+Return exec st
+bindsym Mod4+Shift+Return exec st -e tmux
 
 # kill focused window
 bindsym Mod4+Shift+q kill
 
 # Program launchers
-bindsym Mod4+d exec dmenu_run
-bindsym Mod4+Shift+d exec --no-startup-id i3-dmenu-desktop
+bindsym Mod4+d exec -show run
+bindsym Mod4+Shift+d exec --no-startup-id i3-rofi-desktop
 
 # change focus
+bindsym Mod4+g exec rofi -show window
 bindsym Mod4+$left focus left
 bindsym Mod4+$down focus down
 bindsym Mod4+$up focus up
