@@ -1,0 +1,2 @@
+#! /usr/bin/env bash
+urxvtc -name HTop -geometry 160x50 -e htop
