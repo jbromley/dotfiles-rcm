@@ -1,16 +1,16 @@
-[ -f ~/.fehbg ] && sh ~/.fehbg &
 eval $(gnome-keyring-daemon --components=gpg,pkcs11,secrets,ssh --daemonize --login)
 export GNOME_KEYRING_CONTROL
 export SSH_AUTH_SOCK
 export GPG_AGENT_INFO
 export GNOME_KEYRING_PID
+nitrogen --restore &
 dbus-daemon --print-address 4 --session
 gnome-settings-daemon &
-compton -f -b -i 0.9
+compton -f -b
 urxvtd -q -o -f
 pasystray &
 blueman-applet &
 nm-applet &
-xautolock -time 10 -locker /home/jay/.local/bin/fuzzylock.sh &
 udiskie -q -t &
+xautolock -time 10 -locker /home/jay/.local/bin/fuzzylock.sh &
 exec ssh-agent /usr/bin/i3
