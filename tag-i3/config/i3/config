@@ -24,18 +24,18 @@ set $right semicolon
 floating_modifier Mod4
 
 # start a terminal
-bindsym Mod4+Return exec st
-bindsym Mod4+Shift+Return exec st -e tmux
+bindsym Mod4+Return exec --no-startup-id st
+bindsym Mod4+Shift+Return exec --no-startup-id st -e tmux
 
 # kill focused window
 bindsym Mod4+Shift+q kill
 
 # Program launchers
-bindsym Mod4+d exec -show run
+bindsym Mod4+d exec --no-startup-id rofi -show run
 bindsym Mod4+Shift+d exec --no-startup-id i3-rofi-desktop
 
 # change focus
-bindsym Mod4+g exec rofi -show window
+bindsym Mod4+g exec --no-startup-id rofi -show window
 bindsym Mod4+$left focus left
 bindsym Mod4+$down focus down
 bindsym Mod4+$up focus up
@@ -160,6 +160,11 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id /home/jay/.local/bin/pavol up
 bindsym XF86AudioLowerVolume exec --no-startup-id /home/jay/.local/bin/pavol down
 bindsym XF86AudioMute exec --no-startup-id /home/jay/.local/bin/pavol mute
 
+# Screen brightness keys
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
+
+# Other keys
 bindsym XF86HomePage exec --no-startup-id /home/jay/.local/bin/xhtop
 
 # Window rules
