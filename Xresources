@@ -38,6 +38,7 @@ rofi.width:   32
 rofi.lines:   8
 rofi.columns: 1
 rofi.font:    Ubuntu Mono 16
+rofi.color-enabled: true
 rofi.color-normal: #000000, #808080, #000000, #101010, #ffffff
 rofi.color-active: #000000, #008080, #000000, #202020, #ffffff
 rofi.color-window: #000000, #0000ee, #0000ee
