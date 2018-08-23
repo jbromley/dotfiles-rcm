@@ -13,6 +13,8 @@
 # is used in the bar {} block below.
 font pango:Ubuntu Mono 10
 
+# $i3-theme-window
+
 # use these keys for focus, movement, and resize directions when reaching for
 # the arrows is not convenient
 set $up l
@@ -168,6 +170,7 @@ bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
 bindsym XF86HomePage exec --no-startup-id /home/jay/.local/bin/xhtop
 
 # Window rules
+for_window [class="Nitrogen"] floating enable
 for_window [class="Spotify"] floating enable
 for_window [class="Processing"] floating enable
 for_window [class="XClock"] floating enable move position 2427 px -17 px border pixel 1 sticky enable
@@ -183,5 +186,6 @@ bar {
 	modifier Mod4
         status_command i3status
         tray_output primary
+	# $i3-theme-bar
 }
 
