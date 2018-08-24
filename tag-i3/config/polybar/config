@@ -1,15 +1,13 @@
 ; Polybar configuration
 
 [colors]
-;background = ${xrdb:color0:#222}
-background = #222
+background = ${xrdb:background:#222}
 background-alt = #444
-;foreground = ${xrdb:color7:#222}
-foreground = #dfdfdf
+foreground = ${xrdb:foreground:#dfdfdf}
 foreground-alt = #555
-primary = #ffb52a
-secondary = #e60053
-alert = #bd2c40
+primary = ${xrdb:color3:#ffb52a}
+secondary = ${xrdb:color5:#e60053}
+alert = ${xrdb:color1:#bd2c40}
 
 [bar/topbar]
 ;monitor = ${env:MONITOR:DVI-I-1}
@@ -280,7 +278,7 @@ screenchange-reload = true
 ;compositing-border = over
 
 [global/wm]
-margin-top = 5
-margin-bottom = 5
+margin-top = 2
+margin-bottom = 0
 
 ; vim:ft=dosini
