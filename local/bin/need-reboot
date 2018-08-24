@@ -1,0 +1,7 @@
+#!/bin/bash
+reboot_file=/var/run/reboot-required
+if [ -f "${reboot_file}" ]; then
+    cat ${reboot_file}
+else
+    echo "No reboot required."
+fi
