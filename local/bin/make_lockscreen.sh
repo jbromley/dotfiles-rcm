@@ -32,15 +32,12 @@ main () {
 	then
 	    #convert -gaussian 13x13 "${wallpaper}" "${LOCK_SCREEN}"
 	    convert -scale 6.25% -scale 1600% "${wallpaper}" "${LOCK_SCREEN}"
-	    xdg-open "${LOCK_SCREEN}"
 	fi
     else
 	# There is no wallpaper information, select a random wallpaper and use that.
 	wallpaper=$(select_random_file "${WALLPAPER_DIR}")
 	convert -gaussian 11x11 "${wallpaper}" "${LOCK_SCREEN}"
 	write_store_file "${STORE_FILE}" "${wallpaper}"
-	cat ${STORE_FILE}
-	xdg-open "${LOCK_SCREEN}"
     fi
 }
 #}}}
