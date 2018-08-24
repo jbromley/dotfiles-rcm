@@ -30,21 +30,15 @@ main () {
 	# generate a new lock screen.
 	if lockscreen_needs_update "${wallpaper}"
 	then
-	    echo "Wallpaper changed."
 	    #convert -gaussian 13x13 "${wallpaper}" "${LOCK_SCREEN}"
 	    convert -scale 6.25% -scale 1600% "${wallpaper}" "${LOCK_SCREEN}"
 	    xdg-open "${LOCK_SCREEN}"
-	else
-	    echo "No change in wallpaper."
 	fi
     else
-	echo "${STORE_FILE} not found."
 	# There is no wallpaper information, select a random wallpaper and use that.
 	wallpaper=$(select_random_file "${WALLPAPER_DIR}")
-	echo "Randomly selected ${wallpaper}."
 	convert -gaussian 11x11 "${wallpaper}" "${LOCK_SCREEN}"
 	write_store_file "${STORE_FILE}" "${wallpaper}"
-	echo "Wrote Nitrogen store file."
 	cat ${STORE_FILE}
 	xdg-open "${LOCK_SCREEN}"
     fi
