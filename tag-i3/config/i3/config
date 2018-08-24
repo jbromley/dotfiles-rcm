@@ -184,8 +184,11 @@ bindsym XF86HomePage exec --no-startup-id /home/jay/.local/bin/xhtop
 for_window [class="Nitrogen"] floating enable
 for_window [class="Spotify"] floating enable
 for_window [class="VirtualBox Manager"] floating enable
+for_window [class="Arandr"] floating enable
 for_window [class="Processing"] floating enable
 for_window [class="XClock"] floating enable move position 2427 px -17 px border pixel 1 sticky enable
 for_window [class="Pavucontrol"] floating enable
 for_window [class="Gnome-system-monitor"] floating enable
 for_window [instance="HTop"] floating enable move position center
+
+exec --no-startup-id polybar topbar
