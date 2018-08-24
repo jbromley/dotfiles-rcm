@@ -14,4 +14,4 @@ nm-applet &
 udiskie -q -t &
 xautolock -detectsleep -time 5 -locker "i3lock -e -f -i /tmp/lockscreen.png" &
 ${HOME}/.local/bin/make_lockscreen.sh &
-exec ssh-agent /usr/bin/i3
+exec ssh-agent /usr/local/bin/i3
