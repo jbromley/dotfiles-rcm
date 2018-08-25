@@ -1,7 +1,8 @@
 ; Polybar configuration
 
 [colors]
-background = ${xrdb:background:#222}
+!background = ${xrdb:background:#222}
+background = #a0000000
 background-alt = #444
 foreground = ${xrdb:foreground:#dfdfdf}
 foreground-alt = #555
