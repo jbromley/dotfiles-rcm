@@ -4,7 +4,8 @@
 #######################################################################
 
 # Use a custom lock script
-LOCKSCRIPT="/home/jay/.local/bin/fuzzylock.sh"
+# LOCK_CMD="/home/jay/.local/bin/fuzzylock.sh"
+LOCK_CMD="i3lock -e -f -i /tmp/lockscreen.png"
 
 # Colors: FG (foreground), BG (background), HL (highlighted)
 FG_COLOR="#bbbbbb"
@@ -15,7 +16,7 @@ BORDER_COLOR="#222222"
 
 # Options not related to colors
 ROFI_TEXT="Menu:"
-ROFI_OPTIONS=(-width -11 -location 0 -hide-scrollbar -bw 2)
+ROFI_OPTIONS=(-columns 1 -lines 8 -sep solid -width -11 -location 0 -hide-scrollbar -bw 2)
 
 #######################################################################
 #                             END CONFIG                              #
@@ -60,7 +61,7 @@ declare -a cmds
 
 # Menu with keys/commands
 menu=(Lock Logout Suspend Reboot Shutdown Cancel)
-cmds=(${LOCKSCRIPT} "i3-msg exit" "systemctl suspend" "systemctl reboot" "systemctl poweroff")
+cmds=(${LOCK_CMD} "i3-msg exit" "systemctl suspend" "systemctl reboot" "systemctl poweroff")
 menu_nrows=${#menu[@]}
 
 # Menu entries that may trigger a confirmation message
