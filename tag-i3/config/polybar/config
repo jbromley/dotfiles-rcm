@@ -170,14 +170,14 @@ interface = eno1
 interval = 3.0
 
 format-connected-underline = #55aa55
-format-connected-prefix = "Up "
+format-connected-prefix = "⇵"
 format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = %local_ip%
 
-format-disconnected = "Down "
+format-disconnected = "🚫"
 ;format-disconnected = <label-disconnected>
 ;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
+label-disconnected = "%ifname%"
 ;label-disconnected-foreground = ${colors.foreground-alt}
 
 [module/date]
@@ -190,7 +190,7 @@ date-alt = "%Y-%m-%d"
 time = "%l:%M %p"
 time-alt = "%R"
 
-format-prefix = "⌚ "
+format-prefix = "🕣"
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #0a6cf5
 
@@ -200,10 +200,10 @@ label = %date% %time%
 type = internal/pulseaudio
 
 format-volume = <label-volume> <bar-volume>
-label-volume = VOL %percentage%%
+label-volume = "🎜 %percentage%%"
 label-volume-foreground = ${root.foreground}
 
-label-muted = 🔇 muted
+label-muted = "🔇 muted"
 label-muted-foreground = #666
 
 bar-volume-width = 10
@@ -215,11 +215,11 @@ bar-volume-foreground-4 = #55aa55
 bar-volume-foreground-5 = #f5a70a
 bar-volume-foreground-6 = #ff5555
 bar-volume-gradient = false
-bar-volume-indicator = |
+bar-volume-indicator = "╋"
 bar-volume-indicator-font = 2
-bar-volume-fill = ─
+bar-volume-fill = "━"
 bar-volume-fill-font = 2
-bar-volume-empty = ─
+bar-volume-empty = "━"
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground-alt}
 
@@ -249,10 +249,10 @@ expand-right = true
 
 format-spacing = 1
 
-label-open = "⌽ "
-label-open-foreground = ${colors.secondary}
+label-open = "⌽"
+label-open-foreground = ${colors.primary}
 label-close =  cancel
-label-close-foreground = ${colors.secondary}
+label-close-foreground = ${colors.primary}
 label-separator = |
 label-separator-foreground = ${colors.foreground-alt}
 
