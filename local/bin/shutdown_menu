@@ -61,7 +61,7 @@ declare -a cmds
 
 # Menu with keys/commands
 menu=(Lock Logout Suspend Reboot Shutdown Cancel)
-cmds=(${LOCK_CMD} "i3-msg exit" "systemctl suspend" "systemctl reboot" "systemctl poweroff")
+cmds=("${LOCK_CMD}" "i3-msg exit" "systemctl suspend" "systemctl reboot" "systemctl poweroff")
 menu_nrows=${#menu[@]}
 
 # Menu entries that may trigger a confirmation message
