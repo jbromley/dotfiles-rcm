@@ -1,51 +1,57 @@
 ; Polybar configuration
 
 [colors]
-!background = ${xrdb:background:#222}
-background = #a0000000
-background-alt = #444
+;background = ${xrdb:background:#000000}
+background = #d0000000
+background-alt = ${xrdb:color0}
 foreground = ${xrdb:foreground:#dfdfdf}
-foreground-alt = #555
+foreground-alt = ${xrdb:color8:#808080}
+ok = ${xrdb:color2:#00ff00}
+warn = ${xrdb:color3:#ffff00}
+alert = ${xrdb:color1:#bd2c40}
+
 primary = ${xrdb:color3:#ffb52a}
 secondary = ${xrdb:color5:#e60053}
-alert = ${xrdb:color1:#bd2c40}
 
 [bar/topbar]
 ;monitor = ${env:MONITOR:DVI-I-1}
 width = 100%
-height = 24
+height = 36
+tray-maxsize = 28
+;tray-scale = 2
 ;offset-x = 1%
 ;offset-y = 1%
 radius = 4.0
 fixed-center = true
+dpi = ${xrdb:Xft.dpi:-1}
 
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-line-size = 3
-line-color = #f00
+line-size = 4
+line-color = ${colors.foreground-alt}
 
-border-size = 4
-border-color = #00000000
+border-size = 2p
+border-color = ${colors.background-alt}
 
-padding-left = 0
+padding-left = 2
 padding-right = 2
 
 module-margin-left = 1
-module-margin-right = 2
+module-margin-right = 1
 
-font-0 = Ubuntu Mono:style=Regular:size=10;1
-font-1 = Unifont:fontformat=truetype:style=Medium:size=8:antialias=false;0
-font-2 = siji:pixelsize=10;1
+font-0 = Ubuntu Mono:style=Regular:size=8
+font-1 = Symbola:style=Regular:size=8
+;font-2 = siji:pixelsize=10;2
 
-modules-left = bspwm i3 xwindow
-modules-center = date
-modules-right = filesystem pulseaudio xkeyboard memory cpu eth temperature powermenu
+modules-left = i3 xwindow
+modules-center = 
+modules-right = filesystem cpu memory eth wifi temperature battery xkeyboard pulseaudio date
 
 tray-position = right
 tray-padding = 2
 ;tray-transparent = true
-;tray-background = #0063ff
+tray-background = ${colors.background}
 
 ;wm-restack = bspwm
 ;wm-restack = i3
@@ -59,7 +65,7 @@ scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
 
 cursor-click = pointer
-cursor-scroll = ns-resize
+cursor-scroll = default
 
 [module/xwindow]
 type = internal/xwindow
@@ -71,22 +77,22 @@ blacklist-0 = num lock
 
 format-prefix = "⌨ "
 format-prefix-foreground = ${colors.foreground-alt}
-format-prefix-underline = ${colors.secondary}
+format-prefix-underline = ${colors.background-alt}
 
 label-layout = %layout%
-label-layout-underline = ${colors.secondary}
+label-layout-underline = ${colors.background-alt}
 
 label-indicator-padding = 2
 label-indicator-margin = 1
-label-indicator-background = ${colors.secondary}
-label-indicator-underline = ${colors.secondary}
+label-indicator-background = ${colors.background-alt}
+label-indicator-underline = ${colors.background-alt}
 
 [module/filesystem]
 type = internal/fs
 interval = 25
-mount-0 = /home
-label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
-label-unmounted = %mountpoint% not mounted
+mount-0 = /
+label-mounted = "%mountpoint%: %percentage_used%%"
+label-unmounted = "%mountpoint% not mounted"
 label-unmounted-foreground = ${colors.foreground-alt}
 
 [module/bspwm]
@@ -121,7 +127,7 @@ wrapping-scroll = false
 ;pin-workspaces = true
 
 label-mode-padding = 2
-label-mode-foreground = #000
+label-mode-foreground = ${colors.foreground}
 label-mode-background = ${colors.primary}
 
 ; focused = Active workspace on focused monitor
@@ -153,7 +159,7 @@ type = internal/cpu
 interval = 2
 format-prefix = "CPU "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #f90000
+format-underline = ${colors.foreground-alt}
 label = %percentage:2%%
 
 [module/memory]
@@ -161,21 +167,39 @@ type = internal/memory
 interval = 2
 format-prefix = "RAM "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #4bffdc
+format-underline = ${colors.foreground-alt}
 label = %percentage_used%%
 
 [module/eth]
 type = internal/network
-interface = eno1
+interface = enp0s25
 interval = 3.0
 
-format-connected-underline = #55aa55
-format-connected-prefix = "⇵"
+format-connected-prefix = "⇵ "
 format-connected-prefix-foreground = ${colors.foreground-alt}
+format-connected = <label-connected>
+format-connected-underline = ${colors.ok}
 label-connected = %local_ip%
 
-format-disconnected = "🚫"
-;format-disconnected = <label-disconnected>
+format-disconnected-prefix = "⛔ "
+format-disconnected-prefix-foreground = ${colors.foreground-alt}
+format-disconnected = <label-disconnected>
+format-disconnected-underline = ${colors.alert}
+label-disconnected = %ifname%
+
+[module/wifi]
+type = internal/network
+interface = wlp3s0
+interval = 3.0
+
+format-connected-prefix = "⇵ "
+format-connected-prefix-foreground = ${colors.foreground-alt}
+format-connected = <label-connected>
+format-connected-underline = ${colors.ok}
+label-connected = "%essid% %signal%%"
+
+format-disconnected-prefix = "⛔ "
+format-disconnected = <label-disconnected>
 ;format-disconnected-underline = ${self.format-connected-underline}
 label-disconnected = "%ifname%"
 ;label-disconnected-foreground = ${colors.foreground-alt}
@@ -186,25 +210,25 @@ interval = 5
 
 date = "%a, %b %e"
 date-alt = "%Y-%m-%d"
-
 time = "%l:%M %p"
 time-alt = "%R"
 
-format-prefix = "🕣"
+format-prefix = "🕣 "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #0a6cf5
+format-underline = ${colors.foreground-alt}
 
 label = %date% %time%
 
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-volume = <label-volume> <bar-volume>
+format-volume = <label-volume>
 label-volume = "🎜 %percentage%%"
-label-volume-foreground = ${root.foreground}
+label-volume-underline = ${colors.ok}
 
+;format-muted = <label-volume>
 label-muted = "🔇 muted"
-label-muted-foreground = #666
+label-muted-underline = ${colors.alert}
 
 bar-volume-width = 10
 bar-volume-foreground-0 = #55aa55
@@ -216,37 +240,76 @@ bar-volume-foreground-5 = #f5a70a
 bar-volume-foreground-6 = #ff5555
 bar-volume-gradient = false
 bar-volume-indicator = "╋"
-bar-volume-indicator-font = 2
+;bar-volume-indicator-font = 1
 bar-volume-fill = "━"
-bar-volume-fill-font = 2
+;bar-volume-fill-font = 1
 bar-volume-empty = "━"
-bar-volume-empty-font = 2
+;bar-volume-empty-font = 1
 bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
-warn-temperature = 60
+warn-temperature = 70
 
-format = <ramp> <label>
-format-underline = #f50a4d
-format-warn = <ramp> <label-warn>
-format-warn-underline = ${self.format-underline}
+format = <label>
+format-underline = ${colors.ok}
+format-warn = <label-warn>
+format-warn-underline = ${colors.alert}
 
 label = %temperature-c%
-label-warn = %temperature-c%
-label-warn-foreground = ${colors.secondary}
+label-warn = "%temperature-c%!"
 
 ramp-0 = "▁"
 ramp-1 = "▃"
 ramp-2 = "▅"
 ramp-foreground = ${colors.foreground-alt}
 
+[module/battery]
+type = internal/battery
+battery = BAT1
+adapter = AC
+full-at = 100
+time-format = %H:%M
+
+format-charging-prefix = "🔋 "
+format-charging-prefix-foreground = ${colors.foreground-alt}
+format-charging = <label-charging>
+format-charging-underline = ${colors.warn}
+label-charging = "↑ %percentage%% %time%"
+
+format-discharging-prefix = "🔋 "
+format-discharging-prefix-foreground = ${colors.foreground-alt}
+format-discharging = <label-discharging>
+format-discharging-underline = ${colors.alert}
+label-discharging = "↓ %percentage%% %time%"
+
+format-full-prefix = "🔋 "
+format-full-prefix-foreground = ${colors.foreground-alt}
+format-full = <label-full>
+format-full-underline = ${colors.ok}
+label-full = %percentage%%
+
+;ramp-capacity-0 = 
+;ramp-capacity-1 = 
+;ramp-capacity-2 = 
+;ramp-capacity-foreground = ${colors.foreground-alt}
+
+animation-charging-0 = "▁"
+animation-charging-1 = "▄"
+animation-charging-2 = "▇"
+animation-charging-foreground = ${colors.foreground-alt}
+animation-charging-framerate = 750
+
+animation-discharging-0 = "▇"
+animation-discharging-1 = "▄"
+animation-discharging-2 = "▁"
+animation-discharging-foreground = ${colors.foreground-alt}
+animation-discharging-framerate = 750
+
 [module/powermenu]
 type = custom/menu
-
 expand-right = true
-
 format-spacing = 1
 
 label-open = "⌽"
@@ -263,7 +326,7 @@ menu-0-1-exec = menu-open-2
 
 menu-1-0 = cancel
 menu-1-0-exec = menu-open-0
-menu-1-1 = reboot
+pmenu-1-1 = reboot
 menu-1-1-exec = sudo reboot
 
 menu-2-0 = power off
