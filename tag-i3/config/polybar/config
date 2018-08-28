@@ -16,8 +16,8 @@ secondary = ${xrdb:color5:#e60053}
 [bar/topbar]
 ;monitor = ${env:MONITOR:DVI-I-1}
 width = 100%
-height = 36
-tray-maxsize = 28
+height = 24
+tray-maxsize = 18
 ;tray-scale = 2
 ;offset-x = 1%
 ;offset-y = 1%
@@ -40,13 +40,12 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 1
 
-font-0 = Ubuntu Mono:style=Regular:size=8
-font-1 = Symbola:style=Regular:size=8
-;font-2 = siji:pixelsize=10;2
+font-0 = Ubuntu Mono:style=Regular:size=10
+font-1 = Symbola:style=Regular:size=10
 
 modules-left = i3 xwindow
-modules-center = 
-modules-right = filesystem cpu memory eth wifi temperature battery xkeyboard pulseaudio date
+modules-center = date
+modules-right = filesystem cpu memory eth temperature xkeyboard pulseaudio
 
 tray-position = right
 tray-padding = 2
@@ -91,6 +90,7 @@ label-indicator-underline = ${colors.background-alt}
 type = internal/fs
 interval = 25
 mount-0 = /
+mount-1 = /home
 label-mounted = "%mountpoint%: %percentage_used%%"
 label-unmounted = "%mountpoint% not mounted"
 label-unmounted-foreground = ${colors.foreground-alt}
@@ -172,7 +172,7 @@ label = %percentage_used%%
 
 [module/eth]
 type = internal/network
-interface = enp0s25
+interface = eno1
 interval = 3.0
 
 format-connected-prefix = "⇵ "

@@ -33,6 +33,8 @@ URxvt*boldFont: xft:FONT_NAME:style=Bold:size=FONT_SIZE
 URxvt*italicFont: xft:FONT_NAME:style=Italic:size=FONT_SIZE
 URxvt*boldItalicFont: xft:FONT_NAME:style=Bold Italic:size=FONT_SIZE
 URxvt*scrollBar: off
+URxvt*transparent: on
+URxvt*tintColor: #222222
 
 ! rofi
 rofi.modi:    window,run,drun,ssh
