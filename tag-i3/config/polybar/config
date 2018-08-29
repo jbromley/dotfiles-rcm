@@ -8,16 +8,22 @@ foreground = ${xrdb:foreground:#dfdfdf}
 foreground-alt = ${xrdb:color8:#808080}
 ok = ${xrdb:color2:#00ff00}
 warn = ${xrdb:color3:#ffff00}
-alert = ${xrdb:color1:#bd2c40}
+alert = ${xrdb:color1:#ff0000}
 
-primary = ${xrdb:color3:#ffb52a}
-secondary = ${xrdb:color5:#e60053}
+primary = ${xrdb:color5}
+secondary = ${xrdb:color3}
+tertiary = ${xrdb:color0}
 
 [bar/topbar]
+; Monitor for desk
 ;monitor = ${env:MONITOR:DVI-I-1}
+; Monitor for laptop
+monitor = ${env:MONITOR:eDP1}
+monitor-strict = false
+
 width = 100%
-height = 24
-tray-maxsize = 18
+height = 36
+tray-maxsize = 24
 ;tray-scale = 2
 ;offset-x = 1%
 ;offset-y = 1%
@@ -43,9 +49,15 @@ module-margin-right = 1
 font-0 = Ubuntu Mono:style=Regular:size=10
 font-1 = Symbola:style=Regular:size=10
 
+; llama
+;modules-left = i3 xwindow
+;modules-center = date
+;modules-right = filesystem cpu memory eth temperature xkeyboard pulseaudio
+
+; dromedary
 modules-left = i3 xwindow
-modules-center = date
-modules-right = filesystem cpu memory eth temperature xkeyboard pulseaudio
+modules-center = 
+modules-right = filesystem cpu memory eth wifi temperature xkeyboard pulseaudio battery date
 
 tray-position = right
 tray-padding = 2
@@ -90,32 +102,32 @@ label-indicator-underline = ${colors.background-alt}
 type = internal/fs
 interval = 25
 mount-0 = /
-mount-1 = /home
+;mount-1 = /home
 label-mounted = "%mountpoint%: %percentage_used%%"
 label-unmounted = "%mountpoint% not mounted"
 label-unmounted-foreground = ${colors.foreground-alt}
 
-[module/bspwm]
-type = internal/bspwm
+; [module/bspwm]
+; type = internal/bspwm
 
-label-focused = %index%
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
-label-focused-padding = 2
+; label-focused = %index%
+; label-focused-background = ${colors.background-alt}
+; label-focused-underline= ${colors.primary}
+; label-focused-padding = 2
 
-label-occupied = %index%
-label-occupied-padding = 2
+; label-occupied = %index%
+; label-occupied-padding = 2
 
-label-urgent = %index%!
-label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
+; label-urgent = %index%!
+; label-urgent-background = ${colors.alert}
+; label-urgent-padding = 2
 
-label-empty = %index%
-label-empty-foreground = ${colors.foreground-alt}
-label-empty-padding = 2
+; label-empty = %index%
+; label-empty-foreground = ${colors.foreground-alt}
+; label-empty-padding = 2
 
-; Separator in between workspaces
-; label-separator = |
+; ; Separator in between workspaces
+; ; label-separator = |
 
 [module/i3]
 type = internal/i3
@@ -127,29 +139,33 @@ wrapping-scroll = false
 ;pin-workspaces = true
 
 label-mode-padding = 2
-label-mode-foreground = ${colors.foreground}
+label-mode-foreground = ${xrdb:color15}
 label-mode-background = ${colors.primary}
 
 ; focused = Active workspace on focused monitor
 label-focused = %index%
-label-focused-background = ${module/bspwm.label-focused-background}
-label-focused-underline = ${module/bspwm.label-focused-underline}
-label-focused-padding = ${module/bspwm.label-focused-padding}
+label-focused-background = ${colors.primary}
+label-focused-foreground = ${xrdb:color15}
+label-focused-underline = ${xrdb:color7}
+label-focused-padding = 2
 
 ; unfocused = Inactive workspace on any monitor
 label-unfocused = %index%
-label-unfocused-padding = ${module/bspwm.label-occupied-padding}
+label-unfocused-underline = ${xrdb:color1}
+label-unfocused-padding = 2
 
 ; visible = Active workspace on unfocused monitor
 label-visible = %index%
-label-visible-background = ${self.label-focused-background}
-label-visible-underline = ${self.label-focused-underline}
-label-visible-padding = ${self.label-focused-padding}
+label-visible-background = ${colors.background-alt}
+label-visible-underline = ${xrdb:color1}
+label-visible-padding = 2
 
 ; urgent = Workspace with urgency hint set
 label-urgent = %index%
-label-urgent-background = ${module/bspwm.label-urgent-background}
-label-urgent-padding = ${module/bspwm.label-urgent-padding}
+label-urgent-foreground = ${xrdb:color0}
+label-urgent-background = ${xrdb:color7}
+label-urgent-underline = ${colors.primary}
+label-urgent-padding = 2
 
 ; Separator in between workspaces
 ; label-separator = |
@@ -172,7 +188,8 @@ label = %percentage_used%%
 
 [module/eth]
 type = internal/network
-interface = eno1
+;interface = eno1
+interface = enp0s25
 interval = 3.0
 
 format-connected-prefix = "⇵ "
