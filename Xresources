@@ -43,15 +43,6 @@ rofi.width:   32
 rofi.lines:   4
 rofi.columns: 4
 rofi.font:    Ubuntu Mono 16
-
-! color-*: theme: background, foreground, alt background, highlight background, highlight foreground
-! rofi.color-normal: #000000, #808080, #000000, #101010, #ffffff
-! rofi.color-active: #000000, #008080, #000000, #202020, #ffffff
-! rofi.color-urgent: #008080, #000000, #008080, #202020, #ffffff
-
-! color-window: background color, border color, separator color
-!rofi.color-window: #000000, #0000ee, #0000ee
-
 rofi.bw:      2
 rofi.location:                       0
 rofi.levenshtein-sort:               true
