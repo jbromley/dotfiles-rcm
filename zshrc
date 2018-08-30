@@ -15,3 +15,5 @@ precmd() {
     tmux setenv "$(tmux display -p 'TMUX_PWD_#D')" "$PWD"
   fi
 }
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
