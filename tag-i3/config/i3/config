@@ -9,6 +9,12 @@
 # layout, use the i3-config-wizard
 #
 
+# Modifier key
+set $mod Mod4
+
+# Locker
+set $locker i3lock-fancy -g -p
+
 # Theme
 client.background: #000000
 client.focused: #0066ff #ffffff #3366cc #6699ff #3366cc
@@ -16,9 +22,6 @@ client.focused_inactive: #333399 #ffffff #333366 #333399 #333366
 client.unfocused: #333399 #888888 #333366 #333399 #333366
 client.urgent: #00ccff #ffffff #0099cc #00ccff #0099cc
 client.placeholder: #000000 #ffffff #0c0c0c #000000 #0c0c0c
-
-# Modifier key
-set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -137,7 +140,7 @@ bindsym $mod+Shift+0 move container to workspace 10
 
 # Lock the screen
 # bindsym $mod+Pause exec --no-startup-id /home/jay/.local/bin/fuzzylock.sh
-bindsym $mod+Pause exec --no-startup-id i3lock -e -f -i /tmp/lockscreen.png
+bindsym $mod+End exec --no-startup-id $locker
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -193,9 +196,12 @@ for_window [class="Spotify"] floating enable
 for_window [class="VirtualBox Manager"] floating enable
 for_window [class="Arandr"] floating enable
 for_window [class="Processing"] floating enable
+for_window [class="Nm-connection-editor"] floating enable
 for_window [class="XClock"] floating enable move position 2427 px -17 px border pixel 1 sticky enable
 for_window [class="Pavucontrol"] floating enable
 for_window [class="Gnome-system-monitor"] floating enable
 for_window [instance="HTop"] floating enable move position center
 
+
 exec --no-startup-id polybar topbar
+exec --no-startup-id xautolock -detectsleep -time 5 -locker "$locker"
