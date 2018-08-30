@@ -176,7 +176,7 @@ interval = 2
 format-prefix = "CPU "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = ${colors.foreground-alt}
-label = %{A1:xhtop&:}%percentage:2%%%{A}
+label = %{A1:xhtop&:}%percentage:2%%{A}
 
 [module/memory]
 type = internal/memory
@@ -209,17 +209,16 @@ type = internal/network
 interface = wlp3s0
 interval = 3.0
 
-format-connected-prefix = "⇵ "
+format-connected-prefix =
 format-connected-prefix-foreground = ${colors.foreground-alt}
 format-connected = <label-connected>
 format-connected-underline = ${colors.ok}
-label-connected = "%essid% %signal%%"
+label-connected = "%{A1:networkmanager_dmenu&:}⇵ %essid% %signal%%%{A}"
 
-format-disconnected-prefix = "⛔ "
+format-disconnected-prefix =
 format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-label-disconnected = "%ifname%"
-;label-disconnected-foreground = ${colors.foreground-alt}
+format-disconnected-underline = ${self.format-connected-underline}
+label-disconnected = "%{A1:networkmanager_dmenu&:}⛔ %ifname%%{A}"
 
 [module/date]
 type = internal/date
@@ -240,11 +239,11 @@ label = %date% %time%
 type = internal/pulseaudio
 
 format-volume = <label-volume>
-label-volume = "🎜 %percentage%%"
+label-volume = "%{A3:pavucontrol&:}🎜 %percentage%%%{A}"
 label-volume-underline = ${colors.ok}
 
 ;format-muted = <label-volume>
-label-muted = "🔇 muted"
+label-muted = "%{A3:pavucontrol&:}🔇 %{F#404040}%percentage%%%{F-}%{A}"
 label-muted-underline = ${colors.alert}
 
 bar-volume-width = 10
@@ -263,6 +262,8 @@ bar-volume-fill = "━"
 bar-volume-empty = "━"
 ;bar-volume-empty-font = 1
 bar-volume-empty-foreground = ${colors.foreground-alt}
+
+click-right = pavucontrol
 
 [module/temperature]
 type = internal/temperature
@@ -284,7 +285,7 @@ ramp-foreground = ${colors.foreground-alt}
 
 [module/battery]
 type = internal/battery
-battery = BAT1
+battery = BAT0
 adapter = AC
 full-at = 100
 time-format = %H:%M
