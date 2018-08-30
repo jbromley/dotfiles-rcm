@@ -102,9 +102,9 @@ label-indicator-underline = ${colors.background-alt}
 type = internal/fs
 interval = 25
 mount-0 = /
-;mount-1 = /home
-label-mounted = "%mountpoint%: %percentage_used%%"
-label-unmounted = "%mountpoint% not mounted"
+mount-1 = /home
+label-mounted = "%{A1:urxvtc -e ncdu&:}%mountpoint%: %percentage_used%%%{A}"
+label-unmounted = "%{A1:urxvtc -e ncdu&:}%mountpoint% not mounted%{A}"
 label-unmounted-foreground = ${colors.foreground-alt}
 
 ; [module/bspwm]
