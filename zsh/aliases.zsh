@@ -43,3 +43,7 @@ alias d='dirs -v | head -10'
 # Push and pop directories on directory stack
 alias pu='pushd'
 alias po='popd'
+
+# Preview with fzf and bash.
+alias preview="fzf --preview 'bat --color \"always\" {}'"
+export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(emacsclient {})+abort'"
