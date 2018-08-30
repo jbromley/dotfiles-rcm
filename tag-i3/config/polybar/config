@@ -16,14 +16,14 @@ tertiary = ${xrdb:color0}
 
 [bar/topbar]
 ; Monitor for desk
-;monitor = ${env:MONITOR:DVI-I-1}
+monitor = ${env:MONITOR:DVI-I-1}
 ; Monitor for laptop
-monitor = ${env:MONITOR:eDP1}
+; monitor = ${env:MONITOR:eDP1}
 monitor-strict = false
 
 width = 100%
-height = 36
-tray-maxsize = 24
+height = 24
+tray-maxsize = 16
 ;tray-scale = 2
 ;offset-x = 1%
 ;offset-y = 1%
@@ -50,14 +50,14 @@ font-0 = Ubuntu Mono:style=Regular:size=10
 font-1 = Symbola:style=Regular:size=10
 
 ; llama
-;modules-left = i3 xwindow
-;modules-center = date
-;modules-right = filesystem cpu memory eth temperature xkeyboard pulseaudio
+modules-left = i3 xwindow
+modules-center = date
+modules-right = filesystem cpu memory eth temperature xkeyboard pulseaudio
 
 ; dromedary
-modules-left = i3 xwindow
-modules-center = 
-modules-right = filesystem cpu memory eth wifi temperature xkeyboard pulseaudio battery date
+; modules-left = i3 xwindow
+; modules-center = 
+; modules-right = filesystem cpu memory eth temperature xkeyboard pulseaudio battery date
 
 tray-position = right
 tray-padding = 2
@@ -75,7 +75,7 @@ tray-background = ${colors.background}
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
 
-cursor-click = pointer
+cursor-click = default
 cursor-scroll = default
 
 [module/xwindow]
@@ -173,10 +173,10 @@ label-urgent-padding = 2
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = "CPU "
+format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = ${colors.foreground-alt}
-label = %{A1:xhtop&:}%percentage:2%%{A}
+label = %{A1:xhtop&:}CPU %percentage:2%%{A}
 
 [module/memory]
 type = internal/memory
@@ -188,8 +188,8 @@ label = %percentage_used%%
 
 [module/eth]
 type = internal/network
-;interface = eno1
-interface = enp0s25
+interface = eno1
+; interface = enp0s25
 interval = 3.0
 
 format-connected-prefix = "⇵ "
