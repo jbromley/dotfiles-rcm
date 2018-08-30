@@ -9,10 +9,10 @@ action=$1
 sink=$(get_default_sink)
 case $action in
     down)
-	pactl set-sink-volume $sink -5%
+	pactl set-sink-volume $sink -2%
 	;;
     up)
-	pactl set-sink-volume $sink +5%
+	pactl set-sink-volume $sink +2%
 	;;
     mute)
 	pactl set-sink-mute $sink toggle
