@@ -15,13 +15,45 @@ set $mod Mod4
 # Locker
 set $locker i3lock-fancy -g -p
 
+# Colors
+set $black #000000
+set $white #ffffff
+set $gray  #0c0c0c
+
+set_from_resource $background background #000000
+set_from_resource $foreground foreground #e5e5e5
+
+set_from_resource $color0 color0 #000000
+set_from_resource $color8 color0 #808080
+
+set_from_resource $color1 color1 #cd0000
+set_from_resource $color9 color9 #ff0000
+
+set_from_resource $color2 color2 #00cd00
+set_from_resource $color10 color10 #00ff00
+
+set_from_resource $color3 color3 #cdcd00
+set_from_resource $color11 color11 #ffff00
+
+set_from_resource $color4 color4 #000033
+set_from_resource $color12 color12 #5c5cff
+
+set_from_resource $color5 color5 #cd00cd
+set_from_resource $color13 color13 #ff00ff
+
+set_from_resource $color6 color6 #00cdcd
+set_from_resource $color14 color14 #00ffff
+
+set_from_resource $color7 color7 #e5e5e5
+set_from_resource $color15 color15 #ffffff
+
 # Theme
-client.background: #000000
-client.focused: #0066ff #ffffff #3366cc #6699ff #3366cc
-client.focused_inactive: #333399 #ffffff #333366 #333399 #333366
-client.unfocused: #333399 #888888 #333366 #333399 #333366
-client.urgent: #00ccff #ffffff #0099cc #00ccff #0099cc
-client.placeholder: #000000 #ffffff #0c0c0c #000000 #0c0c0c
+client.background       $background
+client.focused          $color5  $color15 $color3 $color11 $color3
+client.focused_inactive $color8 $color7 $color0 $color8 $color0
+client.unfocused        $background $foreground $color0 $color8 $color0
+client.urgent           $color10 $white $color2 $color10 $color12
+client.placeholder      $black $white $gray $black $gray
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
