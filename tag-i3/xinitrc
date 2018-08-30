@@ -8,9 +8,7 @@ dbus-daemon --print-address 4 --session
 gnome-settings-daemon &
 compton -f -b
 urxvtd -q -o -f
-pasystray &
 blueman-applet &
-nm-applet &
 udiskie -q -t &
 # xautolock -detectsleep -time 5 -locker "i3lock -e -f -i /tmp/lockscreen.png" &
 ${HOME}/.local/bin/make_lockscreen.sh &
