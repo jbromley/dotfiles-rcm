@@ -6,17 +6,24 @@
 ! Font defines
 #define FONT_NAME Ubuntu Mono
 #define FONT_STYLE Regular
-#define FONT_SIZE 12
+#ifdef SRVR_dromedary
+  #define FONT_SIZE 12
+#else
+  #define FONT_SIZE 10  
+#endif
 
 ! XFT
-Xft.dpi: 96
-! Xft.dpi: 192
-! Xft.antialias: true
-! Xft.hinting: true
-! Xft.rgba: rgb
-! Xft.autohint: true
-! Xft.hintstyle: hintslight
-! Xft.lcdfilter: lcddefault
+#ifdef SRVR_dromedary
+  Xft.dpi: 192
+#else
+  Xft.dpi: 96  
+#endif
+Xft.antialias: true
+Xft.hinting: true
+Xft.rgba: rgb
+Xft.autohint: true
+Xft.hintstyle: hintslight
+Xft.lcdfilter: lcddefault
 
 ! Emacs
 Emacs*font: FONT_NAME-FONT_SIZE
@@ -38,10 +45,10 @@ URxvt*tintColor: #222222
 
 ! rofi
 rofi.modi:    window,run,drun,ssh
-rofi.opacity: 90
-rofi.width:   32
-rofi.lines:   4
-rofi.columns: 4
+rofi.opacity: 75
+rofi.width:   20
+rofi.lines:   8
+rofi.columns: 1
 rofi.font:    Ubuntu Mono 16
 rofi.bw:      2
 rofi.location:                       0
@@ -55,7 +62,16 @@ rofi.fuzzy:                          true
 rofi.glob:                           false
 rofi.tokenize:                       true
 rofi.m:                              -1
-! Separator style (none, dash, solid)
 rofi.separator-style:                solid
 rofi.hide-scrollbar:                 true
+
+! Polybar
+#ifdef SRVR_dromedary
+  polybar.height: 32
+  polybar.tray-maxsize: 24
+#else
+  polybar.height: 24
+  polybar.tray-maxsize: 16
+#endif
+
 

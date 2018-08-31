@@ -48,12 +48,13 @@ set_from_resource $color7 color7 #e5e5e5
 set_from_resource $color15 color15 #ffffff
 
 # Theme
+# class                 border      background  text        indicator child_border
+client.focused          $color5     $color7     $color0    $color11  $color3
+client.focused_inactive $color8     $color0     $color7     $color8   $color0
+client.unfocused        $background $color0     $foreground $color8   $color0
+client.urgent           $color10    $color2     $white      $color10  $color12
+client.placeholder      $black      $gray       $white      $black    $gray
 client.background       $background
-client.focused          $color5  $color15 $color3 $color11 $color3
-client.focused_inactive $color8 $color7 $color0 $color8 $color0
-client.unfocused        $background $foreground $color0 $color8 $color0
-client.urgent           $color10 $white $color2 $color10 $color12
-client.placeholder      $black $white $gray $black $gray
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.

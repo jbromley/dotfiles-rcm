@@ -24,7 +24,7 @@
 *.color12:      #7c7c7c
 
 ! magenta
-*.color5:       #717171
+*.color5:       #101010
 *.color13:      #adadad
 
 ! cyan
@@ -34,3 +34,14 @@
 ! white
 *.color7:       #b5cabb
 *.color15:      #99ac9e
+
+! rofi
+! color-*: theme: background, foreground, alt background, highlight background, highlight foreground
+rofi.color-enabled: true
+rofi.color-normal: #000000, #ffffff, #000000, #202020, #8a8a8a
+rofi.color-active: #202020, #adadad, #202020, #adadad, #202020
+!rofi.color-urgent: #008080, #000000, #008080, #202020, #ffffff
+
+! color-window: background color, border color, separator color
+rofi.color-window: #000000, #b5cabb, #b5cabb
+

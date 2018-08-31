@@ -22,8 +22,8 @@ monitor = ${env:MONITOR:DVI-I-1}
 monitor-strict = false
 
 width = 100%
-height = 24
-tray-maxsize = 16
+height = ${xrdb:polybar.height:24}
+tray-maxsize = ${xrdb:tray-maxsize:16}
 ;tray-scale = 2
 ;offset-x = 1%
 ;offset-y = 1%
@@ -154,7 +154,7 @@ interval = 2
 format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = ${colors.foreground-alt}
-label = %{A1:xhtop&:}CPU %percentage:2%%{A}
+label = %{A1:xhtop&:}CPU %percentage:2%%%{A}
 
 [module/memory]
 type = internal/memory
