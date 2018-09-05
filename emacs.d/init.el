@@ -33,7 +33,7 @@
 (defvar local-bin (concat (file-name-as-directory (getenv "HOME"))
                           ".local/bin"))
 (setq exec-path (append (list local-bin) exec-path))
-(setq custom-file (concat (expand-file-name "~/.emacs.d/custom.el")))
+(setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
 
 ;; Basic editing configuration
 (show-paren-mode t)
@@ -324,5 +324,7 @@ opacity that is greater than zero."
 (global-set-key (kbd "C-8") '(lambda() (interactive) (change-alpha -1)))
 (global-set-key (kbd "C-9") '(lambda() (interactive) (change-alpha 1)))
 (global-set-key (kbd "C-0") '(lambda() (interactive) (set-alpha 100)))
+
+(put 'narrow-to-region 'disabled nil)
 
 (load custom-file)
