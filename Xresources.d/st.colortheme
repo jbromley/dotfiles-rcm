@@ -45,3 +45,4 @@ rofi.color-active: #404040, #ff00ff, #404040, #ff00ff, #404040
 ! color-window: background color, border color, separator color
 rofi.color-window: #000000, #0000ee, #0000ee
 
+

@@ -24,7 +24,7 @@ set_from_resource $background background #000000
 set_from_resource $foreground foreground #e5e5e5
 
 set_from_resource $color0 color0 #000000
-set_from_resource $color8 color0 #808080
+set_from_resource $color8 color8 #808080
 
 set_from_resource $color1 color1 #cd0000
 set_from_resource $color9 color9 #ff0000
@@ -49,10 +49,10 @@ set_from_resource $color15 color15 #ffffff
 
 # Theme
 # class                 border      background  text        indicator child_border
-client.focused          $color5     $color7     $color0    $color11  $color3
-client.focused_inactive $color8     $color0     $color7     $color8   $color0
-client.unfocused        $background $color0     $foreground $color8   $color0
-client.urgent           $color10    $color2     $white      $color10  $color12
+client.focused          $color12    $color12    $color15    $color14  $color12
+client.focused_inactive $color4     $color4     $color7     $color12  $color4
+client.unfocused        $color0     $color0     $color8     $color7   $color0
+client.urgent           $color2     $color2     $white      $color2   $color10
 client.placeholder      $black      $gray       $white      $black    $gray
 client.background       $background
 

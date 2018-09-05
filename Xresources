@@ -7,9 +7,9 @@
 #define FONT_NAME Ubuntu Mono
 #define FONT_STYLE Regular
 #ifdef SRVR_dromedary
-  #define FONT_SIZE 12
+  #define FONT_SIZE 10
 #else
-  #define FONT_SIZE 10  
+  #define FONT_SIZE 12  
 #endif
 
 ! XFT
