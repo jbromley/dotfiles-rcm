@@ -14,8 +14,12 @@
 
 ;; Set up Emacs package manager.
 (require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
+                    (not (gnutls-available-p))))
+       (proto (if no-ssl "http" "https")))
+  ;; Comment/uncomment these two lines to enable/disable MELPA and MELPA Stable as desired
+  (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t))
+  ;; (add-to-list 'package-archives (cons "melpa-stable" (concat proto "://stable.melpa.org/packages/")) t))
 (package-initialize)
 
 (when (not package-archive-contents)
@@ -27,11 +31,13 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
-;; (load-theme 'green-screen t)
-
 ;; Set up load paths and other paths.
-(defvar local-bin (concat (file-name-as-directory (getenv "HOME"))
-                          ".local/bin"))
+;; (defvar elisp-path (expand-file-name "~/.emacs.d/elisp/")
+;;       local-pkgs '("polymode" "poly-markdown" "poly-noweb" "poly-R"))
+;; (add-to-list 'load-path (mapcar (lambda (pkg) (concat elisp-path pkg)) local-pkgs))
+      
+(defvar local-bin (concat
+		   (file-name-as-directory (getenv "HOME")) ".local/bin"))
 (setq exec-path (append (list local-bin) exec-path))
 (setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
 
@@ -204,7 +210,8 @@
 ;; Org mode
 (use-package org
   :init (progn
-          (use-package org-bullets))
+          (use-package org-bullets)
+	  (use-package org-pomodoro))
   :config (progn
             ;; Use UTF-8 bullets.
             (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
