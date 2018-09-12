@@ -13,7 +13,8 @@
 set $mod Mod4
 
 # Locker
-set $locker i3lock-fancy -g -p
+# set $locker i3lock-fancy -g -p
+set $locker i3lock -e -i /tmp/lockscreen.png
 
 # Colors
 set $black #000000
@@ -222,6 +223,9 @@ bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
 
 # Other keys
 bindsym XF86HomePage exec --no-startup-id /home/jay/.local/bin/xhtop
+bindsym $mod+Print exec --no-startup-id scrot -q100
+bindsym $mod+Shift+Print exec --no-startup-id scrot -q100 -u
+bindsym $mod+Mod1+Print exec --no-startup-id scrot -d3 -q100 -s
 
 # Window rules
 for_window [class="Nitrogen"] floating enable
