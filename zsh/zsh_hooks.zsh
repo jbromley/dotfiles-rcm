@@ -1,4 +1,5 @@
 function precmd {
+    print -Pn "\e]0;%n@%m: %~\a"
 }
 
 function set_running_app {
