@@ -63,7 +63,7 @@ font pango:Ubuntu Mono 10
 
 # Border and gaps configuration
 # default_border pixel 4
-new_window pixel 4
+new_window pixel 2
 #gaps inner 4
 #gaps outer 0
 #smart_gaps on
