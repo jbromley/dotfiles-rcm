@@ -1,0 +1,11 @@
+#! /usr/bin/env bash
+xrandr --dpi 96
+xrdb -merge <<EOF 
+Xft.dpi: 96
+polybar.height: 24
+polybar.tray-maxsize:16
+EOF
+# nitrogen --restore
+# ${HOME}/.local/bin/make_lockscreen.sh &
+sleep 1
+MONITOR=DP1 polybar topbar > /dev/null 2>/tmp/polybar &
