@@ -52,7 +52,7 @@ set_from_resource $color15 color15 #ffffff
 # class                 border      background  text        indicator child_border
 client.focused          $color12    $color12    $color15    $color14  $color12
 client.focused_inactive $color4     $color4     $color7     $color12  $color4
-client.unfocused        $color0     $color0     $color8     $color7   $color0
+client.unfocused        $color0     $color0     $color3     $color7   $color0
 client.urgent           $color2     $color2     $white      $color2   $color10
 client.placeholder      $black      $gray       $white      $black    $gray
 client.background       $background
