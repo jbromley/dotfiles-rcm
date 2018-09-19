@@ -211,7 +211,12 @@
 (use-package org
   :init (progn
           (use-package org-bullets)
-	  (use-package org-pomodoro))
+	  (use-package org-pomodoro
+	    :config (progn
+		      (add-hook 'org-pomodoro-break-finished-hook
+				(lambda ()
+				  (interactive)
+				  (org-pomodoro '(16)))))))
   :config (progn
             ;; Use UTF-8 bullets.
             (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
