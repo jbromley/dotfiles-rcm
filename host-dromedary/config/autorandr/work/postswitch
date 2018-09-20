@@ -5,7 +5,10 @@ Xft.dpi: 96
 polybar.height: 24
 polybar.tray-maxsize:16
 EOF
-# nitrogen --restore
-# ${HOME}/.local/bin/make_lockscreen.sh &
+i3-msg restart
 sleep 1
-MONITOR=DP1 polybar topbar > /dev/null 2>/tmp/polybar &
+nitrogen --restore
+/usr/local/bin/make_lockscreen.sh &
+sleep 1
+MONITOR=DP1 polybar topbar &> /tmp/polybar-work.log
+

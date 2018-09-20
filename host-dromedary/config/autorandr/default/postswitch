@@ -1,12 +1,13 @@
 #! /usr/bin/env bash
-
 xrandr --dpi 192
 xrdb -merge <<EOF 
 Xft.dpi: 192
 polybar.height: 32
 polybar.tray-maxsize:24
 EOF
-#nitrogen --restore
-#${HOME}/.local/bin/make_lockscreen.sh &
+i3-msg restart
 sleep 1
-${HOME}/.local/bin/launch_polybar.sh eDP1 > /dev/null 2> /tmp/polybar.log &
+nitrogen --restore
+/usr/local/bin/make_lockscreen.sh &
+sleep 1
+MONITOR=eDP1 polybar topbar &> /tmp/polybar-default.log
