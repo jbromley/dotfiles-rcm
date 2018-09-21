@@ -10,5 +10,6 @@ sleep 1
 nitrogen --restore
 /usr/local/bin/make_lockscreen.sh &
 sleep 1
-MONITOR=DP1 polybar topbar &> /tmp/polybar-work.log
+MONITOR=DP1 polybar topbar &> /tmp/polybar-work.log &
+
 

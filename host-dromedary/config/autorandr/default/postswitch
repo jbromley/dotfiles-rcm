@@ -10,4 +10,5 @@ sleep 1
 nitrogen --restore
 /usr/local/bin/make_lockscreen.sh &
 sleep 1
-MONITOR=eDP1 polybar topbar &> /tmp/polybar-default.log
+MONITOR=eDP1 polybar topbar &> /tmp/polybar-default.log &
+
