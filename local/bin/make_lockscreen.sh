@@ -24,13 +24,13 @@ main () {
     # Check for a nitrogen restore file.
     if [[ -f "${STORE_FILE}" ]]
     then
-	# Found it. Read the wallpaper name.
-	wallpaper=$(read_wallpaper_name "${STORE_FILE}")
-	make_lock_screen "${wallpaper}"
+        # Found it. Read the wallpaper name.
+        wallpaper=$(read_wallpaper_name "${STORE_FILE}")
+        make_lock_screen "${wallpaper}"
     else
-	# There is no wallpaper information, select a random wallpaper and use that.
-	wallpaper=$(select_random_file "${WALLPAPER_DIR}")
-	make_lock_screen "${wallpaper}"
+        # There is no wallpaper information, select a random wallpaper and use that.
+        wallpaper=$(select_random_file "${WALLPAPER_DIR}")
+        make_lock_screen "${wallpaper}"
     fi
 }
 #}}}
@@ -69,9 +69,10 @@ get_screen_resolution () {
 # Create a new lock screen.
 make_lock_screen () {
     screen_resolution=$(get_screen_resolution)
-    #convert -gaussian 13x13 "${wallpaper}" "${LOCK_SCREEN}"
     convert -resize "${screen_resolution}"^ -gravity center -extent "${screen_resolution}" \
-	    -scale 6.25% -scale 1600% "${wallpaper}" "${LOCK_SCREEN}"
+	    -gaussian 21x21 "${wallpaper}" "${LOCK_SCREEN}"
+    # convert -resize "${screen_resolution}"^ -gravity center -extent "${screen_resolution}" \
+    #       -scale 6.25% -scale 1600% "${wallpaper}" "${LOCK_SCREEN}"
 }
 
 # Write the new wallpaper to the Nitrogen store file.
