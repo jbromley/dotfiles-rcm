@@ -1,5 +1,6 @@
-Config { font = "xft:DejaVu Sans Mono-10"
-       , additionalFonts = []
+Config { font = "xft:Ubuntu Mono-10"
+       , additionalFonts = ["xft:Symbola-10"]
+       , textOffsets = [-1]
        , borderColor = "black"
        , border = TopB
        , bgColor = "black"
@@ -15,7 +16,7 @@ Config { font = "xft:DejaVu Sans Mono-10"
        , iconRoot = "."
        , allDesktops = True
        , overrideRedirect = True
-       , commands = [ Run Network "eno1" [ "--template", "<dev>: <rx>↓ <tx>↑"
+       , commands = [ Run Network "eno1" [ "--template", "<fn=1>🖧</fn> <dev>: <rx><fn=1>↓</fn> <tx><fn=1>↑</fn>"
        	                                 , "-S", "True"
 					 , "--width", "6"
 					 , "--Low", "1024"
@@ -23,21 +24,25 @@ Config { font = "xft:DejaVu Sans Mono-10"
 					 , "--normal", "cyan"
 					 , "--high","orange"
 					 ] 20
-                    , Run Cpu [ "--template", "CPU: <total>%"
+                    , Run Cpu [ "--template", "<fn=1>💻</fn> <total>%"
 		              , "--ppad", "3"
 		              , "--Low", "33"
 		              , "--High","67"
 			      , "--normal", "cyan"
 			      , "--high", "orange"
 			      ] 20
-                    , Run Memory [ "--template", "RAM: <usedratio>% (<cache>M)"
+                    , Run Memory [ "--template", "<fn=1>⌼</fn> <usedratio>% (<cache>M)"
 		                 , "--ppad", "3"
 				 ] 20
-                    , Run Kbd [ ("us", "US")
-                              , ("es", "ES")
+                    , Run Kbd [ ("us", "<fn=1>⌨</fn> US")
+                              , ("es", "<fn=1>⌨</fn> ES")
                               ]
-                    , Run Volume "default" "Master" [] 5
-    		    , Run Date "%a %b %_d %Y %I:%M %P" "date" 20
+                    , Run Volume "default" "Master" [ "--template", "<status> <volume>%"
+                                                    , "--"
+		      	  	 	   	    , "--on", "<fn=1>🔊</fn>"
+		      	  	 		    , "--off", "<fn=1>🔇</fn>" 
+		        			    ] 5
+    		    , Run Date "<fn=1>📅</fn> %a %b %_d %Y %I:%M %P" "date" 20
 		    , Run StdinReader
                     ]
        , sepChar = "%"
