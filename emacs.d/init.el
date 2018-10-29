@@ -154,7 +154,8 @@
   :init (progn
           (require 'ess-site)
           (setq ess-default-style 'RStudio
-                ess-indent-with-fancy-comments nil)))
+                ess-indent-with-fancy-comments nil
+		ess-roxy-str "#'")))
 
 ;; Polymode for R/Markdown code
 (use-package polymode
@@ -213,6 +214,19 @@
           (use-package org-bullets)
 	  (use-package org-pomodoro
 	    :config (progn
+		      (setq org-pomodoro-audio-player "ogg123"
+			    org-pomodoro-finished-sound "/usr/share/sounds/freedesktop/stereo/complete.oga"
+			    org-pomodoro-finished-sound-args "-q"
+			    org-pomodoro-killed-sound "/usr/share/sounds/freedesktop/stereo/suspend-error.oga"
+			    org-pomodoro-killed-sound-args "-q"
+			    org-pomodoro-killed-sound-p t
+			    org-pomodoro-long-break-sound "/usr/share/sounds/freedesktop/stereo/phone-incoming-call.oga"
+			    org-pomodoro-long-break-sound-args "-q"
+			    org-pomodoro-short-break-sound "/usr/share/sounds/freedesktop/stereo/complete.oga"
+			    org-pomodoro-short-break-sound-args "-q"
+			    org-pomodoro-start-sound "/usr/share/sounds/freedesktop/stereo/complete.oga"
+			    org-pomodoro-start-sound-args "-q"
+			    org-pomodoro-start-sound-p t)
 		      (add-hook 'org-pomodoro-break-finished-hook
 				(lambda ()
 				  (interactive)
@@ -250,11 +264,15 @@
   :bind (("C-c a" . org-agenda)
 	 ("C-c c" . org-capture)))
 
-(use-package fsharp-mode
-  :mode (("\\.fs[iylx]?$" . fsharp-mode))
-  :config (setq inferior-fsharp-program "/usr/bin/fsharpi --readline-"
-		fsharp-compiler "/usr/bin/fsharpc"))
-  
+(use-package jdee
+  :init (progn
+	  (setq jdee-jdk-registry (quote
+				   (("1.9.0" . "/usr/lib/jvm/java-9-openjdk-amd64")
+				    ("1.8.0" . "/usr/lib/jvm/java-8-openjdk-amd64")
+				    ("1.11.0" . "/usr/lib/jvm/java-11-openjdk-amd64")))
+		jdee-jdk (quote ("1.11.0"))
+		jdee-server-dir "/home/jay/.local/opt/jdee-server/")))
+
 (use-package slime
   :init
   (progn
@@ -300,6 +318,13 @@
                   cider-auto-select-error-buffer t
                   cider-repl-wrap-history t)))
 
+(use-package tuareg)
+
+(use-package fsharp-mode
+  :mode (("\\.fs[iylx]?$" . fsharp-mode))
+  :config (setq inferior-fsharp-program "/usr/bin/fsharpi --readline-"
+		fsharp-compiler "/usr/bin/fsharpc"))
+  
 ;; Toggle mode-line colors for basic theme.
 (defun mode-line-visual-toggle ()
   (interactive)
