@@ -5,7 +5,7 @@ Config { font = "xft:DejaVu Sans Mono-10"
        , bgColor = "black"
        , fgColor = "grey"
        , alpha = 192
-       , position = TopW L 97
+       , position = TopW C 100
        , textOffset = -1
        , iconOffset = -1
        , lowerOnStart = True
@@ -15,28 +15,32 @@ Config { font = "xft:DejaVu Sans Mono-10"
        , iconRoot = "."
        , allDesktops = True
        , overrideRedirect = True
-       , commands = [ Run Network "eno1" [ "--template", "Network: <rx>↓ <tx>↑"
+       , commands = [ Run Network "eno1" [ "--template", "<dev>: <rx>↓ <tx>↑"
        	                                 , "-S", "True"
 					 , "--width", "6"
 					 , "--Low", "1024"
 					 , "--High", "4096"
 					 , "--normal", "cyan"
 					 , "--high","orange"
-					 ] 10
+					 ] 20
                     , Run Cpu [ "--template", "CPU: <total>%"
 		              , "--ppad", "3"
 		              , "--Low", "33"
 		              , "--High","67"
 			      , "--normal", "cyan"
 			      , "--high", "orange"
-			      ] 10
+			      ] 20
                     , Run Memory [ "--template", "RAM: <usedratio>% (<cache>M)"
 		                 , "--ppad", "3"
-				 ] 10
-    		    , Run Date "%a %b %_d %Y %I:%M %P" "date" 10
+				 ] 20
+                    , Run Kbd [ ("us", "US")
+                              , ("es", "ES")
+                              ]
+                    , Run Volume "default" "Master" [] 5
+    		    , Run Date "%a %b %_d %Y %I:%M %P" "date" 20
 		    , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %cpu% | %memory% | %eno1% | <fc=#ee9a00>%date%</fc>"
+       , template = "%StdinReader% }{ %cpu% | %memory% | %eno1% | %kbd% | %default:Master% | <fc=#009aee>%date%</fc>"
        }
