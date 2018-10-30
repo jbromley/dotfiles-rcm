@@ -14,4 +14,4 @@ urxvtd -q -o -f
 # blueman-applet &
 # nm-applet &
 xautolock -detectsleep -time 5 -locker "i3lock -e -f -i /tmp/lockscreen.png" &
-exec ssh-agent /usr/bin/xmonad
+exec ssh-agent /home/jay/.local/bin/xmonad
