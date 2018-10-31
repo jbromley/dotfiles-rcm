@@ -1,5 +1,5 @@
-Config { font = "xft:Ubuntu Mono-8"
-       , additionalFonts = ["xft:Symbola-8"]
+Config { font = "xft:Ubuntu Mono:style=Bold:size=10"
+       , additionalFonts = ["xft:Symbola-10"]
        , textOffsets = [-1]
        , borderColor = "black"
        , border = TopB
@@ -25,6 +25,7 @@ Config { font = "xft:Ubuntu Mono-8"
 		                     , "--high","orange"
                                      ] 20
                     , Run Wireless "wlp3s0" [ "--template", "<fn=1>📶</fn> <essid> <quality>%"
+                                            , "--ppad", "3"
                                             , "--Low", "50"
                                             , "--low", "orange"
                                             ] 20
@@ -49,6 +50,7 @@ Config { font = "xft:Ubuntu Mono-8"
                                    , "--"
                                    , "-O", "<fc=green><fn=1>🔌</fn></fc>"
                                    , "-i", "<fn=1>🔌</fn>"
+                                   , "-o", ""
                                    , "-L", "-15"
                                    , "-H", "-5"
                                    , "-l", "red"
