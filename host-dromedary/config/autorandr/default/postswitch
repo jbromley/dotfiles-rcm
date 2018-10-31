@@ -7,4 +7,4 @@ xmonad --restart
 sleep 1
 nitrogen --restore
 /usr/local/bin/make_lockscreen.sh &
-urxvtc -e tmux &
+urxvtd -q -o -f
