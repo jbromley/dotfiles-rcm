@@ -2,10 +2,13 @@
 xrandr --dpi 96
 xrdb -merge <<EOF 
 Xft.dpi: 96
+polybar.height: 24
+polybar.tray-maxsize:16
 EOF
-xmonad --restart
+i3-msg restart
 sleep 1
 nitrogen --restore
 /usr/local/bin/make_lockscreen.sh &
-urxvtc -e tmux
+sleep 1
+MONITOR=DP1 polybar topbar &> /tmp/polybar-home.log &
 
