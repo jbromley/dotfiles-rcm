@@ -76,5 +76,5 @@ Config { font = "xft:Ubuntu Mono:style=Bold:size=10"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %cpu% | %memory% | %dynnetwork% | %wlp3s0wi% | %kbd% | %battery% | %default:Master% | <fc=#ffffff>%date%</fc>"
+       , template = "%StdinReader% }{ %cpu% | %memory% | %dynnetwork% | %kbd% | %default:Master% | <fc=#ffffff>%date%</fc>"
        }

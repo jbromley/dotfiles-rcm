@@ -34,3 +34,13 @@
 ! white
 *.color7:       #d0d0d0
 *.color15:      #ffffff
+
+! rofi
+! color-*: theme: background, foreground, alt background, highlight background, highlight foreground
+rofi.color-enabled: true
+rofi.color-normal: #000000, #d0d0d0, #101010, #202020, #00ffff
+rofi.color-active: #000000, #ff0099, #101010, #202020, #cc00ff
+!rofi.color-urgent: #008080, #000000, #008080, #202020, #ffffff
+
+! color-window: background color, border color, separator color
+rofi.color-window: #000000, #cc00ff, #cc00ff
