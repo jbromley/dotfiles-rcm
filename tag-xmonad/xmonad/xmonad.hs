@@ -22,6 +22,7 @@ main = do
   xmonad $ desktopConfig { terminal = myTerminal
                          , modMask = myMask
                          , borderWidth = myBorderWidth
+                         , focusedBorderColor = myFocusedBorderColor
                          , layoutHook = desktopLayoutModifiers $ myLayoutHook
                          , manageHook = myManageHook <+> manageHook defaultConfig
                          , logHook = dynamicLogWithPP $ myXmobarPP xmproc
@@ -30,6 +31,11 @@ main = do
 myTerminal = "urxvtc"
 myMask = mod4Mask
 myBorderWidth = 2
+myFocusedBorderColor = "#CC00FF"
+myActiveColor = "#660080"
+myUrgentBorderColor = "#00FFFF"
+myUrgentColor = "#008080"
+myTabFont = "xft:Ubuntu Mono:style=Bold:size=10"
 myFont = "xft:Ubuntu Mono:style=Bold:size=10"
 myStatusBar = "/home/jay/.local/bin/xmobar"
 
@@ -41,12 +47,12 @@ myLayoutHook = tiled ||| tabbedLayout ||| Full
     ratio = 1 / 2
     tabbedLayout = tabbed shrinkText myTabConfig
 
-myTabConfig = def { activeBorderColor = "#FF0000"
-                  , activeColor = "#400000"
-                  , urgentBorderColor = "#00A5FF"
-                  , urgentColor = "#002940"
-                  , fontName = myFont
-                  , decoHeight = 32
+myTabConfig = def { activeBorderColor = myFocusedBorderColor
+                  , activeColor = myActiveColor
+                  , urgentBorderColor = myUrgentBorderColor
+                  , urgentColor = myUrgentColor
+                  , fontName = myTabFont
+                  , decoHeight = 24
                   }
 
 myScratchpads = [ NS "htop" "urxvtc -e htop" (title =? "htop") (customFloating $ W.RationalRect (1/4) (1/8) (1/2) (3/4))
@@ -61,8 +67,8 @@ myManageHook = composeAll
     , namedScratchpadManageHook myScratchpads
     ]
 
-myXmobarPP h = xmobarPP { ppCurrent = xmobarColor "white" "#a00000" . wrap "[" "]"
-                        , ppUrgent = xmobarColor "white" "#ffac00" . wrap ">" "<"
+myXmobarPP h = xmobarPP { ppCurrent = xmobarColor "white" "#cc00ff" . wrap "[" "]"
+                        , ppUrgent = xmobarColor "white" "#33ff00" . wrap ">" "<"
                         , ppSep = " | "
                         , ppOutput = hPutStrLn h
                         , ppTitle = xmobarColor "white" "" . shorten 50
