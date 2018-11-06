@@ -1,9 +1,9 @@
 Config { font = "xft:Ubuntu Mono:style=Bold:size=10"
        , additionalFonts = ["xft:Symbola-10"]
        , textOffsets = [-1]
-       , borderColor = "#330040"
+       , borderColor = "#660080"
        , border = TopB
-       , bgColor = "#440055"
+       , bgColor = "#330040"
        , fgColor = "grey"
        , alpha = 255
        , position = TopW C 100
