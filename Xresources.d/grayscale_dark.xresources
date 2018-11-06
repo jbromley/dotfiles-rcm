@@ -1,0 +1,46 @@
+! special
+*.foreground:   #b9b9b9
+*.background:   #101010
+*.cursorColor:  #b9b9b9
+
+! black
+*.color0:       #101010
+*.color8:       #525252
+
+! red
+*.color1:       #7c7c7c
+*.color9:       #7c7c7c
+
+! green
+*.color2:       #8e8e8e
+*.color10:      #8e8e8e
+
+! yellow
+*.color3:       #a0a0a0
+*.color11:      #a0a0a0
+
+! blue
+*.color4:       #686868
+*.color12:      #686868
+
+! magenta
+*.color5:       #747474
+*.color13:      #747474
+
+! cyan
+*.color6:       #868686
+*.color14:      #868686
+
+! white
+*.color7:       #b9b9b9
+*.color15:      #f7f7f7
+
+! rofi
+! color-*: theme: background, foreground, alt background, highlight background, highlight foreground
+rofi.color-enabled: true
+rofi.color-normal: #000000, #b9b9b9, #101010, #525252, #ffffff
+rofi.color-active: #000000, #000080, #101010, #525252, #0000ff
+!rofi.color-urgent: #008080, #000000, #008080, #202020, #ffffff
+
+! color-window: background color, border color, separator color
+rofi.color-window: #101010, #0000ff, #0000ff
