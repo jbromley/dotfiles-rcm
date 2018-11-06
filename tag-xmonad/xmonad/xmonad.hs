@@ -72,7 +72,14 @@ myXmobarPP h = xmobarPP { ppCurrent = xmobarColor "white" "#cc00ff" . wrap "[" "
                         , ppSep = " | "
                         , ppOutput = hPutStrLn h
                         , ppTitle = xmobarColor "white" "" . shorten 50
+                        , ppLayout = xmobarColor "gray" "" . myLayoutPrinter
                         }
+
+myLayoutPrinter :: String -> String
+myLayoutPrinter "Tall" = "<icon=/home/jay/.xmonad/tall.xpm/>"
+myLayoutPrinter "Tabbed Simplest" = "<icon=/home/jay/.xmonad/tabbed.xpm/>"
+myLayoutPrinter "Full" = "<icon=/home/jay/.xmonad/full.xpm/>"
+myLayoutPrinter x = x
 
 myKeys = [ ((myMask .|. controlMask, xK_Return), spawn "urxvtc -e tmux")
          , ((myMask, xK_p), spawn "rofi -show run")
