@@ -29,7 +29,7 @@
     # the top and down respectively.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "300x5-30+20"
+    geometry = "400x5-0+20"
 
     # Show how many messages are currently hidden (because of geometry).
     indicate_hidden = yes
@@ -41,7 +41,7 @@
     # The transparency of the window.  Range: [0; 100].
     # This option will only work if a compositing window manager is
     # present (e.g. xcompmgr, compiz, etc.).
-    transparency = 0
+    transparency = 25
 
     # The height of the entire notification.  If the height is smaller
     # than the font height and padding combined, it will be raised
@@ -64,7 +64,7 @@
     frame_width = 2
 
     # Defines color of the frame around the notification window.
-    frame_color = "#ccffff"
+    frame_color = "#26004c"
 
     # Define a color for the separator.
     # possible values are:
@@ -274,23 +274,23 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#000000"
-    foreground = "#666699"
+    background = "#330066"
+    foreground = "#e0e0e0"
     timeout = 10
     # Icon for notifications with low urgency, uncomment to enable
     icon = /usr/share/icons/gnome/32x32/status/dialog-information.png
 
 [urgency_normal]
-    background = "#333366"
-    foreground = "#9999cc"
+    background = "#330066"
+    foreground = "#f0f0f0"
     timeout = 10
     # Icon for notifications with normal urgency, uncomment to enable
     icon = /usr/share/icons/gnome/32x32/status/dialog-warning.png
 
 [urgency_critical]
-    background = "#666699"
+    background = "#400000"
     foreground = "#ffffff"
-    frame_color = "#ccccff"
+    frame_color = "#ff0000"
     timeout = 0
     # Icon for notifications with critical urgency, uncomment to enable
     icon = /usr/share/icons/gnome/32x32/status/dialog-error.png
