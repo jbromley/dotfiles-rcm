@@ -62,7 +62,7 @@ myScratchpads = [ NS "htop" "urxvtc -e htop" (title =? "htop") (customFloating $
                 ]
   
 myManageHook = composeAll
-    [ className =? "spotify" --> doFloat
+    [ className =? "Spotify" --> doFloat
     , manageDocks
     , namedScratchpadManageHook myScratchpads
     ]
