@@ -1,21 +1,16 @@
 #!/bin/bash
 
-function get_default_sink () {
-    pactl info | grep "^Default Sink:" | cut -c15-
-}
+action="$1"
 
-action=$1
-
-sink=$(get_default_sink)
-case $action in
+case "${action}" in
     down)
-	pactl set-sink-volume $sink -2%
+	pactl set-sink-volume @DEFAULT_SINK@ -2%
 	;;
     up)
-	pactl set-sink-volume $sink +2%
+	pactl set-sink-volume @DEFAULT_SINK@ +2%
 	;;
     mute)
-	pactl set-sink-mute $sink toggle
+	pactl set-sink-mute @DEFAULT_SINK@ toggle
 	;;
     *)
 	exit 1
