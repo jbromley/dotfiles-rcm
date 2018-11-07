@@ -1,4 +1,4 @@
-[ -f ~/.fehbg ] && sh ~/.fehbg &
+nitrogen --restore
 dbus-daemon --print-address 4 --session
 urxvtd -q -o -f
 xautolock -detectsleep -time 5 -locker "i3lock -e -f -i /tmp/lockscreen.png" &
