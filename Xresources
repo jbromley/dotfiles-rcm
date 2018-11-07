@@ -1,7 +1,7 @@
 !!! X Resource File
 
 ! Color theme
-#include "/home/jay/.Xresources.theme"
+#include "/home/jay/.colors.xresources"
 
 ! Font defines
 #define FONT_NAME Ubuntu Mono

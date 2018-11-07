@@ -1,0 +1,80 @@
+Config { font = "xft:Ubuntu Mono:style=Bold:size=10"
+       , additionalFonts = ["xft:Symbola-10"]
+       , textOffsets = [-1]
+       , borderColor = "#660080"
+       , border = TopB
+       , bgColor = "#330040"
+       , fgColor = "grey"
+       , alpha = 255
+       , position = TopW C 100
+       , textOffset = -1
+       , iconOffset = -1
+       , lowerOnStart = True
+       , pickBroadest = False
+       , persistent = False
+       , hideOnStart = False
+       , iconRoot = "."
+       , allDesktops = True
+       , overrideRedirect = True
+       , commands = [ Run DynNetwork [ "--template", "<fn=1>🖧</fn> <dev>: <rx><fn=1>↓</fn> <tx><fn=1>↑</fn>"
+                                     , "-S", "True"
+		                     , "--width", "6"
+                                     , "--Low", "65536"
+	                             , "--High", "1048576"
+		                     , "--normal", "cyan"
+		                     , "--high","orange"
+                                     ] 20
+                    , Run Wireless "wlp3s0" [ "--template", "<fn=1>📶</fn> <essid> <quality>%"
+                                            , "--ppad", "3"
+                                            , "--Low", "50"
+                                            , "--low", "orange"
+                                            ] 20
+                    , Run Cpu [ "--template", "<fn=1>💻</fn> <total>%"
+		              , "--ppad", "3"
+		              , "--Low", "33"
+		              , "--High","67"
+			      , "--normal", "cyan"
+			      , "--high", "orange"
+			      ] 20
+                    , Run Memory [ "--template", "<fn=1>⌼</fn> <usedratio>% (<cache>M)"
+		                 , "--ppad", "3"
+				 ] 20
+                    , Run Kbd [ ("us", "<fn=1>⌨</fn> US")
+                              , ("es", "<fn=1>⌨</fn> ES")
+                              ]
+                    , Run BatteryP ["BAT0", "BAT1"]
+                                   [ "-t", "<fn=1>🔋</fn> <timeleft> (<left>%) <acstatus>"
+                                   , "-L", "10"
+                                   , "-H", "50"
+                                   , "-p", "3"
+                                   , "--"
+                                   , "-O", "<fc=green><fn=1>🔌</fn></fc>"
+                                   , "-i", "<fn=1>🔌</fn>"
+                                   , "-o", ""
+                                   , "-L", "-15"
+                                   , "-H", "-5"
+                                   , "-l", "red"
+                                   , "-m", "blue"
+                                   , "-h", "green"] 600
+                    , Run Volume "default" "Master" [ "--template", "<status> <volume>%"
+                                                    , "--"
+		      	  	 	   	    , "--on", "<fn=1>🔊</fn>"
+		      	  	 		    , "--off", "<fn=1>🔇</fn>"
+                                                    , "--onc", "white"
+                                                    , "--offc", "orange"
+		        			    ] 5
+                    -- , Run Alsa "default" "Master" [ "--template", "<status> <volume>%"
+                    --                               , "--"
+                    --                               , "--alsactl", "/usr/sbin/alsactl"
+		    --   	  	 	   	  , "--on", "<fn=1>🔊</fn>"
+		    --   	  	 		  , "--off", "<fn=1>🔇</fn>"
+                    --                               , "--onc", "white"
+                    --                               , "--offc", "orange"
+		    --     			  ]
+    		    , Run Date "<fn=1>📅</fn> %a %b %_d %Y %I:%M %P" "date" 20
+		    , Run StdinReader
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%StdinReader% }{ %cpu% | %memory% | %dynnetwork% | %wlp3s0wi% | %kbd% | %default:Master% | %battery% | <fc=#ffffff>%date%</fc>"
+       }
