@@ -2,7 +2,6 @@
 
 typeset -U path
 path=(${HOME}/.local/bin "$path[@]")
-path+=(${HOME}/.cargo/bin)
 path+=(/usr/local/cuda/bin)
 
 # Make sure language is set properly.
@@ -12,6 +11,8 @@ export LANG=en_US.UTF-8
 export EDITOR=emacs
 export GIT_EDITOR="emacsclient -nw"
 export ALTERNATE_EDITOR=""
+
+# Set up MONITOR for use with polybar
 case "$(hostname)" in
     llama)
 	MONITOR="DVI-I-1"
@@ -23,6 +24,10 @@ case "$(hostname)" in
 	MONITOR=
 esac
 export MONITOR
+
+# Set up theme for bat pager.
+BAT_THEME='Buenos Aires'
+export BAT_THEME
 
 # Set up for Python and virtual environments.
 export WORKON_HOME=${HOME}/.virtualenvs
