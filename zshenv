@@ -2,7 +2,7 @@
 
 typeset -U path
 path=(${HOME}/.local/bin "$path[@]")
-path+=(/usr/local/cuda/bin)
+[ -d /usr/local/cuda/bin ] && path+=(/usr/local/cuda/bin)
 
 # Make sure language is set properly.
 export LANG=en_US.UTF-8
@@ -26,7 +26,7 @@ esac
 export MONITOR
 
 # Set up theme for bat pager.
-BAT_THEME='Buenos Aires'
+BAT_THEME='DarkNeon'
 export BAT_THEME
 
 # Set up for Python and virtual environments.
