@@ -1,2 +1,2 @@
 # Non-essential exports
-eval $(dircolors ${HOME}/.dircolors)
+[ "$(uname -s)" = "Linux" ] && eval $(dircolors ${HOME}/.dircolors)

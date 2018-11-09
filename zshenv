@@ -12,19 +12,6 @@ export EDITOR=emacs
 export GIT_EDITOR="emacsclient -nw"
 export ALTERNATE_EDITOR=""
 
-# Set up MONITOR for use with polybar
-case "$(hostname)" in
-    llama)
-	MONITOR="DVI-I-1"
-	;;
-    dromedary)
-	MONITOR="eDP1"
-	;;
-    *)
-	MONITOR=
-esac
-export MONITOR
-
 # Set up theme for bat pager.
 BAT_THEME='DarkNeon'
 export BAT_THEME

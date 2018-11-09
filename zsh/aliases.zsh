@@ -1,12 +1,15 @@
 # Colorize output, add file type indicator, and put sizes in human readable format
-alias ls='ls --color=tty -F'
+alias ls='ls -F'
 alias lsa='ls -lahF'
 alias l='ls -lahF'
 alias ll='ls -lhF'
 alias la='ls -lAhF'
 
-# Use color with grep.
-alias grep='grep --color=auto'
+# On Linux use some color options.
+if [ "$(uname -s)" = "Linux" ]; then
+    alias ls='ls --color=auto -F'
+    alias grep='grep --color=auto'
+fi
 
 # Don't correct some things.
 alias ebuild='nocorrect ebuild'
@@ -18,6 +21,7 @@ alias mkdir='nocorrect mkdir'
 alias mv='nocorrect mv'
 alias mysql='nocorrect mysql'
 alias sudo='nocorrect sudo'
+alias doas='nocorrect doas'
 
 setopt correct_all
 
