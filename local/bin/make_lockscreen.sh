@@ -14,7 +14,7 @@ set -o pipefail  # don't hide errors within pipes
 #{{{ Constants
 readonly STORE_FILE="${HOME}/.config/nitrogen/bg-saved.cfg"
 readonly WALLPAPER_DIR="${HOME}/Pictures/Wallpaper"
-readonly LOCK_SCREEN="/tmp/lockscreen.png"
+readonly LOCK_SCREEN="${HOME}/.cache/lockscreen.png"
 #}}}
 
 #{{{ Main entry point
