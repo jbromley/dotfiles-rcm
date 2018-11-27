@@ -4,6 +4,7 @@ import XMonad.Actions.WindowBringer
 import XMonad.Config.Desktop
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.SetWMName
 import XMonad.Layout.Tabbed
 import XMonad.ManageHook
 import XMonad.Prompt
@@ -23,6 +24,7 @@ main = do
                          , modMask = myMask
                          , borderWidth = myBorderWidth
                          , focusedBorderColor = myFocusedBorderColor
+                         , startupHook = setWMName "LG3D"
                          , layoutHook = desktopLayoutModifiers $ myLayoutHook
                          , manageHook = myManageHook <+> manageHook defaultConfig
                          , logHook = dynamicLogWithPP $ myXmobarPP xmproc
@@ -63,6 +65,8 @@ myScratchpads = [ NS "htop" "urxvtc -e htop" (title =? "htop") (customFloating $
   
 myManageHook = composeAll
     [ className =? "Spotify" --> doFloat
+    , className =? "Processing" --> doFloat
+    , className =? "Arduino" --> doFloat
     , manageDocks
     , namedScratchpadManageHook myScratchpads
     ]
@@ -87,7 +91,7 @@ myKeys = [ ((myMask .|. controlMask, xK_Return), spawn "urxvtc -e tmux")
          , ((myMask .|. shiftMask, xK_q), confirmPrompt myXPConfig "exit" $ io (exitWith ExitSuccess))
          , ((myMask .|. controlMask, xK_g), gotoMenu)
          , ((myMask .|. controlMask, xK_b), bringMenu)
-         , ((myMask .|. controlMask, xK_l), spawn "i3lock -e -i /tmp/lockscreen.png")
+         , ((myMask .|. controlMask, xK_l), spawn "i3lock -e -i /home/jay/.cache/lockscreen.png")
          , ((myMask, xK_s), submap . M.fromList $
            [ ((0, xK_c), namedScratchpadAction myScratchpads "calc")
            , ((0, xK_h), namedScratchpadAction myScratchpads "htop")
