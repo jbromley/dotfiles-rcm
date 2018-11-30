@@ -1,7 +1,7 @@
 nitrogen --restore
 dbus-daemon --print-address 4 --session
 urxvtd -q -o -f
-xautolock -detectsleep -time 5 -locker "i3lock -e -f -i /tmp/lockscreen.png" &
+xautolock -detectsleep -time 5 -locker "i3lock -e -f -i ${HOME}/.cache/lockscreen.png" &
 dunst &
 # compton --no-dock-shadow --fading --inactive-opacity=0.9 --daemon
 exec ssh-agent /home/jay/.local/bin/xmonad
