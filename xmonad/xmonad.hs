@@ -87,6 +87,7 @@ myLayoutPrinter x = x
 
 myKeys = [ ((myMask .|. controlMask, xK_Return), spawn "urxvtc -e tmux")
          , ((myMask, xK_p), spawn "rofi -show run")
+         , ((myMask .|. controlMask, xK_p), spawn "rofi -show drun")
          , ((myMask, xK_f), spawn "nautilus --no-desktop")
          , ((myMask .|. shiftMask, xK_q), confirmPrompt myXPConfig "exit" $ io (exitWith ExitSuccess))
          , ((myMask .|. controlMask, xK_g), gotoMenu)
