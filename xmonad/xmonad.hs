@@ -67,6 +67,7 @@ myManageHook = composeAll
     [ className =? "Spotify" --> doFloat
     , className =? "Processing" --> doFloat
     , className =? "Arduino" --> doFloat
+    , className =? "VirtualBox Manager" --> doFloat
     , manageDocks
     , namedScratchpadManageHook myScratchpads
     ]
