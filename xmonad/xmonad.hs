@@ -33,8 +33,8 @@ main = do
 myTerminal = "urxvtc"
 myMask = mod4Mask
 myBorderWidth = 2
-myFocusedBorderColor = "#CC00FF"
-myActiveColor = "#660080"
+myFocusedBorderColor = "#0000FF"
+myActiveColor = "#000080"
 myUrgentBorderColor = "#00FFFF"
 myUrgentColor = "#008080"
 myTabFont = "xft:Ubuntu Mono:style=Bold:size=10"
@@ -54,7 +54,7 @@ myTabConfig = def { activeBorderColor = myFocusedBorderColor
                   , urgentBorderColor = myUrgentBorderColor
                   , urgentColor = myUrgentColor
                   , fontName = myTabFont
-                  , decoHeight = 24
+                  , decoHeight = 32
                   }
 
 myScratchpads = [ NS "htop" "urxvtc -e htop" (title =? "htop") (customFloating $ W.RationalRect (1/4) (1/8) (1/2) (3/4))
@@ -72,7 +72,7 @@ myManageHook = composeAll
     , namedScratchpadManageHook myScratchpads
     ]
 
-myXmobarPP h = xmobarPP { ppCurrent = xmobarColor "white" "#a000c0" . wrap "[" "]"
+myXmobarPP h = xmobarPP { ppCurrent = xmobarColor "white" "#0000c0" . wrap "[" "]"
                         , ppUrgent = xmobarColor "white" "#33ff00" . wrap ">" "<"
                         , ppSep = " | "
                         , ppOutput = hPutStrLn h
