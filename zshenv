@@ -13,7 +13,7 @@ export GIT_EDITOR="emacsclient -nw"
 export ALTERNATE_EDITOR=""
 
 # Java settings
-export JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 
 # Set up theme for bat pager.
 BAT_THEME='DarkNeon'
