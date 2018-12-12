@@ -1,7 +1,7 @@
 [Desktop Entry]
 Comment=Open-source electronics platform
 Exec=/opt/arduino/arduino
-Icon=/opt/arduino-1.8.7/lib/icons/256x256/apps/arduino.png
+Icon=/opt/arduino/lib/icons/256x256/apps/arduino.png
 Name=Arduino
 NoDisplay=false
 Path=/opt/arduino
