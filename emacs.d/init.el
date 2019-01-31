@@ -267,11 +267,13 @@
 (use-package jdee
   :init (progn
 	  (setq jdee-jdk-registry (quote
-				   (("1.9.0" . "/usr/lib/jvm/java-9-openjdk-amd64")
-				    ("1.8.0" . "/usr/lib/jvm/java-8-openjdk-amd64")
+				    (("1.8.0" . "/usr/lib/jvm/java-8-openjdk-amd64")
 				    ("1.11.0" . "/usr/lib/jvm/java-11-openjdk-amd64")))
-		jdee-jdk (quote ("1.11.0"))
-		jdee-server-dir "/home/jay/.local/opt/jdee-server/")))
+		jdee-jdk (quote ("1.8.0"))
+		jdee-server-dir "/home/jay/.local/opt/jdee-server/")
+	  ;; Clean up ANSI codes in Maven compile output.
+	  (add-hook 'compilation-filter-hook
+		    (lambda () (ansi-color-apply-on-region (point-min) (point-max))))))
 
 (use-package slime
   :init
