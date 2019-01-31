@@ -24,3 +24,6 @@ export WORKON_HOME=${HOME}/.virtualenvs
 export PROJECT_HOME=${HOME}/Code
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.5m
 
+# Set up stuff for snap applications.
+emulate sh -c  'source /etc/profile.d/apps-bin-path.sh'
+
