@@ -1,5 +1,5 @@
 # Colorize output, add file type indicator, and put sizes in human readable format
-alias ls='ls -F'
+[ $(uname) = "Darwin" ] && alias ls='ls -F' || alias ls='ls --color -F'
 alias lsa='ls -lahF'
 alias l='ls -lahF'
 alias ll='ls -lhF'
