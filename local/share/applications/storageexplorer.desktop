@@ -1,11 +1,12 @@
+#!/usr/bin/env xdg-open
 [Desktop Entry]
 Name=Azure Storage Explorer
-GenericName=Storage Explorer
-Comment=Manage storage
-Exec=/opt/AzureStorageExplorer/StorageExplorer
-Icon=/opt/AzureStorageExplorer/resources/app/out/app/icon.png
+GenericName=File Browser
+Comment=Manage Azure storage resources
+Exec=/opt/StorageExplorer/StorageExplorer
+Icon=/opt/StorageExplorer/resources/app/out/app/icon.png
 Type=Application
 Terminal=false
 Categories=FileManager;
 Keywords=folder;manager;explore;disk;filesystem;
-X-Desktop-File-Install-Version=0.22
+X-Desktop-File-Install-Version=0.23
