@@ -2,7 +2,11 @@
 
 typeset -U path
 path=(${HOME}/.local/bin "$path[@]")
-[ -d /usr/local/cuda/bin ] && path+=(/usr/local/cuda/bin)
+if [ $(uname) = "Linux" ]; then
+    path+=(/usr/local/cuda/bin)
+else
+    path=(/opt/local/bin "$path[@]")
+fi
 
 # Make sure language is set properly.
 export LANG=en_US.UTF-8

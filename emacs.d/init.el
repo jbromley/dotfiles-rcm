@@ -1,27 +1,15 @@
 ;;; init.el --- Emacs custom configuration
 
-;;; Commentary:
-
-;;; Code:
-
-;; No startup screen.
-(setq inhibit-startup-screen t)
-
-;; Run the Emacs server.,
+;; Run the Emacs server.
 (require 'server)
 (unless (server-running-p)
   (server-start))
 
 ;; Set up Emacs package manager.
 (require 'package)
-(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
-                    (not (gnutls-available-p))))
-       (proto (if no-ssl "http" "https")))
-  ;; Comment/uncomment these two lines to enable/disable MELPA and MELPA Stable as desired
-  (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t))
-  ;; (add-to-list 'package-archives (cons "melpa-stable" (concat proto "://stable.melpa.org/packages/")) t))
+(add-to-list 'package-archives (cons "melpa" "https://melpa.org/packages/"))
+;; (add-to-list 'package-archives (cons "melpa-stable" "http://stable.melpa.org/packages/"))
 (package-initialize)
-
 (when (not package-archive-contents)
   (package-refresh-contents))
 
@@ -31,15 +19,10 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
-;; Set up load paths and other paths.
-;; (defvar elisp-path (expand-file-name "~/.emacs.d/elisp/")
-;;       local-pkgs '("polymode" "poly-markdown" "poly-noweb" "poly-R"))
-;; (add-to-list 'load-path (mapcar (lambda (pkg) (concat elisp-path pkg)) local-pkgs))
-      
 (defvar local-bin (concat
 		   (file-name-as-directory (getenv "HOME")) ".local/bin"))
-(setq exec-path (append (list local-bin) exec-path))
-(setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
+(setq exec-path (append (list local-bin) exec-path)
+      custom-file (expand-file-name "~/.emacs.d/custom.el"))
 
 ;; Basic editing configuration
 (show-paren-mode t)
@@ -98,7 +81,7 @@
           helm-locate-fuzzy-match t
           helm-display-header-line nil)
 
-					; Key bindings for particular maps.
+    ;; Key bindings for particular maps.
     (define-key 'help-command (kbd "C-f") 'helm-apropos)
     (define-key 'help-command (kbd "r") 'helm-info-emacs)
     (define-key 'help-command (kbd "C-l") 'helm-locate-library)
@@ -160,8 +143,8 @@
 ;; Polymode for R/Markdown code
 (use-package polymode
   :init (progn
-          (require 'poly-R)
-          (require 'poly-markdown))
+          (use-package poly-R)
+          (use-package poly-markdown))
   :config (progn
             (add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
             (eval-when-compile
@@ -210,27 +193,28 @@
 
 ;; Org mode
 (use-package org
-  :init (progn
-          (use-package org-bullets)
-	  (use-package org-pomodoro
-	    :config (progn
-		      (setq org-pomodoro-audio-player "ogg123"
-			    org-pomodoro-finished-sound "/usr/share/sounds/freedesktop/stereo/complete.oga"
-			    org-pomodoro-finished-sound-args "-q"
-			    org-pomodoro-killed-sound "/usr/share/sounds/freedesktop/stereo/suspend-error.oga"
-			    org-pomodoro-killed-sound-args "-q"
-			    org-pomodoro-killed-sound-p t
-			    org-pomodoro-long-break-sound "/usr/share/sounds/freedesktop/stereo/phone-incoming-call.oga"
-			    org-pomodoro-long-break-sound-args "-q"
-			    org-pomodoro-short-break-sound "/usr/share/sounds/freedesktop/stereo/complete.oga"
-			    org-pomodoro-short-break-sound-args "-q"
-			    org-pomodoro-start-sound "/usr/share/sounds/freedesktop/stereo/complete.oga"
-			    org-pomodoro-start-sound-args "-q"
-			    org-pomodoro-start-sound-p t)
-		      (add-hook 'org-pomodoro-break-finished-hook
-				(lambda ()
-				  (interactive)
-				  (org-pomodoro '(16)))))))
+  :init
+  (progn
+    (use-package org-bullets)
+    (use-package org-pomodoro
+      :config (progn
+		(setq org-pomodoro-audio-player "ogg123"
+		      org-pomodoro-finished-sound "/usr/share/sounds/freedesktop/stereo/complete.oga"
+		      org-pomodoro-finished-sound-args "-q"
+		      org-pomodoro-killed-sound "/usr/share/sounds/freedesktop/stereo/suspend-error.oga"
+		      org-pomodoro-killed-sound-args "-q"
+		      org-pomodoro-killed-sound-p t
+		      org-pomodoro-long-break-sound "/usr/share/sounds/freedesktop/stereo/phone-incoming-call.oga"
+		      org-pomodoro-long-break-sound-args "-q"
+		      org-pomodoro-short-break-sound "/usr/share/sounds/freedesktop/stereo/complete.oga"
+		      org-pomodoro-short-break-sound-args "-q"
+		      org-pomodoro-start-sound "/usr/share/sounds/freedesktop/stereo/complete.oga"
+		      org-pomodoro-start-sound-args "-q"
+		      org-pomodoro-start-sound-p t)
+		(add-hook 'org-pomodoro-break-finished-hook
+			  (lambda ()
+			    (interactive)
+			    (org-pomodoro '(16)))))))
   :config (progn
             ;; Use UTF-8 bullets.
             (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
@@ -320,13 +304,6 @@
                   cider-auto-select-error-buffer t
                   cider-repl-wrap-history t)))
 
-(use-package tuareg)
-
-(use-package fsharp-mode
-  :mode (("\\.fs[iylx]?$" . fsharp-mode))
-  :config (setq inferior-fsharp-program "/usr/bin/fsharpi --readline-"
-		fsharp-compiler "/usr/bin/fsharpc"))
-  
 ;; Toggle mode-line colors for basic theme.
 (defun mode-line-visual-toggle ()
   (interactive)
