@@ -19,15 +19,6 @@ export ALTERNATE_EDITOR=""
 # Java settings
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 
-# Set up theme for bat pager.
-BAT_THEME='DarkNeon'
-export BAT_THEME
-
-# Set up for Python and virtual environments.
-export WORKON_HOME=${HOME}/.virtualenvs
-export PROJECT_HOME=${HOME}/Code
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.5m
-
 # Set up stuff for snap applications.
 emulate sh -c  'source /etc/profile.d/apps-bin-path.sh'
 
