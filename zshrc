@@ -1,26 +1,27 @@
-config_files=(exports \
-		  setopt \
-		  colors \
-		  completion \
-		  aliases \
-		  bindkeys \
-		  functions \
-		  history \
-		  zsh_hooks \
-		  plugins \
-		  prompt)
+# zshrc
 
-for config in $config_files; do
-    [ -f "${HOME}/.zsh/${config}.zsh" ] && source "${HOME}/.zsh/${config}.zsh"
-done
+source "${HOME}/.zgen/zgen.zsh"
 
-# Set up fzf.
-[ -f "${HOME}/.fzf.zsh" ] && source "${HOME}/.fzf.zsh"
+if ! zgen saved; then
+    echo "Creating a zgen save..."
+    
+    zgen oh-my-zsh
 
-# tmux customization
-precmd() {
-  if [[ -n "$TMUX" ]]; then
-    tmux setenv "$(tmux display -p 'TMUX_PWD_#D')" "$PWD"
-  fi
-}
+    # Plugins
+    zgen oh-my-zsh plugins/colored-man-pages
+    zgen oh-my-zsh plugins/sudo
+    zgen oh-my-zsh plugins/web-search
+    zgen load zsh-users/zsh-history-substring-search
 
+    # Completions
+    zgen load zsh-users/zsh-completions src
+
+    # Theme
+    zgen oh-my-zsh themes/muse
+    
+    # Regenerate the init script.
+    zgen save
+fi
+
+
+[ -f ${HOME}/.aliases ] && source ${HOME}/.aliases
