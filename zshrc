@@ -24,4 +24,8 @@ if ! zgen saved; then
 fi
 
 
+# Set up aliases.
 [ -f ${HOME}/.aliases ] && source ${HOME}/.aliases
+
+# Install the fuzzy finder (fzf).
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
