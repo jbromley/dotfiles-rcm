@@ -40,18 +40,18 @@
 *.color15:      #ffffff
 
 ! Font defines
-#define FONT_NAME Noto Mono
+#define FONT_NAME Hack
 #define FONT_STYLE Regular
-#define FONT_SIZE 12  
+#define FONT_SIZE 10
 
 ! XFT
-Xft.dpi: 96  
-Xft.antialias: true
-Xft.hinting: true
-Xft.rgba: rgb
-Xft.autohint: true
-Xft.hintstyle: hintslight
-Xft.lcdfilter: lcddefault
+! Xft.dpi: 96  
+! Xft.antialias: true
+! Xft.hinting: true
+! Xft.rgba: rgb
+! Xft.autohint: true
+! Xft.hintstyle: hintslight
+! Xft.lcdfilter: lcddefault
 
 ! Emacs
 Emacs*font: FONT_NAME-FONT_SIZE
@@ -62,7 +62,7 @@ Emacs*verticalScrollBars: off
 ! Rxvt-unicode
 URxvt.geometry: 120x40
 ! URxvt.depth: 32
-URxvt*letterSpace: -1
+! URxvt*letterSpace: -1
 URxvt*font: xft:FONT_NAME:style=FONT_STYLE:size=FONT_SIZE
 URxvt*boldFont: xft:FONT_NAME:style=Bold:size=FONT_SIZE
 URxvt*italicFont: xft:FONT_NAME:style=Italic:size=FONT_SIZE
