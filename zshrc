@@ -17,7 +17,7 @@ if ! zgen saved; then
     zgen load zsh-users/zsh-completions src
 
     # Theme
-    zgen oh-my-zsh themes/muse
+    zgen oh-my-zsh custom/themes/muse
     
     # Regenerate the init script.
     zgen save
