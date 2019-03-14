@@ -22,3 +22,8 @@ export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 # Set up stuff for snap applications.
 [ -x /etc/profile.d/apps-bin-path.sh ] && emulate sh -c  'source /etc/profile.d/apps-bin-path.sh'
 
+# Set up fzf path and options.
+if [[ ! "$PATH" == */home/jay/.fzf/bin* ]]; then
+  export PATH="$PATH:/home/jay/.fzf/bin"
+fi
+export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(emacsclient {})+abort'"
