@@ -1,48 +1,44 @@
 !!! X Resource File
 
-! Color theme - Material
-*.foreground:  #232322
-*.background:  #eaeaea
-*.cursorColor: #16afca
-!
-! Black
-*.color0:      #212121
-*.color8:      #424242
-!
-! Red
-*.color1:      #b7141f
-*.color9:      #e83b3f
-!
-! Green
-*.color2:      #457b24
-*.color10:     #7aba3a
-!
-! Yellow
-*.color3:      #f6981e
-*.color11:     #ffea2e
-!
-! Blue
-*.color4:      #134eb2
-*.color12:     #54a4f3
-!
-! Magenta
-*.color5:      #560088
-*.color13:     #aa4dbc
-!
-! Cyan
-*.color6:      #0e717c
-*.color14:     #26bbd1
-!
-! White
-*.color7:      #efefef
-*.color15:     #d9d9d9
-!
-! Bold, Italic, Underline
-*.colorBD:     #b7141f
-!*.colorIT:
-!*.colorUL:
+! Baskerville Ivory Light
+! special
+*.foreground:   #6d727e
+*.background:   #fef9ec
+*.cursorColor:  #6d727e
 
-! Font defines
+! black
+*.color0:       #c5c1b4
+*.color8:       #a1a6b2
+
+! red
+*.color1:       #e75c58
+*.color9:       #b22b31
+
+! green
+*.color2:       #00a250
+*.color10:      #007427
+
+! yellow
+*.color3:       #a08a00
+*.color11:      #715f00
+
+! blue
+*.color4:       #208ffb
+*.color12:      #0065ca
+
+! magenta
+*.color5:       #d160c4
+*.color13:      #a03196
+
+! cyan
+*.color6:       #00a4c1
+*.color14:      #007693
+
+! white
+*.color7:       #3e424d
+*.color15:      #282c36
+
+! Font setup
 #define FONT_NAME Hack
 #define FONT_STYLE Regular
 #define FONT_SIZE 10
@@ -55,8 +51,6 @@ Emacs*verticalScrollBars: off
 
 ! Rxvt-unicode
 URxvt.geometry: 120x40
-! URxvt.depth: 32
-! URxvt*letterSpace: -1
 URxvt*font: xft:FONT_NAME:style=FONT_STYLE:size=FONT_SIZE
 URxvt*boldFont: xft:FONT_NAME:style=Bold:size=FONT_SIZE
 URxvt*italicFont: xft:FONT_NAME:style=Italic:size=FONT_SIZE
