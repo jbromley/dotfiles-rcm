@@ -20,5 +20,5 @@ export ALTERNATE_EDITOR=""
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 
 # Set up stuff for snap applications.
-emulate sh -c  'source /etc/profile.d/apps-bin-path.sh'
+[ -x /etc/profile.d/apps-bin-path.sh ] && emulate sh -c  'source /etc/profile.d/apps-bin-path.sh'
 
