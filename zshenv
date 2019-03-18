@@ -27,3 +27,9 @@ if [[ ! "$PATH" == */home/jay/.fzf/bin* ]]; then
   export PATH="$PATH:/home/jay/.fzf/bin"
 fi
 export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(emacsclient {})+abort'"
+
+# Powerlevel10k prompt configuration
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator dir_writable dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time background_jobs)
+
