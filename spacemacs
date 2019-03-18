@@ -148,7 +148,7 @@ values."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 13.0
+                               :size 10.0
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -337,7 +337,14 @@ you should place your code here."
           org-enforce-todo-checkbox-dependencies t
           org-agenda-dim-blocked-tasks t
           org-log-done t
-          org-default-notes-file (concat org-directory "/Notes.org"))))
+          org-default-notes-file (concat org-directory "/Notes.org")))
+  (setq comment-auto-fill-only-comments t)
+  (setq-default fill-column 80)
+  (defun comment-auto-fill ()
+    (setq-local comment-auto-fill-only-comments t)
+    (auto-fill-mode 1))
+  (add-hook 'text-mode-hook 'turn-on-auto-fill)
+  (add-hook 'prog-mode 'comment-auto-fill))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
