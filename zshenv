@@ -13,7 +13,7 @@ export LANG=en_US.UTF-8
 
 # Set up our editor.
 export EDITOR=emacs
-export GIT_EDITOR="emacsclient -q -nw"
+export GIT_EDITOR="nvim"
 export ALTERNATE_EDITOR=""
 
 # Java settings
