@@ -1,7 +1,8 @@
 !!! X Resource File
 
-! Baskerville Ivory Light
+! Color theme - Baskerville Ivory Light 
 ! special
+
 *.foreground:   #6d727e
 *.background:   #fef9ec
 *.cursorColor:  #6d727e
@@ -39,7 +40,7 @@
 *.color15:      #282c36
 
 ! Font setup
-#define FONT_NAME Hack
+#define FONT_NAME Source Code Pro 
 #define FONT_STYLE Regular
 #define FONT_SIZE 10
 
