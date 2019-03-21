@@ -1,43 +1,42 @@
 !!! X Resource File
 
-! Color theme - Baskerville Ivory Light 
+! Grayscale Light
 ! special
-
-*.foreground:   #6d727e
-*.background:   #fef9ec
-*.cursorColor:  #6d727e
+*.foreground:   #464646
+*.background:   #f7f7f7
+*.cursorColor:  #6600cc
 
 ! black
-*.color0:       #c5c1b4
-*.color8:       #a1a6b2
+*.color0:       #101010
+*.color8:       #525252
 
 ! red
-*.color1:       #e75c58
-*.color9:       #b22b31
+*.color1:       #7c7c7c
+*.color9:       #7c7c7c
 
 ! green
-*.color2:       #00a250
-*.color10:      #007427
+*.color2:       #8e8e8e
+*.color10:      #8e8e8e
 
 ! yellow
-*.color3:       #a08a00
-*.color11:      #715f00
+*.color3:       #a0a0a0
+*.color11:      #a0a0a0
 
 ! blue
-*.color4:       #208ffb
-*.color12:      #0065ca
+*.color4:       #686868
+*.color12:      #686868
 
 ! magenta
-*.color5:       #d160c4
-*.color13:      #a03196
+*.color5:       #747474
+*.color13:      #747474
 
 ! cyan
-*.color6:       #00a4c1
-*.color14:      #007693
+*.color6:       #868686
+*.color14:      #868686
 
 ! white
-*.color7:       #3e424d
-*.color15:      #282c36
+*.color7:       #b9b9b9
+*.color15:      #f7f7f7
 
 ! Font setup
 #define FONT_NAME Source Code Pro 
