@@ -69,7 +69,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(eziam-theme constant-theme)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -142,13 +142,14 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(spacemacs-light
-                         spacemacs-dark)
+                         spacemacs-dark
+                         eziam-light)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 10.0
+                               :size 13.0
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -324,6 +325,8 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  (setq eziam-scale-headings nil
+        eziam-scale-other nil)
   (with-eval-after-load 'org
     (setq org-directory "~/Org"
           org-agenda-files '("~/Org/")
@@ -337,14 +340,7 @@ you should place your code here."
           org-enforce-todo-checkbox-dependencies t
           org-agenda-dim-blocked-tasks t
           org-log-done t
-          org-default-notes-file (concat org-directory "/Notes.org")))
-  (setq comment-auto-fill-only-comments t)
-  (setq-default fill-column 80)
-  (defun comment-auto-fill ()
-    (setq-local comment-auto-fill-only-comments t)
-    (auto-fill-mode 1))
-  (add-hook 'text-mode-hook 'turn-on-auto-fill)
-  (add-hook 'prog-mode 'comment-auto-fill))
+          org-default-notes-file (concat org-directory "/Notes.org"))))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -353,9 +349,14 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("773e0bfa5450c75d613cbf29734cdc876c3d59dbf85b93cff3015a8687dea158" "9fcac3986e3550baac55dc6175195a4c7537e8aa082043dcbe3f93f548a3a1e0" default)))
+ '(evil-want-Y-yank-to-eol nil)
  '(package-selected-packages
    (quote
-    (git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter flyspell-correct-helm flyspell-correct diff-hl auto-dictionary yapfify yaml-mode xterm-color sql-indent slime-company slime shell-pop pyvenv pytest pyenv-mode py-isort pip-requirements org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download noflet multi-term live-py-mode insert-shebang hy-mode dash-functional htmlize helm-pydoc helm-company helm-c-yasnippet graphviz-dot-mode gnuplot fuzzy flycheck-pos-tip pos-tip flycheck fish-mode ess-smart-equals ess-R-data-view ctable ess julia-mode eshell-z eshell-prompt-extras esh-help ensime sbt-mode scala-mode disaster cython-mode csv-mode company-statistics company-shell company-emacs-eclim eclim company-c-headers company-anaconda company common-lisp-snippets cmake-mode clojure-snippets clj-refactor inflections edn multiple-cursors paredit peg clang-format cider-eval-sexp-fu cider sesman seq queue clojure-mode auto-yasnippet yasnippet anaconda-mode pythonic ac-ispell auto-complete smeargle orgit mmm-mode markdown-toc markdown-mode magit-gitflow magit-popup helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md evil-magit magit transient git-commit with-editor ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
+    (monotropic-theme constant-theme eziam-theme git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter flyspell-correct-helm flyspell-correct diff-hl auto-dictionary yapfify yaml-mode xterm-color sql-indent slime-company slime shell-pop pyvenv pytest pyenv-mode py-isort pip-requirements org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download noflet multi-term live-py-mode insert-shebang hy-mode dash-functional htmlize helm-pydoc helm-company helm-c-yasnippet graphviz-dot-mode gnuplot fuzzy flycheck-pos-tip pos-tip flycheck fish-mode ess-smart-equals ess-R-data-view ctable ess julia-mode eshell-z eshell-prompt-extras esh-help ensime sbt-mode scala-mode disaster cython-mode csv-mode company-statistics company-shell company-emacs-eclim eclim company-c-headers company-anaconda company common-lisp-snippets cmake-mode clojure-snippets clj-refactor inflections edn multiple-cursors paredit peg clang-format cider-eval-sexp-fu cider sesman seq queue clojure-mode auto-yasnippet yasnippet anaconda-mode pythonic ac-ispell auto-complete smeargle orgit mmm-mode markdown-toc markdown-mode magit-gitflow magit-popup helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md evil-magit magit transient git-commit with-editor ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
+ '(paradox-github-token t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
