@@ -330,6 +330,10 @@ you should place your code here."
         eziam-scale-other nil)
   (setq browse-url-browser-function 'browse-url-generic
         browse-url-generic-program "/usr/bin/chromium-browser")
+  (setq eclim-eclipse-dirs "~/eclipse/java-latest-released/eclipse"
+        eclim-executable "~/eclipse/java-latest-released/eclipse/eclim"
+        eclimd-executable "~/eclipse/java-latest-released/eclipse/eclimd"
+        eclimd-default-workspace "~/Code/eclipse-workspace")
   (with-eval-after-load 'org
     (setq org-directory "~/Org"
           org-agenda-files '("~/Org/")
