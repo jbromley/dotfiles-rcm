@@ -8,10 +8,14 @@ if ! zgen saved; then
     zgen oh-my-zsh
 
     # Plugins
+    zgen oh-my-zsh plugins/aws
+    zgen oh-my-zsh plugins/extract
     zgen oh-my-zsh plugins/colored-man-pages
     zgen oh-my-zsh plugins/sudo
     zgen oh-my-zsh plugins/web-search
-    zgen load zsh-users/zsh-history-substring-search
+    zgen oh-my-zsh plugins/history-substring-search
+    zgen oh-my-zsh plugins/fzf
+    zgen oh-my-zsh plugins/z
 
     # Completions
     zgen load zsh-users/zsh-completions src
@@ -29,4 +33,4 @@ source ~/.zgen/robbyrussell/oh-my-zsh-master/custom/themes/powerless/powerless.z
 [ -f ${HOME}/.aliases ] && source ${HOME}/.aliases
 
 # Install the fuzzy finder (fzf).
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
