@@ -22,6 +22,9 @@ export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 # Set up stuff for snap applications.
 [ -x /etc/profile.d/apps-bin-path.sh ] && emulate sh -c  'source /etc/profile.d/apps-bin-path.sh'
 
+# Don't let Python venv add anything to the prompt.
+export VIRTUAL_ENV_DISABLE_PROMPT=yes
+#
 # Set up fzf path and options.
 if [[ ! "$PATH" == */home/jay/.fzf/bin* ]]; then
   export PATH="$PATH:/home/jay/.fzf/bin"
