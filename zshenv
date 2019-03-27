@@ -1,11 +1,12 @@
 # Zsh environment customizations
 
-typeset -U path
-path=(${HOME}/.local/bin "$path[@]")
+# Configure the path. On MacOS user path_helper.
+typeset -TUx PATH path
+[ -x /usr/libexec/path_helper ] && eval $(/usr/libexec/path_helper -s)
+[ -d /opt/local/bin ] && path=(/opt/local/bin $path)
+path=(${HOME}/.local/bin $path)
 if [ $(uname) = "Linux" ]; then
     path+=(/usr/local/cuda/bin)
-else
-    path=(/opt/local/bin "$path[@]")
 fi
 
 # Make sure language is set properly.
@@ -24,15 +25,8 @@ export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 
 # Don't let Python venv add anything to the prompt.
 export VIRTUAL_ENV_DISABLE_PROMPT=yes
-#
-# Set up fzf path and options.
-if [[ ! "$PATH" == */home/jay/.fzf/bin* ]]; then
-  export PATH="$PATH:/home/jay/.fzf/bin"
-fi
-export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(emacsclient {})+abort'"
 
 # Powerlevel10k prompt configuration
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator dir_writable dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time background_jobs)
-
