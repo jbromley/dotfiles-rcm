@@ -2,8 +2,8 @@
 
 # Configure the path. On MacOS user path_helper.
 typeset -Ux PATH path
-# [ -x /usr/libexec/path_helper ] && eval $(/usr/libexec/path_helper -s)
 path=(${HOME}/.local/bin $path)
+path+=${HOME}/.fzf/bin
 if [ $(uname) = "Linux" ]; then
     path+=(/usr/local/cuda/bin)
 fi
