@@ -27,10 +27,7 @@ if ! zgen saved; then
     zgen save
 fi
 
-source ~/.zgen/robbyrussell/oh-my-zsh-master/custom/themes/powerless/powerless.zsh true
+source ~/.zsh/powerless/powerless.zsh true 
 
 # Set up aliases.
-[ -f ${HOME}/.aliases ] && source ${HOME}/.aliases
-
-# Install the fuzzy finder (fzf).
-# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ${HOME}/.aliases ] && source ${HOME}/.aliases || true
