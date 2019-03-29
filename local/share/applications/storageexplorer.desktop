@@ -7,6 +7,6 @@ Exec=/opt/StorageExplorer/StorageExplorer
 Icon=/opt/StorageExplorer/resources/app/out/app/icon.png
 Type=Application
 Terminal=false
-Categories=FileManager;
+Categories=Utilities;
 Keywords=folder;manager;explore;disk;filesystem;
 X-Desktop-File-Install-Version=0.23

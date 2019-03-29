@@ -8,6 +8,7 @@ Path=/opt/processing
 StartupNotify=true
 Terminal=false
 Type=Application
+Categories=Development;
 X-KDE-SubstituteUID=false
 X-KDE-Username=
 X-Desktop-File-Install-Version=0.22
