@@ -11,6 +11,7 @@ if ! zgen saved; then
     zgen oh-my-zsh plugins/aws
     zgen oh-my-zsh plugins/extract
     zgen oh-my-zsh plugins/colored-man-pages
+    zgen oh-my-zsh plugins/git
     zgen oh-my-zsh plugins/sudo
     zgen oh-my-zsh plugins/web-search
     zgen oh-my-zsh plugins/history-substring-search
