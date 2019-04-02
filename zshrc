@@ -22,13 +22,13 @@ if ! zgen saved; then
     zgen load zsh-users/zsh-completions src
 
     # Theme
-    zgen oh-my-zsh custom/themes/powerlevel10k/powerlevel10k
+    # zgen oh-my-zsh custom/themes/powerlevel10k/powerlevel10k
+    zgen oh-my-zsh custom/themes/powerless/powerless
+    # zgen oh-my-zsh custom/themes/purepower/purepower
 
     # Regenerate the init script.
     zgen save
 fi
-
-# source ~/.zsh/powerless/powerless.zsh true 
 
 # Set up aliases.
 [ -f ${HOME}/.aliases ] && source ${HOME}/.aliases || true
