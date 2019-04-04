@@ -22,9 +22,9 @@ if ! zgen saved; then
     zgen load zsh-users/zsh-completions src
 
     # Theme
-    # zgen oh-my-zsh custom/themes/powerlevel10k/powerlevel10k
-    zgen oh-my-zsh custom/themes/powerless/powerless
     # zgen oh-my-zsh custom/themes/purepower/purepower
+    # zgen load romkatv/powerlevel10k powerlevel10k
+    source "${HOME}/.zsh/powerless/powerless.zsh" true
 
     # Regenerate the init script.
     zgen save
