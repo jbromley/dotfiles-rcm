@@ -44,6 +44,7 @@
 #define FONT_SIZE 10
 
 ! Emacs
+Emacs*geometry: 120x40
 Emacs*font: FONT_NAME-FONT_SIZE
 Emacs*menuBar: off
 Emacs*toolBar: off
