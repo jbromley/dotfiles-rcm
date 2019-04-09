@@ -9,6 +9,7 @@ if ! zgen saved; then
 
     # Plugins
     zgen oh-my-zsh plugins/aws
+    zgen oh-my-zsh plugins/emacs
     zgen oh-my-zsh plugins/extract
     zgen oh-my-zsh plugins/colored-man-pages
     zgen oh-my-zsh plugins/git
@@ -22,13 +23,13 @@ if ! zgen saved; then
     zgen load zsh-users/zsh-completions src
 
     # Theme
-    # zgen oh-my-zsh custom/themes/purepower/purepower
-    # zgen load romkatv/powerlevel10k powerlevel10k
-    source "${HOME}/.zsh/powerless/powerless.zsh" true
+    zgen load romkatv/powerlevel10k powerlevel10k
 
     # Regenerate the init script.
     zgen save
 fi
+
+# source "${HOME}/.zsh/powerless/powerless.zsh" true
 
 # Set up aliases.
 [ -f ${HOME}/.aliases ] && source ${HOME}/.aliases || true

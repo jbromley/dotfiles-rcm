@@ -13,7 +13,7 @@ export LANG=en_US.UTF-8
 
 # Set up our editor.
 export EDITOR=emacs
-export GIT_EDITOR="nvim"
+export GIT_EDITOR="emacsclient -t"
 export ALTERNATE_EDITOR=""
 
 # Java settings
@@ -24,3 +24,6 @@ export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 
 # Don't let Python venv add anything to the prompt.
 export VIRTUAL_ENV_DISABLE_PROMPT=yes
+
+# Theme settings
+source "${HOME}/.zsh/purepower"
