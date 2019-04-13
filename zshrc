@@ -8,7 +8,7 @@ if ! zgen saved; then
     zgen oh-my-zsh
 
     # Plugins
-    zgen oh-my-zsh plugins/aws
+    zgen oh-my-zsh custom/plugins/aws
     zgen oh-my-zsh plugins/emacs
     zgen oh-my-zsh plugins/extract
     zgen oh-my-zsh plugins/colored-man-pages
