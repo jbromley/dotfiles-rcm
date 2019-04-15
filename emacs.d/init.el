@@ -44,6 +44,9 @@
 ;; Disable vc
 (setq vc-handled-backends nil)
 
+;; Always turn on auto-fill.
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
+
 ;; Fix the prompt for sql-interactive-mode with PostgreSQL.
 ;; Old: "^[_[:alpha:]]*[=][#>] ", "^[_[:alpha:]]*[-][#>] "
 (add-hook 'sql-interactive-mode-hook
@@ -51,6 +54,9 @@
             (when (string= sql-product "postgres")
 	      (setq sql-prompt-regexp "^[[:alnum:]_]*=[#>] ")
 	      (setq sql-prompt-cont-regexp "^[[:alnum:]_]*[-(][#>] "))))
+
+;; Convenience global bindings.
+(global-set-key (kbd "C-c q") 'auto-fill-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Packages
@@ -73,6 +79,11 @@
 	ivy-count-format "(%d/%d) ")
   (ivy-mode 1)
   :bind (("C-c r" . ivy-resume)))
+
+;; Load recentf buffer at start if there is no file.
+(use-package init-open-recentf
+  :config
+  (init-open-recentf))
 
 ;; Counsel
 (use-package counsel)
