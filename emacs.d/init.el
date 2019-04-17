@@ -153,7 +153,9 @@
   (add-hook 'java-mode-hook (lambda ()
 			      (meghanada-mode t)
 			      (flycheck-mode +1))))
-
+;; YAML editing
+(use-package yaml-mode)
+  
 ;; Magit mode
 (use-package magit
   :bind (("C-x v G" . magit-status)))
