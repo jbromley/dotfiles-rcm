@@ -74,16 +74,14 @@
 ;; Ivy selection
 (use-package ivy
   :config
-  (setq ivy-use-virtual-buffers t
+  (setq ivy-use-virtual-buffers nil
 	enable-recursive-minibuffers t
 	ivy-count-format "(%d/%d) ")
   (ivy-mode 1)
   :bind (("C-c r" . ivy-resume)))
 
 ;; Load recentf buffer at start if there is no file.
-(use-package init-open-recentf
-  :config
-  (init-open-recentf))
+(use-package init-open-recentf)
 
 ;; Counsel
 (use-package counsel)
@@ -164,6 +162,13 @@
 (use-package projectile
   :bind (:map projectile-mode-map ("C-c p" . projectile-command-map)))
 	      
+;; Theme switching
+(use-package theme-looper
+  :config
+  (theme-looper-set-ignored-themes '(leuven light-blue tango-dark tsdh-dark wheatgrass solarized tao))
+  (global-set-key (kbd "C-{") 'theme-looper-enable-previous-theme)
+  (global-set-key (kbd "C-}") 'theme-looper-enable-next-theme))
+  
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Custom file
@@ -172,3 +177,6 @@
 ;; Keep customizations separate so machine-specific configurations do not get
 ;; saved in the dotfiles repo.
 (load custom-file)
+
+(recentf-mode 1)
+(init-open-recentf)
