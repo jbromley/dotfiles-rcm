@@ -29,6 +29,9 @@ if ! zgen saved; then
     zgen save
 fi
 
+# Turn off auto pushd.
+setopt noautopushd
+
 # source "${HOME}/.zsh/powerless/powerless.zsh" true
 
 # Set up aliases.
