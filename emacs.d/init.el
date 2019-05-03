@@ -115,7 +115,8 @@
 ;; Org mode
 (use-package org
   :config
-  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+  (add-hook 'org-mode-hook (lambda ()
+			     (if (display-graphic-p) (org-bullets-mode 1))))
   (setq org-directory "~/Org"
 	org-agenda-files '("~/Org/")
 	org-confirm-babel-evaluate nil
