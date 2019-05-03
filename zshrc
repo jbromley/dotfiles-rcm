@@ -23,7 +23,7 @@ if ! zgen saved; then
     zgen load zsh-users/zsh-completions src
 
     # Theme
-    zgen load romkatv/powerlevel10k powerlevel10k
+    # zgen load romkatv/powerlevel10k powerlevel10k
 
     # Regenerate the init script.
     zgen save
@@ -32,7 +32,7 @@ fi
 # Turn off auto pushd.
 setopt noautopushd
 
-# source "${HOME}/.zsh/powerless/powerless.zsh" true
+source "${HOME}/.zsh/powerless/powerless.zsh" true
 
 # Set up aliases.
 [ -f ${HOME}/.aliases ] && source ${HOME}/.aliases || true

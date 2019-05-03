@@ -26,4 +26,4 @@ export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 export VIRTUAL_ENV_DISABLE_PROMPT=yes
 
 # Theme settings
-source "${HOME}/.zsh/purepower"
+# source "${HOME}/.zsh/purepower"
