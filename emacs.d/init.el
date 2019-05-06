@@ -91,7 +91,7 @@
   :config
   (add-hook 'c-mode-common-hook
 	    (lambda ()
-	      (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
+	      (when (derived-mode-p major-mode 'c-mode 'c++-mode 'java-mode 'asm-mode)
 		(ggtags-mode 1))))
   :bind
   (:map ggtags-mode-map
@@ -105,6 +105,11 @@
 	("M-," . pop-tag-mark)
 	("C-c <" . ggtags-prev-mark)
 	("C-c >" . ggtags-next-mark)))
+
+;; Elpy
+(use-package elpy
+  :init
+  (advice-add 'python-mode :before 'elpy-enable))
   
 ;; Swiper
 (use-package swiper
