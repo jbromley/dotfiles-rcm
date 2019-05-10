@@ -136,7 +136,8 @@
 	org-enforce-todo-checkbox-dependencies t
 	org-agenda-dim-blocked-tasks t
 	org-log-done t
-	org-default-notes-file (concat org-directory "/Notes.org"))
+	org-default-notes-file (concat org-directory "/Notes.org")
+	org-catch-invisible-edits 'show)
   :bind (("C-c a" . org-agenda)
 	 ("C-c c" . org-capture)
 	 ("C-c l" . org-store-link)))
