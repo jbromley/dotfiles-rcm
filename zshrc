@@ -12,6 +12,7 @@ if ! zgen saved; then
     # zgen oh-my-zsh plugins/emacs
     zgen oh-my-zsh plugins/extract
     zgen oh-my-zsh plugins/colored-man-pages
+    zgen oh-my-zsh plugins/mvn
     zgen oh-my-zsh plugins/git
     zgen oh-my-zsh plugins/sudo
     zgen oh-my-zsh plugins/web-search
