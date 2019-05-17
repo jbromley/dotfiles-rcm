@@ -37,3 +37,7 @@ source "${HOME}/.zsh/powerless/powerless.zsh" true
 
 # Set up aliases.
 [ -f ${HOME}/.aliases ] && source ${HOME}/.aliases || true
+
+# Useful functions
+function venv () { source "${HOME}/.venv/${1}/bin/activate" }
+
