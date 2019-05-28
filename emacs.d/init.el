@@ -188,3 +188,4 @@
 
 (recentf-mode 1)
 (init-open-recentf)
+(put 'narrow-to-region 'disabled nil)
