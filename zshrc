@@ -78,7 +78,7 @@ plugins=(
     web-search
     history-substring-search
     fzf
-    /z
+    z
 )
 
 source $ZSH/oh-my-zsh.sh
