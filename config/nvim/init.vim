@@ -15,11 +15,15 @@ set lazyredraw
 
 call plug#begin()
 
-" neomake
-Plug 'neomake/neomake'
-
 " NERDTree
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'majutsushi/tagbar'
+
+" Java development
+Plug 'sbdchd/neoformat'
+Plug 'artur-shaik/vim-javacomplete2'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemovePlugins' }
+Plug 'neomake/neomake'
 
 " FuZzy Find
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
@@ -27,6 +31,7 @@ Plug 'junegunn/fzf.vim'
 
 " TComment
 Plug 'tomtom/tcomment_vim'
+
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -45,6 +50,26 @@ let g:NERDTreeQuitOnOpen=1
 if (executable('ag'))
     let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
 endif
+
+" Deoplete
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#omni_patterns = {}
+let g:deoplete#omni_patterns.java = '[^. *\t]\.\w*'
+let g:deoplete#sources = {}
+let g:deoplete#sources._ = []
+let g:deoplete#file#enable_buffer_path = 1
+
+" Java completion
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
+
+" neomake
+autocmd! BufWritePost,BufEnter * Neomake
+
+" neoformat
+augroup astyle
+    autocmd!
+    autocmd BufWritePre * Neoformat
+augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Visual configuration
