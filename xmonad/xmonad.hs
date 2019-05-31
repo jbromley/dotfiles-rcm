@@ -32,14 +32,14 @@ main = do
 
 myTerminal = "urxvtc"
 myMask = mod4Mask
-myBorderWidth = 2
+myBorderWidth = 4
 myFocusedBorderColor = "#0000FF"
 myActiveColor = "#000080"
 myUrgentBorderColor = "#00FFFF"
 myUrgentColor = "#008080"
 myTabFont = "xft:Ubuntu Mono:style=Bold:size=10"
 myFont = "xft:Ubuntu Mono:style=Bold:size=10"
-myStatusBar = "/home/jay/.local/bin/xmobar"
+myStatusBar = "/home/jay/.cabal/bin/xmobar"
 
 myLayoutHook = tiled ||| tabbedLayout ||| Full
   where
@@ -62,7 +62,7 @@ myScratchpads = [ NS "htop" "urxvtc -e htop" (title =? "htop") (customFloating $
                 --, NS "spotify" "spotify" (className =? "Spotify") (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3))
                 , NS "urxvt" "urxvtc -name scratch_urxvt" (resource =? "scratch_urxvt") (customFloating $ W.RationalRect (1/4) (1/4) (1/2) (1/2))
                 ]
-  
+
 myManageHook = composeAll
     [ className =? "Spotify" --> doFloat
     , className =? "Processing" --> doFloat
@@ -89,7 +89,7 @@ myLayoutPrinter x = x
 myKeys = [ ((myMask .|. controlMask, xK_Return), spawn "urxvtc -e tmux")
          , ((myMask, xK_p), spawn "rofi -show run")
          , ((myMask .|. controlMask, xK_p), spawn "rofi -show drun")
-         , ((myMask, xK_f), spawn "nautilus --no-desktop")
+         , ((myMask, xK_f), spawn "dolphin")
          , ((myMask .|. shiftMask, xK_q), confirmPrompt myXPConfig "exit" $ io (exitWith ExitSuccess))
          , ((myMask .|. controlMask, xK_g), gotoMenu)
          , ((myMask .|. controlMask, xK_b), bringMenu)
@@ -100,9 +100,9 @@ myKeys = [ ((myMask .|. controlMask, xK_Return), spawn "urxvtc -e tmux")
            , ((0, xK_s), namedScratchpadAction myScratchpads "spotify")
            , ((0, xK_t), namedScratchpadAction myScratchpads "urxvt")
            ])
-         , ((0, xF86XK_AudioPlay), spawn "/home/jay/.local/bin/spcli play")
-         , ((0, xF86XK_AudioNext), spawn "/home/jay/.local/bin/spcli next")
-         , ((0, xF86XK_AudioPrev), spawn "/home/jay/.local/bin/spcli prev")
+         , ((0, xF86XK_AudioPlay), spawn "/home/jay/.local/bin/sp play")
+         , ((0, xF86XK_AudioNext), spawn "/home/jay/.local/bin/sp next")
+         , ((0, xF86XK_AudioPrev), spawn "/home/jay/.local/bin/sp prev")
          , ((0, xF86XK_AudioLowerVolume), spawn "/home/jay/.local/bin/pavol down")
          , ((0, xF86XK_AudioRaiseVolume), spawn "/home/jay/.local/bin/pavol up")
          , ((0, xF86XK_AudioMute), spawn "/home/jay/.local/bin/pavol mute")
