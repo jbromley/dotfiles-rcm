@@ -59,12 +59,12 @@ myTabConfig = def { activeBorderColor = myFocusedBorderColor
 
 myScratchpads = [ NS "htop" "urxvtc -e htop" (title =? "htop") (customFloating $ W.RationalRect (1/4) (1/8) (1/2) (3/4))
                 , NS "calc" "urxvtc -e bc -l" (title =? "bc") (customFloating $ W.RationalRect 0 (3/4) (1/4) (1/4))
-                --, NS "spotify" "spotify" (className =? "Spotify") (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3))
+                -- , NS "spotify" "/snap/bin/spotify" (className =? "") (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3))
                 , NS "urxvt" "urxvtc -name scratch_urxvt" (resource =? "scratch_urxvt") (customFloating $ W.RationalRect (1/4) (1/4) (1/2) (1/2))
                 ]
 
 myManageHook = composeAll
-    [ className =? "Spotify" --> doFloat
+    [ className =? "" --> doFloat
     , className =? "Processing" --> doFloat
     , className =? "processing-app-Base" --> doFloat
     , className =? "VirtualBox Manager" --> doFloat
@@ -93,7 +93,7 @@ myKeys = [ ((myMask .|. controlMask, xK_Return), spawn "urxvtc -e tmux")
          , ((myMask .|. shiftMask, xK_q), confirmPrompt myXPConfig "exit" $ io (exitWith ExitSuccess))
          , ((myMask .|. controlMask, xK_g), gotoMenu)
          , ((myMask .|. controlMask, xK_b), bringMenu)
-         , ((myMask .|. controlMask, xK_l), spawn "i3lock -e -i /home/jay/.cache/lockscreen.png")
+         , ((myMask .|. controlMask, xK_l), spawn "i3lock -e -f -i /home/jay/.cache/lockscreen.png")
          , ((myMask, xK_s), submap . M.fromList $
            [ ((0, xK_c), namedScratchpadAction myScratchpads "calc")
            , ((0, xK_h), namedScratchpadAction myScratchpads "htop")
