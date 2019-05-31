@@ -12,18 +12,17 @@ fi
 export LANG=en_US.UTF-8
 
 # Set up our editor.
-export EDITOR=emacs
-export GIT_EDITOR="emacsclient -t"
+export EDITOR=nvim
+export GIT_EDITOR=nvim
 export ALTERNATE_EDITOR=""
 
-# Java settings
-export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
+# Java settings (Linux only)
+if [ $(uname) = "Darwin" ]; then
+    export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
+fi
 
 # Set up stuff for snap applications.
 [ -x /etc/profile.d/apps-bin-path.sh ] && emulate sh -c  'source /etc/profile.d/apps-bin-path.sh'
 
 # Don't let Python venv add anything to the prompt.
 export VIRTUAL_ENV_DISABLE_PROMPT=yes
-
-# Theme settings
-# source "${HOME}/.zsh/purepower"
