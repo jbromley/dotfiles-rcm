@@ -1,6 +1,10 @@
 # Aliases
 
-alias ls='ls --color=tty --classify'
+if [ "$(uname)" = "Darwin" ]; then
+    alias ls='ls -F -G'
+else
+    alias ls='ls --color=tty --classify'
+fi
 
 # Emacs
 alias e='emacs'
