@@ -15,9 +15,9 @@ Config { font = "xft:Ubuntu Mono-10"
        , iconRoot = "."
        , allDesktops = True
        , overrideRedirect = True
-       , commands = [ Run Network "eno1" ["-L", "32", "-H", "8192",
+       , commands = [ Run Network "eno1" ["-L", "262144", "-H", "1048576",
                                           "--high", "#ee9a00"] 10
-                    , Run Cpu ["-L", "10", "-H", "75",
+                    , Run Cpu ["-L", "50", "-H", "75",
                                "--high", "#ee9a00"] 10
                     , Run Memory ["-t","Mem: <usedratio>%"] 10
                     , Run Swap [] 10
