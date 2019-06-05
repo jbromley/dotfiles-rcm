@@ -54,7 +54,7 @@ myTabConfig = def { activeBorderColor = myFocusedBorderColor
                   , urgentBorderColor = myUrgentBorderColor
                   , urgentColor = myUrgentColor
                   , fontName = myTabFont
-                  , decoHeight = 32
+                  , decoHeight = 24
                   }
 
 myScratchpads = [ NS "htop" "urxvtc -e htop" (title =? "htop") (customFloating $ W.RationalRect (1/4) (1/8) (1/2) (3/4))
