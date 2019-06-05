@@ -6,4 +6,5 @@ xautolock -detectsleep -time 5 -locker "i3lock -e -f -i ${HOME}/.cache/lockscree
 dunst &
 # compton --no-dock-shadow --fading --inactive-opacity=0.9 --daemon
 udiskie --automount --notify --no-tray &
+export XDG_CURRENT_DESKTOP=kde dolphin
 exec ssh-agent /usr/bin/xmonad
