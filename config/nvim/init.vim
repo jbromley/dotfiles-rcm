@@ -32,6 +32,10 @@ Plug 'junegunn/fzf.vim'
 " TComment
 Plug 'tomtom/tcomment_vim'
 
+" Color schemes
+Plug 'treycucco/vim-monotonic'
+Plug 'wolverian/minimal'
+
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
