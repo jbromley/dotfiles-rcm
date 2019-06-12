@@ -61,6 +61,7 @@ myScratchpads = [ NS "htop" "urxvtc -e htop" (title =? "htop") (customFloating $
                 , NS "calc" "urxvtc -e bc -l" (title =? "bc") (customFloating $ W.RationalRect 0 (3/4) (1/4) (1/4))
                 -- , NS "spotify" "/snap/bin/spotify" (className =? "") (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3))
                 , NS "urxvt" "urxvtc -name scratch_urxvt" (resource =? "scratch_urxvt") (customFloating $ W.RationalRect (1/4) (1/4) (1/2) (1/2))
+                , NS "xclock" "xclock" (className =? "XClock") (customFloating $ RationalRect (9/20) (21/50) (1/10) (4/25))
                 ]
 
 myManageHook = composeAll
@@ -97,6 +98,7 @@ myKeys = [ ((myMask .|. controlMask, xK_Return), spawn "urxvtc -e tmux")
          , ((myMask, xK_s), submap . M.fromList $
            [ ((0, xK_c), namedScratchpadAction myScratchpads "calc")
            , ((0, xK_h), namedScratchpadAction myScratchpads "htop")
+           , ((0, xK_k), namedScratchpadAction myScratchpads "xclock")
            , ((0, xK_s), namedScratchpadAction myScratchpads "spotify")
            , ((0, xK_t), namedScratchpadAction myScratchpads "urxvt")
            ])
