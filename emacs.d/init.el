@@ -94,15 +94,19 @@
 (use-package init-open-recentf)
 
 ;; Counsel
-(use-package counsel)
+(use-package counsel
+  :config
+  (global-set-key (kbd "M-x") 'counsel-M-x)
+  (global-set-key (kbd "C-x C-f") 'counsel-find-file)
+  (global-set-key (kbd "C-c k") 'counsel-ag))
 
 ;; GNU global tags
 (use-package ggtags
   :config
   (add-hook 'c-mode-common-hook
 	    (lambda ()
-	      (when (derived-mode-p major-mode 'c-mode 'c++-mode 'java-mode 'asm-mode)
-		(ggtags-mode 1))))
+	      (setq c-basic-offset 4)	
+      (ggtags-mode 1)))
   :bind
   (:map ggtags-mode-map
 	("C-c g s" . ggtags-find-other-symbol)
