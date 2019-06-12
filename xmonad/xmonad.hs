@@ -61,7 +61,7 @@ myScratchpads = [ NS "htop" "urxvtc -e htop" (title =? "htop") (customFloating $
                 , NS "calc" "urxvtc -e bc -l" (title =? "bc") (customFloating $ W.RationalRect 0 (3/4) (1/4) (1/4))
                 -- , NS "spotify" "/snap/bin/spotify" (className =? "") (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3))
                 , NS "urxvt" "urxvtc -name scratch_urxvt" (resource =? "scratch_urxvt") (customFloating $ W.RationalRect (1/4) (1/4) (1/2) (1/2))
-                , NS "xclock" "xclock" (className =? "XClock") (customFloating $ RationalRect (9/20) (21/50) (1/10) (4/25))
+                , NS "xclock" "xclock" (className =? "XClock") (customFloating $ RationalRect (7/16) (2/5) (1/8) (1/5))
                 ]
 
 myManageHook = composeAll
