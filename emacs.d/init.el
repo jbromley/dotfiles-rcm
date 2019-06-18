@@ -51,6 +51,9 @@
                         (awk-mode . "awk")
                         (other . "gnu"))))
 
+;; Make K & R C style use four-space tabs.
+(setf (cadr (assoc "k&r" c-style-alist)) '(c-basic-offset . 4))
+
 ;; Disable vc
 (setq vc-handled-backends nil)
 
@@ -169,9 +172,13 @@
   :config
   (setq meghanada-java-path "java"
 	meghanada-maven-path "mvn")
-  (add-hook 'java-mode-hook (lambda ()
-			      (meghanada-mode t)
-			      (flycheck-mode +1))))
+  (add-hook 'java-mode-hook
+	    (lambda ()
+	      (meghanada-mode t)
+	      (flycheck-mode +1)))
+  (add-hook 'compilation-filter-hook
+	    (lambda () (ansi-color-apply-on-region (point-min) (point-max)))))
+
 ;; YAML editing
 (use-package yaml-mode)
   
