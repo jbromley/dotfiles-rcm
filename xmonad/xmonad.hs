@@ -45,7 +45,7 @@ myStatusBar = "/home/jay/.cabal/bin/xmobar"
 myLayoutHook = tiled ||| twoPane ||| tabbedLayout ||| Full
   where
     tiled = Tall nmaster delta ratio
-    -- twoPane = TwoPane delta ratio
+    twoPane = TwoPane delta ratio
     tabbedLayout = tabbed shrinkText myTabConfig
     nmaster = 1
     delta = 2 / 100
