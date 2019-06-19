@@ -5,8 +5,10 @@ import XMonad.Config.Desktop
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.SetWMName
+import XMonad.Layout.Combo
 import XMonad.Layout.Tabbed
 import XMonad.Layout.TwoPane
+import XMonad.Layout.WindowNavigation
 import XMonad.ManageHook
 import XMonad.Prompt
 import XMonad.Prompt.ConfirmPrompt
@@ -42,10 +44,11 @@ myTabFont = "xft:Ubuntu Mono:style=Bold:size=10"
 myFont = "xft:Ubuntu Mono:style=Bold:size=10"
 myStatusBar = "/home/jay/.cabal/bin/xmobar"
 
-myLayoutHook = tiled ||| twoPane ||| tabbedLayout ||| Full
+myLayoutHook = tiled ||| twoPane ||| tallAndTabbed ||| tabbedLayout ||| Full
   where
     tiled = Tall nmaster delta ratio
     twoPane = TwoPane delta ratio
+    tallAndTabbed = windowNavigation(combineTwo (twoPane) (Full) (tabbedLayout))
     tabbedLayout = tabbed shrinkText myTabConfig
     nmaster = 1
     delta = 2 / 100
@@ -87,9 +90,10 @@ myXmobarPP h = xmobarPP { ppCurrent = xmobarColor "white" "#0000c0" . wrap "[" "
 myLayoutPrinter :: String -> String
 myLayoutPrinter "Tall" = "<icon=/home/jay/.xmonad/tall.xpm/>"
 myLayoutPrinter "TwoPane" = "<icon=/home/jay/.xmonad/twopane.xpm/>"
+myLayoutPrinter "combining Full and Tabbed Simplest with TwoPane" = "<icon=/home/jay/.xmonad/combo.xpm/>"
 myLayoutPrinter "Tabbed Simplest" = "<icon=/home/jay/.xmonad/tabbed.xpm/>"
 myLayoutPrinter "Full" = "<icon=/home/jay/.xmonad/full.xpm/>"
-myLayoutPrinter x = x
+myLayoutPrinter x = "[[" ++ x ++ "]]"
 
 myKeys = [ ((myMask .|. controlMask, xK_Return), spawn "urxvtc -e tmux")
          , ((myMask, xK_p), spawn "rofi -show run")
@@ -113,6 +117,8 @@ myKeys = [ ((myMask .|. controlMask, xK_Return), spawn "urxvtc -e tmux")
          , ((0, xF86XK_AudioRaiseVolume), spawn "/home/jay/.local/bin/pavol up")
          , ((0, xF86XK_AudioMute), spawn "/home/jay/.local/bin/pavol mute")
          , ((0, xF86XK_HomePage), spawn "/home/jay/.local/bin/xhtop")
+	 , ((myMask .|. controlMask, xK_Right), sendMessage $ Move R)
+	 , ((myMask .|. controlMask, xK_Left), sendMessage $ Move L)
         ]
 
 myXPConfig :: XPConfig
