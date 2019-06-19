@@ -51,9 +51,6 @@
                         (awk-mode . "awk")
                         (other . "gnu"))))
 
-;; Make K & R C style use four-space tabs.
-(setf (cadr (assoc "k&r" c-style-alist)) '(c-basic-offset . 4))
-
 ;; Disable vc
 (setq vc-handled-backends nil)
 
@@ -108,8 +105,10 @@
   :config
   (add-hook 'c-mode-common-hook
 	    (lambda ()
-	      (setq c-basic-offset 4)	
-      (ggtags-mode 1)))
+	      (setq c-basic-offset 4)
+	      ;; Make K & R C style use four-space tabs.
+	      (setf (cadr (assoc "k&r" c-style-alist)) '(c-basic-offset . 4))
+	      (ggtags-mode 1)))
   :bind
   (:map ggtags-mode-map
 	("C-c g s" . ggtags-find-other-symbol)
