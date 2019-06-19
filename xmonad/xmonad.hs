@@ -6,6 +6,7 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.SetWMName
 import XMonad.Layout.Tabbed
+import XMonad.Layout.TwoPane
 import XMonad.ManageHook
 import XMonad.Prompt
 import XMonad.Prompt.ConfirmPrompt
@@ -41,13 +42,14 @@ myTabFont = "xft:Ubuntu Mono:style=Bold:size=10"
 myFont = "xft:Ubuntu Mono:style=Bold:size=10"
 myStatusBar = "/home/jay/.cabal/bin/xmobar"
 
-myLayoutHook = tiled ||| tabbedLayout ||| Full
+myLayoutHook = tiled ||| twoPane ||| tabbedLayout ||| Full
   where
     tiled = Tall nmaster delta ratio
+    -- twoPane = TwoPane delta ratio
+    tabbedLayout = tabbed shrinkText myTabConfig
     nmaster = 1
     delta = 2 / 100
     ratio = 1 / 2
-    tabbedLayout = tabbed shrinkText myTabConfig
 
 myTabConfig = def { activeBorderColor = myFocusedBorderColor
                   , activeColor = myActiveColor
@@ -83,6 +85,7 @@ myXmobarPP h = xmobarPP { ppCurrent = xmobarColor "white" "#0000c0" . wrap "[" "
 
 myLayoutPrinter :: String -> String
 myLayoutPrinter "Tall" = "<icon=/home/jay/.xmonad/tall.xpm/>"
+myLayoutPrinter "TwoPane" = "<icon=/home/jay/.xmonad/twopane.xpm/>"
 myLayoutPrinter "Tabbed Simplest" = "<icon=/home/jay/.xmonad/tabbed.xpm/>"
 myLayoutPrinter "Full" = "<icon=/home/jay/.xmonad/full.xpm/>"
 myLayoutPrinter x = x
