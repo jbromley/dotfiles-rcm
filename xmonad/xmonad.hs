@@ -71,6 +71,7 @@ myManageHook = composeAll
     , className =? "Processing" --> doFloat
     , className =? "processing-app-Base" --> doFloat
     , className =? "VirtualBox Manager" --> doFloat
+    , className =? "VirtualBox Machine" --> doFloat
     , manageDocks
     , namedScratchpadManageHook myScratchpads
     ]
