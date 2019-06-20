@@ -51,6 +51,9 @@
                         (awk-mode . "awk")
                         (other . "gnu"))))
 
+;; Use shellcheck to check bash scripts.
+(add-hook 'sh-mode-hook 'flycheck-mode)
+
 ;; Disable vc
 (setq vc-handled-backends nil)
 
