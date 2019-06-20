@@ -4,6 +4,10 @@
 ;; Configuration setup
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Set some memory limits
+(setq gc-cons-threshold 67108864
+      large-file-warning-threshold 268435456)
+
 ;; Run the Emacs server
 (require 'server)
 (unless (server-running-p)
