@@ -64,7 +64,7 @@
     frame_width = 2
 
     # Defines color of the frame around the notification window.
-    frame_color = "#26004c"
+    frame_color = "#000040"
 
     # Define a color for the separator.
     # possible values are:
@@ -281,8 +281,9 @@
     icon = /usr/share/icons/gnome/32x32/status/dialog-information.png
 
 [urgency_normal]
-    background = "#330066"
+    background = "#000000"
     foreground = "#f0f0f0"
+    frame_color = "#000040"
     timeout = 10
     # Icon for notifications with normal urgency, uncomment to enable
     icon = /usr/share/icons/gnome/32x32/status/dialog-warning.png
