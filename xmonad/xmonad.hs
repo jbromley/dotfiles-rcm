@@ -40,8 +40,8 @@ myFocusedBorderColor = "#0000FF"
 myActiveColor = "#000080"
 myUrgentBorderColor = "#00FFFF"
 myUrgentColor = "#008080"
-myTabFont = "xft:Ubuntu Mono:style=Bold:size=10"
-myFont = "xft:Ubuntu Mono:style=Bold:size=10"
+myTabFont = "xft:Ubuntu:style=Bold:size=10"
+myFont = "xft:Ubuntu:style=Bold:size=10"
 myStatusBar = "/home/jay/.cabal/bin/xmobar"
 
 myLayoutHook = tiled ||| twoPane ||| tallAndTabbed ||| tabbedLayout ||| Full
