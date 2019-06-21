@@ -202,7 +202,12 @@
 
 ;; Clojure
 
-(use-package paredit)
+(use-package paredit
+  :config
+  (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
+  (add-hook 'lisp-mode-hook 'enable-paredit-mode)
+  (add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode))
+
 
 (use-package enh-ruby-mode)
 
@@ -229,6 +234,7 @@
 (use-package cider
   :config
   (add-hook 'cider-mode-hook 'eldoc-mode)
+  (add-hook 'cider-repl-mode-hook 'enable-paredit-mode)
   (setq cider-repl-pop-to-buffer-on-connect t
 	cider-show-error-buffer t
 	cider-auto-select-error-buffer t
