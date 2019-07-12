@@ -42,7 +42,7 @@ myUrgentBorderColor = "#00FFFF"
 myUrgentColor = "#008080"
 myTabFont = "xft:Ubuntu:style=Bold:size=10"
 myFont = "xft:Ubuntu:style=Bold:size=10"
-myStatusBar = "/home/jay/.cabal/bin/xmobar"
+myStatusBar = "/usr/bin/xmobar"
 
 myLayoutHook = tiled ||| twoPane ||| tallAndTabbed ||| tabbedLayout ||| Full
   where
