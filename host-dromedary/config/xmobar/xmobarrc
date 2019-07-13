@@ -33,15 +33,15 @@ Config { font = "xft:Hack:style=Bold:size=12"
                                    ] 10
                     , Run Memory [ "--template", "RAM <usedratio>%"
 		                 , "--ppad", "3" 
-                                 ] 10
+                                 ] 20
                     , Run Network "eno1" [ "-Low", "262144",
 		                           "-High", "1048576",
                                            "--high", "#ee9a00"] 10
-                    , Run Wireless "wlp3s0" [ "--template", "Wifi: <essid> <quality>%"
+                    , Run Wireless "wlp3s0" [ "--template", "Wifi <essid> <quality>%"
                                             , "--ppad", "3"
                                             , "--Low", "50"
                                             , "--low", "orange"
-                                            ] 10
+                                            ] 50
                     , Run Kbd [ ("us", "US")
                               , ("es", "ES")
                               ]
@@ -59,13 +59,6 @@ Config { font = "xft:Hack:style=Bold:size=12"
                                    , "-l", "red"
                                    , "-m", "blue"
                                    , "-h", "green"] 600
-                    -- , Run Volume "default" "Master" [ "--template", "<status> <volume>%"
-                    --                                 , "--"
-                    --                                 , "--on", "<)"
-                    --                                 , "--off", "--"
-                    --                                 , "--onc", "white"
-                    --                                 , "--offc", "orange"
-                    --                              ] 10
                     , Run Alsa "pulse" "Master" []
                     , Run Date "%a %b %_d %Y %I:%M %P" "date" 20
                     , Run StdinReader
