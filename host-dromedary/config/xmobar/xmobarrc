@@ -46,7 +46,7 @@ Config { font = "xft:Hack:style=Bold:size=12"
                               , ("es", "ES")
                               ]
                     , Run BatteryP ["BAT0", "BAT1"]
-                                   [ "--template", "BAT <left>% / <timeleft>"
+                                   [ "--template", "BAT <left>% / <timeleft> <acstatus>"
 				   , "-L", "10"
                                    , "-H", "90"
                                    , "-p", "3"
