@@ -1,5 +1,5 @@
-Config { font = "xft:Ubuntu Mono:style=Bold:size=10"
-       , additionalFonts = ["xft:Symbola-10"]
+Config { font = "xft:Hack:style=Bold:size=12"
+       , additionalFonts = ["xft:Symbola-12"]
        , textOffsets = [-1]
        , borderColor = "#000080"
        , border = TopB
@@ -16,65 +16,61 @@ Config { font = "xft:Ubuntu Mono:style=Bold:size=10"
        , iconRoot = "."
        , allDesktops = True
        , overrideRedirect = True
-       , commands = [ Run DynNetwork [ "--template", "<fn=1>🖧</fn> <dev>: <rx><fn=1>↓</fn> <tx><fn=1>↑</fn>"
-                                     , "-S", "True"
-		                     , "--width", "6"
-                                     , "--Low", "65536"
-	                             , "--High", "1048576"
-		                     , "--normal", "cyan"
-		                     , "--high","orange"
-                                     ] 20
-                    , Run Wireless "wlp3s0" [ "--template", "<fn=1>📶</fn> <essid> <quality>%"
+       , commands = [
+                    -- Run DynNetwork [ "-S", "True"
+                    --                , "--width", "6"
+                    --                , "--Low", "65536"
+                    --                , "--High", "1048576"
+                    --                , "--normal", "cyan"
+                    --                , "--high","orange"
+                    --                ] 10
+                      Run MultiCpu [ "--template", "CPU <total>%"
+		                   , "--ppad", "3"
+                                   , "--Low", "25"
+                                   , "--High","75"
+                                   , "--normal", "cyan"
+                                   , "--high", "orange"
+                                   ] 10
+                    , Run Memory [ "--template", "RAM <usedratio>%"
+		                 , "--ppad", "3" 
+                                 ] 10
+                    , Run Network "eno1" [ "-Low", "262144",
+		                           "-High", "1048576",
+                                           "--high", "#ee9a00"] 10
+                    , Run Wireless "wlp3s0" [ "--template", "Wifi: <essid> <quality>%"
                                             , "--ppad", "3"
                                             , "--Low", "50"
                                             , "--low", "orange"
-                                            ] 20
-                    , Run Cpu [ "--template", "<fn=1>💻</fn> <total>%"
-		              , "--ppad", "3"
-		              , "--Low", "33"
-		              , "--High","67"
-			      , "--normal", "cyan"
-			      , "--high", "orange"
-			      ] 20
-                    , Run Memory [ "--template", "<fn=1>⌼</fn> <usedratio>% (<cache>M)"
-		                 , "--ppad", "3"
-				 ] 20
-                    , Run Kbd [ ("us", "<fn=1>⌨</fn> US")
-                              , ("es", "<fn=1>⌨</fn> ES")
+                                            ] 10
+                    , Run Kbd [ ("us", "US")
+                              , ("es", "ES")
                               ]
                     , Run BatteryP ["BAT0", "BAT1"]
-                                   [ "-t", "<fn=1>🔋</fn> <timeleft> (<left>%) <acstatus>"
-                                   , "-L", "10"
-                                   , "-H", "50"
+                                   [ "--template", "BAT <left>% / <timeleft>"
+				   , "-L", "10"
+                                   , "-H", "90"
                                    , "-p", "3"
                                    , "--"
-                                   , "-O", "<fc=green><fn=1>🔌</fn></fc>"
-                                   , "-i", "<fn=1>🔌</fn>"
+                                   , "-O", "<fc=green>AC</fc>"
+                                   , "-i", "AC"
                                    , "-o", ""
                                    , "-L", "-15"
                                    , "-H", "-5"
                                    , "-l", "red"
                                    , "-m", "blue"
                                    , "-h", "green"] 600
-                    , Run Volume "default" "Master" [ "--template", "<status> <volume>%"
-                                                    , "--"
-		      	  	 	   	    , "--on", "<fn=1>🔊</fn>"
-		      	  	 		    , "--off", "<fn=1>🔇</fn>"
-                                                    , "--onc", "white"
-                                                    , "--offc", "orange"
-		        			    ] 5
-                    -- , Run Alsa "default" "Master" [ "--template", "<status> <volume>%"
-                    --                               , "--"
-                    --                               , "--alsactl", "/usr/sbin/alsactl"
-		    --   	  	 	   	  , "--on", "<fn=1>🔊</fn>"
-		    --   	  	 		  , "--off", "<fn=1>🔇</fn>"
-                    --                               , "--onc", "white"
-                    --                               , "--offc", "orange"
-		    --     			  ]
-    		    , Run Date "<fn=1>📅</fn> %a %b %_d %Y %I:%M %P" "date" 20
-		    , Run StdinReader
+                    -- , Run Volume "default" "Master" [ "--template", "<status> <volume>%"
+                    --                                 , "--"
+                    --                                 , "--on", "<)"
+                    --                                 , "--off", "--"
+                    --                                 , "--onc", "white"
+                    --                                 , "--offc", "orange"
+                    --                              ] 10
+                    , Run Alsa "pulse" "Master" []
+                    , Run Date "%a %b %_d %Y %I:%M %P" "date" 20
+                    , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %cpu% | %memory% | %dynnetwork% | %wlp3s0wi% | %kbd% | %default:Master% | %battery% | <fc=#ffffff>%date%</fc>"
+       , template = "%StdinReader% }{ %multicpu% | %memory% | %eno1% | %wlp3s0wi% | %kbd% | %alsa:pulse:Master% | %battery% | <fc=#ffffff>%date%</fc>"
        }
