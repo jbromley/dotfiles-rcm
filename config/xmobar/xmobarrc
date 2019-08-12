@@ -27,5 +27,5 @@ Config { font = "xft:Ubuntu Mono-10"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %cpu% | %memory% * %swap% | %eno1% | %alsa:default:Master% | <fc=#ee9a00>%date%</fc>"
+       , template = "%StdinReader% }{ %cpu% | %memory% %swap% | %eno1% | %alsa:default:Master% | <fc=#ee9a00>%date%</fc>"
        }
