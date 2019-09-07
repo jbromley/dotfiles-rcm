@@ -16,13 +16,13 @@ export EDITOR=nvim
 export GIT_EDITOR=nvim
 export ALTERNATE_EDITOR=""
 
-# Java settings (Linux only)
-if [ $(uname) = "Darwin" ]; then
+if [ $(uname) = "Linux" ]; then
+    # Java settings (Linux only)
     export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
+    # Set up stuff for snap applications.
+    [ -x /etc/profile.d/apps-bin-path.sh ] && emulate sh -c  'source /etc/profile.d/apps-bin-path.sh'
 fi
 
-# Set up stuff for snap applications.
-[ -x /etc/profile.d/apps-bin-path.sh ] && emulate sh -c  'source /etc/profile.d/apps-bin-path.sh'
 
 # Don't let Python venv add anything to the prompt.
 export VIRTUAL_ENV_DISABLE_PROMPT=yes
