@@ -206,7 +206,10 @@
   :config
   (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
   (add-hook 'lisp-mode-hook 'enable-paredit-mode)
-  (add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode))
+  (add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
+  (add-hook 'lisp-interaction-mode-hook (lambda ()
+					  (enable-paredit-mode)
+					  (local-set-key [C-return] 'eval-print-last-sexp))))
 
 
 (use-package enh-ruby-mode)
