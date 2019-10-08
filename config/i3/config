@@ -14,17 +14,7 @@ set $mod Mod4
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 font pango:Monaco 8
-
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
-
-# Before i3 v4.8, we used to recommend this one as the default:
-# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-# The font above is very space-efficient, that is, it looks good, sharp and
-# clear in small sizes. However, its unicode glyph coverage is limited, the old
-# X core fonts rendering does not support right-to-left and this being a bitmap
-# font, it doesn’t scale on retina/hidpi displays.
+# font pango:DejaVu Sans Mono 8
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -35,12 +25,9 @@ bindsym $mod+Return exec i3-sensible-terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+# Start program launchers for desktop entries and binaries
+bindsym $mod+d exec --no-startup-id j4-dmenu-desktop
+bindsym $mod+Shift+d exec dmenu_run
 
 # change focus
 bindsym $mod+j focus left
@@ -85,6 +72,11 @@ bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
+
+# Set up scratchpad commands
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+bindsym F12 [instance="scratch"] scratchpad show
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -181,6 +173,9 @@ for_window [class="plasmashell" window_type="notification"] floating enable, bor
 for_window [class="plasma-discover"] floating enable
 for_window [class="discover"] floating enable
 for_window [class="systemsettings5"] floating enable
+for_window [instance="scratch"] move scratchpad
+
+exec --no-startup-id "konsole --name scratch -e tmux"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
