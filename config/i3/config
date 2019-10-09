@@ -77,6 +77,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 bindsym F12 [instance="scratch"] scratchpad show
+bindsym $mod+F12 [instance="spotify"] scratchpad show
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -86,16 +87,16 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "Default"
-set $ws2 " Tire  "
-set $ws3 " Gold  "
-set $ws4 "   4   "
-set $ws5 "   5   "
-set $ws6 "   6   "
-set $ws7 "   7   "
-set $ws8 "   8   "
-set $ws9 "   9   "
-set $ws10 "Spotify"
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "0"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -174,7 +175,9 @@ for_window [class="plasma-discover"] floating enable
 for_window [class="discover"] floating enable
 for_window [class="systemsettings5"] floating enable
 for_window [instance="scratch"] move scratchpad, border pixel 4
+for_window [class="Spotify"] move scratchpad, border pixel 4
 
+# Start up scratch pad applications
 exec --no-startup-id "konsole --name scratch -e tmux"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
