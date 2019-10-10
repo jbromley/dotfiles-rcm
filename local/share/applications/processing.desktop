@@ -1,6 +1,6 @@
 [Desktop Entry]
 Comment=Electronic Sketchbook
-Exec=/opt/processing/processing
+Exec=env _JAVA_OPTIONS=-Dawt.useSystemAAFontSettings=on /opt/processing/processing
 Icon=/opt/processing/lib/icons/pde-512.png
 Name=Processing
 NoDisplay=false
