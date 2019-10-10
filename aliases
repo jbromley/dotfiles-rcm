@@ -1,12 +1,49 @@
-# Aliases
+# Colorize output, add file type indicator, and put sizes in human readable format
+[ $(uname) = "Darwin" ] && alias ls='ls -F -G' || alias ls='ls --color=auto --classify'
+alias lsa='ls -la'
+alias l='ls -lah'
+alias ll='ls -lh'
+alias la='ls -lAh'
 
-if [ "$(uname)" = "Darwin" ]; then
-    alias ls='ls -F -G'
-else
-    alias ls='ls --color=tty --classify'
-fi
+# On Linux use some color options for grep
+[ "$(uname -s)" = "Linux" ] && alias grep='grep --color=auto'
 
-# Emacs
-alias e='emacs'
-alias et='emacs -nw'
-alias ec='emacsclient -t'
+# Don't correct some things.
+alias man='nocorrect man'
+alias mkdir='nocorrect mkdir'
+alias mv='nocorrect mv'
+alias sudo='nocorrect sudo'
+alias tmux='nocorrect tmux'
+
+setopt correct_all
+
+# Directory aliases
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
+alias -g ......='../../../../..'
+
+alias -- -='cd -'
+alias 1='cd -'
+alias 2='cd -2'
+alias 3='cd -3'
+alias 4='cd -4'
+alias 5='cd -5'
+alias 6='cd -6'
+alias 7='cd -7'
+alias 8='cd -8'
+alias 9='cd -9'
+
+alias d='dirs -v | head -10'
+
+# Emacs, terminal emacsclient, and windowed emacsclient
+alias e=emacs
+alias ee='emacsclient -t'
+alias ew='emacsclient -w'
+
+# Push and pop directories on directory stack
+alias pu='pushd'
+alias po='popd'
+
+# Open files easily with desktop tools
+alias o='xdg-open'
