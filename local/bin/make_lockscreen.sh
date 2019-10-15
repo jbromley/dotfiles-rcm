@@ -12,7 +12,7 @@ set -o pipefail  # don't hide errors within pipes
 #}}}
 
 #{{{ Constants
-readonly STORE_FILE="${HOME}/.config/nitrogen/bg-saved.cfg"
+readonly FEHBG_FILE="${HOME}/.fehbg"
 readonly WALLPAPER_DIR="${HOME}/Pictures/Wallpaper"
 readonly LOCK_SCREEN="${HOME}/.cache/lockscreen.png"
 #}}}
@@ -20,18 +20,18 @@ readonly LOCK_SCREEN="${HOME}/.cache/lockscreen.png"
 #{{{ Main entry point
 main () {
     local wallpaper
-    
-    # Check for a nitrogen restore file.
-    if [[ -f "${STORE_FILE}" ]]
+
+    # Check for an .fehbg file.
+    if [[ -f ~/.fehbg ]]
     then
-        # Found it. Read the wallpaper name.
-        wallpaper=$(read_wallpaper_name "${STORE_FILE}")
-        make_lock_screen "${wallpaper}"
+	# Get the wallpaper from the last one set with feh.
+	wallpaper=$(read_wallpaper_name ${FEHBG_FILE})
     else
         # There is no wallpaper information, select a random wallpaper and use that.
         wallpaper=$(select_random_file "${WALLPAPER_DIR}")
-        make_lock_screen "${wallpaper}"
+	feh --bg-fill "${wallpaper}"
     fi
+    make_lock_screen "${wallpaper}"
 }
 #}}}
 
@@ -46,7 +46,7 @@ select_random_file () {
 # Read the wallpaper name from the Nitrogen store file.
 read_wallpaper_name () {
     local cfg_file="$1"
-    grep ^file "${cfg_file}" | cut -d= -f2
+    tail -n1 "${cfg_file}" | cut -d' ' -f3 | tr -d "'"
 }
 
 # Check if the lock screen image needs to be updated.
