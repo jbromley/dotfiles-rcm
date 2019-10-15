@@ -1,15 +1,10 @@
-eval $(gnome-keyring-daemon --components=gpg,pkcs11,secrets,ssh --daemonize --login)
-export GNOME_KEYRING_CONTROL
-export SSH_AUTH_SOCK
-export GPG_AGENT_INFO
-export GNOME_KEYRING_PID
-nitrogen --restore &
+[ -f ${HOME}/.fehbg ] && source ${HOME}/.fehbg || ${HOME}/.local/bin/random_wallpaper.sh
 dbus-daemon --print-address 4 --session
-gnome-settings-daemon &
 compton -f -b
 urxvtd -q -o -f
-blueman-applet &
-udiskie -q -t &
-# xautolock -detectsleep -time 5 -locker "i3lock -e -f -i /tmp/lockscreen.png" &
-${HOME}/.local/bin/make_lockscreen.sh &
+udiskie --automount --notify --no-tray &
+xautolock -detectsleep -time 5 -locker "i3lock -e -f -i ${HOME}.cache/lockscreen.png" &
+xinput set-prop 'Logitech M510' 'libinput Natural Scrolling Enabled' 1 &
+setxkbmap -layout us,es -option 'grp:rctrl_rshift_toggle'
+export XDG_CURRENT_DESKTOP=kde dolphin
 exec ssh-agent /usr/bin/i3
