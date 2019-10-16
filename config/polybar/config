@@ -1,10 +1,11 @@
 ; Polybar configuration
 
 [colors]
-;background = ${xrdb:background:#000000}
+# background = ${xrdb:background:#000000}
 background = #d0000000
 background-alt = ${xrdb:color0}
-foreground = ${xrdb:foreground:#dfdfdf}
+#foreground = ${xrdb:foreground:#dfdfdf}
+foreground = #c0c0c0
 foreground-alt = ${xrdb:color8:#808080}
 ok = ${xrdb:color2:#00ff00}
 warn = ${xrdb:color3:#ffff00}
