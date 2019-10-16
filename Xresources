@@ -1,41 +1,42 @@
 !!! X Resource File
 
+! Atelier Heath Light
 ! special
-*.foreground:   #606060
-*.background:   #ffffff
-*.cursorColor:  #606060
+*.foreground:   #695d69
+*.background:   #f7f3f7
+*.cursorColor:  #695d69
 
 ! black
-*.color0:       #000000
-*.color8:       #808080
+*.color0:       #1b181b
+*.color8:       #776977
 
 ! red
-*.color1:       #ff0000
-*.color9:       #ff0000
+*.color1:       #ca402b
+*.color9:       #ca402b
 
 ! green
-*.color2:       #33ff00
-*.color10:      #33ff00
+*.color2:       #379a37
+*.color10:      #379a37
 
 ! yellow
-*.color3:       #ff0099
-*.color11:      #ff0099
+*.color3:       #bb8a35
+*.color11:      #bb8a35
 
 ! blue
-*.color4:       #0066ff
-*.color12:      #0066ff
+*.color4:       #516aec
+*.color12:      #516aec
 
 ! magenta
-*.color5:       #cc00ff
-*.color13:      #cc00ff
+*.color5:       #7b59c0
+*.color13:      #7b59c0
 
 ! cyan
-*.color6:       #00ffff
-*.color14:      #00ffff
+*.color6:       #159393
+*.color14:      #159393
 
 ! white
-*.color7:       #d0d0d0
-*.color15:      #ffffff
+*.color7:       #ab9bab
+*.color15:      #f7f3f7
 
 ! Font setup
 #define FONT_NAME Source Code Pro 
