@@ -128,9 +128,10 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # Lock the screen - not needed, handled by KDE
-# bindsym $mod+Shift+z exec "qdbus org.kde.ksmserver /ScreenSaver Lock"
+bindsym $mod+Mod1+l exec --no-startup-id "i3lock -e -f -i ~/.cache/lockscreen.png"
+
 # exit i3 (logs you out of your X session)
-bindsym Mod1+Shift+e exec "i3-nagbar -t warning -m 'Exit i3?' -B 'Yes' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit i3?' -B 'Yes' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -158,6 +159,15 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+
+# Multimedia keys
+bindsym XF86AudioPrev exec --no-startup-id "~/.local/bin/sp prev"
+bindsym XF86AudioNext exec --no-startup-id "~/.local/bin/sp next"
+bindsym XF86AudioPlay exec --no-startup-id "~/.local/bin/sp play"
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id "~/.local/bin/pavol up"
+bindsym XF86AudioLowerVolume exec --no-startup-id "~/.local/bin/pavol down"
+bindsym XF86AudioMute exec --no-startup-id "~/.local/bin/pavol mute"
 
 # Windows rules for scratchpad windows
 for_window [instance="scratch"] move scratchpad, border pixel 4
