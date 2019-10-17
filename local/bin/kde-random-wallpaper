@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+
+readonly wallpaper_dir="${HOME}/Pictures/Wallpaper/"
+readonly lock_wallpaper="${HOME}/.cache/lockscreen.png"
+
+# Optional, change lockscreen if you want
+
+select_random_wallpaper () {
+    find "${wallpaper_dir}" -type f | shuf -n 1
+}
+
+set_wallpaper() {
+    full_image_path=$(realpath "$1")
+    ext=$(file -b --mime-type "$full_image_path")
+
+    if [ -z "$2" ]; then
+	# Identify filetype and make changes
+	case $(echo $ext | cut -d'/' -f2) in
+            "mp4"|"webm") type='VideoWallpaper' ; write='VideoWallpaperBackgroundVideo';;
+            "png"|"jpeg") type='org.kde.image' ; write='Image' ;;
+            "gif"|"webp") type='GifWallpaper' ; write="GifWallpaperBackgroundGif" ;;
+	esac
+    else
+	type="$2";
+	write="$3";
+    fi
+
+    local wallpaper_set_script="var allDesktops = desktops();
+    print (allDesktops);
+    for (i=0;i<allDesktops.length;i++)
+    {
+        d = allDesktops[i];
+        d.wallpaperPlugin = '${type}';
+        d.currentConfigGroup = Array('Wallpaper', '${type}', 'General');
+        d.writeConfig('Image', 'file:///dev/null')
+        d.writeConfig('$write', 'file://${full_image_path}')
+    }"
+
+    qdbus org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript "${wallpaper_set_script}"
+}
+
+get_screen_resolution () {
+    xrandr --current | grep -F '*' | uniq | mawk '{print $1}'
+}
+
+make_lock_screen () {
+    local wallpaper="$1"
+    local screen_resolution
+
+    screen_resolution=$(get_screen_resolution)
+    convert -resize "${screen_resolution}"^ -gravity center -extent "${screen_resolution}" \
+            -blur 11x11 "${wallpaper}" "${lock_wallpaper}"
+}
+
+
+set_lock_screen() {
+    local full_image_path
+    
+    full_image_path=$(realpath "$1")
+    make_lock_screen "${full_image_path}"
+    kwriteconfig5 --file kscreenlockerrc --group Greeter --group Wallpaper --group org.kde.image \
+		  --group General --key Image "file://$lock_wallpaper"
+}
+
+wallpaper="$(select_random_wallpaper)"
+set_wallpaper "${wallpaper}"
+set_lock_screen "${wallpaper}"
