@@ -180,6 +180,15 @@ for_window [class="Spotify"] move scratchpad, border pixel 4
 for_window [class="VirtualBox Manager"] floating enable
 for_window [instance="sun-awt-X11-XFramePeer"] floating enable
 
+# Start up daemons and other things.
+exec --no-startup-id "compton --fading --daemon"
+exec --no-startup-id "urxvtd --quiet --opendisplay --fork"
+exec --no-startup-id "udiskie --automount --notify --no-tray"
+exec --no-startup-id "xautolock -detectsleep -time 5 -locker \"i3lock -e -f -i ${HOME}/.cache/lockscreen.png\""
+exec --no-startup-id "setxkbmap -layout us,es -option 'grp:rctrl_rshift_toggle'"
+exec --no-startup-id "xinput set-prop 'Logitech M510' 'libinput Natural Scrolling Enabled' 1"
+exec --no-startup-id "/home/jay/.local/bin/random_wallpaper.sh"
+
 # Start up scratch pad applications and set the first wallpaper.
 exec --no-startup-id "urxvtc -name scratch -e tmux new-session -s scratch"
 exec --no-startup-id "setxkbmap -layout us,latam -option 'grp:shifts_toggle'"

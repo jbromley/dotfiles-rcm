@@ -1,10 +1,2 @@
-[ -f ${HOME}/.fehbg ] && source ${HOME}/.fehbg || ${HOME}/.local/bin/random_wallpaper.sh
 dbus-daemon --print-address 4 --session
-compton -f -b
-urxvtd -q -o -f
-udiskie --automount --notify --no-tray &
-xautolock -detectsleep -time 5 -locker "i3lock -e -f -i ${HOME}/.cache/lockscreen.png" &
-xinput set-prop 'Logitech M510' 'libinput Natural Scrolling Enabled' 1 &
-setxkbmap -layout us,es -option 'grp:rctrl_rshift_toggle'
-export XDG_CURRENT_DESKTOP=kde dolphin
-exec ssh-agent /usr/bin/i3
+xec ssh-agent /usr/bin/i3
