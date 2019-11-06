@@ -4,7 +4,7 @@
 #include ".Xresources.d/google-light"
 
 ! Font setup
-#define FONT_NAME Droid Sans Mono for Powerline Plus Nerd File Types Mono 
+#define FONT_NAME Hack 
 #define FONT_STYLE Regular 
 #define FONT_SIZE 10
 
@@ -24,7 +24,6 @@ URxvt*boldItalicFont: xft:FONT_NAME:style=Bold Italic:size=FONT_SIZE
 URxvt*scrollBar: off
 URxvt*borderColor: #f7f7f7
 URxvt*internalBorder: 0
-# URxvt*letterSpace: 1
 
 ! polybar
 Xft.dpi: 100
