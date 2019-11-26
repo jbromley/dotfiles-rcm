@@ -18,7 +18,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # Start program launchers for desktop entries and binaries
-bindsym $mod+d exec --no-startup-id "j4-dmenu-desktop --dmenu='dmenu -fn \'SF Pro Display-10\' --use-xdg-de --no-generic"
+bindsym $mod+d exec --no-startup-id "j4-dmenu-desktop --dmenu='dmenu -i -fn \'SF Pro Display-10\' --use-xdg-de --no-generic"
 bindsym $mod+Shift+d exec dmenu_run
 
 # change focus
