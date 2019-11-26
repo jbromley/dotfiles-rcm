@@ -160,7 +160,7 @@ for_window [class="plasmashell" window_type="notification"] floating enable, bor
 for_window [class="plasma-discover"] floating enable
 for_window [class="discover"] floating enable
 for_window [class="systemsettings"] floating enable
-for_window [class="yakuake"] floating enable
+for_window [class="yakuake"] floating enable; border none
 
 # Windows rules for scratchpad windows
 for_window [class="Spotify"] border pixel 4, move container to workspace 10 
