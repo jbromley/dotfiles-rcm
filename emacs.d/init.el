@@ -262,7 +262,18 @@
 	("C-c u" . cider-user-ns))
   (:map cider-mode-map 
 	("C-c u" . cider-user-ns)))
-	      
+
+;; TypeScript
+
+(use-package tide
+  :config (progn
+	    (tide-setup)
+	    (flycheck-mode +1)
+	    (setq flycheck-check-syntax-automatically '(save mode-enabled))
+	    (eldoc-mode +1)
+	    (tide-hl-identifier-mode +1))
+  :hook (before-save-hook . tide-format-before-save))
+
 ;; Theme switching
 (use-package theme-looper
   :config
