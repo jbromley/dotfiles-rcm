@@ -33,7 +33,8 @@
 (when (and (string-equal system-type "darwin") (display-graphic-p))
   (setq default-frame-alist '((width . 164) (height . 60)))
   (tool-bar-mode -1)
-  (scroll-bar-mode -1))
+  (scroll-bar-mode -1)
+  (add-to-list 'exec-path (expand-file-name ("~/.local/bin"))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; General editing configuration
@@ -43,6 +44,7 @@
 (column-number-mode t)
 (global-hl-line-mode 1)
 (global-display-line-numbers-mode 1)
+(setq display-line-numbers-grow-only t)
 (windmove-default-keybindings)
 (setq-default fill-column 80)
 (setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
@@ -59,14 +61,20 @@
                         (awk-mode . "awk")
                         (other . "gnu"))))
 
-;; Use shellcheck to check bash scripts.
-(add-hook 'sh-mode-hook 'flycheck-mode)
-
-;; Disable vc
-(setq vc-handled-backends nil)
+;;; Mode hooks
 
 ;; Always turn on auto-fill.
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
+
+;; Disable line numbers in certain modes.
+(add-hook 'eww-mode-hook
+	  (lambda () (display-line-numbers-mode 0)))
+
+(add-hook 'term-mode-hook
+	  (lambda () (display-line-numbers-mode 0)))
+
+;; Use shellcheck to check bash scripts.
+(add-hook 'sh-mode-hook 'flycheck-mode)
 
 ;; Fix the prompt for sql-interactive-mode with PostgreSQL.
 ;; Old: "^[_[:alpha:]]*[=][#>] ", "^[_[:alpha:]]*[-][#>] "
@@ -76,6 +84,9 @@
 	      (setq sql-prompt-regexp "^[[:alnum:]_]*=[#>] ")
 	      (setq sql-prompt-cont-regexp "^[[:alnum:]_]*[-(][#>] "))))
 
+;; Disable vc
+(setq vc-handled-backends nil)
+
 ;; Convenience global bindings.
 (global-set-key (kbd "C-c q") 'auto-fill-mode)
 
@@ -83,9 +94,13 @@
 ;; Packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Diminish (clean up the mode line)
+(use-package diminish)
+
 ;; Completion
 (use-package company
-  :config (add-hook 'after-init-hook 'global-company-mode))
+  :config (add-hook 'after-init-hook 'global-company-mode)
+  :diminish (company-mode . "Co"))
 
 ;; Smooth scrolling
 (use-package smooth-scrolling
@@ -99,7 +114,8 @@
 	enable-recursive-minibuffers t
 	ivy-count-format "(%d/%d) ")
   (ivy-mode 1)
-  :bind (("C-c r" . ivy-resume)))
+  :bind (("C-c r" . ivy-resume))
+  :diminish)
 
 ;; Load recentf buffer at start if there is no file.
 (use-package init-open-recentf)
@@ -208,7 +224,8 @@
   (add-hook 'lisp-mode-hook 'enable-paredit-mode)
   (add-hook 'lisp-interaction-mode-hook (lambda ()
 					  (enable-paredit-mode)
-					  (local-set-key [C-return] 'eval-print-last-sexp))))
+					  (local-set-key [C-return] 'eval-print-last-sexp)))
+  :diminish (paredit-mode . "([])"))
 
 
 (use-package enh-ruby-mode)
