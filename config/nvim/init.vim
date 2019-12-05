@@ -22,8 +22,15 @@ Plug 'majutsushi/tagbar'
 " Java development
 Plug 'sbdchd/neoformat'
 Plug 'artur-shaik/vim-javacomplete2'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemovePlugins' }
 Plug 'neomake/neomake'
+
+" TypeScript development
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+
+" Autocomplete
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'Shougo/denite.vim', {'do': 'UpdateRemotePlugins'}
 
 " FuZzy Find
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
@@ -100,15 +107,6 @@ set guioptions-=L
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Don't use arrow keys
-
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
-inoremap <Up> <NOP>
-inoremap <Down> <NOP>
-inoremap <Left> <NOP>
-inoremap <Right> <NOP>
 
 nnoremap <C-P> :Files<CR>
 
