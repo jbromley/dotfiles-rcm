@@ -66,15 +66,14 @@
 ;; Always turn on auto-fill.
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
-(add-hook 'lisp-interaction-mode-hook
-	  (lambda () (display-line-numbers-mode 0)))
+;; Disable line numbers in some modes.
 
-;; Disable line numbers in certain modes.
-(add-hook 'eww-mode-hook
-	  (lambda () (display-line-numbers-mode 0)))
+(defun turn-off-line-numbers ()
+  (display-line-numbers-mode 0))
 
-(add-hook 'term-mode-hook
-	  (lambda () (display-line-numbers-mode 0)))
+(add-hook 'lisp-interaction-mode-hook (turn-off-line-numbers))
+(add-hook 'eww-mode-hook (turn-off-line-numbers))
+(add-hook 'term-mode-hook (turn-off-line-numbers))
 
 ;; Use shellcheck to check bash scripts.
 (add-hook 'sh-mode-hook 'flycheck-mode)
