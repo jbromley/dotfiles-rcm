@@ -294,7 +294,6 @@
 ;; Theme switching
 (use-package theme-looper
   :config
-  (theme-looper-set-ignored-themes '(leuven light-blue tango-dark tsdh-dark wheatgrass solarized tao))
   (global-set-key (kbd "C-{") 'theme-looper-enable-previous-theme)
   (global-set-key (kbd "C-}") 'theme-looper-enable-next-theme))
   
