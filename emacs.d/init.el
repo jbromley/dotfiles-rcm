@@ -66,6 +66,9 @@
 ;; Always turn on auto-fill.
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
+(add-hook 'lisp-interaction-mode-hook
+	  (lambda () (display-line-numbers-mode 0)))
+
 ;; Disable line numbers in certain modes.
 (add-hook 'eww-mode-hook
 	  (lambda () (display-line-numbers-mode 0)))
