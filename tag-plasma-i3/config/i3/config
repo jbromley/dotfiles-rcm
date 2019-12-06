@@ -165,7 +165,8 @@ for_window [class="Spotify"] floating enable; border pixel 4, move container to 
 
 # Rules for other application windows
 for_window [class="VirtualBox Manager"] floating enable
-for_window [instance="sun-awt-X11-XFramePeer"] floating enable
+for_window [class="Processing"] floating enable
+for_window [class="processing-app-Base"] floating enable
 
 # Start up scratch pad applications and set the first wallpaper.
 # exec --no-startup-id "setxkbmap -layout us,latam -option 'grp:shifts_toggle'"
