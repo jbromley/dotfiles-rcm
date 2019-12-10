@@ -1,0 +1,12 @@
+[Desktop Entry]
+Comment=Android development platform
+Exec=/opt/android-studio/bin/studio.sh
+Icon=/opt/android-studio/bin/studio.png
+Name=Android Studio
+NoDisplay=false
+#Path=/home/jay/Code/eclipse-workspace
+StartupNotify=true
+Terminal=false
+Type=Application
+Categories=Development;
+X-Desktop-File-Install-Version=0.24
