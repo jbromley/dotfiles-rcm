@@ -71,9 +71,9 @@
 (defun turn-off-line-numbers ()
   (display-line-numbers-mode 0))
 
-(add-hook 'lisp-interaction-mode-hook (turn-off-line-numbers))
-(add-hook 'eww-mode-hook (turn-off-line-numbers))
-(add-hook 'term-mode-hook (turn-off-line-numbers))
+(add-hook 'lisp-interaction-mode-hook 'turn-off-line-numbers)
+(add-hook 'eww-mode-hook 'turn-off-line-numbers)
+(add-hook 'term-mode-hook 'turn-off-line-numbers)
 
 ;; Use shellcheck to check bash scripts.
 (add-hook 'sh-mode-hook 'flycheck-mode)
