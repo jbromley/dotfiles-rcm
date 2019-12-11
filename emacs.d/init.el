@@ -42,9 +42,6 @@
 
 (show-paren-mode t)
 (column-number-mode t)
-(global-hl-line-mode 1)
-(global-display-line-numbers-mode 1)
-(setq display-line-numbers-grow-only t)
 (windmove-default-keybindings)
 (setq-default fill-column 80)
 (setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
@@ -61,12 +58,25 @@
                         (awk-mode . "awk")
                         (other . "gnu"))))
 
-;;; Mode hooks
-
 ;; Always turn on auto-fill.
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
-;; Disable line numbers in some modes.
+;; Set up global line numbers.
+(global-hl-line-mode 1)
+
+(defun turn-off-hl-line-mode ()
+  "Toggle line highlighting in current buffer"
+  (interactive)
+  (setq-local global-hl-line-mode
+              (null global-hl-line-mode)))
+
+(add-hook 'lisp-interaction-mode-hook 'turn-off-hl-line-mode)
+(add-hook 'eww-mode-hook 'turn-off-hl-line-mode)
+(add-hook 'term-mode-hook 'turn-off-hl-line-mode)
+
+;; Set up buffer line numbers.
+(global-display-line-numbers-mode 1)
+(setq display-line-numbers-grow-only t)
 
 (defun turn-off-line-numbers ()
   (display-line-numbers-mode 0))
