@@ -20,7 +20,7 @@ if [ $(uname) = "Linux" ]; then
     # Java settings (Linux only)
     # export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
     # Set up stuff for snap applications.
-    [ -x /etc/profile.d/apps-bin-path.sh ] && emulate sh -c  'source /etc/profile.d/apps-bin-path.sh'
+    [ -f /etc/profile.d/apps-bin-path.sh ] && emulate sh -c  'source /etc/profile.d/apps-bin-path.sh'
 fi
 
 
