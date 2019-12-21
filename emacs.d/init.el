@@ -79,6 +79,7 @@
 (setq display-line-numbers-grow-only t)
 
 (defun turn-off-line-numbers ()
+  (interactive)
   (display-line-numbers-mode 0))
 
 (add-hook 'lisp-interaction-mode-hook 'turn-off-line-numbers)
@@ -111,8 +112,8 @@
 
 ;; Completion
 (use-package company
-  :config (add-hook 'after-init-hook 'global-company-mode)
-  :diminish (company-mode . "Co"))
+  :diminish (company-mode . "Co")
+  :hook (after-init . global-company-mode))
 
 ;; Smooth scrolling
 (use-package smooth-scrolling
@@ -142,12 +143,10 @@
 ;; GNU global tags
 (use-package ggtags
   :config
-  (add-hook 'c-mode-common-hook
-	    (lambda ()
-	      (setq c-basic-offset 4)
-	      ;; Make K & R C style use four-space tabs.
-	      (setf (cadr (assoc "k&r" c-style-alist)) '(c-basic-offset . 4))
-	      (ggtags-mode 1)))
+  (defun config-ggtabs-c ()
+    (setq c-basic-offset 4)
+    (setf (cadr (assoc "k&r" c-style-alist)) '(c-basic-offset . 4))
+    (ggtags-mode 1))
   :bind
   (:map ggtags-mode-map
 	("C-c g s" . ggtags-find-other-symbol)
@@ -159,12 +158,18 @@
 	("M-." . ggtags-find-tag-dwim)
 	("M-," . pop-tag-mark)
 	("C-c <" . ggtags-prev-mark)
-	("C-c >" . ggtags-next-mark)))
+	("C-c >" . ggtags-next-mark))
+  :hook (c-mode-common . config-ggtags-c))
 
 ;; Elpy
 (use-package elpy
   :init
-  (advice-add 'python-mode :before 'elpy-enable))
+  (advice-add 'python-mode :before 'elpy-enable)
+  :bind
+  (:map elpy-mode-map
+	("M-." . elpy-goto-definition)
+	("M-S-." . elpy-goto-definition-other-window)))
+
   
 ;; Swiper
 (use-package swiper
@@ -175,8 +180,9 @@
 ;; Org mode
 (use-package org
   :config
-  (add-hook 'org-mode-hook (lambda ()
-			     (if (display-graphic-p) (org-bullets-mode 1))))
+  (defun org-graphics-for-bullets ()
+    (if (display-graphic-p)
+	(org-bullets-mode 1)))
   (setq org-directory "~/Org"
 	org-agenda-files '("~/Org/")
 	org-confirm-babel-evaluate nil
@@ -195,7 +201,9 @@
 	org-catch-invisible-edits 'show)
   :bind (("C-c a" . org-agenda)
 	 ("C-c c" . org-capture)
-	 ("C-c l" . org-store-link)))
+	 ("C-c l" . org-store-link))
+  :hook ((org-mode . org-graphics-for-bullets)
+	 (org-mode . turn-off-line-numbers)))
 
 ;; Markdown editing
 (use-package markdown-mode
@@ -210,12 +218,8 @@
   :config
   (setq meghanada-java-path "java"
 	meghanada-maven-path "mvn")
-  (add-hook 'java-mode-hook
-	    (lambda ()
-	      (meghanada-mode t)
-	      (flycheck-mode +1)))
-  (add-hook 'compilation-filter-hook
-	    (lambda () (ansi-color-apply-on-region (point-min) (point-max)))))
+  :hook ((compilation-filter . (lambda () (ansi-color-apply-on-region (point-min) (point-max))))
+	 (java-mode . (lambda () (meghanada-mode t) (flycheck-mode +1)))))
 
 ;; YAML editing
 (use-package yaml-mode)
@@ -232,11 +236,12 @@
 
 (use-package paredit
   :config
-  (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
-  (add-hook 'lisp-mode-hook 'enable-paredit-mode)
-  (add-hook 'lisp-interaction-mode-hook (lambda ()
-					  (enable-paredit-mode)
-					  (local-set-key [C-return] 'eval-print-last-sexp)))
+  (defun setup-paredit-for-lisp-interaction ()
+    (enable-paredit-mode)
+    (local-set-key [C-return] 'eval-print-last-sexp))
+  :hook ((emacs-lisp-mode . enable-paredit-mode)
+	 (lisp-mode-hook . enable-paredit-mode)
+	 (lisp-interaction-mode . setup-paredit-for-lisp-interaction))
   :diminish (paredit-mode . "([])"))
 
 
@@ -246,26 +251,25 @@
 
 (use-package clojure-mode
   :config
-  (add-hook 'clojure-mode-hook 'enable-paredit-mode)
-  (add-hook 'clojure-mode-hook 'subword-mode)
-  (add-hook 'clojure-mode-hook
-	    (lambda ()
-	      (setq inferior-lisp-program "lein repl")
-	      (font-lock-add-keywords
-	       nil
-	       '(("(\\(facts?\\)" (1 font-lock-keyword-face))
-		 ("(\\(background?\\)" (1 font-lock-keyword-face))))
-	      (define-clojure-indent (fact 1))
-	      (define-clojure-indent (facts 1))))
+  ;; XXX: Not sure what the following code does, eliminating to test if I need it.
+  ;; (add-hook 'clojure-mode-hook
+  ;; 	    (lambda ()
+  ;; 	      (setq inferior-lisp-program "lein repl")
+  ;; 	      (font-lock-add-keywords
+  ;; 	       nil
+  ;; 	       '(("(\\(facts?\\)" (1 font-lock-keyword-face))
+  ;; 		 ("(\\(background?\\)" (1 font-lock-keyword-face))))
+  ;; 	      (define-clojure-indent (fact 1))
+  ;; 	      (define-clojure-indent (facts 1))))
   (add-to-list 'auto-mode-alist '("\\.edn$" . clojure-mode))
   (add-to-list 'auto-mode-alist '("\\.boot$" . clojure-mode))
   (add-to-list 'auto-mode-alist '("\\.cljs.*$" . clojure-mode))
-  (add-to-list 'auto-mode-alist '("lein-env" . enh-ruby-mode)))
+  (add-to-list 'auto-mode-alist '("lein-env" . enh-ruby-mode))
+  :hook ((clojure-mode . enable-paredit-mode)
+	 (clojure-mode . subword-mode)))
 
 (use-package cider
   :config
-  (add-hook 'cider-mode-hook 'eldoc-mode)
-  (add-hook 'cider-repl-mode-hook 'enable-paredit-mode)
   (setq cider-repl-pop-to-buffer-on-connect t
 	cider-show-error-buffer t
 	cider-auto-select-error-buffer t
@@ -290,7 +294,11 @@
 	("C-M-r" . cider-refresh)
 	("C-c u" . cider-user-ns))
   (:map cider-mode-map 
-	("C-c u" . cider-user-ns)))
+	("C-c u" . cider-user-ns))
+  :hook ((cider-mode . eldoc-mode)
+	 (cider-mode . turn-off-hl-line-mode)
+	 (cider-mode . turn-off-line-numbers)
+	 (cider-repl-mode . enable-paredit-mode)))
 
 ;; TypeScript
 
