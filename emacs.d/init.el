@@ -292,6 +292,15 @@
   (:map cider-mode-map 
 	("C-c u" . cider-user-ns)))
 
+;; Common Lisp/SLIME
+
+(use-package slime
+  :init
+  (require 'slime-autoloads)
+  :config
+  (setq inferior-lisp-program "/usr/bin/sbcl"
+	slime-contribs '(slime-fancy)))
+
 ;; TypeScript
 
 (use-package tide
