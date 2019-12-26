@@ -4,18 +4,9 @@
 ;; Configuration setup
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Set some memory limits
-(setq gc-cons-threshold 67108864
-      large-file-warning-threshold 268435456)
-
-;; Run the Emacs server
-(require 'server)
-(unless (server-running-p)
-  (server-start))
-
 ;; Set up the Emacs package manager
 (require 'package)
-;; (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
+;; (add-to-list 'package-archives (cons "melpa" "https://melpa.org/packages/") t)
 (add-to-list 'package-archives (cons "melpa-stable" "https://stable.melpa.org/packages/") t)
 (package-initialize)
 
@@ -26,15 +17,14 @@
 (eval-when-compile (require 'use-package))
 (setq use-package-always-ensure t)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; MacOS-specific configuration
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Set some memory limits
+(setq gc-cons-threshold 67108864
+      large-file-warning-threshold 268435456)
 
-(when (and (string-equal system-type "darwin") (display-graphic-p))
-  (setq default-frame-alist '((width . 164) (height . 60)))
-  (tool-bar-mode -1)
-  (scroll-bar-mode -1)
-  (add-to-list 'exec-path (expand-file-name ("~/.local/bin"))))
+;; Run the Emacs server
+(require 'server)
+(unless (server-running-p)
+  (server-start))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; General editing configuration
@@ -75,17 +65,18 @@
 (add-hook 'term-mode-hook 'turn-off-hl-line-mode)
 
 ;; Set up buffer line numbers.
-(global-display-line-numbers-mode 1)
-(setq display-line-numbers-grow-only t)
+;; (global-display-line-numbers-mode 1)
+;; (setq display-line-numbers-grow-only t)
 
-(defun turn-off-line-numbers ()
-  "Turn off line numbers in the current buffer."
-  (interactive)
-  (display-line-numbers-mode 0))
+;; (defun turn-off-line-numbers ()
+;;   "Turn off line numbers in the current buffer."
+;;   (interactive)
+;;   (display-line-numbers-mode 0))
 
-(add-hook 'lisp-interaction-mode-hook 'turn-off-line-numbers)
-(add-hook 'eww-mode-hook 'turn-off-line-numbers)
-(add-hook 'term-mode-hook 'turn-off-line-numbers)
+;; (add-hook 'lisp-interaction-mode-hook 'turn-off-line-numbers)
+;; (add-hook 'eww-mode-hook 'turn-off-line-numbers)
+;; (add-hook 'term-mode-hook 'turn-off-line-numbers)
+;; (add-hook 'org-mode-hook 'turn-off-line-numbers)
 
 ;; Use shellcheck to check bash scripts.
 (add-hook 'sh-mode-hook 'flycheck-mode)
