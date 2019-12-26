@@ -79,6 +79,8 @@
 (setq display-line-numbers-grow-only t)
 
 (defun turn-off-line-numbers ()
+  "Turn off line numbers in the current buffer."
+  (interactive)
   (display-line-numbers-mode 0))
 
 (add-hook 'lisp-interaction-mode-hook 'turn-off-line-numbers)
