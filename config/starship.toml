@@ -4,3 +4,7 @@ disabled = true
 [directory]
 truncation_length = 0
 truncate_to_repo = true
+
+[python]
+symbol = "Py "
+
