@@ -99,6 +99,30 @@
 ;; Packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Dashboard
+
+(defun my/dashboard-banner ()
+  """Set a dashboard banner including information on package initialization
+   time and garbage collections."""
+  (setq dashboard-banner-logo-title
+        (format "Emacs ready in %.2f seconds with %d garbage collections."
+                (float-time (time-subtract after-init-time before-init-time)) gcs-done)))
+
+(use-package dashboard
+  :preface
+  (defun jb/dashboard-banner ()
+    """Set a dashboard banner including information on package initialization
+   time and garbage collections."""
+   (setq dashboard-banner-logo-title
+         (format "Emacs ready in %.2f seconds with %d garbage collections."
+                 (float-time (time-subtract after-init-time before-init-time)) gcs-done)))
+  :init
+  (add-hook 'after-init-hook 'dashboard-refresh-buffer)
+  (add-hook 'dashboard-mode-hook 'my/dashboard-banner)
+  :config
+  (setq dashboard-startup-banner 'logo)
+  (dashboard-setup-startup-hook))
+
 ;; Diminish (clean up the mode line)
 (use-package diminish)
 
@@ -121,9 +145,6 @@
   (ivy-mode 1)
   :bind (("C-c r" . ivy-resume))
   :diminish)
-
-;; Load recentf buffer at start if there is no file.
-(use-package init-open-recentf)
 
 ;; Counsel
 (use-package counsel
@@ -320,6 +341,4 @@
 ;; saved in the dotfiles repo.
 (load custom-file)
 
-(recentf-mode 1)
-(init-open-recentf)
 (put 'narrow-to-region 'disabled nil)
