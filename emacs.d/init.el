@@ -64,23 +64,6 @@
 (add-hook 'eww-mode-hook 'turn-off-hl-line-mode)
 (add-hook 'term-mode-hook 'turn-off-hl-line-mode)
 
-;; Set up buffer line numbers.
-;; (global-display-line-numbers-mode 1)
-;; (setq display-line-numbers-grow-only t)
-
-;; (defun turn-off-line-numbers ()
-;;   "Turn off line numbers in the current buffer."
-;;   (interactive)
-;;   (display-line-numbers-mode 0))
-
-;; (add-hook 'lisp-interaction-mode-hook 'turn-off-line-numbers)
-;; (add-hook 'eww-mode-hook 'turn-off-line-numbers)
-;; (add-hook 'term-mode-hook 'turn-off-line-numbers)
-;; (add-hook 'org-mode-hook 'turn-off-line-numbers)
-
-;; Use shellcheck to check bash scripts.
-(add-hook 'sh-mode-hook 'flycheck-mode)
-
 ;; Fix the prompt for sql-interactive-mode with PostgreSQL.
 ;; Old: "^[_[:alpha:]]*[=][#>] ", "^[_[:alpha:]]*[-][#>] "
 (add-hook 'sql-interactive-mode-hook
@@ -215,8 +198,7 @@
   :bind (("C-c a" . org-agenda)
 	 ("C-c c" . org-capture)
 	 ("C-c l" . org-store-link))
-  :hook ((org-mode . org-graphics-for-bullets)
-	 (org-mode . turn-off-line-numbers)))
+  :hook ((org-mode . org-graphics-for-bullets)))
 
 ;; Markdown editing
 (use-package markdown-mode
@@ -310,7 +292,6 @@
 	("C-c u" . cider-user-ns))
   :hook ((cider-mode . eldoc-mode)
 	 (cider-mode . turn-off-hl-line-mode)
-	 (cider-mode . turn-off-line-numbers)
 	 (cider-repl-mode . enable-paredit-mode)))
 
 ;; Common Lisp/SLIME
