@@ -4,18 +4,9 @@
 ;; Configuration setup
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Set some memory limits
-(setq gc-cons-threshold 67108864
-      large-file-warning-threshold 268435456)
-
-;; Run the Emacs server
-(require 'server)
-(unless (server-running-p)
-  (server-start))
-
 ;; Set up the Emacs package manager
 (require 'package)
-;; (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
+;; (add-to-list 'package-archives (cons "melpa" "https://melpa.org/packages/") t)
 (add-to-list 'package-archives (cons "melpa-stable" "https://stable.melpa.org/packages/") t)
 (package-initialize)
 
@@ -26,15 +17,14 @@
 (eval-when-compile (require 'use-package))
 (setq use-package-always-ensure t)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; MacOS-specific configuration
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Set some memory limits
+(setq gc-cons-threshold 67108864
+      large-file-warning-threshold 268435456)
 
-(when (and (string-equal system-type "darwin") (display-graphic-p))
-  (setq default-frame-alist '((width . 164) (height . 60)))
-  (tool-bar-mode -1)
-  (scroll-bar-mode -1)
-  (add-to-list 'exec-path (expand-file-name ("~/.local/bin"))))
+;; Run the Emacs server
+(require 'server)
+(unless (server-running-p)
+  (server-start))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; General editing configuration
@@ -75,16 +65,18 @@
 (add-hook 'term-mode-hook 'turn-off-hl-line-mode)
 
 ;; Set up buffer line numbers.
-(global-display-line-numbers-mode 1)
-(setq display-line-numbers-grow-only t)
+;; (global-display-line-numbers-mode 1)
+;; (setq display-line-numbers-grow-only t)
 
-(defun turn-off-line-numbers ()
-  (interactive)
-  (display-line-numbers-mode 0))
+;; (defun turn-off-line-numbers ()
+;;   "Turn off line numbers in the current buffer."
+;;   (interactive)
+;;   (display-line-numbers-mode 0))
 
-(add-hook 'lisp-interaction-mode-hook 'turn-off-line-numbers)
-(add-hook 'eww-mode-hook 'turn-off-line-numbers)
-(add-hook 'term-mode-hook 'turn-off-line-numbers)
+;; (add-hook 'lisp-interaction-mode-hook 'turn-off-line-numbers)
+;; (add-hook 'eww-mode-hook 'turn-off-line-numbers)
+;; (add-hook 'term-mode-hook 'turn-off-line-numbers)
+;; (add-hook 'org-mode-hook 'turn-off-line-numbers)
 
 ;; Use shellcheck to check bash scripts.
 (add-hook 'sh-mode-hook 'flycheck-mode)
@@ -106,6 +98,30 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Dashboard
+
+(defun my/dashboard-banner ()
+  """Set a dashboard banner including information on package initialization
+   time and garbage collections."""
+  (setq dashboard-banner-logo-title
+        (format "Emacs ready in %.2f seconds with %d garbage collections."
+                (float-time (time-subtract after-init-time before-init-time)) gcs-done)))
+
+(use-package dashboard
+  :preface
+  (defun jb/dashboard-banner ()
+    """Set a dashboard banner including information on package initialization
+   time and garbage collections."""
+   (setq dashboard-banner-logo-title
+         (format "Emacs ready in %.2f seconds with %d garbage collections."
+                 (float-time (time-subtract after-init-time before-init-time)) gcs-done)))
+  :init
+  (add-hook 'after-init-hook 'dashboard-refresh-buffer)
+  (add-hook 'dashboard-mode-hook 'my/dashboard-banner)
+  :config
+  (setq dashboard-startup-banner 'logo)
+  (dashboard-setup-startup-hook))
 
 ;; Diminish (clean up the mode line)
 (use-package diminish)
@@ -129,9 +145,6 @@
   (ivy-mode 1)
   :bind (("C-c r" . ivy-resume))
   :diminish)
-
-;; Load recentf buffer at start if there is no file.
-(use-package init-open-recentf)
 
 ;; Counsel
 (use-package counsel
@@ -300,6 +313,15 @@
 	 (cider-mode . turn-off-line-numbers)
 	 (cider-repl-mode . enable-paredit-mode)))
 
+;; Common Lisp/SLIME
+
+(use-package slime
+  :init
+  (require 'slime-autoloads)
+  :config
+  (setq inferior-lisp-program "/usr/bin/sbcl"
+	slime-contribs '(slime-fancy)))
+
 ;; TypeScript
 
 (use-package tide
@@ -326,6 +348,4 @@
 ;; saved in the dotfiles repo.
 (load custom-file)
 
-(recentf-mode 1)
-(init-open-recentf)
 (put 'narrow-to-region 'disabled nil)
