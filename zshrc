@@ -8,8 +8,8 @@ export ZSH="${HOME}/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="powerless/powerless"
-# ZSH_THEME=""
+# ZSH_THEME="powerless/powerless"
+ZSH_THEME=""
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -89,27 +89,8 @@ source $ZSH/oh-my-zsh.sh
 # Turn off auto pushd
 unsetopt auto_pushd
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Use the pure prompt
-# unset VIRTUAL_ENV_DISABLE_PROMPT
-# fpath=("${HOME}/.zsh/pure" $fpath)
-# autoload -U promptinit
-# promptinit
-# prompt pure
+# Prompt
+eval "$(starship init zsh)"
 
 # Functions
 function venv() { source "${HOME}/.venv/$1/bin/activate" }
