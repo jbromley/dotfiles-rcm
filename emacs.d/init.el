@@ -17,6 +17,9 @@
 (eval-when-compile (require 'use-package))
 (setq use-package-always-ensure t)
 
+;; Add custom Emacs Lisp directory to the load path.
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/elisp"))
+
 ;; Set some memory limits
 (setq gc-cons-threshold 67108864
       large-file-warning-threshold 268435456)
@@ -77,6 +80,12 @@
 
 ;; Convenience global bindings.
 (global-set-key (kbd "C-c q") 'auto-fill-mode)
+
+;; Set up ivy-posframe
+(require 'ivy-posframe)
+(setq ivy-posframe-display-functions-alist
+      '((t . ivy-posframe-display-at-frame-center)))
+(ivy-posframe-mode 1)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Packages
