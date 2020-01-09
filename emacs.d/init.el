@@ -6,8 +6,8 @@
 
 ;; Set up the Emacs package manager
 (require 'package)
-;; (add-to-list 'package-archives (cons "melpa" "https://melpa.org/packages/") t)
-(add-to-list 'package-archives (cons "melpa-stable" "https://stable.melpa.org/packages/") t)
+(add-to-list 'package-archives (cons "melpa" "https://melpa.org/packages/") t)
+;; (add-to-list 'package-archives (cons "melpa-stable" "https://stable.melpa.org/packages/") t)
 (package-initialize)
 
 ;; Use use-package to install/manage packages.
@@ -81,24 +81,12 @@
 ;; Convenience global bindings.
 (global-set-key (kbd "C-c q") 'auto-fill-mode)
 
-;; Set up ivy-posframe
-(require 'ivy-posframe)
-(setq ivy-posframe-display-functions-alist
-      '((t . ivy-posframe-display-at-frame-center)))
-(ivy-posframe-mode 1)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Dashboard
-
-(defun my/dashboard-banner ()
-  """Set a dashboard banner including information on package initialization
-   time and garbage collections."""
-  (setq dashboard-banner-logo-title
-        (format "Emacs ready in %.2f seconds with %d garbage collections."
-                (float-time (time-subtract after-init-time before-init-time)) gcs-done)))
 
 (use-package dashboard
   :preface
@@ -110,10 +98,19 @@
                  (float-time (time-subtract after-init-time before-init-time)) gcs-done)))
   :init
   (add-hook 'after-init-hook 'dashboard-refresh-buffer)
-  (add-hook 'dashboard-mode-hook 'my/dashboard-banner)
+  (add-hook 'dashboard-mode-hook 'jb/dashboard-banner)
+  (add-hook 'dashboard-mode-hook 'turn-off-hl-line-mode)
   :config
   (setq dashboard-startup-banner 'logo)
   (dashboard-setup-startup-hook))
+
+;; Ivy-posframe
+
+(use-package ivy-posframe
+  :config
+  (setq ivy-posframe-display-functions-alist
+	'((t . ivy-posframe-display-at-frame-center)))
+  (ivy-posframe-mode 1))
 
 ;; Diminish (clean up the mode line)
 (use-package diminish)
@@ -179,8 +176,18 @@
 ;; Swiper
 (use-package swiper
   :config (global-set-key "\C-s" 'swiper))
+
 ;; Nice org-mode bullets
 (use-package org-bullets)
+
+;; Org mind maps
+;; Possible engines are dot, neato, twopi, fdp, sfdp, twopi, and circo.
+
+(use-package org-mind-map
+  :init
+  (require 'ox-org)
+  :config
+  (setq org-mind-map-engine "dot"))
 
 ;; Org mode
 (use-package org
