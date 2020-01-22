@@ -35,7 +35,6 @@
 
 (show-paren-mode t)
 (column-number-mode t)
-(windmove-default-keybindings)
 (setq-default fill-column 80)
 (setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
 
@@ -54,7 +53,7 @@
 ;; Always turn on auto-fill.
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
-;; Set up global line numbers.
+;; Set up global highlight mode.
 (global-hl-line-mode 1)
 
 (defun turn-off-hl-line-mode ()
@@ -104,16 +103,30 @@
   (setq dashboard-startup-banner 'logo)
   (dashboard-setup-startup-hook))
 
+;; Diminish (clean up the mode line)
+
+(use-package diminish)
+
+;; windmove
+
+(use-package windmove
+  :config
+  (windmove-default-keybindings)
+  (setq windmove-wrap-around t)
+  :bind
+  (("C-c <right>" . windmove-right)
+   ("C-c <left>" . windmove-left)
+   ("C-c <up>" . windmove-up)
+   ("C-c <down>" . windmove-down)))
+
 ;; Ivy-posframe
 
 (use-package ivy-posframe
+  :diminish
   :config
   (setq ivy-posframe-display-functions-alist
 	'((t . ivy-posframe-display-at-frame-center)))
   (ivy-posframe-mode 1))
-
-;; Diminish (clean up the mode line)
-(use-package diminish)
 
 ;; Completion
 (use-package company
