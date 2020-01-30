@@ -133,6 +133,9 @@
   :diminish (company-mode . "Co")
   :hook (after-init . global-company-mode))
 
+;; The silver searcher integration
+(use-package ag)
+
 ;; Smooth scrolling
 (use-package smooth-scrolling
   :init (setq smooth-scroll-margin 4)
