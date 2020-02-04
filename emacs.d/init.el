@@ -329,7 +329,7 @@
   :init
   (require 'slime-autoloads)
   :config
-  (setq inferior-lisp-program "/usr/bin/sbcl"
+  (setq inferior-lisp-program "/usr/local/bin/sbcl"
 	slime-contribs '(slime-fancy)))
 
 ;; TypeScript
