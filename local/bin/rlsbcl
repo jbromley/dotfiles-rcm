@@ -7,7 +7,7 @@ else
   RLWRAP="rlwrap --remember --history-filename=$HOME/.sbcl_history --histsize=1000000 -c -b $BREAK_CHARS -f $HOME/.sbcl_completions"
 fi
 if [ $# -eq 0 ]; then
-  exec $RLWRAP /usr/bin/sbcl
+  exec $RLWRAP /usr/local/bin/sbcl
 else # permits #!/usr/bin/env sbcl , but breaks sbcl --help, etc.
-  exec /usr/bin/sbcl --script $*
+  exec /usr/local/bin/sbcl --script $*
 fi
