@@ -65,6 +65,7 @@
 (add-hook 'lisp-interaction-mode-hook 'turn-off-hl-line-mode)
 (add-hook 'eww-mode-hook 'turn-off-hl-line-mode)
 (add-hook 'term-mode-hook 'turn-off-hl-line-mode)
+(add-hook 'slime-repl-mode-hook 'turn-off-hl-line-mode)
 
 ;; Fix the prompt for sql-interactive-mode with PostgreSQL.
 ;; Old: "^[_[:alpha:]]*[=][#>] ", "^[_[:alpha:]]*[-][#>] "
