@@ -91,15 +91,16 @@
 (use-package dashboard
   :preface
   (defun jb/dashboard-banner ()
-    """Set a dashboard banner including information on package initialization
-   time and garbage collections."""
+    "Set a dashboard banner including information on package initialization
+   time and garbage collections."
    (setq dashboard-banner-logo-title
          (format "Emacs ready in %.2f seconds with %d garbage collections."
                  (float-time (time-subtract after-init-time before-init-time)) gcs-done)))
   :init
-  (add-hook 'after-init-hook 'dashboard-refresh-buffer)
+  ; (add-hook 'after-init-hook 'dashboard-refresh-buffer) 
   (add-hook 'dashboard-mode-hook 'jb/dashboard-banner)
   (add-hook 'dashboard-mode-hook 'turn-off-hl-line-mode)
+  :if (< (length command-line-args) 2)
   :config
   (setq dashboard-startup-banner 'logo)
   (dashboard-setup-startup-hook))
@@ -120,14 +121,14 @@
    ("C-c <up>" . windmove-up)
    ("C-c <down>" . windmove-down)))
 
-;; Ivy-posframe
+;; ;; Ivy-posframe
 
-(use-package ivy-posframe
-  :diminish
-  :config
-  (setq ivy-posframe-display-functions-alist
-	'((t . ivy-posframe-display-at-frame-center)))
-  (ivy-posframe-mode 1))
+;; (use-package ivy-posframe
+;;   :diminish
+;;   :config
+;;   (setq ivy-posframe-display-functions-alist
+;; 	'((t . ivy-posframe-display-at-frame-center)))
+;;   (ivy-posframe-mode 1))
 
 ;; Completion
 (use-package company
