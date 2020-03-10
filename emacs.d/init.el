@@ -102,7 +102,9 @@
   (add-hook 'dashboard-mode-hook 'turn-off-hl-line-mode)
   :if (< (length command-line-args) 2)
   :config
-  (setq dashboard-startup-banner 'logo)
+  (setq dashboard-startup-banner 'logo
+	dashboard-items '((recents . 10)
+			  (bookmarks . 10)))
   (dashboard-setup-startup-hook))
 
 ;; Diminish (clean up the mode line)
