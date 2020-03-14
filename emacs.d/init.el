@@ -350,7 +350,14 @@
 	    (tide-hl-identifier-mode +1))
   :hook (before-save-hook . tide-format-before-save))
 
-;; Theme switching
+;; Themes and theme switching
+
+(use-package eink)
+(use-package modus-operandi)
+(use-package modus-vivendi)
+(use-package spacemacs)
+(use-package xresources)
+
 (use-package theme-looper
   :config
   (global-set-key (kbd "C-{") 'theme-looper-enable-previous-theme)
