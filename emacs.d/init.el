@@ -53,8 +53,12 @@
 ;; Always turn on auto-fill.
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
-;; Set up global highlight mode.
-(global-hl-line-mode 1)
+;; Delete trailing whitespace on save.
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;; Set up global highlight mode in GUI modes.
+(if (display-graphic-p)
+    (global-hl-line-mode 1))
 
 (defun turn-off-hl-line-mode ()
   "Toggle line highlighting in current buffer"
@@ -198,7 +202,7 @@
   :config (global-set-key "\C-s" 'swiper))
 
 ;; Nice org-mode bullets
-(use-package org-bullets)
+(use-package org-superstar)
 
 ;; Org mind maps
 ;; Possible engines are dot, neato, twopi, fdp, sfdp, twopi, and circo.
@@ -214,7 +218,7 @@
   :config
   (defun org-graphics-for-bullets ()
     (if (display-graphic-p)
-	(org-bullets-mode 1)))
+	(org-superstar-mode 1)))
   (setq org-directory "~/Org"
 	org-agenda-files '("~/Org/")
 	org-confirm-babel-evaluate nil
@@ -352,11 +356,12 @@
 
 ;; Themes and theme switching
 
-(use-package eink)
-(use-package modus-operandi)
-(use-package modus-vivendi)
-(use-package spacemacs)
-(use-package xresources)
+(use-package eink-theme)
+(use-package modus-operandi-theme)
+(use-package modus-vivendi-theme)
+(use-package spacemacs-theme
+  :defer t)
+(use-package xresources-theme)
 
 (use-package theme-looper
   :config
