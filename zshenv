@@ -15,8 +15,8 @@ fi
 export LANG=en_US.UTF-8
 
 # Set up our editor.
-export EDITOR=nvim
-export GIT_EDITOR=nvim
+export EDITOR="emacsclient -cn"
+export GIT_EDITOR="emacsclient -t"
 export ALTERNATE_EDITOR=""
 
 if [ $(uname) = "Linux" ]; then
