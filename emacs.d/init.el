@@ -69,6 +69,7 @@
 (add-hook 'eww-mode-hook 'turn-off-hl-line-mode)
 (add-hook 'term-mode-hook 'turn-off-hl-line-mode)
 (add-hook 'slime-repl-mode-hook 'turn-off-hl-line-mode)
+(add-hook 'alchemist-iex-mode-hook 'turn-off-hl-line-mode)
 
 ;;; Fix the prompt for sql-interactive-mode with PostgreSQL.
 ;;; Old: "^[_[:alpha:]]*[=][#>] ", "^[_[:alpha:]]*[-][#>] "
@@ -128,10 +129,15 @@
   :init (global-company-mode)
   :config (setq company-backends
 		'(company-capf company-files
-			       (company-dabbrev-code company-gtagscompany-etags company-keywords company-dabbrev))))
+			       (company-dabbrev-code company-gtags company-etags company-keywords company-dabbrev))))
 
 ;;; The silver searcher integration
+;;; TODO Check ag package options.
 (use-package ag)
+
+;;; Fuzzy finder integration
+;;; TODO Check fzf package options.
+(use-package fzf)
 
 ;;; Smooth scrolling
 (use-package smooth-scrolling
@@ -152,51 +158,58 @@
 (use-package counsel
   :config
   (global-set-key (kbd "M-x") 'counsel-M-x)
-  (?global-set-key (kbd "C-x C-f") 'counsel-find-file)
+  (global-set-key (kbd "C-x C-f") 'counsel-find-file)
   (global-set-key (kbd "C-c k") 'counsel-ag)
   (global-set-key (kbd "C-c z") 'counsel-fzf))
-
-;;; GNU global tags
-(use-package ggtags
-  :bind
-  (:map ggtags-mode-map
-	("C-c g s" . ggtags-find-other-symbol)
-	("C-c g h" . ggtags-view-tag-history)
-	("C-c g r" . ggtags-find-reference)
-	("C-c g f" . ggtags-find-file)
-	("C-c g c" . ggtags-create-tags)
-	("C-c g u" . ggtags-update-tags)
-	("M-." . ggtags-find-tag-dwim)
-	("M-," . pop-tag-mark)
-	("C-c <" . ggtags-prev-mark)
-	("C-c >" . ggtags-next-mark)))
-
-;;; Elpy
-(use-package elpy
-  :bind (:map elpy-mode-map
-	      ("C-M-n" . elpy-nav-forward-block)
-	      ("C-M-p" . elpy-nav-backward-block))
-  :hook ((elpy-mode . flycheck-mode)
-	 (pyenv-mode . elpy-rpc-restart))
-  :init (elpy-enable)
-  :config (setq elpy-modules (delq 'elpy-module-flymake elpy-modules)))
 
 ;;; Swiper
 (use-package swiper
   :config (global-set-key "\C-s" 'swiper))
 
-;;; Nice org-mode bullets
-(use-package org-superstar)
+;;; Projectile mode for project management
+(use-package projectile
+  :config (projectile-mode 1)
+  :bind (:map projectile-mode-map ("C-c p" . projectile-command-map)))
 
-;;; Org mind maps
-;;; Possible engines are dot, neato, twopi, fdp, sfdp, twopi, and circo.
-(use-package org-mind-map
-  :init
-  (require 'ox-org)
-  :config
-  (setq org-mind-map-engine "dot"))
+(use-package counsel-projectile
+  :config (counsel-projectile-mode 1))
+
+;;; GNU global tags
+;; (use-package ggtags
+;;   :bind
+;;   (:map ggtags-mode-map
+;; 	("C-c g s" . ggtags-find-other-symbol)
+;; 	("C-c g h" . ggtags-view-tag-history)
+;; 	("C-c g r" . ggtags-find-reference)
+;; 	("C-c g f" . ggtags-find-file)
+;; 	("C-c g c" . ggtags-create-tags)
+;; 	("C-c g u" . ggtags-update-tags)
+;; 	("M-." . ggtags-find-tag-dwim)
+;; 	("M-," . pop-tag-mark)
+;; 	("C-c <" . ggtags-prev-mark)
+;; 	("C-c >" . ggtags-next-mark)))
+
+;;; Elpy
+
+(defun elpy-goto-definition-or-rgrep ()
+  "Go to the definition of the symbol at point, if found. Otherwise, run `elpy-rgrep-symbol'."
+    (interactive)
+    (ring-insert find-tag-marker-ring (point-marker))
+    (condition-case nil (elpy-goto-definition)
+        (error (elpy-rgrep-symbol
+                   (concat "\\(def\\|class\\)\s" (thing-at-point 'symbol) "(")))))
+
+(use-package elpy
+  :bind (:map elpy-mode-map
+	      ("M-." . elpy-goto-definition-or-rgrep)
+	      ("C-M-n" . elpy-nav-forward-block)
+	      ("C-M-p" . elpy-nav-backward-block))
+  :hook ((elpy-mode . flycheck-mode))
+  :init (elpy-enable)
+  :config (setq elpy-modules (delq 'elpy-module-flymake elpy-modules)))
 
 ;;; Org mode
+(use-package org-superstar)
 (use-package org
   :config
   (defun org-graphics-for-bullets ()
@@ -207,7 +220,9 @@
 	org-confirm-babel-evaluate nil
 	org-todo-keywords '((sequence "TODO(t)" "IN-PROGRESS(i)" "WAITING(w@/!)"
 				      "|" "DONE(d!)" "CANCELED(c@)"))
-	org-todo-keyword-faces '(("IN-PROGRESS" . "blue") ("WAITING" . "orange") ("CANCELED" . "gray"))
+	org-todo-keyword-faces '(("IN-PROGRESS" . "blue")
+				 ("WAITING" . "orange")
+				 ("CANCELED" . "gray"))
 	org-agenda-exporter-settings '((ps-print-color-p nil)
 				       (org-agenda-add-entry-text-maxlines 0)
 				       (htmlize-output-type 'css))
@@ -232,12 +247,12 @@
   :init (setq markdown-command "multimarkdown"))
 
 ;;; Java editing
-(use-package meghanada
-  :config
-  (setq meghanada-java-path "java"
-	meghanada-maven-path "mvn")
-  :hook ((compilation-filter . (lambda () (ansi-color-apply-on-region (point-min) (point-max))))
-	 (java-mode . (lambda () (meghanada-mode t) (flycheck-mode +1)))))
+;; (use-package meghanada
+;;   :config
+;;   (setq meghanada-java-path "java"
+;; 	meghanada-maven-path "mvn")
+;;   :hook ((compilation-filter . (lambda () (ansi-color-apply-on-region (point-min) (point-max))))
+;; 	 (java-mode . (lambda () (meghanada-mode t) (flycheck-mode +1)))))
 
 ;;; YAML editing
 (use-package yaml-mode)
@@ -245,10 +260,6 @@
 ;;; Magit mode
 (use-package magit
   :bind (("C-x v G" . magit-status)))
-
-;;; Projectile mode for project management
-(use-package projectile
-  :bind (:map projectile-mode-map ("C-c p" . projectile-command-map)))
 
 ;;; Clojure
 (use-package paredit
@@ -313,23 +324,31 @@
   (setq inferior-lisp-program "/usr/local/bin/sbcl"
 	slime-contribs '(slime-fancy)))
 
+;;; Elixir
+(use-package alchemist
+  :config (setq alchemist-key-command-prefix (kbd "C-c x")))
+
 ;;; TypeScript
-(use-package tide
-  :config (progn
-	    (tide-setup)
-	    (flycheck-mode +1)
-	    (setq flycheck-check-syntax-automatically '(save mode-enabled))
-	    (eldoc-mode +1)
-	    (tide-hl-identifier-mode +1))
-  :hook (before-save-hook . tide-format-before-save))
+;; (use-package tide
+;;   :config (progn
+;; 	    (tide-setup)
+;; 	    (flycheck-mode +1)
+;; 	    (setq flycheck-check-syntax-automatically '(save mode-enabled))
+;; 	    (eldoc-mode +1)
+;; 	    (tide-hl-identifier-mode +1))
+;;   :hook (before-save-hook . tide-format-before-save))
 
 ;;; Themes and theme switching
-(use-package eink-theme)
-(use-package modus-operandi-theme)
-(use-package modus-vivendi-theme)
+(use-package eink-theme
+  :defer t)
+(use-package modus-operandi-theme
+  :defer t)
+(use-package modus-vivendi-theme
+  :defer t)
 (use-package spacemacs-theme
   :defer t)
-(use-package xresources-theme)
+(use-package xresources-theme
+  :defer t)
 
 (use-package theme-looper
   :config
