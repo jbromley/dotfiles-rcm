@@ -103,4 +103,7 @@ function venv() { source "${HOME}/.venv/$1/bin/activate" }
 # Aliases
 [ -f ${HOME}/.aliases ] && source ${HOME}/.aliases || true
 
-
+# Set up the Node Version Manager.
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
