@@ -5,6 +5,9 @@ disabled = true
 truncation_length = 0
 truncate_to_repo = true
 
+[git_branch]
+symbol = "リ "
+
 [python]
 symbol = "Py "
 
