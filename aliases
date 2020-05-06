@@ -12,6 +12,7 @@ alias la='ls -lAh'
 alias man='nocorrect man'
 alias mkdir='nocorrect mkdir'
 alias mv='nocorrect mv'
+alias ssh='nocorrect ssh'
 alias sudo='nocorrect sudo'
 alias tmux='nocorrect tmux'
 
@@ -38,8 +39,8 @@ alias d='dirs -v | head -10'
 
 # Emacs, terminal emacsclient, and windowed emacsclient
 alias e=emacs
-alias ee='emacsclient -t'
-alias ew='emacsclient -w'
+alias et='emacsclient -t'
+alias ew='emacsclient -cn'
 
 # Push and pop directories on directory stack
 alias pu='pushd'

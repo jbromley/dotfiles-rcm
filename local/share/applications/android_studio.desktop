@@ -1,3 +1,4 @@
+#!/usr/bin/env xdg-open
 [Desktop Entry]
 Comment=Android development platform
 Exec=/opt/android-studio/bin/studio.sh
