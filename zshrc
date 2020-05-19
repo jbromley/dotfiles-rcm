@@ -98,16 +98,13 @@ autoload -Uz zmv
 function md() { [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1" }
 compdef _directories md
 
-# Define aliases.
-alias tree='tree -a -I .git'
-
-# Add flags to existing aliases.
-alias ls="${aliases[ls]:-ls} -A"
-
 # Set shell options: http://zsh.sourceforge.net/Doc/Release/Options.html.
-setopt glob_dots  # glob matches files starting with dot; `ls *` becomes equivalent to `ls *(D)`
+# setopt glob_dots  # glob matches files starting with dot; `ls *` becomes equivalent to `ls *(D)`
+setopt correct_all
 
+#
 # Zsh environment customizations
+#
 
 # Configure the path. On MacOS user path_helper.
 typeset -Ux PATH path
@@ -140,16 +137,27 @@ if [ $(uname) = "Darwin" ]; then
     export FZF_BASE=/opt/local/share/fzf/
 fi
 
+# Set up the Node Version Manager.
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 # Don't let Python venv add anything to the prompt.
 export VIRTUAL_ENV_DISABLE_PROMPT=yes
 
+#
 # Command aliases
+#
+
+alias tree='tree -a -I .git'
+
 # Colorize output, add file type indicator, and put sizes in human readable format
 [ $(uname) = "Darwin" ] && alias ls='ls -F -G' || alias ls='ls --color=auto --classify'
 alias lsa='ls -la'
 alias l='ls -lah'
 alias ll='ls -lh'
 alias la='ls -lAh'
+# alias ls="${aliases[ls]:-ls} -A"
 
 # On Linux use some color options for grep
 [ "$(uname -s)" = "Linux" ] && alias grep='grep --color=auto'
@@ -162,8 +170,6 @@ alias ssh='nocorrect ssh'
 alias sudo='nocorrect sudo'
 alias tmux='nocorrect tmux'
 alias z4h='nocorrect z4h'
-
-setopt correct_all
 
 # Directory aliases
 alias -g ...='../..'
@@ -195,3 +201,10 @@ alias po='popd'
 
 # Open files easily with desktop tools
 alias o='xdg-open'
+
+
+#
+# Functions
+#
+
+function venv() { source "${HOME}/.venv/$1/bin/activate" }
