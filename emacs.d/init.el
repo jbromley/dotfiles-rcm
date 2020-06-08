@@ -123,6 +123,50 @@
    ("C-c <up>" . windmove-up)
    ("C-c <down>" . windmove-down)))
 
+;;; Winum
+(use-package winum
+  :config
+  (winum-mode 1))
+
+;;; Treemacs
+(use-package treemacs
+  :ensure t
+  :defer t
+  :init
+  (with-eval-after-load 'winum
+    (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
+  :config
+  (progn
+    (treemacs-follow-mode t)
+    (treemacs-filewatch-mode t)
+    (treemacs-fringe-indicator-mode t)
+    (pcase (cons (not (null (executable-find "git")))
+		 (not (null treemacs-python-executable)))
+      (`(t . t)
+       (treemacs-git-mode 'deferred))
+      (`(t . _)
+       (treemacs-git-mode 'simple))))
+  :bind
+  (:map global-map
+	("M-0" . treemacs-select-window)
+	("C-x t 1" . treemacs-no-delete-other-windows)
+	("C-x t t" . treemacs)
+	("C-x t B" . treemacs-bookmark)
+	("C-x t C-t" . treemacs-find-file)
+	("C-x t M-t" . treemacs-find-tag)))
+
+(use-package treemacs-projectile
+  :after treemacs projectile
+  :ensure t)
+
+(use-package treemacs-icons-dired
+  :after treemacs dired
+  :ensure t)
+
+(use-package treemacs-magit
+  :after treemacs magit
+  :ensure t)
+
 ;;; Completion
 (use-package company
   :diminish company-mode
