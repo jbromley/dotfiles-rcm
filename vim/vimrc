@@ -28,6 +28,19 @@ set showmatch           " higlight matching parenthesis
 set textwidth=100
 set colorcolumn=+1
 
+" Set up the statusline.
+set statusline=%{expand('%:.')}
+set statusline+=\ "White space
+set statusline+=%m
+set statusline+=%*
+set statusline+=%{FugitiveStatusline()}
+set statusline+=%*
+set statusline+=%=
+set statusline+=%c,
+set statusline+=%l/%L
+set statusline+=\ (%P)
+set laststatus=2
+
 " Set up cursor line highlighting in insert mode.
 augroup _cursor_mode
     autocmd!
