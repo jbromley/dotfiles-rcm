@@ -124,7 +124,7 @@ export EDITOR="vim"
 export GIT_EDITOR="vim"
 export ALTERNATE_EDITOR=""
 
-" Set theme for bat (colorized cat)
+# Set theme for bat (colorized cat)
 export BAT_THEME='Solarized (light)'
 
 if [ $(uname) = "Linux" ]; then
