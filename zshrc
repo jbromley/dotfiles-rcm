@@ -117,13 +117,15 @@ if [ -d /opt/local/bin ]; then
 fi
 
 export LANG=en_US.UTF-8
-export EDITOR=emacs
 export GPG_TTY=$TTY
 
 # Set up our editor.
-export EDITOR="emacsclient -cn"
-export GIT_EDITOR="emacsclient -t"
+export EDITOR="vim"
+export GIT_EDITOR="vim"
 export ALTERNATE_EDITOR=""
+
+" Set theme for bat (colorized cat)
+export BAT_THEME='Solarized (light)'
 
 if [ $(uname) = "Linux" ]; then
     # Java settings (Linux only)
@@ -136,6 +138,8 @@ fi
 if [ $(uname) = "Darwin" ]; then
     export FZF_BASE=/opt/local/share/fzf/
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Set up the Node Version Manager.
 export NVM_DIR="$HOME/.nvm"
@@ -207,4 +211,5 @@ alias o='xdg-open'
 # Functions
 #
 
-function venv() { source "${HOME}/.venv/$1/bin/activate" }
+function venv { source "${HOME}/.venv/$1/bin/activate" }
+function clrdirs { pushd -0 && dirs -c }
