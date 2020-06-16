@@ -1,21 +1,21 @@
 !!! X Resource File
 
 ! Color setup
-#include ".Xresources.d/google-light"
+#include ".Xresources.d/solarized-light"
 
 ! Font setup
-#define FONT_NAME Hack 
-#define FONT_STYLE Regular 
-#define FONT_SIZE 10
+#define FONT_NAME MesloLGS NF
+#define FONT_STYLE Regular
+#define FONT_SIZE 9
 
 ! Rxvt-unicode
-URxvt.geometry: 120x40
+URxvt.geometry: 100x60
 URxvt*font: xft:FONT_NAME:style=FONT_STYLE:size=FONT_SIZE
 URxvt*boldFont: xft:FONT_NAME:style=Bold:size=FONT_SIZE
 URxvt*italicFont: xft:FONT_NAME:style=Italic:size=FONT_SIZE
 URxvt*boldItalicFont: xft:FONT_NAME:style=Bold Italic:size=FONT_SIZE
 URxvt*scrollBar: off
-URxvt*borderColor: #f7f7f7
+! URxvt*borderColor: #f7f7f7
 URxvt*internalBorder: 0
 
 ! polybar
