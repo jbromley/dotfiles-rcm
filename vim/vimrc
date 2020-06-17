@@ -55,9 +55,9 @@ set ignorecase          " ignore case when searching
 set incsearch           " search as characters are entered
 set hlsearch            " highlight all matches
 " Set cursors for different modes
-let &t_SI = "\<Esc>[6 q"
-let &t_SR = "\<Esc>[4 q"
-let &t_EI = "\<Esc>[2 q"
+" let &t_SI = "\<Esc>[6 q"
+" let &t_SR = "\<Esc>[4 q"
+" let &t_EI = "\<Esc>[2 q"
 " Turn off search highlights
 nnoremap <leader><space> :nohlsearch<CR>
 " }}}
@@ -97,6 +97,13 @@ Plug 'preservim/nerdtree'
 
 " Git plugin
 Plug 'tpope/vim-fugitive'
+
+" Elixir support
+Plug 'elixir-editors/vim-elixir'
+Plug 'slashmili/alchemist.vim'
+
+" Database interaction
+Plug 'tpope/vim-dadbod'
 
 call plug#end()
 " }}}
