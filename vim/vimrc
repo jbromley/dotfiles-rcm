@@ -86,11 +86,18 @@ set writebackup
 
 " Plugins {{{
 call plug#begin('~/.vim/plugged')
+" Color schemes
 Plug 'altercation/vim-colors-solarized'
+Plug 'kjssad/quantum.vim'
+
+" FZF 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'preservim/nerdtree'
+
+" Git plugin
 Plug 'tpope/vim-fugitive'
+
 call plug#end()
 " }}}
 
@@ -119,7 +126,7 @@ set autoindent
 
 " Colors {{{
 syntax enable           " enable syntax processing
-colorscheme solarized
+" colorscheme quantum
 " set termguicolors
 " }}}
 
