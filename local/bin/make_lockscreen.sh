@@ -43,7 +43,7 @@ main () {
 # Read the wallpaper name from feh.
 read_wallpaper_name () {
     local cfg_file="$1"
-    tail -n1 "${cfg_file}" | cut -d' ' -f3 | tr -d "'"
+    tail -n1 "${cfg_file}" | gawk -F' ' '{print($NF);}' | tr -d "'"
 }
 
 # Given a directory, select a random file.
@@ -61,10 +61,10 @@ get_screen_resolution () {
 # Create a new lock screen.
 make_lock_screen () {
     screen_resolution=$(get_screen_resolution)
-    convert -resize "${screen_resolution}"^ -gravity center -extent "${screen_resolution}" \
-	    -blur 11x11 "${wallpaper}" "${LOCK_SCREEN}"
     # convert -resize "${screen_resolution}"^ -gravity center -extent "${screen_resolution}" \
-    #       -scale 6.25% -scale 1600% "${wallpaper}" "${LOCK_SCREEN}"
+	#     -blur 11x11 "${wallpaper}" "${LOCK_SCREEN}"
+    convert -resize "${screen_resolution}"^ -gravity center -extent "${screen_resolution}" \
+        -scale 6.25% -scale 1600% "${wallpaper}" "${LOCK_SCREEN}"
 }
 
 main "${@}"   
