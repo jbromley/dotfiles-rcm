@@ -133,6 +133,7 @@ set statusline+=%1*\ %f\ %m\ %r\
 set statusline+=%2*\ %{FugitiveStatusline()}\  
 set statusline+=%9*\ "%{StatuslineMode()}
 set statusline+=%=
+set statusline+=%y\ %{&fileencoding?&fileencoding:&encoding}\ [%{&fileformat}]\ 
 set statusline+=%2*\ Column\ %c\ 
 set statusline+=%1*\ Line\ %l/%L\ (%P)
 set laststatus=2
