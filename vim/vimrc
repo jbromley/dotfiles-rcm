@@ -122,7 +122,7 @@ set showcmd             " show command in bottom bar
 set wildmenu
 set lazyredraw
 set showmatch           " higlight matching parenthesis
-" set fillchars+=vert:┃
+
 " Show a line at 100 columns
 set textwidth=100
 set colorcolumn=+1
