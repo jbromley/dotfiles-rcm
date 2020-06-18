@@ -123,7 +123,7 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# Lock the screen - not needed, handled by KDE
+# Lock the screen
 bindsym $mod+Mod1+l exec --no-startup-id "i3lock -e -f -i ~/.cache/lockscreen.png"
 
 # exit i3 (logs you out of your X session)
@@ -161,9 +161,9 @@ bindsym XF86AudioPrev exec --no-startup-id "~/.local/bin/sp prev"
 bindsym XF86AudioNext exec --no-startup-id "~/.local/bin/sp next"
 bindsym XF86AudioPlay exec --no-startup-id "~/.local/bin/sp play"
 
-bindsym XF86AudioRaiseVolume exec --no-startup-id "~/.local/bin/pavol up"
-bindsym XF86AudioLowerVolume exec --no-startup-id "~/.local/bin/pavol down"
-bindsym XF86AudioMute exec --no-startup-id "~/.local/bin/pavol mute"
+bindsym XF86AudioRaiseVolume exec /home/jay/.local/bin/pavol up && pkill -RTMIN+10 i3xrocks
+bindsym XF86AudioLowerVolume exec /home/jay/.local/bin/pavol down && pkill -RTMIN+10 i3xrocks
+bindsym XF86AudioMute exec /home/jay/.local/bin/pavol mute && pkill -RTMIN+10 i3xrocks
 
 # Windows rules for scratchpad windows
 for_window [instance="scratch"] move scratchpad, border pixel 4
@@ -178,9 +178,9 @@ exec --no-startup-id "urxvtc -name scratch -e tmux new-session -s scratch"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-# bar {
-#     position top
-#     font $font_name
-#     separator " "
-#     status_command i3blocks
-# }
+bar {
+    position top
+    font pango:MesloLGS NF 9
+    # status_command i3xrocks -u ~/.config/i3xrocks
+    status_command i3blocks
+}
