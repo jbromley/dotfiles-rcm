@@ -22,25 +22,3 @@ URxvt*internalBorder: 0
 Xft.dpi: 100
 polybar.height: 24
 polybar.tray-maxsize: 16
-
-! rofi
-rofi.modi:    window,run,drun,ssh
-rofi.opacity: 75
-rofi.width:   20
-rofi.lines:   8
-rofi.columns: 1
-rofi.font:    Ubuntu Mono 16
-rofi.bw:      2
-rofi.location:                       0
-rofi.levenshtein-sort:               true
-rofi.case-sensitive:                 false
-rofi.sidebar-mode:                   false
-rofi.eh:                             1
-rofi.parse-hosts:                    false
-rofi.parse-known-hosts:              true
-rofi.fuzzy:                          true
-rofi.glob:                           false
-rofi.tokenize:                       true
-rofi.m:                              -1
-rofi.separator-style:                solid
-rofi.hide-scrollbar:                 true
