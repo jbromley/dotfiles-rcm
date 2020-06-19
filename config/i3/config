@@ -14,7 +14,8 @@ font $pango_font
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id x-terminal-emulator
+# bindsym $mod+Return exec -no-startup-id x-terminal-emulator
+bindsym $mod+Return exec x-terminal-emulator
 bindsym $mod+Shift+Return exec --no-startup-id x-terminal-emulator -e tmux
 
 # kill focused window
@@ -165,6 +166,9 @@ bindsym XF86AudioRaiseVolume exec /home/jay/.local/bin/pavol up && pkill -RTMIN+
 bindsym XF86AudioLowerVolume exec /home/jay/.local/bin/pavol down && pkill -RTMIN+10 i3xrocks
 bindsym XF86AudioMute exec /home/jay/.local/bin/pavol mute && pkill -RTMIN+10 i3xrocks
 
+# Switch screens on command
+bindsym XF86Display exec /home/jay/.local/bin/switch-screens
+
 # Windows rules for scratchpad windows
 for_window [instance="scratch"] move scratchpad, border pixel 4
 for_window [class="Spotify"] move scratchpad, border pixel 4
@@ -172,6 +176,7 @@ for_window [class="Spotify"] move scratchpad, border pixel 4
 # Rules for other application windows
 for_window [class="VirtualBox Manager"] floating enable
 for_window [instance="sun-awt-X11-XFramePeer"] floating enable
+for_window [class="Arandr"] floating enable
 
 # Start up scratch pad applications and set the first wallpaper.
 exec --no-startup-id "urxvtc -name scratch -e tmux new-session -s scratch"
