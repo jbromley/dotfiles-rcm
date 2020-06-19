@@ -162,9 +162,9 @@ bindsym XF86AudioPrev exec --no-startup-id "~/.local/bin/sp prev"
 bindsym XF86AudioNext exec --no-startup-id "~/.local/bin/sp next"
 bindsym XF86AudioPlay exec --no-startup-id "~/.local/bin/sp play"
 
-bindsym XF86AudioRaiseVolume exec /home/jay/.local/bin/pavol up && pkill -RTMIN+10 i3xrocks
-bindsym XF86AudioLowerVolume exec /home/jay/.local/bin/pavol down && pkill -RTMIN+10 i3xrocks
-bindsym XF86AudioMute exec /home/jay/.local/bin/pavol mute && pkill -RTMIN+10 i3xrocks
+bindsym XF86AudioRaiseVolume exec /home/jay/.local/bin/pavol up && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioLowerVolume exec /home/jay/.local/bin/pavol down && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioMute exec /home/jay/.local/bin/pavol mute && pkill -RTMIN+10 i3blocks
 
 # Switch screens on command
 bindsym XF86Display exec /home/jay/.local/bin/switch-screens
