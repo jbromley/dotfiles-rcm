@@ -18,7 +18,8 @@ URxvt*scrollBar: off
 ! URxvt*borderColor: #f7f7f7
 URxvt*internalBorder: 0
 
-! polybar
-Xft.dpi: 100
-polybar.height: 24
-polybar.tray-maxsize: 16
+! sxiv
+Sxiv.font: FONT_NAME-FONT_SIZE
+Sxiv.background: #002b36 
+Sxiv.foreground: #fdf6e3
+
