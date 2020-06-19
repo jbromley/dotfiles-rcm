@@ -1,0 +1,35 @@
+#! /usr/bin/env bash
+declare -a layouts=()
+declare -i index=0
+
+# Read the layouts available, detected, and current.
+while IFS='$\n' read -r layout; do
+    layouts+=( "$layout" )
+    index=$((index + 1))
+done < <(autorandr)
+
+# Find the current layout.
+declare current_layout=""
+declare current_layout_name=""
+for layout in "${layouts[@]}"; do
+    if [[ "${layout}" =~ "(current)" ]]; then
+       current_layout="${layout}"
+       break
+    fi
+done
+current_layout_name=$(echo "${current_layout}" | cut -d' ' -f1)
+
+# Try to set a different layout.
+declare -i switched=0
+for layout in "${layouts[@]}"; do
+    if [ "${layout}" != "${current_layout}" ] && [[ "${layout}" =~ "(detected)" ]]; then
+        this_layout=$(echo "${layout}" | cut -d' ' -f1)
+        if autorandr ${this_layout}; then
+            # Switched. We are done.
+            switched=1
+            break
+        fi
+    fi
+done
+
+test ${switched} -eq 1
