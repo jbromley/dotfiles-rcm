@@ -6,7 +6,7 @@ set backspace=indent,eol,start
 set modeline
 set modelines=1
 set clipboard=unnamed
-let mapleader = ","
+" let mapleader = ","
 " }}}
 
 " Spaces & Tabs {{{
@@ -72,6 +72,9 @@ Plug 'slashmili/alchemist.vim'
 " Database interaction
 Plug 'tpope/vim-dadbod'
 
+" VimWiki
+Plug 'vimwiki/vimwiki'
+
 call plug#end()
 " }}}
 
@@ -89,6 +92,9 @@ nmap <Leader>a :Ag<CR>
 " NerdTree configuration
 map <F2> :NERDTreeToggle<CR>
 let g:NERDTreeIgnore=['\~$', '__pycache__', '.git']
+
+" VimWiki
+let g:vimwiki_list = [{'path': '~/Documents/VimWiki/'}]
 
 " }}}
 
@@ -113,6 +119,18 @@ function! StatuslineMode()
     return "SHELL"
   endif
 endfunction
+" }}}
+
+" Filetype {{{
+filetype indent on
+filetype plugin on
+set autoindent
+" }}}
+
+" Colors {{{
+syntax enable           " enable syntax processing
+colorscheme solarized
+" set termguicolors
 " }}}
 
 " UI Layout {{{
@@ -149,16 +167,5 @@ augroup END
 
 " }}}
 
-" Filetype {{{
-filetype indent on
-filetype plugin on
-set autoindent
-" }}}
-
-" Colors {{{
-syntax enable           " enable syntax processing
-" colorscheme quantum
-" set termguicolors
-" }}}
 
 " vim: foldmethod=marker:foldlevel=0
