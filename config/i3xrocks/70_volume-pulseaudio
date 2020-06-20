@@ -1,0 +1,5 @@
+# Pulseaudio Volume indicator
+[volume-pulseaudio]
+command=/home/jay/.local/bin/volume-pulseaudio -S
+interval=persist
+# signal=10
