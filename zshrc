@@ -124,9 +124,6 @@ export EDITOR="vim"
 export GIT_EDITOR="vim"
 export ALTERNATE_EDITOR=""
 
-# Set theme for bat (colorized cat)
-export BAT_THEME='Solarized (light)'
-
 if [ $(uname) = "Linux" ]; then
     # Java settings (Linux only)
     # export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
