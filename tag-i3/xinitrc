@@ -1,2 +1,0 @@
-dbus-daemon --print-address 4 --session
-xec ssh-agent /usr/bin/i3
