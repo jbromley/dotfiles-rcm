@@ -129,7 +129,7 @@ set autoindent
 
 " Colors {{{
 syntax enable           " enable syntax processing
-colorscheme solarized
+" colorscheme solarized
 " set termguicolors
 " }}}
 
