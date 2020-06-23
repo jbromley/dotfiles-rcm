@@ -328,13 +328,13 @@ bindsym XF86AudioNext exec --no-startup-id "~/.local/bin/sp next"
 bindsym XF86AudioPlay exec --no-startup-id "~/.local/bin/sp play"
 
 ## Multimedia Keys // Raise Volume// <XF86AudioRaiseVolume> ##
-bindsym XF86AudioRaiseVolume exec /home/jay/.local/bin/pavol up && pkill -RTMIN+10 i3xrocks
+bindsym XF86AudioRaiseVolume exec /home/jay/.local/bin/pavol up
 
 ## Multimedia Keys // Lower Volume // <XF86AudioLowerVolume> ##
-bindsym XF86AudioLowerVolume exec /home/jay/.local/bin/pavol down && pkill -RTMIN+10 i3xrocks
+bindsym XF86AudioLowerVolume exec /home/jay/.local/bin/pavol down
 
 ## Multimedia Keys // Mute Volume // <XF86AudioMute> ##
-bindsym XF86AudioMute exec /home/jay/.local/bin/pavol mute && pkill -RTMIN+10 i3xrocks
+bindsym XF86AudioMute exec /home/jay/.local/bin/pavol mute
 
 ###############################################################################
 # Window Rules
@@ -349,6 +349,7 @@ for_window [class="VirtualBox Manager"] floating enable
 for_window [instance="sun-awt-X11-XFramePeer"] floating enable
 for_window [class="Arandr"] floating enable
 for_window [instance="htop"] floating enable
+for_window [class="Blueman-manager"] floating enable
 
 # Start up scratch pad applications and set the first wallpaper.
 exec st -n scratch -e tmux new-session -s scratch
