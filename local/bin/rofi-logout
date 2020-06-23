@@ -1,0 +1,13 @@
+#! /usr/bin/env bash
+set -o errexit
+set -o nounset
+set -o pipefail
+
+cmd=$(echo -e "Yes\nNo" | rofi -lines 2 -dmenu -p "Exit i3?")
+case cmd in 
+    Yes)
+        i3-msg exit
+        ;;
+    No)
+        ;;
+esac
