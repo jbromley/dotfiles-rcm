@@ -136,7 +136,7 @@ if [ $(uname) = "Darwin" ]; then
     export FZF_BASE=/opt/local/share/fzf/
 fi
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Set up the Node Version Manager.
 export NVM_DIR="$HOME/.nvm"
