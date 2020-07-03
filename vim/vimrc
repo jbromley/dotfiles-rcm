@@ -55,15 +55,22 @@ set writebackup
 call plug#begin('~/.vim/plugged')
 " Color schemes
 Plug 'altercation/vim-colors-solarized'
-Plug 'kjssad/quantum.vim'
 
 " FZF 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+
+" NERDTree - file tree navigation
 Plug 'preservim/nerdtree'
 
 " Git plugin
 Plug 'tpope/vim-fugitive'
+
+" Code completion
+Plug 'ycm-core/YouCompleteMe'
+
+" Python syntax checking
+Plug 'vim-syntastic/syntastic'
 
 " Elixir support
 Plug 'elixir-editors/vim-elixir'
@@ -93,9 +100,20 @@ nmap <Leader>a :Ag<CR>
 map <F2> :NERDTreeToggle<CR>
 let g:NERDTreeIgnore=['\~$', '__pycache__', '.git']
 
+" Syntastic 
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_python_python_exec = 'python3'
+let g:syntastic_python_checkers = ['python']
+ 
 " VimWiki
 let g:vimwiki_list = [{'path': '~/Documents/VimWiki/'}]
 
+" YouCompleteMe
+let g:ycm_autoclose_preview_window_after_completion=1
+map <Leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " }}}
 
 " Functions{{{
@@ -125,6 +143,13 @@ endfunction
 filetype indent on
 filetype plugin on
 set autoindent
+
+" Set up Python tabs
+augroup _python
+    autocmd!
+    autocmd BufRead,BufNewFile *.py setlocal tabstop=2 shiftwidth=2 softtabstop=2
+    autocmd BufRead,BufNewFile *.py nnoremap <Leader>b V:s/[,)]/&\r/g <cr>='<
+augroup END
 " }}}
 
 " Colors {{{
@@ -151,6 +176,9 @@ set statusline+=%1*\ %f\ %m\ %r\
 set statusline+=%2*\ %{FugitiveStatusline()}\  
 set statusline+=%9*\ "%{StatuslineMode()}
 set statusline+=%=
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 set statusline+=%y\ %{&fileencoding?&fileencoding:&encoding}\ [%{&fileformat}]\ 
 set statusline+=%2*\ Column\ %c\ 
 set statusline+=%1*\ Line\ %l/%L\ (%P)
