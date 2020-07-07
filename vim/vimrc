@@ -149,12 +149,13 @@ augroup _python
     autocmd!
     autocmd BufRead,BufNewFile *.py setlocal tabstop=2 shiftwidth=2 softtabstop=2
     autocmd BufRead,BufNewFile *.py nnoremap <Leader>b V:s/[,)]/&\r/g <cr>='<
+    autocmd BufWritePre *.py %s/\s\+$//e
 augroup END
 " }}}
 
 " Colors {{{
 syntax enable           " enable syntax processing
-" colorscheme solarized
+colorscheme solarized
 " set termguicolors
 " }}}
 
@@ -187,11 +188,18 @@ hi User1 ctermbg=darkblue ctermfg=white guibg=darkblue guifg=white
 hi User2 ctermbg=magenta ctermfg=white guibg=magenta guifg=white
 hi User9 ctermbg=black ctermfg=white guibg=black guifg=white
 
-" Set up cursor line highlighting in insert mode.
-augroup _cursor_mode
+" Only show the cursor line in the active window.
+augroup CursorLineInActiveWindow
     autocmd!
-    autocmd InsertEnter,InsertLeave * set cursorline!
+    autocmd WinEnter * set cursorline
+    autocmd WinLeave * set nocursorline
 augroup END
+
+" Set up cursor line highlighting in insert mode.
+" augroup _cursor_mode
+"     autocmd!
+"     autocmd InsertEnter,InsertLeave * set cursorline!
+" augroup END
 
 " }}}
 
