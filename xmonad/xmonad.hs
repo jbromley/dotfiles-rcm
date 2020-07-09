@@ -35,7 +35,7 @@ main = do
 
 myTerminal = "st"
 myMask = mod4Mask
-myBorderWidth = 4
+myBorderWidth = 2
 myFocusedBorderColor = "#0000FF"
 myActiveColor = "#000080"
 myUrgentBorderColor = "#00FFFF"
