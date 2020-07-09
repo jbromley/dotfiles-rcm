@@ -33,7 +33,7 @@ main = do
                          , logHook = dynamicLogWithPP $ myXmobarPP xmproc
                          } `additionalKeys` myKeys
 
-myTerminal = "urxvtc"
+myTerminal = "st"
 myMask = mod4Mask
 myBorderWidth = 4
 myFocusedBorderColor = "#0000FF"
@@ -62,10 +62,10 @@ myTabConfig = def { activeBorderColor = myFocusedBorderColor
                   , decoHeight = 24
                   }
 
-myScratchpads = [ NS "htop" "urxvtc -e htop" (title =? "htop") (customFloating $ W.RationalRect (1/4) (1/8) (1/2) (3/4))
-                , NS "calc" "urxvtc -e bc -l" (title =? "bc") (customFloating $ W.RationalRect 0 (3/4) (1/4) (1/4))
+myScratchpads = [ NS "htop" "st -e htop" (title =? "htop") (customFloating $ W.RationalRect (1/4) (1/8) (1/2) (3/4))
+                , NS "calc" "st -e bc -l" (title =? "bc") (customFloating $ W.RationalRect 0 (3/4) (1/4) (1/4))
                 -- , NS "spotify" "/snap/bin/spotify" (className =? "") (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3))
-                , NS "urxvt" "urxvtc -name scratch_urxvt" (resource =? "scratch_urxvt") (customFloating $ W.RationalRect (1/4) (1/4) (1/2) (1/2))
+                , NS "st" "st -n scratch_term" (resource =? "scratch_term") (customFloating $ W.RationalRect (1/4) (1/4) (1/2) (1/2))
                 , NS "xclock" "xclock" (className =? "XClock") (customFloating $ RationalRect (7/16) (2/5) (1/8) (1/5))
                 ]
 
@@ -95,7 +95,7 @@ myLayoutPrinter "Tabbed Simplest" = "<icon=/home/jay/.xmonad/tabbed.xpm/>"
 myLayoutPrinter "Full" = "<icon=/home/jay/.xmonad/full.xpm/>"
 myLayoutPrinter x = "[[" ++ x ++ "]]"
 
-myKeys = [ ((myMask .|. controlMask, xK_Return), spawn "urxvtc -e tmux")
+myKeys = [ ((myMask .|. controlMask, xK_Return), spawn "st")
          , ((myMask, xK_p), spawn "rofi -show run")
          , ((myMask .|. controlMask, xK_p), spawn "rofi -show drun")
          , ((myMask, xK_f), spawn "dolphin")
@@ -108,7 +108,7 @@ myKeys = [ ((myMask .|. controlMask, xK_Return), spawn "urxvtc -e tmux")
            , ((0, xK_h), namedScratchpadAction myScratchpads "htop")
            , ((0, xK_k), namedScratchpadAction myScratchpads "xclock")
            , ((0, xK_s), namedScratchpadAction myScratchpads "spotify")
-           , ((0, xK_t), namedScratchpadAction myScratchpads "urxvt")
+           , ((0, xK_t), namedScratchpadAction myScratchpads "st")
            ])
          , ((0, xF86XK_AudioPlay), spawn "/home/jay/.local/bin/sp play")
          , ((0, xF86XK_AudioNext), spawn "/home/jay/.local/bin/sp next")
