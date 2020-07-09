@@ -1,3 +1,3 @@
 #! /usr/bin/env bash
-xrandr --dpi 220 
-
+xrandr --dpi 212 
+xmonad --restart
