@@ -6,6 +6,8 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.SetWMName
 import XMonad.Layout.Combo
+import XMonad.Layout.LayoutBuilder
+import XMonad.Layout.LayoutCombinators
 import XMonad.Layout.Tabbed
 import XMonad.Layout.TwoPane
 import XMonad.Layout.WindowNavigation
@@ -44,27 +46,29 @@ myTabFont = "xft:Ubuntu:style=Bold:size=10"
 myFont = "xft:Ubuntu:style=Bold:size=10"
 myStatusBar = "/home/jay/.cabal/bin/xmobar"
 
-myLayoutHook = tiled ||| twoPane ||| tallAndTabbed ||| tabbedLayout ||| Full
+myLayoutHook = tiled ||| tallAndTabbed ||| tabbedLayout ||| Full ||| tallAndTabbedCombo
   where
     tiled = Tall nmaster delta ratio
     twoPane = TwoPane delta ratio
-    tallAndTabbed = windowNavigation(combineTwo (twoPane) (Full) (tabbedLayout))
+    -- tallAndTabbed = windowNavigation(combineTwo (twoPane) (Full) (simpleTabbed))
+    -- tallAndTabbed = 
+    tallAndTabbed = windowNavigation(layoutN 1 (relBox 0 0 0.5 1) (Just $ relBox 0 0 1 1) Full
+                    $ layoutAll (relBox 0.5 0 1 1) tabbedLayout)
     tabbedLayout = tabbed shrinkText myTabConfig
     nmaster = 1
     delta = 2 / 100
     ratio = 1 / 2
-
+ 
 myTabConfig = def { activeBorderColor = myFocusedBorderColor
                   , activeColor = myActiveColor
                   , urgentBorderColor = myUrgentBorderColor
                   , urgentColor = myUrgentColor
                   , fontName = myTabFont
-                  , decoHeight = 24
+                  , decoHeight = 24 
                   }
 
 myScratchpads = [ NS "htop" "st -e htop" (title =? "htop") (customFloating $ W.RationalRect (1/4) (1/8) (1/2) (3/4))
                 , NS "calc" "st -e bc -l" (title =? "bc") (customFloating $ W.RationalRect 0 (3/4) (1/4) (1/4))
-                -- , NS "spotify" "/snap/bin/spotify" (className =? "") (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3))
                 , NS "st" "st -n scratch_term" (resource =? "scratch_term") (customFloating $ W.RationalRect (1/4) (1/4) (1/2) (1/2))
                 , NS "xclock" "xclock" (className =? "XClock") (customFloating $ RationalRect (7/16) (2/5) (1/8) (1/5))
                 ]
@@ -90,19 +94,21 @@ myXmobarPP h = xmobarPP { ppCurrent = xmobarColor "white" "#0000c0" . wrap "[" "
 myLayoutPrinter :: String -> String
 myLayoutPrinter "Tall" = "<icon=/home/jay/.xmonad/tall.xpm/>"
 myLayoutPrinter "TwoPane" = "<icon=/home/jay/.xmonad/twopane.xpm/>"
-myLayoutPrinter "combining Full and Tabbed Simplest with TwoPane" = "<icon=/home/jay/.xmonad/combo.xpm/>"
+myLayoutPrinter "layoutN Full layoutAll Tabbed Simplest" = "<icon=/home/jay/.xmonad/combo.xpm/>"
 myLayoutPrinter "Tabbed Simplest" = "<icon=/home/jay/.xmonad/tabbed.xpm/>"
 myLayoutPrinter "Full" = "<icon=/home/jay/.xmonad/full.xpm/>"
 myLayoutPrinter x = "[[" ++ x ++ "]]"
 
 myKeys = [ ((myMask .|. controlMask, xK_Return), spawn "st")
-         , ((myMask, xK_p), spawn "rofi -show run")
-         , ((myMask .|. controlMask, xK_p), spawn "rofi -show drun")
+         , ((myMask, xK_p), spawn "rofi -show drun")
+         , ((myMask .|. controlMask, xK_p), spawn "rofi -show run")
          , ((myMask, xK_f), spawn "dolphin")
          , ((myMask .|. shiftMask, xK_q), confirmPrompt myXPConfig "exit" $ io (exitWith ExitSuccess))
          , ((myMask .|. controlMask, xK_g), gotoMenu)
          , ((myMask .|. controlMask, xK_b), bringMenu)
          , ((myMask .|. controlMask, xK_l), spawn "i3lock -e -f -i /home/jay/.cache/lockscreen.png")
+         , ((myMask .|. shiftMask, xK_h), sendMessage $ Swap L)
+         , ((myMask .|. shiftMask, xK_l), sendMessage $ Swap R)
          , ((myMask, xK_s), submap . M.fromList $
            [ ((0, xK_c), namedScratchpadAction myScratchpads "calc")
            , ((0, xK_h), namedScratchpadAction myScratchpads "htop")
