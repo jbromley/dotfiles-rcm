@@ -112,13 +112,15 @@ myKeys = [ ((myMask .|. controlMask, xK_Return), spawn "st")
          , ((myMask .|. shiftMask, xK_l), sendMessage $ Swap R)
          , ((myMask .|. controlMask, xK_h), sendMessage $ Move L)
          , ((myMask .|. controlMask, xK_l), sendMessage $ Move R)
+         -- Scratch pad submap
          , ((myMask, xK_s), submap . M.fromList $
-           [ ((0, xK_c), namedScratchpadAction myScratchpads "calc")
-           , ((0, xK_h), namedScratchpadAction myScratchpads "htop")
-           , ((0, xK_k), namedScratchpadAction myScratchpads "xclock")
+           [ ((0, xK_k), namedScratchpadAction myScratchpads "xclock")
            , ((0, xK_s), namedScratchpadAction myScratchpads "spotify")
-           , ((0, xK_t), namedScratchpadAction myScratchpads "st")
            ])
+         , ((0, xK_F10), namedScratchpadAction myScratchpads "calc")
+         , ((0, xK_F11), namedScratchpadAction myScratchpads "htop")
+         , ((0, xK_F12), namedScratchpadAction myScratchpads "st")
+         -- Multimedia and other special keys
          , ((0, xF86XK_AudioPlay), spawn "/home/jay/.local/bin/sp play")
          , ((0, xF86XK_AudioNext), spawn "/home/jay/.local/bin/sp next")
          , ((0, xF86XK_AudioPrev), spawn "/home/jay/.local/bin/sp prev")
@@ -126,9 +128,7 @@ myKeys = [ ((myMask .|. controlMask, xK_Return), spawn "st")
          , ((0, xF86XK_AudioRaiseVolume), spawn "/home/jay/.local/bin/pavol up")
          , ((0, xF86XK_AudioMute), spawn "/home/jay/.local/bin/pavol mute")
          , ((0, xF86XK_HomePage), spawn "/home/jay/.local/bin/xhtop")
-	 , ((myMask .|. controlMask, xK_Right), sendMessage $ Move R)
-	 , ((myMask .|. controlMask, xK_Left), sendMessage $ Move L)
-        ]
+         ]
 
 myXPConfig :: XPConfig
 myXPConfig = def { font = myFont
