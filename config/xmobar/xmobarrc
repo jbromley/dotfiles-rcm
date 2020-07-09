@@ -3,9 +3,9 @@ Config { font = "xft:MesloLGS NF:style=Bold:size=10"
        , textOffsets = [-1]
        , borderColor = "#000080"
        , border = TopB
-       , bgColor = "#000080"
+       , bgColor = "#000040"
        , fgColor = "grey"
-       , alpha = 128 
+       , alpha = 255
        , position = TopW C 100
        , textOffset = -1
        , iconOffset = -1
