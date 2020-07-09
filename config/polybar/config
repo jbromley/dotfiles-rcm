@@ -1,11 +1,10 @@
 ; Polybar configuration
 
 [colors]
-# background = ${xrdb:background:#000000}
+;background = ${xrdb:background:#000000}
 background = #d0000000
 background-alt = ${xrdb:color0}
-#foreground = ${xrdb:foreground:#dfdfdf}
-foreground = #c0c0c0
+foreground = ${xrdb:foreground:#dfdfdf}
 foreground-alt = ${xrdb:color8:#808080}
 ok = ${xrdb:color2:#00ff00}
 warn = ${xrdb:color3:#ffff00}
@@ -16,18 +15,13 @@ secondary = ${xrdb:color3}
 tertiary = ${xrdb:color0}
 
 [bar/topbar]
-; Monitor for desk
-monitor = ${env:MONITOR:DVI-I-1}
 ; Monitor for laptop
-; monitor = ${env:MONITOR:eDP1}
+monitor = ${env:MONITOR:eDP1}
 monitor-strict = false
 
 width = 100%
-height = ${xrdb:polybar.height:24}
-tray-maxsize = ${xrdb:tray-maxsize:16}
-;tray-scale = 2
-;offset-x = 1%
-;offset-y = 1%
+height = ${xrdb:polybar.height:32}
+tray-maxsize = ${xrdb:polybar.tray-maxsize:24}
 radius = 4.0
 fixed-center = true
 dpi = ${xrdb:Xft.dpi:-1}
@@ -47,19 +41,13 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 1
 
-; font-0 = Ubuntu Mono:style=Regular:size=10
-font-0 = SF Mono:style=Regular:size=9
-font-1 = Symbola:style=Regular:size=9
-
-; llama
-modules-left = i3 xwindow
-modules-center = date
-modules-right = filesystem cpu memory eth temperature xkeyboard pulseaudio
+font-0 = Ubuntu Mono:style=Regular:size=10
+font-1 = Symbola:style=Regular:size=10
 
 ; dromedary
-; modules-left = i3 xwindow
-; modules-center = 
-; modules-right = filesystem cpu memory eth temperature xkeyboard pulseaudio battery date
+modules-left = i3 xwindow
+modules-center = 
+modules-right = filesystem cpu memory eth wifi temperature xkeyboard pulseaudio battery date
 
 tray-position = right
 tray-padding = 2
@@ -70,9 +58,6 @@ tray-background = ${colors.background}
 ;wm-restack = i3
 
 ;override-redirect = true
-
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
 
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
@@ -104,7 +89,7 @@ label-indicator-underline = ${colors.background-alt}
 type = internal/fs
 interval = 25
 mount-0 = /
-mount-1 = /home
+; mount-1 = /home
 label-mounted = "%{A1:urxvtc -e ncdu&:}%mountpoint%: %percentage_used%%%{A}"
 label-unmounted = "%{A1:urxvtc -e ncdu&:}%mountpoint% not mounted%{A}"
 label-unmounted-foreground = ${colors.foreground-alt}
@@ -170,8 +155,8 @@ label = %percentage_used%%
 
 [module/eth]
 type = internal/network
-interface = eno1
-; interface = enp0s25
+; interface = eno1
+interface = enp0s25
 interval = 3.0
 
 format-connected-prefix = "⇵ "
@@ -267,7 +252,7 @@ ramp-foreground = ${colors.foreground-alt}
 
 [module/battery]
 type = internal/battery
-battery = BAT0
+battery = BAT1
 adapter = AC
 full-at = 100
 time-format = %H:%M
