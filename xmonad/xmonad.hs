@@ -7,7 +7,7 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.SetWMName
 import XMonad.Layout.Combo
 import XMonad.Layout.LayoutBuilder
-import XMonad.Layout.LayoutCombinators
+import XMonad.Layout.LayoutCombinators hiding ( (|||) )
 import XMonad.Layout.Tabbed
 import XMonad.Layout.TwoPane
 import XMonad.Layout.WindowNavigation
@@ -46,15 +46,15 @@ myTabFont = "xft:Ubuntu:style=Bold:size=10"
 myFont = "xft:Ubuntu:style=Bold:size=10"
 myStatusBar = "/home/jay/.cabal/bin/xmobar"
 
-myLayoutHook = tiled ||| tallAndTabbed ||| tabbedLayout ||| Full ||| tallAndTabbedCombo
+myLayoutHook = tiled ||| tallAndTabbed ||| tabbedLayout ||| Full
   where
     tiled = Tall nmaster delta ratio
     twoPane = TwoPane delta ratio
-    -- tallAndTabbed = windowNavigation(combineTwo (twoPane) (Full) (simpleTabbed))
-    -- tallAndTabbed = 
+    tabbedLayout = tabbed shrinkText myTabConfig
+    -- tallAndTabbed = windowNavigation(combineTwo (twoPane) (tabbedLayout) (Full))
+    -- tallAndTabbed = Tall *||* tabbedLayout 
     tallAndTabbed = windowNavigation(layoutN 1 (relBox 0 0 0.5 1) (Just $ relBox 0 0 1 1) Full
                     $ layoutAll (relBox 0.5 0 1 1) tabbedLayout)
-    tabbedLayout = tabbed shrinkText myTabConfig
     nmaster = 1
     delta = 2 / 100
     ratio = 1 / 2
@@ -106,9 +106,11 @@ myKeys = [ ((myMask .|. controlMask, xK_Return), spawn "st")
          , ((myMask .|. shiftMask, xK_q), confirmPrompt myXPConfig "exit" $ io (exitWith ExitSuccess))
          , ((myMask .|. controlMask, xK_g), gotoMenu)
          , ((myMask .|. controlMask, xK_b), bringMenu)
-         , ((myMask .|. controlMask, xK_l), spawn "i3lock -e -f -i /home/jay/.cache/lockscreen.png")
+         , ((myMask .|. mod1Mask, xK_l), spawn "i3lock -e -f -i /home/jay/.cache/lockscreen.png")
          , ((myMask .|. shiftMask, xK_h), sendMessage $ Swap L)
          , ((myMask .|. shiftMask, xK_l), sendMessage $ Swap R)
+         , ((myMask .|. controlMask, xK_h), sendMessage $ Move L)
+         , ((myMask .|. controlMask, xK_l), sendMessage $ Move R)
          , ((myMask, xK_s), submap . M.fromList $
            [ ((0, xK_c), namedScratchpadAction myScratchpads "calc")
            , ((0, xK_h), namedScratchpadAction myScratchpads "htop")
