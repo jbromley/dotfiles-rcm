@@ -13,7 +13,7 @@ Config { font = "xft:MesloLGS NF:style=Bold:size=10"
        , pickBroadest = False
        , persistent = False
        , hideOnStart = False
-       , iconRoot = "."
+       , iconRoot = "/home/jay/.config/xmobar"
        , allDesktops = True
        , overrideRedirect = True
        , commands = [
@@ -24,21 +24,19 @@ Config { font = "xft:MesloLGS NF:style=Bold:size=10"
                     --                , "--normal", "cyan"
                     --                , "--high","orange"
                     --                ] 10
-                      Run MultiCpu [ "--template", "▣ <total>%"
+                      Run MultiCpu [ "--template", "<icon=cpu.xpm/><total>%"
 		                           , "--ppad", "3"
-                                   , "--Low", "25"
-                                   , "--High","75"
-                                   , "--normal", "cyan"
-                                   , "--high", "orange"
-                                   ] 10
-                    , Run Memory [ "--template" , "▦ <usedratio>%"
-		                           , "--ppad", "3" 
-                                 ] 20
+                                   , "--High", "90"
+                                   , "--high", "DarkOrange"
+                                   ] 50
+                    , Run Memory [ "--template" , "<icon=ram.xpm/> <used>M/<total>M"
+		                         , "--ppad", "3" 
+                                 ] 50
                     , Run Network "eno1" [ "-Low", "262144"
                                          , "-High", "1048576"
                                          , "--high", "#ee9a00"
-                                         ] 10
-                    , Run Wireless "wlp3s0" [ "--template", "W <essid> <quality>%"
+                                         ] 50
+                    , Run Wireless "wlp3s0" [ "--template", "<icon=wifi.xpm/> <essid> <quality>%"
                                             , "--ppad", "3"
                                             , "--Low", "50"
                                             , "--low", "orange"
@@ -47,24 +45,19 @@ Config { font = "xft:MesloLGS NF:style=Bold:size=10"
                               , ("es", "ES")
                               ]
                     , Run BatteryP ["BAT0", "BAT1"]
-                                   [ "--template", "▮ <left>% / <timeleft> <acstatus>"
-				                   , "-L", "10"
-                                   , "-H", "90"
-                                   , "-p", "3"
+                                   [ "--template", "<icon=battery.xpm/> <left>/<timeleft> <acstatus>"
                                    , "--"
-                                   , "-O", "<fc=green>⊕</fc>"
-                                   , "-i", "⊙"
-                                   , "-o", "<fc=orange>⊖</fc>"
-                                   , "-L", "-15"
-                                   , "-H", "-5"
+                                   , "-P"
+                                   , "-O", "<icon=ac.xpm/>"
+                                   , "-i", "<icon=ac-idle.xpm/>"
+                                   , "-o", "<icon=discharging.xpm/>"
                                    , "-l", "red"
-                                   , "-m", "blue"
-                                   , "-h", "green"] 600
+                                   , "-h", "green"] 100
                     , Run Alsa "pulse" "Master" [ "--template", " <status> <volume>%"
                                                 , "--"
-                                                , "-O", "<)"
-                                                , "-o", "<x"]
-                    , Run Date "%a, %b %d, %I:%M %P" "date" 20
+                                                , "-O", "<icon=sound.xpm/>"
+                                                , "-o", "<icon=sound-off.xpm/>"]
+                    , Run Date "%a, %b %d, %I:%M %P" "date" 100
                     , Run StdinReader
                     ]
        , sepChar = "%"
