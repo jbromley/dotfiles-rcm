@@ -1,0 +1,16 @@
+! Rofi configuration
+rofi.modi: drun,run,window,ssh
+rofi.width: 20
+rofi.lines: 8
+rofi.font: MesloLGS NF 12
+rofi.show-icons: true
+rofi.terminal: st
+rofi.levenshtein-sort: false
+rofi.matching: normal
+rofi.color-normal: #000020, #c0c0c0, #000040, #000080, #ffffff
+! "Color scheme for urgent row" Set from: Default
+! rofi.color-urgent:                   
+! "Color scheme for active row" Set from: Default
+! rofi.color-active:                   
+rofi.color-window: #000020, #000080, #000080
+
