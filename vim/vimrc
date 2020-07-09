@@ -82,6 +82,9 @@ Plug 'tpope/vim-dadbod'
 " VimWiki
 Plug 'vimwiki/vimwiki'
 
+" Unicode
+Plug 'chrisbra/unicode.vim'
+
 call plug#end()
 " }}}
 
@@ -155,7 +158,7 @@ augroup END
 
 " Colors {{{
 syntax enable           " enable syntax processing
-colorscheme solarized
+" colorscheme solarized
 " set termguicolors
 " }}}
 
