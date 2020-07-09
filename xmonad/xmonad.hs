@@ -95,6 +95,7 @@ myLayoutPrinter :: String -> String
 myLayoutPrinter "Tall" = "<icon=/home/jay/.xmonad/tall.xpm/>"
 myLayoutPrinter "TwoPane" = "<icon=/home/jay/.xmonad/twopane.xpm/>"
 myLayoutPrinter "layoutN Full layoutAll Tabbed Simplest" = "<icon=/home/jay/.xmonad/combo.xpm/>"
+myLayoutPrinter "combining Tabbed Simplest and Full with TwoPane" = "<icon=/home/jay/.xmonad/combo.xpm/>"
 myLayoutPrinter "Tabbed Simplest" = "<icon=/home/jay/.xmonad/tabbed.xpm/>"
 myLayoutPrinter "Full" = "<icon=/home/jay/.xmonad/full.xpm/>"
 myLayoutPrinter x = "[[" ++ x ++ "]]"
