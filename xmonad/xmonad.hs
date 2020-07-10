@@ -18,6 +18,7 @@ import XMonad.StackSet as W
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Util.NamedScratchpad
+import Control.Monad
 import qualified Data.Map as M
 import Graphics.X11.ExtraTypes.XF86
 import System.Exit (exitWith, ExitCode(..))
@@ -128,6 +129,11 @@ myKeys = [ ((myMask .|. controlMask, xK_Return), spawn "st")
          , ((0, xF86XK_AudioRaiseVolume), spawn "/home/jay/.local/bin/pavol up")
          , ((0, xF86XK_AudioMute), spawn "/home/jay/.local/bin/pavol mute")
          , ((0, xF86XK_HomePage), spawn "/home/jay/.local/bin/xhtop")
+         ]
+         ++
+         [ ((m, k), windows $ f i)
+         | (i, k) <- zip (map show [1 .. 9]) [xK_1 .. xK_9]
+         , (f, m) <- [ (liftM2 (.) W.greedyView W.shift, myMask .|. controlMask) ]
          ]
 
 myXPConfig :: XPConfig
