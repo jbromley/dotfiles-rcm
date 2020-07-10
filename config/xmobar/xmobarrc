@@ -22,15 +22,15 @@ Config { font = "xft:MesloLGS NF:style=Bold:size=10"
                                    , "--width", "6"
                                    , "--"
                                    , "--devices", "enp0s25,wlp3s0"
-                                   ] 10
+                                   ] 50
                     , Run MultiCpu [ "--template", "<icon=cpu.xpm/><total>%"
 		                           , "--ppad", "3"
                                    , "--High", "90"
                                    , "--high", "DarkOrange"
-                                   ] 50
+                                   ] 10
                     , Run Memory [ "--template" , "<icon=ram.xpm/> <used>M/<total>M"
 		                         , "--ppad", "3" 
-                                 ] 50
+                                 ] 10
                     , Run Network "enp0s25" [ "-Low", "262144"
                                             , "-High", "1048576"
                                             , "--high", "#ee9a00"
@@ -51,12 +51,12 @@ Config { font = "xft:MesloLGS NF:style=Bold:size=10"
                                    , "-i", "<icon=ac-idle.xpm/>"
                                    , "-o", "<icon=discharging.xpm/>"
                                    , "-l", "red"
-                                   , "-h", "green"] 100
+                                   , "-h", "green"] 50
                     , Run Alsa "pulse" "Master" [ "--template", " <status> <volume>%"
                                                 , "--"
                                                 , "-O", "<icon=sound.xpm/>"
                                                 , "-o", "<icon=sound-off.xpm/>"]
-                    , Run Date "%a, %b %d, %I:%M %P" "date" 100
+                    , Run Date "%a, %b %d, %I:%M %P" "date" 10
                     , Run StdinReader
                     ]
        , sepChar = "%"
