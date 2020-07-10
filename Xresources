@@ -1,7 +1,7 @@
 !!! X Resource File
 
 ! Color setup
-#include ".Xresources.d/solarized-light"
+#include ".Xresources.d/paraiso-dark"
 
 ! Font setup
 #define FONT_NAME MesloLGS NF
