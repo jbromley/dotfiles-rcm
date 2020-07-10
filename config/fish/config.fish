@@ -6,5 +6,5 @@ set -U EDITOR vim
 # Use new fzf key bindings.
 set -U FZF_LEGACY_KEYBINDINGS 0
 
-starship init fish | source
+# starship init fish | source
 
