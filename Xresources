@@ -4,7 +4,7 @@
 #include ".Xresources.d/paraiso-dark"
 
 ! Font setup
-#define FONT_NAME MesloLGS NF
+#define FONT_NAME SF Mono
 #define FONT_STYLE Regular
 #define FONT_SIZE 9
 

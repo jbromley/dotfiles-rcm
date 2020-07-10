@@ -2,7 +2,7 @@
 rofi.modi: drun,run,window,ssh
 rofi.width: 20
 rofi.lines: 8
-rofi.font: MesloLGS NF 12
+rofi.font: SF Pro Display 12
 rofi.show-icons: true
 rofi.terminal: st
 rofi.levenshtein-sort: false

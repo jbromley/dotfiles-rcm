@@ -1,4 +1,4 @@
-Config { font = "xft:MesloLGS NF:style=Regular:size=10"
+Config { font = "xft:SF Mono:style=Regular:size=10"
        , additionalFonts = ["xft:Symbola-10"]
        , textOffsets = [-1]
        , borderColor = "#000080"
