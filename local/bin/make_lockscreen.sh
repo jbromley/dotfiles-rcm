@@ -28,7 +28,7 @@ main () {
     elif [[ -f ~/.fehbg ]]
     then
 	    # Get the wallpaper from the last one set with feh.
-	    wallpaper=$(read_wallpaper_name ${FEHBG_FILE})
+	    wallpaper=$(read_wallpaper_name "${FEHBG_FILE}")
     else
         # There is no wallpaper information, select a random wallpaper and use that.
         wallpaper=$(select_random_file "${WALLPAPER_DIR}")
@@ -55,14 +55,14 @@ select_random_file () {
 
 # Get the screen resolution.
 get_screen_resolution () {
-    echo $(xrandr --current | grep '*' | uniq | mawk '{print $1}')
+    xrandr --current | grep -F '*' | uniq | mawk '{print $1}'
 }
 
 # Create a new lock screen.
 make_lock_screen () {
     screen_resolution=$(get_screen_resolution)
     convert -resize "${screen_resolution}"^ -gravity center -extent "${screen_resolution}" \
-	    -blur 11x11 "${wallpaper}" "${LOCK_SCREEN}"
+	    -blur 7x7 -colorspace Gray "${wallpaper}" "${LOCK_SCREEN}"
     # convert -resize "${screen_resolution}"^ -gravity center -extent "${screen_resolution}" \
     #     -scale 6.25% -scale 1600% "${wallpaper}" "${LOCK_SCREEN}"
 }
