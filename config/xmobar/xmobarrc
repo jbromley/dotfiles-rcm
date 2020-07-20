@@ -1,10 +1,12 @@
 Config { font = "xft:SF Mono:style=Regular:size=10"
        , additionalFonts = ["xft:Symbola-10"]
        , textOffsets = [-1]
-       , borderColor = "#000080"
+       -- , borderColor = "#000080"
+       , borderColor = "#ffffff"
        , border = TopB
-       , bgColor = "#000040"
-       , fgColor = "grey"
+       -- , bgColor = "#000040"
+       , bgColor = "#f0f0f0"
+       , fgColor = "#202020"
        , alpha = 255
        , position = TopW C 100
        , textOffset = -1
@@ -23,19 +25,19 @@ Config { font = "xft:SF Mono:style=Regular:size=10"
                                    , "--"
                                    , "--devices", "enp0s25,wlp3s0"
                                    ] 50
-                    , Run MultiCpu [ "--template", "<fc=#E0E0E0><icon=cpu.xbm/><total>%</fc>"
+                    , Run MultiCpu [ "--template", "<fc=#202020><icon=cpu.xbm/><total>%</fc>"
 		                           , "--ppad", "3"
                                    , "--High", "90"
                                    , "--high", "DarkOrange"
                                    ] 10
-                    , Run Memory [ "--template" , "<fc=#E0E0E0><icon=ram.xbm/></fc> <used>M/<total>M"
+                    , Run Memory [ "--template" , "<fc=#202020><icon=ram.xbm/></fc> <used>M/<total>M"
 		                         , "--ppad", "3" 
                                  ] 10
                     , Run Network "enp0s25" [ "-Low", "262144"
                                             , "-High", "1048576"
                                             , "--high", "#ee9a00"
                                             ] 50
-                    , Run Wireless "wlp3s0" [ "--template", "<fc=#E0E0E0><icon=wifi.xbm/></fc> <essid> <quality>%"
+                    , Run Wireless "wlp3s0" [ "--template", "<fc=#202020><icon=wifi.xbm/></fc> <essid> <quality>%"
                                             , "--ppad", "3"
                                             , "--Low", "50"
                                             , "--low", "orange"
@@ -44,7 +46,7 @@ Config { font = "xft:SF Mono:style=Regular:size=10"
                               , ("es", "ES")
                               ]
                     , Run BatteryP ["BAT0", "BAT1"]
-                                   [ "--template", "<fc=#E0E0E0><icon=battery.xbm/></fc> <left>/<timeleft> <acstatus>"
+                                   [ "--template", "<fc=#202020><icon=battery.xbm/></fc> <left>/<timeleft> <acstatus>"
                                    , "--"
                                    , "-P"
                                    , "-O", "<fc=#006400><icon=ac.xbm/></fc>"
@@ -54,12 +56,12 @@ Config { font = "xft:SF Mono:style=Regular:size=10"
                                    , "-h", "green"] 50
                     , Run Alsa "pulse" "Master" [ "--template", " <status> <volume>%"
                                                 , "--"
-                                                , "-O", "<fc=#E0E0E0><icon=sound.xbm/></fc>"
+                                                , "-O", "<fc=#202020><icon=sound.xbm/></fc>"
                                                 , "-o", "<fc=#FF8C00><icon=sound-off.xbm/></fc>"]
                     , Run Date "%a, %b %d, %I:%M %P" "date" 10
                     , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %multicpu% | %memory% | %enp0s25% | %wlp3s0wi% | %dynnetwork% | %kbd% | %alsa:pulse:Master% | %battery% | <fc=#ffffff>%date%</fc>"
+       , template = "%StdinReader% }{ %multicpu% | %memory% | %enp0s25% | %wlp3s0wi% | %dynnetwork% | %kbd% | %alsa:pulse:Master% | %battery% | <fc=#000000>%date%</fc> "
        }

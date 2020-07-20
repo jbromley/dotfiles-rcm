@@ -1,4 +1,4 @@
-import XMonad
+import XMonad hiding ( (|||) )
 import XMonad.Actions.Submap
 import XMonad.Actions.WindowBringer
 import XMonad.Config.Desktop
@@ -7,7 +7,7 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.SetWMName
 import XMonad.Layout.Combo
 import XMonad.Layout.LayoutBuilder
-import XMonad.Layout.LayoutCombinators hiding ( (|||) )
+import XMonad.Layout.LayoutCombinators
 import XMonad.Layout.Tabbed
 import XMonad.Layout.TwoPane
 import XMonad.Layout.WindowNavigation
@@ -36,18 +36,30 @@ main = do
                          , logHook = dynamicLogWithPP $ myXmobarPP xmproc
                          } `additionalKeys` myKeys
 
-myTerminal = "st"
 myMask = mod4Mask
+myTerminal = "kitty"
 myBorderWidth = 2
-myFocusedBorderColor = "#0000FF"
-myActiveColor = "#000080"
-myUrgentBorderColor = "#00FFFF"
-myUrgentColor = "#008080"
+
+-- Colors and fonts
+-- myFocusedBorderColor = "#0000FF"
+-- myActiveColor = "#000080"
+-- myUrgentBorderColor = "#00FFFF"
+-- myUrgentColor = "#008080"
+myFocusedBorderColor = "#ffffff"
+myActiveColor = "#404040"
+myUrgentBorderColor = "#ff8c00"
+myUrgentColor = "#ffa500"
+myXmobarTextColor = "#000000"
+myXmobarTextColor2 = "#404040"
+myXmobarCurrentWSColor = "#a0a0a0"
+
 myTabFont = "xft:Ubuntu:style=Bold:size=10"
 myFont = "xft:Ubuntu:style=Bold:size=10"
+
+-- Status bar program
 myStatusBar = "/home/jay/.cabal/bin/xmobar"
 
-myLayoutHook = tiled ||| tallAndTabbed ||| tabbedLayout ||| Full
+myLayoutHook = tiled ||| twoPane ||| tabbedLayout ||| Full
   where
     tiled = Tall nmaster delta ratio
     twoPane = TwoPane delta ratio
@@ -85,21 +97,21 @@ myManageHook = composeAll
     , namedScratchpadManageHook myScratchpads
     ]
 
-myXmobarPP h = xmobarPP { ppCurrent = xmobarColor "white" "#0000c0" . wrap "[" "]"
-                        , ppUrgent = xmobarColor "white" "#33ff00" . wrap ">" "<"
+myXmobarPP h = xmobarPP { ppCurrent = xmobarColor myXmobarTextColor myXmobarCurrentWSColor . wrap "[" "]"
+                        , ppUrgent = xmobarColor myXmobarTextColor myUrgentBorderColor . wrap ">" "<"
                         , ppSep = " | "
                         , ppOutput = hPutStrLn h
-                        , ppTitle = xmobarColor "white" "" . shorten 50
-                        , ppLayout = xmobarColor "gray" "" . myLayoutPrinter
+                        , ppTitle = xmobarColor myXmobarTextColor "" . shorten 50
+                        , ppLayout = xmobarColor myXmobarTextColor2 "" . myLayoutPrinter
                         }
 
 myLayoutPrinter :: String -> String
-myLayoutPrinter "Tall" = "<icon=/home/jay/.xmonad/tall.xpm/>"
-myLayoutPrinter "TwoPane" = "<icon=/home/jay/.xmonad/twopane.xpm/>"
-myLayoutPrinter "layoutN Full layoutAll Tabbed Simplest" = "<icon=/home/jay/.xmonad/combo.xpm/>"
-myLayoutPrinter "combining Tabbed Simplest and Full with TwoPane" = "<icon=/home/jay/.xmonad/combo.xpm/>"
-myLayoutPrinter "Tabbed Simplest" = "<icon=/home/jay/.xmonad/tabbed.xpm/>"
-myLayoutPrinter "Full" = "<icon=/home/jay/.xmonad/full.xpm/>"
+myLayoutPrinter "Tall" = "<icon=/home/jay/.xmonad/tall.xbm/>"
+myLayoutPrinter "TwoPane" = "<icon=/home/jay/.xmonad/twopane.xbm/>"
+myLayoutPrinter "layoutN Full layoutAll Tabbed Simplest" = "<icon=/home/jay/.xmonad/combo.xbm/>"
+myLayoutPrinter "combining Tabbed Simplest and Full with TwoPane" = "<icon=/home/jay/.xmonad/combo.xbm/>"
+myLayoutPrinter "Tabbed Simplest" = "<icon=/home/jay/.xmonad/tabbed.xbm/>"
+myLayoutPrinter "Full" = "<icon=/home/jay/.xmonad/full.xbm/>"
 myLayoutPrinter x = "[[" ++ x ++ "]]"
 
 myKeys = [ ((myMask .|. controlMask, xK_Return), spawn "st")
@@ -114,6 +126,11 @@ myKeys = [ ((myMask .|. controlMask, xK_Return), spawn "st")
          , ((myMask .|. shiftMask, xK_l), sendMessage $ Swap R)
          , ((myMask .|. controlMask, xK_h), sendMessage $ Move L)
          , ((myMask .|. controlMask, xK_l), sendMessage $ Move R)
+         -- Layouts
+         , ((myMask, xK_t), sendMessage $ JumpToLayout "Tall")
+         , ((myMask, xK_a), sendMessage $ JumpToLayout "Tabbed Simplest")
+         , ((myMask, xK_u), sendMessage $ JumpToLayout "Full") 
+         , ((myMask, xK_w), sendMessage $ JumpToLayout "TwoPane")
          -- Scratch pad submap
          , ((myMask, xK_s), submap . M.fromList $
            [ ((0, xK_k), namedScratchpadAction myScratchpads "xclock")
