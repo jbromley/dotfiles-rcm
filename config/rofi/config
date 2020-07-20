@@ -4,13 +4,15 @@ rofi.width: 20
 rofi.lines: 8
 rofi.font: SF Pro Display 12
 rofi.show-icons: true
-rofi.terminal: st
+rofi.terminal: kitty 
 rofi.levenshtein-sort: false
 rofi.matching: normal
-rofi.color-normal: #000040, #c0c0c0, #000040, #000080, #ffffff
+! rofi.color-normal: bg, fg, bgalt, hlbg, hlfg
+rofi.color-normal: #ffffff, #202020, #ffffff, #808080, #ffffff
 ! "Color scheme for urgent row" Set from: Default
 ! rofi.color-urgent:                   
 ! "Color scheme for active row" Set from: Default
 ! rofi.color-active:                   
-rofi.color-window: #000040, #000080, #000080
+! rofi.color-window: background, border, separator
+rofi.color-window: #ffffff, #f0f0f0, #f0f0f0
 
