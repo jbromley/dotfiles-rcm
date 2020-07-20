@@ -1,8 +1,0 @@
-! Polybar
-#ifdef SRVR_dromedary
-  polybar.height: 32
-  polybar.tray-maxsize: 24
-#else
-  polybar.height: 24
-  polybar.tray-maxsize: 16
-#endif
