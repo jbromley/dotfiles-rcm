@@ -2,7 +2,7 @@ Config { font = "xft:SF Mono:style=Regular:size=9"
        , additionalFonts = ["xft:MesloLGS NF:size=9"]
        , textOffsets = [-1]
        , border = NoBorder
-       , alpha = 224 
+       , alpha = 255 
        , position = TopW C 100
        , textOffset = -1
        , iconOffset = -1

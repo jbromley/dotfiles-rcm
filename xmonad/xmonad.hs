@@ -75,8 +75,8 @@ myManageHook = composeAll
     , namedScratchpadManageHook myScratchpads
     ]
 
-myXmobarPP h = xmobarPP { ppCurrent = wrap "[" "]"
-                        , ppUrgent = wrap ">" "<"
+myXmobarPP h = xmobarPP { ppCurrent = xmobarColor "black" "white" . wrap " " " "
+                        , ppUrgent = xmobarColor "white" "red" . wrap " " " "
                         , ppVisible = wrap " " " "
                         , ppHidden = wrap " " " "
                         , ppWsSep = ""
