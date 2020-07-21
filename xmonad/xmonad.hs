@@ -101,6 +101,9 @@ myManageHook = composeAll
 
 myXmobarPP h = xmobarPP { ppCurrent = xmobarColor myXmobarTextColor myXmobarCurrentWSColor . wrap "[" "]"
                         , ppUrgent = xmobarColor myXmobarTextColor myUrgentBorderColor . wrap ">" "<"
+                        , ppVisible = wrap " " " "
+                        , ppHidden = wrap " " " "
+                        , ppWsSep = ""
                         , ppSep = " | "
                         , ppOutput = hPutStrLn h
                         , ppTitle = xmobarColor myXmobarTextColor "" . shorten 50
