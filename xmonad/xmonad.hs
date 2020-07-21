@@ -58,9 +58,9 @@ myTabConfig = def { fontName = myFont
                   , decoHeight = 24 
                   }
 
-myScratchpads = [ NS "htop" "st -e htop" (title =? "htop") (customFloating $ W.RationalRect (1/4) (1/8) (1/2) (3/4))
-                , NS "calc" "st -e bc -l" (title =? "bc") (customFloating $ W.RationalRect 0 (3/4) (1/4) (1/4))
-                , NS "st" "st -n scratch_term" (resource =? "scratch_term") (customFloating $ W.RationalRect (1/4) (1/4) (1/2) (1/2))
+myScratchpads = [ NS "htop" "kitty --name htop htop" (resource =? "htop") (customFloating $ W.RationalRect (1/4) (1/8) (1/2) (3/4))
+                , NS "calc" "kitty --name bc bc -l" (resource =? "bc") (customFloating $ W.RationalRect 0 (3/4) (1/4) (1/4))
+                , NS "terminal" "kitty --name scratch" (resource =? "scratch") (customFloating $ W.RationalRect (1/4) (1/4) (1/2) (1/2))
                 , NS "xclock" "xclock" (className =? "XClock") (customFloating $ RationalRect (7/16) (2/5) (1/8) (1/5))
                 ]
 
@@ -119,7 +119,7 @@ myKeys = [ ((myMask .|. controlMask, xK_Return), spawn "st")
            ])
          , ((myMask, xK_F10), namedScratchpadAction myScratchpads "calc")
          , ((myMask, xK_F11), namedScratchpadAction myScratchpads "htop")
-         , ((myMask, xK_F12), namedScratchpadAction myScratchpads "st")
+         , ((myMask, xK_F12), namedScratchpadAction myScratchpads "terminal")
          -- Multimedia and other special keys
          , ((0, xF86XK_AudioPlay), spawn "/home/jay/.local/bin/sp play")
          , ((0, xF86XK_AudioNext), spawn "/home/jay/.local/bin/sp next")
