@@ -29,8 +29,6 @@ main = do
   xmonad $ desktopConfig { terminal = myTerminal
                          , modMask = myMask
                          , borderWidth = myBorderWidth
-                         , focusedBorderColor = myFocusedBorderColor
-                         , normalBorderColor = myNormalBorderColor
                          , startupHook = setWMName "LG3D"
                          , layoutHook = desktopLayoutModifiers $ myLayoutHook
                          , manageHook = myManageHook <+> manageHook defaultConfig
@@ -40,23 +38,7 @@ main = do
 myMask = mod4Mask
 myTerminal = "kitty"
 myBorderWidth = 2
-
--- Colors and fonts
--- myFocusedBorderColor = "#0000FF"
--- myActiveColor = "#000080"
--- myUrgentBorderColor = "#00FFFF"
--- myUrgentColor = "#008080"
-myFocusedBorderColor = "#ffffff"
-myNormalBorderColor = "#000000"
-myActiveColor = "#404040"
-myUrgentBorderColor = "#ff8c00"
-myUrgentColor = "#ffa500"
-myXmobarTextColor = "#000000"
-myXmobarTextColor2 = "#404040"
-myXmobarCurrentWSColor = "#a0a0a0"
-
-myTabFont = "xft:Ubuntu:style=Bold:size=10"
-myFont = "xft:Ubuntu:style=Bold:size=10"
+myFont = "xft:SF Pro Display:style=Bold:size=10"
 
 -- Status bar program
 myStatusBar = "/home/jay/.cabal/bin/xmobar"
@@ -66,19 +48,13 @@ myLayoutHook = tiled ||| twoPane ||| tabbedLayout ||| Full
     tiled = Tall nmaster delta ratio
     twoPane = TwoPane delta ratio
     tabbedLayout = tabbed shrinkText myTabConfig
-    -- tallAndTabbed = windowNavigation(combineTwo (twoPane) (tabbedLayout) (Full))
-    -- tallAndTabbed = Tall *||* tabbedLayout 
     tallAndTabbed = windowNavigation(layoutN 1 (relBox 0 0 0.5 1) (Just $ relBox 0 0 1 1) Full
                     $ layoutAll (relBox 0.5 0 1 1) tabbedLayout)
     nmaster = 1
     delta = 2 / 100
     ratio = 1 / 2
  
-myTabConfig = def { activeBorderColor = myFocusedBorderColor
-                  , activeColor = myActiveColor
-                  , urgentBorderColor = myUrgentBorderColor
-                  , urgentColor = myUrgentColor
-                  , fontName = myTabFont
+myTabConfig = def { fontName = myFont
                   , decoHeight = 24 
                   }
 
@@ -99,15 +75,15 @@ myManageHook = composeAll
     , namedScratchpadManageHook myScratchpads
     ]
 
-myXmobarPP h = xmobarPP { ppCurrent = xmobarColor myXmobarTextColor myXmobarCurrentWSColor . wrap "[" "]"
-                        , ppUrgent = xmobarColor myXmobarTextColor myUrgentBorderColor . wrap ">" "<"
+myXmobarPP h = xmobarPP { ppCurrent = wrap "[" "]"
+                        , ppUrgent = wrap ">" "<"
                         , ppVisible = wrap " " " "
                         , ppHidden = wrap " " " "
                         , ppWsSep = ""
                         , ppSep = " | "
                         , ppOutput = hPutStrLn h
-                        , ppTitle = xmobarColor myXmobarTextColor "" . shorten 50
-                        , ppLayout = xmobarColor myXmobarTextColor2 "" . myLayoutPrinter
+                        , ppTitle = shorten 50
+                        , ppLayout = myLayoutPrinter
                         }
 
 myLayoutPrinter :: String -> String
@@ -162,8 +138,5 @@ myKeys = [ ((myMask .|. controlMask, xK_Return), spawn "st")
 myXPConfig :: XPConfig
 myXPConfig = def { font = myFont
                  , height = 24
-                 , borderColor = "#FF0000"
-                 , bgColor = "#C00000"
-                 , fgColor = "#FFFFFF"
                  , position = CenteredAt (1/2) (3/16)
                  }
