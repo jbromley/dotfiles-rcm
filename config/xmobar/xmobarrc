@@ -10,7 +10,7 @@ Config { font = "xft:SF Mono:style=Regular:size=9"
        , pickBroadest = False
        , persistent = False
        , hideOnStart = False
-       , iconRoot = "/home/jay/.config/xmobar"
+       , iconRoot = "/home/jay/.config/xmobar/icons"
        , allDesktops = True
        , overrideRedirect = True
        , commands = [
@@ -41,22 +41,32 @@ Config { font = "xft:SF Mono:style=Regular:size=9"
                               , ("es", "ES")
                               ]
                     , Run BatteryP ["BAT0", "BAT1"]
-                                   [ "--template", "<icon=battery.xbm/> <left>/<timeleft> <acstatus>"
+                                   [ "--template", "<leftipat><acstatus>"
                                    , "--"
+                                   , "-H", "75"
+                                   , "-L", "10"
                                    , "-P"
                                    , "-O", "<icon=ac.xbm/>"
                                    , "-i", "<icon=ac.xbm/>"
-                                   , "-o", "<icon=discharging.xbm/>"
+                                   , "-o", "<icon=no-ac.xbm/>"
                                    , "-l", "red"
-                                   , "-h", "green"] 50
+                                   , "--on-icon-pattern", "<icon=charging-battery.xbm/> <left>/<timeleft>"
+                                   , "--idle-icon-pattern", "<icon=battery.xbm/> <left>"
+                                   , "--off-icon-pattern", ""
+                                   , "--highs", "<icon=battery.xbm/> <left>/<timeleft>"
+                                   , "--mediums", "<icon=med-battery.xbm/> <left>/<timeleft>"
+                                   , "--highs", "<fc=red><icon=low-battery.xbm/></fc> <left>/<timeleft>"
+                                   , "-a", "notify-send -u critical -a 'Battery low!' 'The battery level is below 5%.'"
+                                   ] 50
                     , Run Alsa "pulse" "Master" [ "--template", " <status> <volume>%"
                                                 , "--"
                                                 , "-O", "<icon=sound.xbm/>"
                                                 , "-o", "<icon=sound-off.xbm/>"]
                     , Run Date "%a, %b %d, %I:%M %P" "date" 10
+                    , Run Com "/home/jay/.config/xmobar/update-stat" [] "update" 6000
                     , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %multicpu% | %memory% | %enp0s25% | %wlp3s0wi% | %dynnetwork% | %kbd% | %alsa:pulse:Master% | %battery% | %date% "
+       , template = "%StdinReader% }{ %multicpu% | %memory% | %enp0s25% | %wlp3s0wi% | %dynnetwork% | %kbd% | %alsa:pulse:Master% | %battery% | %date% | %update% "
        }
