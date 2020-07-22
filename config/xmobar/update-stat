@@ -1,0 +1,20 @@
+#! /usr/bin/env bash
+set -o errexit
+set -o pipefail
+
+declare output
+
+output=""
+
+# Check if there are updates available.
+if aptitude -q search -F '%p' --disable-columns '~U'; then
+    output="<icon=update.xbm/>"
+fi
+
+# Check if a reboot is needed.
+readonly reboot_file=/var/run/reboot-required
+if [ -f "${reboot_file}" ]; then
+    output+="<icon=restart.xbm/>"
+fi
+
+echo "${output}"
