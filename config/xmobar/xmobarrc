@@ -14,7 +14,7 @@ Config { font = "xft:SF Mono:style=Regular:size=9"
        , allDesktops = True
        , overrideRedirect = True
        , commands = [
-                    Run DynNetwork [ "--template", "<dev>: <rx>⇩<tx>⇧"
+                    Run DynNetwork [ "--template", "<dev>: <rx><icon=down_arrow.xbm/> <tx><icon=up_arrow.xbm/>"
                                    , "-S", "True"
                                    , "--width", "6"
                                    , "--"
@@ -61,7 +61,9 @@ Config { font = "xft:SF Mono:style=Regular:size=9"
                     , Run Alsa "pulse" "Master" [ "--template", " <status> <volume>%"
                                                 , "--"
                                                 , "-O", "<icon=sound.xbm/>"
-                                                , "-o", "<icon=sound-off.xbm/>"]
+                                                , "-o", "<icon=sound-off.xbm/>"
+                                                , "--offc", "red"
+                                                ]
                     , Run Date "%a, %b %d, %I:%M %P" "date" 10
                     , Run Com "/home/jay/.config/xmobar/update-stat" [] "update" 6000
                     , Run StdinReader
