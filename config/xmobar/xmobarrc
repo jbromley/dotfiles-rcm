@@ -62,6 +62,7 @@ Config { font = "xft:SF Mono:style=Regular:size=9"
                                                 , "--"
                                                 , "-O", "<icon=sound.xbm/>"
                                                 , "-o", "<icon=sound-off.xbm/>"
+                                                , "--onc", "grey"
                                                 , "--offc", "red"
                                                 ]
                     , Run Date "%a, %b %d, %I:%M %P" "date" 10
