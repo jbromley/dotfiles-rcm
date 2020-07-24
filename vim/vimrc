@@ -6,7 +6,6 @@ set backspace=indent,eol,start
 set modeline
 set modelines=1
 set clipboard=unnamed
-" let mapleader = ","
 " }}}
 
 " Spaces & Tabs {{{
@@ -21,10 +20,6 @@ set path+=**
 set ignorecase          " ignore case when searching
 set incsearch           " search as characters are entered
 set hlsearch            " highlight all matches
-" Set cursors for different modes
-" let &t_SI = "\<Esc>[6 q"
-" let &t_SR = "\<Esc>[4 q"
-" let &t_EI = "\<Esc>[2 q"
 " Turn off search highlights
 nnoremap <leader><space> :nohlsearch<CR>
 " }}}
@@ -53,8 +48,6 @@ set writebackup
 
 " Plugins {{{
 call plug#begin('~/.vim/plugged')
-" Color schemes
-Plug 'altercation/vim-colors-solarized'
 
 " FZF 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -89,9 +82,6 @@ call plug#end()
 " }}}
 
 " Plugin configuration {{{
-
-" Solarized toggle background
-call togglebg#map("<F5>")
 
 " Key bindings for fzf
 nmap ; :Buffers<CR>
