@@ -46,9 +46,9 @@ set list listchars=tab:▸\ ,extends:❯,precedes:❮,nbsp:+
 
 " Backups
 set backup
-set backupdir=~/.vim/tmp,/var/tmp,/tmp
+set backupdir=~/.cache/nvim/tmp,/var/tmp,/tmp
 set backupskip=/tmp/*,/private/tmp/*
-set directory=~/.vim/tmp,/var/tmp,/tmp
+set directory=~/.cache/nvim/tmp,/var/tmp,/tmp
 set writebackup
 
 syntax on
@@ -79,9 +79,14 @@ Plug 'vimwiki/vimwiki'
 " Unicode
 Plug 'chrisbra/unicode.vim'
 
-" Elixir
-Plug 'elixir-editors/vim-elixir'
+" Commentary
+Plug 'tpope/vim-commentary'
+
+" ALE
 Plug 'dense-analysis/ale'
+
+" Elixir
+" Plug 'elixir-editors/vim-elixir'
 call plug#end()
 
 " Plugin configuration and key bindings {{{
@@ -100,7 +105,8 @@ let g:NERDTreeIgnore=['\~$', '__pycache__', '.git']
 let g:vimwiki_list = [{'path': '~/Documents/VimWiki/'}]
 
 " Elixir/ALE
-let g:ale_linters= {'elixir': ['elixir-ls'], }
+let g:ale_linters= {'elixir': ['elixir-ls'], 
+                   \ 'python': ['pylint', 'flake8', 'mypy']}
 let g:ale_fixers = {'elixir': ['mix_format'], }
 let g:ale_elixir_elixir_ls_relase='/opt/elixir-ls'
 let g:ale_completion_enabled = 1
@@ -115,7 +121,7 @@ let g:ale_lint_on_save = 1
 let g:ale_fix_on_save = 1
 
 noremap <Leader>ad :ALEGoToDefinition<CR>
-nnoremap <leader>af :ALEFix<cr>
+nnoremap <leader>af :ALEFix<CR>
 noremap <Leader>ar :ALEFindReferences<CR>
 
 "Move between linting errors
@@ -145,6 +151,13 @@ function! StatuslineMode()
     return "SHELL"
   endif
 endfunction
+
+function! LinterStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+    return l:counts.total == 0 ? 'OK' : printf('%dW %dE', all_non_errors, all_errors)
+endfunction
 " }}}
 
 " Autocommands {{{ 
@@ -152,13 +165,6 @@ augroup dynamic_smartcase
     autocmd!
     autocmd CmdLineEnter : set nosmartcase
     autocmd CmdLineLeave : set smartcase
-augroup END
-
-augroup python_tabs_nows
-    autocmd!
-    autocmd BufRead,BufNewFile *.py setlocal tabstop=2 shiftwidth=2 softtabstop=2
-    autocmd BufRead,BufNewFile *.py nnoremap <Leader>b V:s/[,)]/&\r/g <cr>='<
-    autocmd BufWritePre *.py %s/\s\+$//e
 augroup END
 
 augroup cursorline_active_window
@@ -170,8 +176,11 @@ augroup END
 " Set up Python buffers
 augroup python_buffer 
     autocmd!
-    autocmd BufRead,BufNewFile *.py setlocal tabstop=2 shiftwidth=2 softtabstop=2
-    autocmd BufRead,BufNewFile *.py nnoremap <Leader>b V:s/[,)]/&\r/g <cr>='<
+    " autocmd BufRead,BufNewFile *.py setlocal tabstop=2 shiftwidth=2 softtabstop=2 signcolumn=yes
+    " autocmd BufRead,BufNewFile *.py setlocal signcolumn=yes
+    autocmd FileType python setlocal signcolumn=yes
+    " autocmd BufRead,BufNewFile *.py nnoremap <Leader>b V:s/[,)]/&\r/g <cr>='<
+    autocmd FileType python nnoremap <Leader>b V:s/[,)]/&\r/g <cr>='<
     autocmd BufWritePre *.py %s/\s\+$//e
 augroup END
 "}}}
@@ -231,7 +240,7 @@ set statusline+=%2*\ %{FugitiveStatusline()}\
 set statusline+=%9*\ "%{StatuslineMode()}
 set statusline+=%=
 set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%{LinterStatus()}
 set statusline+=%*
 set statusline+=%y\ %{&fileencoding?&fileencoding:&encoding}\ [%{&fileformat}]\ 
 set statusline+=%2*\ Column\ %c\ 
