@@ -82,8 +82,14 @@ Plug 'chrisbra/unicode.vim'
 " Commentary
 Plug 'tpope/vim-commentary'
 
+" coc.nvim
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" coc-elixir
+Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
+
 " ALE
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 
 " Elixir
 " Plug 'elixir-editors/vim-elixir'
@@ -104,21 +110,20 @@ let g:NERDTreeIgnore=['\~$', '__pycache__', '.git']
 " VimWiki
 let g:vimwiki_list = [{'path': '~/Documents/VimWiki/'}]
 
-" Elixir/ALE
-let g:ale_linters= {'elixir': ['elixir-ls'], 
-                   \ 'python': ['pylint', 'flake8', 'mypy']}
-let g:ale_fixers = {'elixir': ['mix_format'], }
-let g:ale_elixir_elixir_ls_relase='/opt/elixir-ls'
-let g:ale_completion_enabled = 1
-let g:ale_sign_error = '✘'
-let g:ale_sign_warning = '⚠'
-let g:ale_lint_on_enter = 0
-let g:ale_lint_on_text_changed = 'never'
-highlight ALEErrorSign ctermbg=NONE ctermfg=red
-highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
-let g:ale_linters_explicit = 1
-let g:ale_lint_on_save = 1
-let g:ale_fix_on_save = 1
+" ALE
+" let g:ale_linters= {'elixir': ['elixir-ls'], \ 'python': ['pylint', 'flake8', 'mypy']}
+" let g:ale_fixers = {'elixir': ['mix_format'], }
+" let g:ale_elixir_elixir_ls_relase='/opt/elixir-ls'
+" let g:ale_completion_enabled = 1
+" let g:ale_sign_error = '✘'
+" let g:ale_sign_warning = '⚠'
+" let g:ale_lint_on_enter = 0
+" let g:ale_lint_on_text_changed = 'never'
+" highlight ALEErrorSign ctermbg=NONE ctermfg=red
+" highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
+" let g:ale_linters_explicit = 1
+" let g:ale_lint_on_save = 1
+" let g:ale_fix_on_save = 1
 
 noremap <Leader>ad :ALEGoToDefinition<CR>
 nnoremap <leader>af :ALEFix<CR>
@@ -152,12 +157,12 @@ function! StatuslineMode()
   endif
 endfunction
 
-function! LinterStatus() abort
-    let l:counts = ale#statusline#Count(bufnr(''))
-    let l:all_errors = l:counts.error + l:counts.style_error
-    let l:all_non_errors = l:counts.total - l:all_errors
-    return l:counts.total == 0 ? 'OK' : printf('%dW %dE', all_non_errors, all_errors)
-endfunction
+" function! LinterStatus() abort
+"     let l:counts = ale#statusline#Count(bufnr(''))
+"     let l:all_errors = l:counts.error + l:counts.style_error
+"     let l:all_non_errors = l:counts.total - l:all_errors
+"     return l:counts.total == 0 ? 'OK' : printf('%dW %dE', all_non_errors, all_errors)
+" endfunction
 " }}}
 
 " Autocommands {{{ 
@@ -240,7 +245,7 @@ set statusline+=%2*\ %{FugitiveStatusline()}\
 set statusline+=%9*\ "%{StatuslineMode()}
 set statusline+=%=
 set statusline+=%#warningmsg#
-set statusline+=%{LinterStatus()}
+" set statusline+=%{LinterStatus()}
 set statusline+=%*
 set statusline+=%y\ %{&fileencoding?&fileencoding:&encoding}\ [%{&fileformat}]\ 
 set statusline+=%2*\ Column\ %c\ 
