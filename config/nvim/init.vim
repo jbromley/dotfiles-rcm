@@ -97,6 +97,9 @@ Plug 'tpope/vim-commentary'
 " Elixir
 Plug 'elixir-editors/vim-elixir'
 
+" YouCompleteMe
+Plug 'ycm-core/YouCompleteMe'
+
 call plug#end()
 "}}}
 
@@ -115,6 +118,22 @@ let g:NERDTreeIgnore=['\~$', '__pycache__', '.git']
 " VimWiki
 let g:vimwiki_list = [{'path': '~/Documents/VimWiki/'}]
 
+" YouCompleteMe
+let g:ycm_clangd_binary_path = "/opt/clang+llvm-10.0.0-x86_64-apple-darwin/bin/clangd"
+let g:ycm_language_server = 
+  \  [
+  \    {
+  \       'name': 'elixir',
+  \       'cmdline': [ '/opt/elixir-ls/language_server.sh' ],
+  \       'filetypes': [ 'elixir' ],
+  \       'project_root_files': [ 'mix.exs' ]
+  \    }
+  \  ]
+map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+map <leader>r :YcmCompleter GoToReferences<CR>
+map <leader>s :YcmCompleter GoToSymbol<CR>
+map <leader>k :YcmCompleter GetDoc<CR>
+map <leader>y :YcmCompleter GetType<CR>
 " }}}
 
 " Functions{{{
