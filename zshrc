@@ -48,6 +48,10 @@ autoload -U compinit; compinit
 _comp_options+=(globdots)
 source ${HOME}/.zsh/plugins/completion.zsh
 
+# Allow zsh to use bash completions
+autoload bashcompinit
+bashcompinit
+
 # Fzf
 source /usr/share/doc/fzf/examples/completion.zsh
 source /usr/share/doc/fzf/examples/key-bindings.zsh
