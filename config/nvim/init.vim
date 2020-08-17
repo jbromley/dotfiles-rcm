@@ -119,7 +119,11 @@ let g:NERDTreeIgnore=['\~$', '__pycache__', '.git']
 let g:vimwiki_list = [{'path': '~/Documents/VimWiki/'}]
 
 " YouCompleteMe
-let g:ycm_clangd_binary_path = "/opt/clang+llvm-10.0.0-x86_64-apple-darwin/bin/clangd"
+if has('mac')
+    let g:ycm_clangd_binary_path = "/opt/clang+llvm-10.0.0-x86_64-apple-darwin/bin/clangd"
+else
+    let g:ycm_clangd_binary_path = "/usr/bin/clangd"
+endif
 let g:ycm_language_server = 
   \  [
   \    {
