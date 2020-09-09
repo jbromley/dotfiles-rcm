@@ -72,6 +72,9 @@ endif
 " Plugins {{{
 call plug#begin()
 
+" Solarized
+Plug 'altercation/vim-colors-solarized'
+
 " FZF 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -118,6 +121,9 @@ let g:NERDTreeIgnore=['\~$', '__pycache__', '.git']
 " VimWiki
 let g:vimwiki_list = [{'path': '~/Documents/VimWiki/'}]
 
+" vim-commentary
+autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
+
 " YouCompleteMe
 if has('mac')
     let g:ycm_clangd_binary_path = "/opt/clang+llvm-10.0.0-x86_64-apple-darwin/bin/clangd"
@@ -133,6 +139,10 @@ let g:ycm_language_server =
   \       'project_root_files': [ 'mix.exs' ]
   \    }
   \  ]
+let g:ycm_always_populate_location_list = 1
+let g:ycm_error_symbol = '!!'
+let g:ycm_warning_symbol = '??'
+map <leader>i :YcmCompleter GoTo<CR>
 map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 map <leader>r :YcmCompleter GoToReferences<CR>
 map <leader>s :YcmCompleter GoToSymbol<CR>
@@ -226,6 +236,12 @@ inoremap <S-Tab> <Esc><<i
 "}}}
 
 " UI {{{
+
+" Color scheme
+set termguicolors
+set background=light
+colorscheme solarized
+
 " Modeline
 set modeline
 set modelines=1
