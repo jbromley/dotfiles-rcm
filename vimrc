@@ -72,8 +72,12 @@ endif
 " Plugins {{{
 call plug#begin()
 
-" Solarized
-Plug 'altercation/vim-colors-solarized'
+" Solarized theme
+" Plug 'altercation/vim-colors-solarized'
+Plug 'frankier/neovim-colors-solarized-truecolor-only'
+
+" One-half theme
+Plug 'sonph/onehalf'
 
 " FZF 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -125,6 +129,7 @@ let g:vimwiki_list = [{'path': '~/Documents/VimWiki/'}]
 autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
 
 " YouCompleteMe
+autocmd CompleteDone * pclose
 if has('mac')
     let g:ycm_clangd_binary_path = "/opt/clang+llvm-10.0.0-x86_64-apple-darwin/bin/clangd"
 else
@@ -143,13 +148,14 @@ let g:ycm_auto_hover = ''
 let g:ycm_always_populate_location_list = 1
 let g:ycm_error_symbol = '!!'
 let g:ycm_warning_symbol = '??'
-map <leader>i :YcmCompleter GoTo<CR>
-map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
-map <leader>r :YcmCompleter GoToReferences<CR>
-map <leader>s :YcmCompleter GoToSymbol<CR>
-map <leader>k :YcmCompleter GetDoc<CR>
-map <leader>y :YcmCompleter GetType<CR>
-map <leader>D <Plug>(YCMHover)
+map <Leader>i :YcmCompleter GoTo<CR>
+map <Leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+map <Leader>r :YcmCompleter GoToReferences<CR>
+map <Leader>s :YcmCompleter GoToSymbol<CR>
+map <Leader>k :YcmCompleter GetDoc<CR>
+map <Leader>y :YcmCompleter GetType<CR>
+map <Leader>x :YcmCompleter FixIt<CR>
+map <Leader>D <Plug>(YCMHover)
 " }}}
 
 " Functions{{{
@@ -248,8 +254,10 @@ inoremap <S-Tab> <Esc><<i
 " Color scheme
 " set t_Co=256
 " set termguicolors
-" set background=light
-" colorscheme solarized
+
+if (has('nvim'))
+    colorscheme onehalflight
+endif
 
 " Modeline
 set modeline
@@ -274,8 +282,7 @@ set statusline+=%=
 set statusline+=%#warningmsg#
 set statusline+=%*
 set statusline+=%y\ %{&fileencoding?&fileencoding:&encoding}\ [%{&fileformat}]\ 
-set statusline+=%2*\ Column\ %c\ 
-set statusline+=%1*\ Line\ %l/%L\ (%P)
+set statusline+=%1*\ L\ %l/%L\ C\ %c\ (%P)
 set laststatus=2
 hi User1 ctermbg=darkblue ctermfg=white guibg=darkblue guifg=white
 hi User2 ctermbg=magenta ctermfg=white guibg=magenta guifg=white
