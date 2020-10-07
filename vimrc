@@ -72,12 +72,12 @@ endif
 " Plugins {{{
 call plug#begin()
 
-" Solarized theme
-" Plug 'altercation/vim-colors-solarized'
+" Themes
 Plug 'frankier/neovim-colors-solarized-truecolor-only'
-
-" One-half theme
 Plug 'sonph/onehalf'
+Plug 'bluz71/vim-nightfly-guicolors'
+Plug 'mhartington/oceanic-next'
+Plug 'barlog-m/oceanic-primal-vim', {'branch': 'main'}
 
 " FZF 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -251,12 +251,11 @@ inoremap <S-Tab> <Esc><<i
 
 " UI {{{
 
-" Color scheme
-" set t_Co=256
-" set termguicolors
-
 if (has('nvim'))
-    colorscheme onehalflight
+    " colorscheme nightfly
+    " colorscheme solarized
+    " colorscheme oceanic-primal
+    colorscheme OceanicNext
 endif
 
 " Modeline
