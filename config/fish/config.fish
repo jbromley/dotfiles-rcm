@@ -1,5 +1,5 @@
 # Add our local bin directory to the path.
-set -g --prepend PATH $HOME/.local/bin
+#set -g --prepend PATH $HOME/.local/bin
 
 # Show virtualenv name.
 set -g tide_virtual_env_display_mode 'venvName'
