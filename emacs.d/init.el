@@ -34,7 +34,7 @@
 (show-paren-mode t)
 (column-number-mode t)
 (setq-default fill-column 80)
-(setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
+(load (expand-file-name "~/.emacs.d/custom.el"))
 
 ;;; Integrate with system clipboard and selection.
 (setq select-enable-primary t
@@ -217,11 +217,13 @@
 ;;; Go
 (use-package go-mode
   :config
-  (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode)))
+  (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
+  (defun jb/lsp-go-install-save-hooks ()
+    (add-hook 'before-save-hook #'lsp-format-buffer t t)
+    (add-hook 'before-save-hook #'lsp-organize-imports t t))
+  :hook ((go-mode . jb/lsp-go-install-save-hooks)
+	 (go-mode . (lambda () (setq-default tab-width 4)))))
 
-(defun jb/lsp-go-install-save-hooks ()
-  (add-hook 'before-save-hook #'lsp-format-buffer t t)
-  (add-hook 'before-save-hook #'lsp-organize-imports t t))
 (add-hook 'go-mode-hook #'jb/lsp-go-install-save-hooks)
 
 ;;; Markdown editing
@@ -270,12 +272,5 @@
   (global-set-key (kbd "C-{") 'theme-looper-enable-previous-theme)
   (global-set-key (kbd "C-}") 'theme-looper-enable-next-theme))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; Custom file
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; Keep customizations separate so machine-specific configurations do not get
-;; saved in the dotfiles repo.
-(load custom-file)
 
 (put 'narrow-to-region 'disabled nil)
