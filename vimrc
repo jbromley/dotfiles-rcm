@@ -255,7 +255,7 @@ if (has('nvim'))
     " colorscheme nightfly
     " colorscheme solarized
     " colorscheme oceanic-primal
-    colorscheme OceanicNext
+    " colorscheme OceanicNextLight
 endif
 
 " Modeline
@@ -274,14 +274,18 @@ set colorcolumn=+1
 
 " Status line configuration
 set statusline=\ %n\ 
-set statusline+=%1*\ %f\ %m\ %r\ 
-set statusline+=%2*\ %{FugitiveStatusline()}\  
-set statusline+=%9*\ "%{StatuslineMode()}
+" set statusline+=%1*\ %f\ %m\ %r\ 
+set statusline+=\ %f\ %m\ %r\ 
+" set statusline+=%2*\ %{FugitiveStatusline()}\  
+set statusline+=\ %{FugitiveStatusline()}\  
+" set statusline+=%9*\ "%{StatuslineMode()}
+set statusline+=\ "%{StatuslineMode()}
 set statusline+=%=
 set statusline+=%#warningmsg#
 set statusline+=%*
 set statusline+=%y\ %{&fileencoding?&fileencoding:&encoding}\ [%{&fileformat}]\ 
-set statusline+=%1*\ L\ %l/%L\ C\ %c\ (%P)
+" set statusline+=%1*\ L\ %l/%L\ C\ %c\ (%P)
+set statusline+=\ L\ %l/%L\ C\ %c\ (%P)
 set laststatus=2
 hi User1 ctermbg=darkblue ctermfg=white guibg=darkblue guifg=white
 hi User2 ctermbg=magenta ctermfg=white guibg=magenta guifg=white
