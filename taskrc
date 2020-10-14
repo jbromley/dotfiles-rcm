@@ -14,10 +14,11 @@
 data.location=~/.task
 
 # Color theme (uncomment one to use)
+include /home/jay/.task.theme
 #include /usr/share/taskwarrior/light-16.theme
 #include /usr/share/taskwarrior/light-256.theme
 #include /usr/share/taskwarrior/dark-16.theme
-include /usr/share/taskwarrior/dark-256.theme
+#include /usr/share/taskwarrior/dark-256.theme
 #include /usr/share/taskwarrior/dark-red-256.theme
 #include /usr/share/taskwarrior/dark-green-256.theme
 #include /usr/share/taskwarrior/dark-blue-256.theme
