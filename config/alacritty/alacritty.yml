@@ -6,7 +6,7 @@
 # loaded earlier with those loaded later in the chain. The file itself will
 # always be loaded last.
 import:
-    - /home/jay/.config/alacritty/themes/pencil_light.yaml
+    - /home/jay/.config/alacritty/theme.yaml
 
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
@@ -118,7 +118,7 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: MesloLGS NF
+    family: DM Mono
 
     # The `style` can be specified to pick a specific face.
     style: Bold
@@ -140,13 +140,13 @@ font:
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: MesloLGS NF
+    family: DM Mono
 
     # The `style` can be specified to pick a specific face.
-    style: Bold Italic
+    style: Medium Italic
 
   # Point size
-  size: 9.0
+  size: 10.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
