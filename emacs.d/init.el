@@ -34,7 +34,8 @@
 (show-paren-mode t)
 (column-number-mode t)
 (setq-default fill-column 80)
-(load (expand-file-name "~/.emacs.d/custom.el"))
+(setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
+(load custom-file)
 
 ;;; Integrate with system clipboard and selection.
 (setq select-enable-primary t
@@ -271,6 +272,3 @@
   ;; 				      modus-operandi modus-vivendi oceanic))
   (global-set-key (kbd "C-{") 'theme-looper-enable-previous-theme)
   (global-set-key (kbd "C-}") 'theme-looper-enable-next-theme))
-
-
-(put 'narrow-to-region 'disabled nil)
