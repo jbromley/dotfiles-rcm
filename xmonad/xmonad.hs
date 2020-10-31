@@ -3,6 +3,7 @@ import XMonad.Actions.Submap
 import XMonad.Actions.WindowBringer
 import XMonad.Config.Desktop
 import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.SetWMName
 import XMonad.Layout.Combo
@@ -25,14 +26,15 @@ import System.Exit (exitWith, ExitCode(..))
 import System.IO
 
 main = do
-  xmproc <- spawnPipe myStatusBar
-  xmonad $ desktopConfig { terminal = myTerminal
+  -- xmproc <- spawnPipe myStatusBar
+  xmonad $ ewmh $ desktopConfig { terminal = myTerminal
                          , modMask = myMask
                          , borderWidth = myBorderWidth
                          , startupHook = setWMName "LG3D"
                          , layoutHook = desktopLayoutModifiers $ myLayoutHook
                          , manageHook = myManageHook <+> manageHook defaultConfig
-                         , logHook = dynamicLogWithPP $ myXmobarPP xmproc
+                         , handleEventHook = handleEventHook desktopConfig
+                         -- , logHook = dynamicLogWithPP $ myXmobarPP xmproc
                          } `additionalKeys` myKeys
 
 myMask = mod4Mask
@@ -43,7 +45,7 @@ myFont = "xft:SF Pro Display:style=Bold:size=10"
 -- Status bar program
 myStatusBar = "/home/jay/.cabal/bin/xmobar"
 
-myLayoutHook = tiled ||| twoPane ||| tabbedLayout ||| Full
+myLayoutHook = tiled ||| twoPane ||| tabbedLayout ||| tallAndTabbed ||| Full
   where
     tiled = Tall nmaster delta ratio
     twoPane = TwoPane delta ratio
@@ -53,9 +55,9 @@ myLayoutHook = tiled ||| twoPane ||| tabbedLayout ||| Full
     nmaster = 1
     delta = 2 / 100
     ratio = 1 / 2
- 
+
 myTabConfig = def { fontName = myFont
-                  , decoHeight = 24 
+                  , decoHeight = 24
                   }
 
 myScratchpads = [ NS "htop" "kitty --name htop htop" (resource =? "htop") (customFloating $ W.RationalRect (1/4) (1/8) (1/2) (3/4))
@@ -110,7 +112,7 @@ myKeys = [ ((myMask .|. controlMask, xK_Return), spawn "st")
          -- Layouts
          , ((myMask, xK_t), sendMessage $ JumpToLayout "Tall")
          , ((myMask, xK_a), sendMessage $ JumpToLayout "Tabbed Simplest")
-         , ((myMask, xK_u), sendMessage $ JumpToLayout "Full") 
+         , ((myMask, xK_u), sendMessage $ JumpToLayout "Full")
          , ((myMask, xK_w), sendMessage $ JumpToLayout "TwoPane")
          -- Scratch pad submap
          , ((myMask, xK_s), submap . M.fromList $
