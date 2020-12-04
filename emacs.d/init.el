@@ -251,7 +251,6 @@
   :config
   (setq doom-themes-enable-bold t
 	doom-themes-enable-italic t)
-  (load-theme 'doom-solarized-light)
   (doom-themes-visual-bell-config)
   (setq doom-themes-treemacs-theme "doom-colors")
   (doom-themes-treemacs-config)
@@ -272,3 +271,5 @@
   ;; 				      modus-operandi modus-vivendi oceanic))
   (global-set-key (kbd "C-{") 'theme-looper-enable-previous-theme)
   (global-set-key (kbd "C-}") 'theme-looper-enable-next-theme))
+
+(load-theme 'spacemacs-dark)
