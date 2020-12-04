@@ -245,5 +245,4 @@ set laststatus=2
 " hi User9 ctermbg=black ctermfg=white guibg=black guifg=white
 "}}}
 
-
 " vim: foldmethod=marker:foldlevel=0
