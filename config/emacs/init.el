@@ -34,7 +34,7 @@
 (show-paren-mode t)
 (column-number-mode t)
 (setq-default fill-column 80)
-(setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
+(setq custom-file (expand-file-name "~/.config/emacs/custom.el"))
 (load custom-file)
 
 ;;; Integrate with system clipboard and selection.
