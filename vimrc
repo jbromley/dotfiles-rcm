@@ -69,47 +69,6 @@ if &shell =~# 'fish$'
 endif
 " }}}
 
-" Plugins {{{
-call plug#begin()
-
-" Themes
-Plug 'frankier/neovim-colors-solarized-truecolor-only'
-Plug 'sonph/onehalf'
-Plug 'bluz71/vim-nightfly-guicolors'
-Plug 'mhartington/oceanic-next'
-Plug 'barlog-m/oceanic-primal-vim', {'branch': 'main'}
-
-" FZF 
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-
-" NERDTree - file tree navigation
-Plug 'preservim/nerdtree'
-
-" Git plugin
-Plug 'tpope/vim-fugitive'
-
-" Database interaction
-Plug 'tpope/vim-dadbod'
-
-" VimWiki
-Plug 'vimwiki/vimwiki'
-
-" Unicode
-Plug 'chrisbra/unicode.vim'
-
-" Commentary
-Plug 'tpope/vim-commentary'
-
-" Elixir
-Plug 'elixir-editors/vim-elixir'
-
-" YouCompleteMe
-Plug 'ycm-core/YouCompleteMe'
-
-call plug#end()
-"}}}
-
 " Plugin configuration and key bindings {{{
 
 " Key bindings for fzf
@@ -148,6 +107,7 @@ let g:ycm_auto_hover = ''
 let g:ycm_always_populate_location_list = 1
 let g:ycm_error_symbol = '!!'
 let g:ycm_warning_symbol = '??'
+let g:ycm_java_binary_path = "/usr/lib/jvm/java-11-openjdk-amd64/bin/java"
 map <Leader>i :YcmCompleter GoTo<CR>
 map <Leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 map <Leader>r :YcmCompleter GoToReferences<CR>
@@ -251,13 +211,6 @@ inoremap <S-Tab> <Esc><<i
 
 " UI {{{
 
-if (has('nvim'))
-    " colorscheme nightfly
-    " colorscheme solarized
-    " colorscheme oceanic-primal
-    " colorscheme OceanicNextLight
-endif
-
 " Modeline
 set modeline
 set modelines=1
@@ -291,6 +244,5 @@ hi User1 ctermbg=darkblue ctermfg=white guibg=darkblue guifg=white
 hi User2 ctermbg=magenta ctermfg=white guibg=magenta guifg=white
 hi User9 ctermbg=black ctermfg=white guibg=black guifg=white
 "}}}
-
 
 " vim: foldmethod=marker:foldlevel=0
