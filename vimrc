@@ -82,7 +82,7 @@ map <F2> :NERDTreeToggle<CR>
 let g:NERDTreeIgnore=['\~$', '__pycache__', '.git']
 
 " VimWiki
-let g:vimwiki_list = [{'path': '~/Documents/VimWiki/'}]
+let g:vimwiki_list = [{'path': '~/Documents/Wiki/'}]
 
 " vim-commentary
 autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
