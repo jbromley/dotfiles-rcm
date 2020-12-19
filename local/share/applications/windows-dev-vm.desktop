@@ -1,0 +1,12 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Type=Application
+Version=1.1
+Name=Windows VM
+Comment=Windows 10 development virtual machine
+Path=/home/jb
+Exec=/home/jb/.local/bin/windows-vm.sh
+Icon=/home/jb/.local/share/icons/windows.svg
+Terminal=false
+Categories=System;
+X-Desktop-File-Install-Version=0.24
