@@ -73,6 +73,7 @@ myManageHook = composeAll
     , className =? "VirtualBox Manager" --> doFloat
     , className =? "VirtualBox Machine" --> doFloat
     , className =? "Blueman-manager" --> doFloat
+    , className =? "Virt-manager" --> doFloat
     , manageDocks
     , namedScratchpadManageHook myScratchpads
     ]
