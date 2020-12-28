@@ -1,0 +1,12 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Comment=IntelliJ IDEA development environment
+Exec=/opt/idea-IC-203.5981.155/bin/idea.sh
+Icon=/opt/idea-IC-203.5981.155/bin/idea.svg
+Name=IntelliJ IDEA
+NoDisplay=false
+StartupNotify=true
+Terminal=false
+Type=Application
+Categories=Development;
+X-Desktop-File-Install-Version=0.24
