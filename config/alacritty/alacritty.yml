@@ -5,8 +5,8 @@
 # These configuration files will be loaded in order, replacing values in files
 # loaded earlier with those loaded later in the chain. The file itself will
 # always be loaded last.
-# import:
-#     - /home/jay/.config/alacritty/theme.yaml
+#import:
+#  - /path/to/alacritty.yml
 
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
@@ -20,14 +20,15 @@
   # available, otherwise `xterm-256color` is used.
   #TERM: alacritty
 
-#window:
+window:
   # Window dimensions (changes require restart)
   #
-  # Specified in number of columns/lines, not pixels.
-  # If both are `0`, this setting is ignored.
-  #dimensions:
-  #  columns: 0
-  #  lines: 0
+  # Number of lines/columns (not pixels) in the terminal. The number of columns
+  # must be at least `2`, while using a value of `0` for columns and lines will
+  # fall back to the window manager's recommended size.
+  dimensions:
+    columns: 100
+    lines: 40
 
   # Window position (changes require restart)
   #
@@ -56,8 +57,8 @@
   #
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
-  #     - buttonless: Title bar, transparent background, but no title bar buttons
-decorations: none
+  #     - buttonless: Title bar, transparent background and no title bar buttons
+  decorations: none
 
   # Startup Mode (changes require restart)
   #
@@ -85,8 +86,8 @@ decorations: none
 
   # GTK theme variant (Linux/BSD only)
   #
-  # Override the variant of the GTK theme. Commonly supported values are `dark` and `light`.
-  # Set this to `None` to use the default theme variant.
+  # Override the variant of the GTK theme. Commonly supported values are `dark`
+  # and `light`. Set this to `None` to use the default theme variant.
   #gtk_theme_variant: None
 
 #scrolling:
@@ -107,6 +108,7 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
+    #family: monospace
     family: Hack Nerd Font
 
     # The `style` can be specified to pick a specific face.
@@ -118,6 +120,7 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
+    #family: monospace
     family: Hack Nerd Font
 
     # The `style` can be specified to pick a specific face.
@@ -129,8 +132,8 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
+    #family: monospace
     family: Hack Nerd Font
-
     # The `style` can be specified to pick a specific face.
     style: Italic
 
@@ -140,23 +143,25 @@ font:
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
+    #family: monospace
     family: Hack Nerd Font
-
     # The `style` can be specified to pick a specific face.
     style: Bold Italic
 
   # Point size
-  size: 9.0
+  #size: 11.0
+  # size: 9.0
 
-  # Offset is the extra space around each character. `offset.y` can be thought of
-  # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
+  # Offset is the extra space around each character. `offset.y` can be thought
+  # of as modifying the line spacing, and `offset.x` as modifying the letter
+  # spacing.
   #offset:
   #  x: 0
   #  y: 0
 
   # Glyph offset determines the locations of the glyphs within their cells with
-  # the default being at the bottom. Increasing `x` moves the glyph to the right,
-  # increasing `y` moves the glyph upward.
+  # the default being at the bottom. Increasing `x` moves the glyph to the
+  # right, increasing `y` moves the glyph upward.
   #glyph_offset:
   #  x: 0
   #  y: 0
@@ -179,9 +184,10 @@ font:
 
     # Bright and dim foreground colors
     #
-    # The dimmed foreground color is calculated automatically if it is not present.
-    # If the bright foreground color is not set, or `draw_bold_text_with_bright_colors`
-    # is `false`, the normal foreground color will be used.
+    # The dimmed foreground color is calculated automatically if it is not
+    # present. If the bright foreground color is not set, or
+    # `draw_bold_text_with_bright_colors` is `false`, the normal foreground
+    # color will be used.
     #dim_foreground: '#828482'
     #bright_foreground: '#eaeaea'
 
@@ -224,6 +230,9 @@ font:
     #matches:
     #  foreground: '#000000'
     #  background: '#ffffff'
+    #focused_match:
+    #  foreground: CellBackground
+    #  background: CellForeground
 
     #bar:
     #  background: '#c5c8c6'
@@ -296,8 +305,8 @@ font:
   #   - Linear
   #animation: EaseOutExpo
 
-  # Duration of the visual bell flash. A `duration` of `0` will disable the
-  # visual bell animation.
+  # Duration of the visual bell flash in milliseconds. A `duration` of `0` will
+  # disable the visual bell animation.
   #duration: 0
 
   # Visual bell animation color.
@@ -320,10 +329,12 @@ font:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.75
+#background_opacity: 1.0
+background_opacity: 0.9375
 
 #selection:
-  # This string contains all characters that are used as separators for "semantic words" in Alacritty.
+  # This string contains all characters that are used as separators for
+  # "semantic words" in Alacritty.
   #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
 
   # When set to `true`, selected text will be copied to the primary clipboard.
@@ -359,8 +370,9 @@ background_opacity: 0.75
 
 # Shell
 #
-# You can set `shell.program` to the path of your favorite shell, e.g. `/bin/fish`.
-# Entries in `shell.args` are passed unmodified as arguments to the shell.
+# You can set `shell.program` to the path of your favorite shell, e.g.
+# `/bin/fish`. Entries in `shell.args` are passed unmodified as arguments to the
+# shell.
 #
 # Default:
 #   - (macOS) /bin/bash --login
@@ -405,8 +417,8 @@ background_opacity: 0.75
   #url:
     # URL launcher
     #
-    # This program is executed when clicking on a text which is recognized as a URL.
-    # The URL is always added to the command as the last parameter.
+    # This program is executed when clicking on a text which is recognized as a
+    # URL. The URL is always added to the command as the last parameter.
     #
     # When set to `launcher: None`, URL launching will be disabled completely.
     #
@@ -420,8 +432,9 @@ background_opacity: 0.75
 
     # URL modifiers
     #
-    # These are the modifiers that need to be held down for opening URLs when clicking
-    # on them. The available modifiers are documented in the key binding section.
+    # These are the modifiers that need to be held down for opening URLs when
+    # clicking on them. The available modifiers are documented in the key
+    # binding section.
     #modifiers: None
 
 # Mouse bindings
@@ -429,8 +442,9 @@ background_opacity: 0.75
 # Mouse bindings are specified as a list of objects, much like the key
 # bindings further below.
 #
-# To trigger mouse bindings when an application running within Alacritty captures the mouse, the
-# `Shift` modifier is automatically added as a requirement.
+# To trigger mouse bindings when an application running within Alacritty
+# captures the mouse, the `Shift` modifier is automatically added as a
+# requirement.
 #
 # Each mouse binding will specify a:
 #
@@ -523,67 +537,73 @@ background_opacity: 0.75
 #   - ReceiveChar
 #   - None
 #
-#   (`mode: Vi` only):
+# - Vi mode exclusive actions:
+#
 #   - Open
-#       Open URLs at the cursor location with the launcher configured in `url.launcher`.
-#   - Up
-#       Move the vi mode cursor up by one line.
-#   - Down
-#       Move the vi mode cursor down by one line.
-#   - Left
-#       Move the vi mode cursor left by one character.
-#   - Right
-#       Move the vi mode cursor right by one character.
-#   - First
-#       Move the vi mode cursor to the start of the line, searching across newlines if it is already at the beginning.
-#   - Last
-#       Move the vi mode cursor to the end of the line, searching across newlines if it is already at the end.
-#   - FirstOccupied
-#       Move the vi mode cursor to the first non-empty cell in this line, searching across newlines if it is already at the first one.
-#   - High
-#       Move the vi mode cursor to the top of the screen.
-#   - Middle
-#       Move the vi mode cursor to the middle of the screen.
-#   - Low
-#       Move the vi mode cursor to the bottom of the screen.
-#   - SemanticLeft
-#       Move the vi mode cursor to the start of the previous semantically separated word.
-#   - SemanticRight
-#       Move the vi mode cursor to the start of the next semantically separated word.
-#   - SemanticLeftEnd
-#       Move the vi mode cursor to the end of the previous semantically separated word.
-#   - SemanticRightEnd
-#       Move the vi mode cursor to the end of the next semantically separated word.
-#   - WordLeft
-#       Move the vi mode cursor to the start of the previous whitespace separated word.
-#   - WordRight
-#       Move the vi mode cursor to the start of the next whitespace separated word.
-#   - WordLeftEnd
-#       Move the vi mode cursor to the end of the previous whitespace separated word.
-#   - WordRightEnd
-#       Move the vi mode cursor to the end of the next whitespace separated word.
-#   - Bracket
-#       Move the vi mode cursor to the next character that matches the bracket at the cursor's
-#       current location.
+#       Open URLs at the cursor location with the launcher configured in
+#       `url.launcher`.
 #   - ToggleNormalSelection
 #   - ToggleLineSelection
 #   - ToggleBlockSelection
 #   - ToggleSemanticSelection
 #       Toggle semantic selection based on `selection.semantic_escape_chars`.
-#   - SearchNext
-#       Jump to the beginning of the next match.
-#   - SearchPrevious
-#       Jump to the beginning of the previous match.
-#   - SearchStart
-#       Jump to the next start of a match to the left of the vi mode cursor.
-#   - SearchEnd
-#       Jump to the next end of a match to the left of the vi mode cursor.
 #
-#   (macOS only):
+# - Vi mode exclusive cursor motion actions:
+#
+#   - Up
+#       One line up.
+#   - Down
+#       One line down.
+#   - Left
+#       One character left.
+#   - Right
+#       One character right.
+#   - First
+#       First column, or beginning of the line when already at the first column.
+#   - Last
+#       Last column, or beginning of the line when already at the last column.
+#   - FirstOccupied
+#       First non-empty cell in this terminal row, or first non-empty cell of
+#       the line when already at the first cell of the row.
+#   - High
+#       Top of the screen.
+#   - Middle
+#       Center of the screen.
+#   - Low
+#       Bottom of the screen.
+#   - SemanticLeft
+#       Start of the previous semantically separated word.
+#   - SemanticRight
+#       Start of the next semantically separated word.
+#   - SemanticLeftEnd
+#       End of the previous semantically separated word.
+#   - SemanticRightEnd
+#       End of the next semantically separated word.
+#   - WordLeft
+#       Start of the previous whitespace separated word.
+#   - WordRight
+#       Start of the next whitespace separated word.
+#   - WordLeftEnd
+#       End of the previous whitespace separated word.
+#   - WordRightEnd
+#       End of the next whitespace separated word.
+#   - Bracket
+#       Character matching the bracket at the cursor's location.
+#   - SearchNext
+#       Beginning of the next match.
+#   - SearchPrevious
+#       Beginning of the previous match.
+#   - SearchStart
+#       Start of the match to the left of the vi mode cursor.
+#   - SearchEnd
+#       End of the match to the right of the vi mode cursor.
+#
+# - macOS exclusive actions:
 #   - ToggleSimpleFullscreen
 #       Enter fullscreen without occupying another space.
 #
-#   (Linux/BSD only):
+# - Linux/BSD exclusive actions:
+#
 #   - CopySelection
 #       Copy from the selection buffer.
 #   - PasteSelection
@@ -690,39 +710,42 @@ background_opacity: 0.75
   #- { key: N,      mods: Shift,         mode: Vi, action: SearchPrevious          }
 
   # (Windows, Linux, and BSD only)
-  #- { key: V,        mods: Control|Shift,           action: Paste            }
-  #- { key: C,        mods: Control|Shift,           action: Copy             }
-  #- { key: F,        mods: Control|Shift,           action: SearchForward    }
-  #- { key: B,        mods: Control|Shift,           action: SearchBackward   }
-  #- { key: C,        mods: Control|Shift, mode: Vi, action: ClearSelection   }
-  #- { key: Insert,   mods: Shift,                   action: PasteSelection   }
-  #- { key: Key0,     mods: Control,                 action: ResetFontSize    }
-  #- { key: Equals,   mods: Control,                 action: IncreaseFontSize }
-  #- { key: Add,      mods: Control,                 action: IncreaseFontSize }
-  #- { key: Subtract, mods: Control,                 action: DecreaseFontSize }
-  #- { key: Minus,    mods: Control,                 action: DecreaseFontSize }
+  #- { key: V,              mods: Control|Shift,           action: Paste            }
+  #- { key: C,              mods: Control|Shift,           action: Copy             }
+  #- { key: F,              mods: Control|Shift,           action: SearchForward    }
+  #- { key: B,              mods: Control|Shift,           action: SearchBackward   }
+  #- { key: C,              mods: Control|Shift, mode: Vi, action: ClearSelection   }
+  #- { key: Insert,         mods: Shift,                   action: PasteSelection   }
+  #- { key: Key0,           mods: Control,                 action: ResetFontSize    }
+  #- { key: Equals,         mods: Control,                 action: IncreaseFontSize }
+  #- { key: Plus,           mods: Control,                 action: IncreaseFontSize }
+  #- { key: NumpadAdd,      mods: Control,                 action: IncreaseFontSize }
+  #- { key: Minus,          mods: Control,                 action: DecreaseFontSize }
+  #- { key: NumpadSubtract, mods: Control,                 action: DecreaseFontSize }
 
   # (Windows only)
   #- { key: Return,   mods: Alt,           action: ToggleFullscreen }
 
   # (macOS only)
-  #- { key: K,      mods: Command, mode: ~Vi, chars: "\x0c"            }
-  #- { key: Key0,   mods: Command,            action: ResetFontSize    }
-  #- { key: Equals, mods: Command,            action: IncreaseFontSize }
-  #- { key: Add,    mods: Command,            action: IncreaseFontSize }
-  #- { key: Minus,  mods: Command,            action: DecreaseFontSize }
-  #- { key: K,      mods: Command,            action: ClearHistory     }
-  #- { key: V,      mods: Command,            action: Paste            }
-  #- { key: C,      mods: Command,            action: Copy             }
-  #- { key: C,      mods: Command, mode: Vi,  action: ClearSelection   }
-  #- { key: H,      mods: Command,            action: Hide             }
-  #- { key: M,      mods: Command,            action: Minimize         }
-  #- { key: Q,      mods: Command,            action: Quit             }
-  #- { key: W,      mods: Command,            action: Quit             }
-  #- { key: N,      mods: Command,            action: SpawnNewInstance }
-  #- { key: F,      mods: Command|Control,    action: ToggleFullscreen }
-  #- { key: F,      mods: Command,            action: SearchForward    }
-  #- { key: B,      mods: Command,            action: SearchBackward   }
+  #- { key: K,              mods: Command, mode: ~Vi, chars: "\x0c"            }
+  #- { key: Key0,           mods: Command,            action: ResetFontSize    }
+  #- { key: Equals,         mods: Command,            action: IncreaseFontSize }
+  #- { key: Plus,           mods: Command,            action: IncreaseFontSize }
+  #- { key: NumpadAdd,      mods: Command,            action: IncreaseFontSize }
+  #- { key: Minus,          mods: Command,            action: DecreaseFontSize }
+  #- { key: NumpadSubtract, mods: Command,            action: DecreaseFontSize }
+  #- { key: K,              mods: Command,            action: ClearHistory     }
+  #- { key: V,              mods: Command,            action: Paste            }
+  #- { key: C,              mods: Command,            action: Copy             }
+  #- { key: C,              mods: Command, mode: Vi,  action: ClearSelection   }
+  #- { key: H,              mods: Command,            action: Hide             }
+  #- { key: M,              mods: Command,            action: Minimize         }
+  #- { key: Q,              mods: Command,            action: Quit             }
+  #- { key: W,              mods: Command,            action: Quit             }
+  #- { key: N,              mods: Command,            action: SpawnNewInstance }
+  #- { key: F,              mods: Command|Control,    action: ToggleFullscreen }
+  #- { key: F,              mods: Command,            action: SearchForward    }
+  #- { key: B,              mods: Command,            action: SearchBackward   }
 
 #debug:
   # Display the time it takes to redraw each frame.
