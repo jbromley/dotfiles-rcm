@@ -91,13 +91,11 @@ window:
   #gtk_theme_variant: None
 
 #scrolling:
-  # Maximum number of lines in the scrollback buffer.
-  # Specifying '0' will disable scrolling.
-  #history: 10000
-
-  # Scrolling distance multiplier.
-  #multiplier: 3
-
+# Maximum number of lines in the scrollback buffer.
+# Specifying '0' will disable scrolling.
+#history: 10000
+# Scrolling distance multiplier.
+#multiplier: 3
 # Font configuration
 font:
   # Normal (roman) font face
@@ -158,25 +156,21 @@ font:
   #offset:
   #  x: 0
   #  y: 0
-
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the
   # right, increasing `y` moves the glyph upward.
   #glyph_offset:
   #  x: 0
   #  y: 0
-
   # Thin stroke font rendering (macOS only)
   #
   # Thin strokes are suitable for retina displays, but for non-retina screens
   # it is recommended to set `use_thin_strokes` to `false`.
   #use_thin_strokes: true
-
-# If `true`, bold text is drawn using the bright color variants.
-#draw_bold_text_with_bright_colors: false
-
-# Colors (Tomorrow Night)
-#colors:
+  # If `true`, bold text is drawn using the bright color variants.
+  #draw_bold_text_with_bright_colors: false
+  # Colors (Tomorrow Night)
+  #colors:
   # Default colors
   #primary:
   #  background: '#1d1f21'
@@ -200,7 +194,6 @@ font:
   #cursor:
   #  text: CellBackground
   #  cursor: CellForeground
-
   # Vi mode cursor colors
   #
   # Colors for the cursor when the vi mode is active.
@@ -210,7 +203,6 @@ font:
   #vi_mode_cursor:
   #  text: CellBackground
   #  cursor: CellForeground
-
   # Selection colors
   #
   # Colors which should be used to draw the selection area.
@@ -220,7 +212,6 @@ font:
   #selection:
   #  text: CellBackground
   #  background: CellForeground
-
   # Search colors
   #
   # Colors used for the search bar and match highlighting.
@@ -248,7 +239,6 @@ font:
   #  magenta: '#b294bb'
   #  cyan:    '#8abeb7'
   #  white:   '#c5c8c6'
-
   # Bright colors
   #bright:
   #  black:   '#666666'
@@ -259,7 +249,6 @@ font:
   #  magenta: '#c397d8'
   #  cyan:    '#70c0b1'
   #  white:   '#eaeaea'
-
   # Dim colors
   #
   # If the dim colors are not set, they will be calculated automatically based
@@ -273,7 +262,6 @@ font:
   #  magenta: '#75617b'
   #  cyan:    '#5b7d78'
   #  white:   '#828482'
-
   # Indexed Colors
   #
   # The indexed colors include all colors from 16 to 256.
@@ -283,11 +271,10 @@ font:
   #   `- { index: 16, color: '#ff00ff' }`
   #
   #indexed_colors: []
-
-# Bell
-#
-# The bell is rung every time the BEL control character is received.
-#bell:
+  # Bell
+  #
+  # The bell is rung every time the BEL control character is received.
+  #bell:
   # Visual Bell Animation
   #
   # Animation effect for flashing the screen when the visual bell is rung.
@@ -308,10 +295,8 @@ font:
   # Duration of the visual bell flash in milliseconds. A `duration` of `0` will
   # disable the visual bell animation.
   #duration: 0
-
   # Visual bell animation color.
   #color: '#ffffff'
-
   # Bell Command
   #
   # This program is executed whenever the bell is rung.
@@ -332,42 +317,82 @@ font:
 #background_opacity: 1.0
 background_opacity: 0.9375
 
-#selection:
+selection:
   # This string contains all characters that are used as separators for
   # "semantic words" in Alacritty.
   #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
 
-  # When set to `true`, selected text will be copied to the primary clipboard.
-  #save_to_clipboard: false
+  dim_foreground: '#dbdbdb'
+  bright_foreground: '#d9d9d9'
+  dim_background: '#202020' # not sure
+  bright_background: '#3a3a3a' # not sure
 
+  # Cursor colors
+  cursor:
+    text: '#2c2c2c'
+    cursor: '#d9d9d9'
+
+  # Normal colors
+  normal:
+    black: '#1c1c1c'
+    red: '#bc5653'
+    green: '#909d63'
+    yellow: '#ebc17a'
+    blue: '#7eaac7'
+    magenta: '#aa6292'
+    cyan: '#86d3ce'
+    white: '#cacaca'
+
+  # Bright colors
+  bright:
+    black: '#636363'
+    red: '#bc5653'
+    green: '#909d63'
+    yellow: '#ebc17a'
+    blue: '#7eaac7'
+    magenta: '#aa6292'
+    cyan: '#86d3ce'
+    white: '#f7f7f7'
+
+  # Dim colors
+  dim:
+    black: '#232323'
+    red: '#74423f'
+    green: '#5e6547'
+    yellow: '#8b7653'
+    blue: '#556b79'
+    magenta: '#6e4962'
+    cyan: '#5c8482'
+    white: '#828282'
+
+#selection:
+# This string contains all characters that are used as separators for "semantic words" in Alacritty.
+#semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+# When set to `true`, selected text will be copied to the primary clipboard.
+#save_to_clipboard: false
 #cursor:
-  # Cursor style
-  #
-  # Values for `style`:
-  #   - ▇ Block
-  #   - _ Underline
-  #   - | Beam
-  #style: Block
-
-  # Vi mode cursor style
-  #
-  # If the vi mode cursor style is `None` or not specified, it will fall back to
-  # the style of the active value of the normal cursor.
-  #
-  # See `cursor.style` for available options.
-  #vi_mode_style: None
-
-  # If this is `true`, the cursor will be rendered as a hollow box when the
-  # window is not focused.
-  #unfocused_hollow: true
-
-  # Thickness of the cursor relative to the cell width as floating point number
-  # from `0.0` to `1.0`.
-  #thickness: 0.15
-
+# Cursor style
+#
+# Values for `style`:
+#   - ▇ Block
+#   - _ Underline
+#   - | Beam
+#style: Block
+# Vi mode cursor style
+#
+# If the vi mode cursor style is `None` or not specified, it will fall back to
+# the style of the active value of the normal cursor.
+#
+# See `cursor.style` for available options.
+#vi_mode_style: None
+# If this is `true`, the cursor will be rendered as a hollow box when the
+# window is not focused.
+#unfocused_hollow: true
+# Thickness of the cursor relative to the cell width as floating point number
+# from `0.0` to `1.0`.
+#thickness: 0.15
 # Live config reload (changes require restart)
 #live_config_reload: true
-
 # Shell
 #
 # You can set `shell.program` to the path of your favorite shell, e.g.
@@ -382,13 +407,11 @@ background_opacity: 0.9375
 #  program: /bin/bash
 #  args:
 #    - --login
-
 # Startup directory
 #
 # Directory the shell is started in. If this is unset, or `None`, the working
 # directory of the parent process will be used.
 #working_directory: None
-
 # WinPTY backend (Windows only)
 #
 # Alacritty defaults to using the newer ConPTY backend if it is available,
@@ -398,10 +421,8 @@ background_opacity: 0.9375
 # Setting this option to `true` makes Alacritty use the legacy WinPTY backend,
 # even if the ConPTY backend is available.
 #winpty_backend: false
-
 # Send ESC (\x1b) before characters when alt is pressed.
 #alt_send_esc: true
-
 #mouse:
   # Click settings
   #
@@ -462,7 +483,6 @@ background_opacity: 0.9375
 # - `mods` (see key bindings)
 #mouse_bindings:
 #  - { mouse: Middle, action: PasteSelection }
-
 # Key bindings
 #
 # Key bindings are specified as a list of objects. For example, this is the
@@ -748,22 +768,19 @@ background_opacity: 0.9375
   #- { key: B,              mods: Command,            action: SearchBackward   }
 
 #debug:
-  # Display the time it takes to redraw each frame.
-  #render_timer: false
-
-  # Keep the log file after quitting Alacritty.
-  #persistent_logging: false
-
-  # Log level
-  #
-  # Values for `log_level`:
-  #   - None
-  #   - Error
-  #   - Warn
-  #   - Info
-  #   - Debug
-  #   - Trace
-  #log_level: Warn
-
-  # Print all received window events.
-  #print_events: false
+# Display the time it takes to redraw each frame.
+#render_timer: false
+# Keep the log file after quitting Alacritty.
+#persistent_logging: false
+# Log level
+#
+# Values for `log_level`:
+#   - None
+#   - Error
+#   - Warn
+#   - Info
+#   - Debug
+#   - Trace
+#log_level: Warn
+# Print all received window events.
+#print_events: false
