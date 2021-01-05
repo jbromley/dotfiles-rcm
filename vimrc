@@ -11,6 +11,9 @@ set shiftwidth=4
 set expandtab
 set autoindent
 
+" Turn on autowrite.
+set autowrite
+
 " Ignore case when searching unless a capital letter is present.
 set ignorecase smartcase
 
