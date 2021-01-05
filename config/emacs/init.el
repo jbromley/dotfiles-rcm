@@ -1,5 +1,7 @@
 ;;;; init.el --- Emacs configuration
 
+;;; Code;
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configuration setup
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -107,6 +109,8 @@
        (treemacs-git-mode 'deferred))
       (`(t . _)
        (treemacs-git-mode 'simple))))
+  :commands (treemacs)
+  :after (lsp-mode)
   :bind
   (:map global-map
 	("M-0" . treemacs-select-window)
@@ -185,10 +189,59 @@
 ;;; Languages and file format packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;;; Snippets
+(use-package java-snippets)
+
+;;; Flycheck
+(use-package flycheck
+  :init (global-flycheck-mode))
+
+;; Emacs Debug Adapter Protocol
+(use-package dap-mode
+  :ensure t
+  :after (lsp-mode)
+  :functions dap-hydra/nil
+  :bind (:map lsp-mode-map
+         ("<f5>" . dap-debug)
+         ("M-<f5>" . dap-hydra))
+  :hook ((dap-mode . dap-ui-mode)
+    (dap-session-created . (lambda (&_rest) (dap-hydra)))
+    (dap-terminated . (lambda (&_rest) (dap-hydra/nil)))))
+
+(use-package dap-java :ensure nil)
+
+;;; Treemacs for LSP
+(use-package lsp-treemacs
+  :after (lsp-mode treemacs)
+  :ensure t
+  :commands lsp-treemacs-errors-list
+  :bind (:map lsp-mode-map
+         ("M-9" . lsp-treemacs-errors-list)))
+
 ;;; LSP mode
+(use-package lsp-ui
+:after (lsp-mode)
+:bind (:map lsp-ui-mode-map
+         ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
+         ([remap xref-find-references] . lsp-ui-peek-find-references))
+:init (setq lsp-ui-doc-delay 1.5
+      lsp-ui-doc-position 'bottom
+	  lsp-ui-doc-max-width 100))
+
 (use-package lsp-mode
+  :config
+    (setq lsp-intelephense-multi-root nil) ; don't scan unnecessary projects
+    (with-eval-after-load 'lsp-intelephense
+    (setf (lsp--client-multi-root (gethash 'iph lsp-clients)) nil))
+	(define-key lsp-mode-map (kbd "C-c l") lsp-command-map)
   :commands (lsp lsp-deferred)
-  :hook (go-mode . lsp-deferred))
+  :hook ((lsp-mode . lsp-enable-which-key-integration)
+	 (java-mode . lsp-deferred)
+	 (go-mode . lsp-deferred)))
+
+;;; Java
+(use-package lsp-java
+  :hook (java-mode-hook . lsp))
 
 ;;; Org mode
 (use-package org-superstar)
