@@ -237,7 +237,9 @@
   :commands (lsp lsp-deferred)
   :hook ((lsp-mode . lsp-enable-which-key-integration)
 	 (java-mode . lsp-deferred)
-	 (go-mode . lsp-deferred)))
+	 (go-mode . lsp-deferred)
+	 (typescript-mode . lsp-deferred)
+	 (web-mode . lsp-deferred)))
 
 ;;; Java
 (use-package lsp-java
@@ -254,7 +256,7 @@
 	org-agenda-files '("~/Org/")
 	org-confirm-babel-evaluate nil
 	org-agenda-exporter-settings '((ps-print-color-p nil)
-				       (org-agenda-add-entry-text-maxlines 0)
+				       (org-agnenda-add-entry-text-maxlines 0)
 				       (htmlize-output-type 'css))
 	org-hierarchical-todo-statistics nil
 	org-enforce-todo-dependencies t
@@ -298,6 +300,18 @@
   :config
   (setq inferior-lisp-program "/home/jay/.asdf/installs/sbcl/2.0.7/bin/sbcl"
 	slime-contribs '(slime-fancy)))
+
+;;; Typescript
+(use-package typescript-mode
+  :mode (("\\.ts[x]?\\'" . typescript-mode)))
+
+(use-package web-mode
+  :mode (("\\.html?\\'" . web-mode)
+         ("\\.css\\'"   . web-mode)
+         ("\\.jsx?\\'"  . web-mode)
+         ("\\.json\\'"  . web-mode))
+  :config
+  (setq web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'"))))
 
 ;;; Themes and theme switching
 (use-package doom-themes
