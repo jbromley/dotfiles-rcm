@@ -93,7 +93,6 @@
 
 ;;; Treemacs
 (use-package treemacs
-  :ensure t
   :defer t
   :init
   (with-eval-after-load 'winum
@@ -121,16 +120,14 @@
 	("C-x t M-t" . treemacs-find-tag)))
 
 (use-package treemacs-projectile
-  :after treemacs projectile
-  :ensure t)
+  :after treemacs projectile)
 
 (use-package treemacs-icons-dired
-  :after treemacs dired
-  :ensure t)
+  :after treemacs dired)
 
 (use-package treemacs-magit
-  :after treemacs magit
-  :ensure t)
+  :after treemacs magit)
+
 
 ;;; Completion
 (use-package company
@@ -198,7 +195,6 @@
 
 ;; Emacs Debug Adapter Protocol
 (use-package dap-mode
-  :ensure t
   :after (lsp-mode)
   :functions dap-hydra/nil
   :bind (:map lsp-mode-map
@@ -208,12 +204,11 @@
     (dap-session-created . (lambda (&_rest) (dap-hydra)))
     (dap-terminated . (lambda (&_rest) (dap-hydra/nil)))))
 
-(use-package dap-java :ensure nil)
+(use-package dap-java)
 
 ;;; Treemacs for LSP
 (use-package lsp-treemacs
   :after (lsp-mode treemacs)
-  :ensure t
   :commands lsp-treemacs-errors-list
   :bind (:map lsp-mode-map
          ("M-9" . lsp-treemacs-errors-list)))
@@ -298,7 +293,7 @@
   :init
   (require 'slime-autoloads)
   :config
-  (setq inferior-lisp-program "/home/jay/.asdf/installs/sbcl/2.0.7/bin/sbcl"
+  (setq inferior-lisp-program "~/.asdf/installs/sbcl/2.0.11/bin/sbcl"
 	slime-contribs '(slime-fancy)))
 
 ;;; Typescript
@@ -334,9 +329,10 @@
 
 (use-package theme-looper
   :config
+
   ;; (theme-looper-set-favorite-themes '(*default* spacemacs-light spacemacs-dark
   ;; 				      modus-operandi modus-vivendi oceanic))
   (global-set-key (kbd "C-{") 'theme-looper-enable-previous-theme)
   (global-set-key (kbd "C-}") 'theme-looper-enable-next-theme))
 
-(load-theme 'spacemacs-dark)
+;; (load-theme 'spacemacs-dark)
