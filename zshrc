@@ -53,14 +53,8 @@ autoload bashcompinit
 bashcompinit
 
 # Fzf
-if [[ $(uname) = "Darwin" ]]; then
-    fzf_root=/opt/local/share/fzf/shell
-else
-    fzf_root=/usr/share/doc/fzf/examples
-fi
-
-source ${fzf_root}/completion.zsh
-source ${fzf_root}/key-bindings.zsh
+source ${HOME}/.fzf/shell/completion.zsh
+source ${HOME}/.fzf/shell/key-bindings.zsh
 bindkey -s '' 'vim $(fzf);'
 
 # Syntax highlighting
