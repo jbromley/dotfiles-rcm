@@ -12,6 +12,9 @@ fi
 # configuration on GitHub at https://github.com/Phantas0s/.dotfiles/tree/master/zsh
 #======================================================================
 
+# Emacs key bindings
+bindkey -e 
+
 # Add plugins directory to path.
 fpath=(${HOME}/.zsh/plugins $fpath)
 
@@ -42,9 +45,20 @@ setopt HIST_VERIFY
 # Aliases
 source ${HOME}/.aliases
 
+# ASDF
+source ${HOME}/.asdf/asdf.sh
+
+# Fzf
+source ${HOME}/.fzf/shell/completion.zsh
+source ${HOME}/.fzf/shell/key-bindings.zsh
+bindkey -s '' 'nvim $(fzf);'
+
+# Syntax highlighting
+source ${HOME}/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 # Completion
-fpath=(${HOME}/.zsh/plugins/zsh-completions/src $fpath)
-autoload -U compinit; compinit
+fpath=(${HOME}/.asdf/completions ${HOME}/.zsh/plugins/zsh-completions/src $fpath)
+autoload -Uz compinit; compinit
 _comp_options+=(globdots)
 source ${HOME}/.zsh/plugins/completion.zsh
 
@@ -52,16 +66,6 @@ source ${HOME}/.zsh/plugins/completion.zsh
 autoload bashcompinit
 bashcompinit
 
-# Fzf
-source ${HOME}/.fzf/shell/completion.zsh
-source ${HOME}/.fzf/shell/key-bindings.zsh
-bindkey -s '' 'vim $(fzf);'
-
-# Syntax highlighting
-source ${HOME}/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# Prompt 
-
-# Powerlevel10k
+# Prompt
 source ~/.zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
