@@ -54,9 +54,9 @@ endif
 
 " Backups
 set backup
-set backupdir=~/.cache/nvim/tmp,/var/tmp
+set backupdir=~/.cache/nvim/tmp
 set backupskip=/tmp/*,/private/tmp/*
-set directory=~/.cache/nvim/tmp,/var/tmp
+set directory=~/.cache/nvim/tmp
 set writebackup
 
 filetype plugin indent on
