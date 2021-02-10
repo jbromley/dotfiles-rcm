@@ -35,7 +35,9 @@
 
 (show-paren-mode t)
 (column-number-mode t)
-(setq-default fill-column 80)
+(setq-default fill-column 80
+	      indent-tabs-mode nil)
+
 (setq custom-file (expand-file-name "~/.config/emacs/custom.el"))
 (load custom-file)
 
@@ -90,6 +92,10 @@
    ("C-c <left>" . windmove-left)
    ("C-c <up>" . windmove-up)
    ("C-c <down>" . windmove-down)))
+
+;;; All the icons
+(use-package all-the-icons)
+(use-package all-the-icons-dired)
 
 ;;; Treemacs
 (use-package treemacs
@@ -204,8 +210,6 @@
     (dap-session-created . (lambda (&_rest) (dap-hydra)))
     (dap-terminated . (lambda (&_rest) (dap-hydra/nil)))))
 
-(use-package dap-java)
-
 ;;; Treemacs for LSP
 (use-package lsp-treemacs
   :after (lsp-mode treemacs)
@@ -293,7 +297,7 @@
   :init
   (require 'slime-autoloads)
   :config
-  (setq inferior-lisp-program "~/.asdf/installs/sbcl/2.0.11/bin/sbcl"
+  (setq inferior-lisp-program "~/.asdf/shims/sbcl"
 	slime-contribs '(slime-fancy)))
 
 ;;; Typescript
