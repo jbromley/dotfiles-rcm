@@ -78,6 +78,11 @@
 ;;; Packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;;; initialize the path
+(use-package exec-path-from-shell
+  :config
+  (exec-path-from-shell-initialize))
+
 ;;; which key
 (use-package which-key
   :config (which-key-mode))
@@ -298,7 +303,9 @@
   (require 'slime-autoloads)
   :config
   (setq inferior-lisp-program "~/.asdf/shims/sbcl"
-	slime-contribs '(slime-fancy)))
+        slime-lisp-implementations '((sbcl ("~/.asdf/shims/sbcl"))
+	                             (ecl ("/usr/bin/ecl")))
+        slime-contribs '(slime-fancy)))
 
 ;;; Typescript
 (use-package typescript-mode
