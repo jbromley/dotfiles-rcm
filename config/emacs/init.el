@@ -256,6 +256,17 @@
   (defun org-graphics-for-bullets ()
     (if (display-graphic-p)
 	(org-superstar-mode 1)))
+  (defun insert-jira-link (start end)
+    "Prompt user to enter an issue number and generate an Org mode
+link to the JIRA issue."
+    (interactive "r")
+    (let ((issue (if (use-region-p)
+                     (buffer-substring start end)
+                   (read-string "JIRA issue: "))))
+      (message "Linking issue %s" issue)
+      (when (use-region-p)
+        (delete-region start end))
+      (insert (format "[[https://jira.appliedinvention.com/browse/%s][%s]]" issue issue))))
   (setq org-directory "~/Org"
 	org-agenda-files '("~/Org/")
 	org-confirm-babel-evaluate nil
@@ -271,6 +282,7 @@
 	org-catch-invisible-edits 'show)
   :bind (("C-c a" . org-agenda)
 	 ("C-c c" . org-capture)
+         ("C-c j" . insert-jira-link)
 	 ("C-c l" . org-store-link))
   :hook ((org-mode . org-graphics-for-bullets)))
 
@@ -303,7 +315,7 @@
   (require 'slime-autoloads)
   :config
   (setq inferior-lisp-program "~/.asdf/shims/sbcl"
-        slime-lisp-implementations '((sbcl ("~/.asdf/shims/sbcl"))
+        slime-lisp-implementations '((sbcl ("~/.asdf/shims/sbcl" "--core" "/opt/slime/sbcl.core-for-slime"))
 	                             (ecl ("/usr/bin/ecl")))
         slime-contribs '(slime-fancy)))
 
