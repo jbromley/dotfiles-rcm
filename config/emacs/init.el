@@ -270,7 +270,9 @@ link to the JIRA issue."
   (setq org-directory "~/Org"
 	org-agenda-files '("~/Org/")
         org-todo-keywords '((sequence "TODO(t)" "IN-PROGRESS(i)" "WAITING(w@/!)" "|" "DONE(d!)" "CANCELED(c@)"))
-        org-todo-keyword-faces '(("IN-PROGRESS" . "blue") ("WAITING" . "orange") ("CANCELED" . "gray"))
+        org-todo-keyword-faces '(("IN-PROGRESS" . org-document-title)
+                                 ("WAITING" . compilation-warning)
+                                 ("CANCELED" . (:foreground gray50 :weight bold)))
 	org-confirm-babel-evaluate nil
 	org-agenda-exporter-settings '((ps-print-color-p nil)
 				       (org-agnenda-add-entry-text-maxlines 0)
