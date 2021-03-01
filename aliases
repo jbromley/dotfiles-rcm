@@ -48,3 +48,6 @@ alias po='popd'
 
 # Open files easily with desktop tools
 alias o='xdg-open'
+
+# bc
+alias bc='bc -ql'

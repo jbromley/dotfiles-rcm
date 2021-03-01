@@ -1,6 +1,6 @@
 [user]
 	name = J. Bromley
-	email = jay@ai.co
+	email = jbromley@gmail.com
 [push]
 	default = simple
 [color]
@@ -12,3 +12,5 @@
 	required = true
 [core]
 	editor = nvim
+[pull]
+	rebase = false

@@ -3,10 +3,10 @@
 Type=Application
 Version=1.1
 Name=Ubuntu VM
-Comment=Ubuntu 20.04.1 virtual machine
-Path=/home/jb
-Exec=/home/jb/.local/bin/ubuntu-vm.sh
-Icon=/home/jb/.local/share/icons/ubuntu.svg
+Comment=Ubuntu 20.04 virtual machine
+Path=/home/jayai
+Exec=/home/jayai/.local/bin/ubuntu-vm.sh
+Icon=/home/jayai/.local/share/icons/ubuntu.svg
 Terminal=false
 Categories=System;
 X-Desktop-File-Install-Version=0.24
