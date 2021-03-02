@@ -335,7 +335,7 @@ link to the JIRA issue."
   (require 'slime-autoloads)
   :config
   (setq inferior-lisp-program "~/.asdf/shims/sbcl"
-        slime-lisp-implementations '((sbcl ("~/.asdf/shims/sbcl" "--core" "/opt/slime/sbcl.core-for-slime"))
+        slime-lisp-implementations '((sbcl ("~/.asdf/shims/sbcl"))
 	                             (ecl ("/usr/bin/ecl")))
         slime-contribs '(slime-fancy)))
 
@@ -354,20 +354,29 @@ link to the JIRA issue."
                                        ("tsx" . "\\.ts[x]?\\'"))))
 
 ;; Themes and theme switching
-(use-package doom-themes
+(use-package dracula-theme
+  :defer t
   :config
-  (defvar doom-themes-treemacs-theme)
-  (setq doom-themes-enable-bold t
-	doom-themes-enable-italic t
-        doom-themes-treemacs-theme "doom-colors")
-  (doom-themes-visual-bell-config)
-  (doom-themes-treemacs-config)
-  (doom-themes-org-config))
+  (setq dracula-alternate-mode-line-and-minibuffer t))
+
+(use-package molokai-theme
+  :defer t)
+
+(use-package oceanic-theme
+  :defer t)
 
 (use-package modus-operandi-theme
   :defer t)
+
 (use-package modus-vivendi-theme
   :defer t)
+
+(use-package moe-theme
+  :defer t)
+
+(use-package solarized-theme
+  :defer t)
+
 (use-package spacemacs-theme
   :defer t)
 
@@ -378,25 +387,16 @@ link to the JIRA issue."
                                       misterioso
                                       tsdh-dark
                                       tsdh-light
-                                      doom-Iosvkem
-                                      doom-city-lights
-                                      doom-dracula
-                                      doom-molokai
-                                      doom-nord
-                                      doom-nord-light
-                                      doom-oceanic-next
-                                      doom-one
-                                      doom-one-light
-                                      doom-opera
-                                      doom-opera-light
-                                      doom-outrun-electric
-                                      doom-plain-dark
-                                      doom-plain
-                                      doom-solarized-dark
-                                      doom-solarized-light
-                                      doom-vibrant
+                                      dracula
                                       modus-operandi
                                       modus-vivendi
+                                      moe-dark
+                                      moe-light
+                                      molokai
+                                      nord
+                                      oceanic
+                                      solarized-dark
+                                      solarized-light
                                       spacemacs-dark
                                       spacemacs-light))
   (global-set-key (kbd "C-{") 'theme-looper-enable-previous-theme)
