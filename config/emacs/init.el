@@ -365,13 +365,21 @@ link to the JIRA issue."
 (use-package oceanic-theme
   :defer t)
 
-(use-package modus-operandi-theme
-  :defer t)
+(use-package modus-themes
+  :init
+  (setq modus-themes-slanted-constructs t
+        modus-themes-bold-constructs t)
+  (modus-themes-load-themes)
+  :bind
+  (("<f5>" . modus-themes-toggle)))
 
 (use-package modus-vivendi-theme
   :defer t)
 
 (use-package moe-theme
+  :defer t)
+
+(use-package nord-theme
   :defer t)
 
 (use-package solarized-theme
