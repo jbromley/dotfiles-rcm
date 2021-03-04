@@ -1,4 +1,4 @@
-#!/bin/sh
+#! /usr/bin/env bash
 BREAK_CHARS="(){}[],^%$#@\"\";''|\\"
 RLWRAP=
 if [ $TERM == "dumb" ]; then  # slime
