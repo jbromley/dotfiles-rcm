@@ -75,8 +75,8 @@
             (defvar sql-prompt-cont-regexp)
             (when (string= sql-product "postgres")
 	      (setq sql-prompt-regexp "^[[:alnum:]_]*=[#>] ")
-	      (setq sql-prompt-cont-regexp "^[[:alnum:]_]*[-(][#>] ")))
-)
+	      (setq sql-prompt-cont-regexp "^[[:alnum:]_]*[-(][#>] "))))
+
 ;; Disable vc
 (setq vc-handled-backends nil)
 
@@ -105,10 +105,10 @@
   (windmove-default-keybindings)
   (setq windmove-wrap-around t)
   :bind
-  (("C-c <right>" . windmove-right)
-   ("C-c <left>" . windmove-left)
-   ("C-c <up>" . windmove-up)
-   ("C-c <down>" . windmove-down)))
+  (("C-c C-f" . windmove-right)
+   ("C-c C-b" . windmove-left)
+   ("C-c C-p" . windmove-up)
+   ("C-c C-n" . windmove-down)))
 
 ;; All the icons
 (use-package all-the-icons)
@@ -412,3 +412,4 @@ link to the JIRA issue."
 
 (provide 'init)
 ;;; init.el ends here
+w
