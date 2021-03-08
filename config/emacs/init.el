@@ -77,9 +77,6 @@
 	      (setq sql-prompt-regexp "^[[:alnum:]_]*=[#>] ")
 	      (setq sql-prompt-cont-regexp "^[[:alnum:]_]*[-(][#>] "))))
 
-;; Disable vc
-(setq vc-handled-backends nil)
-
 ;; Avoid garbage collection while in the mini-buffer.
 (add-hook 'minibuffer-setup-hook
 	  (lambda () (setq gc-cons-threshold most-positive-fixnum)))
@@ -204,7 +201,10 @@
 
 ;; Magit mode
 (use-package magit
-  :bind (("C-x v G" . magit-status)))
+  :init (setq vc-handled-backends nil)
+  :bind (("C-x g" . magit-status)
+         ("C-x M-g" . magit-dispatch)
+         ("C-c g" . magit-file-dispatch)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Languages and file format packages
@@ -412,4 +412,3 @@ link to the JIRA issue."
 
 (provide 'init)
 ;;; init.el ends here
-w
