@@ -153,10 +153,10 @@
 ;; Completion
 (use-package company
   :diminish company-mode
-  :init (global-company-mode)
-  :config (setq company-backends
-		'(company-capf company-files
-			       (company-dabbrev-code company-gtags company-etags company-keywords company-dabbrev))))
+  :custom (company-backends
+	   '(company-capf company-files
+			  (company-dabbrev-code company-gtags company-etags company-keywords company-dabbrev)))
+  :init (global-company-mode))
 
 ;; The silver searcher integration
 (use-package ag)
@@ -166,18 +166,19 @@
 
 ;; Smooth scrolling
 (use-package smooth-scrolling
-  :init (setq smooth-scroll-margin 4)
+  :custom (smooth-scroll-margin 8)
   :config (smooth-scrolling-mode))
 
 ;; Ivy selection
 (use-package ivy
+  :diminish
+  :custom
+  (ivy-use-virtual-buffers nil)
+  (enable-recursive-minibuffers t)
+  (ivy-count-format "(%d/%d) ")
   :config
-  (setq ivy-use-virtual-buffers nil
-	enable-recursive-minibuffers t
-	ivy-count-format "(%d/%d) ")
   (ivy-mode 1)
-  :bind (("C-c r" . ivy-resume))
-  :diminish)
+  :bind (("C-c r" . ivy-resume)))
 
 ;; Counsel
 (use-package counsel
@@ -201,7 +202,7 @@
 
 ;; Magit mode
 (use-package magit
-  :init (setq vc-handled-backends nil)
+  :custom (vc-handled-backends nil)
   :bind (("C-x g" . magit-status)
          ("C-x M-g" . magit-dispatch)
          ("C-c g" . magit-file-dispatch)))
@@ -266,6 +267,24 @@
 ;; Org mode
 (use-package org-superstar)
 (use-package org
+  :custom
+  (org-directory "~/Org")
+  (org-agenda-files '("~/Org/"))
+  (org-todo-keywords '((sequence "TODO(t)" "IN-PROGRESS(i)" "WAITING(w@/!)" "|" "DONE(d!)" "CANCELED(c@)")))
+  (org-todo-keyword-faces '(("IN-PROGRESS" . org-agenda-structure)
+                            ("WAITING" . compilation-warning)
+                            ("CANCELED" . (:foreground gray50 :weight bold))))
+  (org-confirm-babel-evaluate nil)
+  (org-agenda-exporter-settings '((ps-print-color-p nil)
+				                  (org-agnenda-add-entry-text-maxlines 0)
+				                  (htmlize-output-type 'css)))
+  (org-hierarchical-todo-statistics nil)
+  (org-enforce-todo-dependencies t)
+  (org-enforce-todo-checkbox-dependencies t)
+  (org-agenda-dim-blocked-tasks t)
+  (org-log-done t)
+  (org-default-notes-file (concat org-directory "/Notes.org"))
+  (org-catch-invisible-edits 'show)
   :config
   (defun org-graphics-for-bullets ()
     (if (display-graphic-p)
@@ -281,25 +300,6 @@ link to the JIRA issue."
       (when (use-region-p)
         (delete-region start end))
       (insert (format "[[https://jira.appliedinvention.com/browse/%s][%s]]" issue issue))))
-  (defvar org-agenda-exporter-settings)
-  (defvar org-agenda-dim-blocked-tasks)
-  (setq org-directory "~/Org"
-	org-agenda-files '("~/Org/")
-        org-todo-keywords '((sequence "TODO(t)" "IN-PROGRESS(i)" "WAITING(w@/!)" "|" "DONE(d!)" "CANCELED(c@)"))
-        org-todo-keyword-faces '(("IN-PROGRESS" . org-agenda-structure)
-                                 ("WAITING" . compilation-warning)
-                                 ("CANCELED" . (:foreground gray50 :weight bold)))
-	org-confirm-babel-evaluate nil
-	org-agenda-exporter-settings '((ps-print-color-p nil)
-				       (org-agnenda-add-entry-text-maxlines 0)
-				       (htmlize-output-type 'css))
-	org-hierarchical-todo-statistics nil
-	org-enforce-todo-dependencies t
-	org-enforce-todo-checkbox-dependencies t
-	org-agenda-dim-blocked-tasks t
-	org-log-done t
-	org-default-notes-file (concat org-directory "/Notes.org")
-	org-catch-invisible-edits 'show)
   :bind (("C-c a" . org-agenda)
 	 ("C-c c" . org-capture)
          ("C-c j" . insert-jira-link)
@@ -309,22 +309,20 @@ link to the JIRA issue."
 ;; Go
 (use-package go-mode
   :config
-  (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
   (defun jb/lsp-go-install-save-hooks ()
     (add-hook 'before-save-hook #'lsp-format-buffer t t)
     (add-hook 'before-save-hook #'lsp-organize-imports t t))
   :hook ((go-mode . jb/lsp-go-install-save-hooks)
-	 (go-mode . (lambda () (setq-default tab-width 4)))))
-
-(add-hook 'go-mode-hook #'jb/lsp-go-install-save-hooks)
+	 (go-mode . (lambda () (setq-default tab-width 4))))
+  :mode ((("\\.go\\'" . go-mode))))
 
 ;; Markdown editing
 (use-package markdown-mode
   :commands (markdown-mode gfm-mode)
+  :custom (markdown-command "multimarkdown")
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
-         ("\\.markdown\\'" . markdown-mode))
-  :init (setq markdown-command "multimarkdown"))
+         ("\\.markdown\\'" . markdown-mode)))
 
 ;; YAML editing
 (use-package yaml-mode)
@@ -336,8 +334,7 @@ link to the JIRA issue."
   :config
   (setq inferior-lisp-program "~/.asdf/shims/sbcl"
         slime-lisp-implementations '((sbcl ("~/.asdf/shims/sbcl"))
-	                             (ecl ("/usr/bin/ecl")))
-        slime-contribs '(slime-fancy)))
+	                             (ecl ("/usr/bin/ecl")))))
 
 ;; Typescript
 (use-package typescript-mode
