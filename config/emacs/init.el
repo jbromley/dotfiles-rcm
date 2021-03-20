@@ -327,14 +327,32 @@ link to the JIRA issue."
 ;; YAML editing
 (use-package yaml-mode)
 
-;; Common Lisp/SLIME
-(use-package slime
-  :init
-  (require 'slime-autoloads)
-  :config
-  (setq inferior-lisp-program "~/.asdf/shims/sbcl"
-        slime-lisp-implementations '((sbcl ("~/.asdf/shims/sbcl"))
-	                             (ecl ("/usr/bin/ecl")))))
+;; ;; Common Lisp/SLIME
+;; (use-package slime
+;;   :init
+;;   (require 'slime-autoloads)
+;;   :config
+;;   (setq inferior-lisp-program "~/.asdf/shims/sbcl"
+;;         slime-lisp-implementations '((sbcl ("~/.asdf/shims/sbcl"))
+;; 	                             (ecl ("/usr/bin/ecl")))))
+
+;; Common Lisp - SLY
+(use-package sly
+  :custom
+  (inferior-lisp-program (expand-file-name "~/.asdf/shims/sbcl"))
+  (sly-lisp-implementations '((sbcl ("~/.asdf/shims/sbcl") :coding-system utf-8-unix)
+                              (ecl ("/usr/bin/ecl"))))
+  :bind (:map sly-prefix-map ("M-h" . sly-documentation-lookup)))
+
+;; Racket - racket mode and Geiser
+(use-package racket-mode)
+
+(use-package geiser)
+
+;; Clojure - Clojure mode and CIDER
+(use-package clojure-mode)
+
+(use-package cider)
 
 ;; Typescript
 (use-package typescript-mode
