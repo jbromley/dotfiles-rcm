@@ -149,7 +149,6 @@
 (use-package treemacs-magit
   :after treemacs magit)
 
-
 ;; Completion
 (use-package company
   :diminish company-mode
@@ -387,9 +386,6 @@ link to the JIRA issue."
   (modus-themes-load-themes)
   :bind
   (("<f5>" . modus-themes-toggle)))
-
-(use-package modus-vivendi-theme
-  :defer t)
 
 (use-package moe-theme
   :defer t)
