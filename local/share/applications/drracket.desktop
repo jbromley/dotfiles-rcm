@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Terminal=false
+Exec=drracket
+Name=DrRacket
+Comment=Racket programming environment
+Icon=racket-logo.svg
+Categories=Development
