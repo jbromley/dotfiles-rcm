@@ -41,7 +41,6 @@
 ;; General editing configuration
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(show-paren-mode t)
 (column-number-mode t)
 (setq-default fill-column 80
 	      indent-tabs-mode nil)
@@ -59,6 +58,12 @@
                        ((c-mode . "k&r")
                         (c++-mode . "stroustrup")
                         (java-mode . "java"))))
+
+;; Manage parentheses
+(show-paren-mode t)
+(setq show-paren-style 'expression
+      show-paren-when-point-inside-paren t)
+(electric-pair-mode t)
 
 ;; Always turn on auto-fill.
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
@@ -335,6 +340,14 @@ link to the JIRA issue."
 ;;         slime-lisp-implementations '((sbcl ("~/.asdf/shims/sbcl"))
 ;; 	                             (ecl ("/usr/bin/ecl")))))
 
+;; Paredit
+(use-package paredit
+  :hook ((emacs-lisp-mode . enable-paredit-mode)
+         (lisp-mode . enable-paredit-mode)
+         (lisp-interaction-mode . enable-paredit-mode)
+         (racket-mode . enable-paredit-mode)
+         (racket-repl-mode . enable-paredit-mode)))
+
 ;; Common Lisp - SLY
 (use-package sly
   :custom
@@ -346,7 +359,7 @@ link to the JIRA issue."
 ;; Racket - racket mode and Geiser
 (use-package racket-mode)
 
-(use-package geiser)
+;; (use-package geiser)
 
 ;; Clojure - Clojure mode and CIDER
 (use-package clojure-mode)
