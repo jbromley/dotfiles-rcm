@@ -61,7 +61,7 @@
 
 ;; Manage parentheses
 (show-paren-mode t)
-(setq show-paren-style 'expression
+(setq show-paren-style 'parenthesis
       show-paren-when-point-inside-paren t)
 (electric-pair-mode t)
 
