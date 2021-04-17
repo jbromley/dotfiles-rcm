@@ -431,8 +431,9 @@ link to the JIRA issue."
                                       solarized-light
                                       spacemacs-dark
                                       spacemacs-light))
-  (global-set-key (kbd "C-{") 'theme-looper-enable-previous-theme)
-  (global-set-key (kbd "C-}") 'theme-looper-enable-next-theme))
+  (global-set-key (kbd "C-<") 'theme-looper-enable-previous-theme)
+  (global-set-key (kbd "C->") 'theme-looper-enable-next-theme))
 
 (provide 'init)
 ;;; init.el ends here
+(put 'narrow-to-region 'disabled nil)
