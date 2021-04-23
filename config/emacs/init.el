@@ -346,7 +346,8 @@ link to the JIRA issue."
          (lisp-mode . enable-paredit-mode)
          (lisp-interaction-mode . enable-paredit-mode)
          (racket-mode . enable-paredit-mode)
-         (racket-repl-mode . enable-paredit-mode)))
+         (racket-repl-mode . enable-paredit-mode)
+         (scheme-mode . enable-paredit-mode)))
 
 ;; Common Lisp - SLY
 (use-package sly
@@ -356,7 +357,10 @@ link to the JIRA issue."
                               (ecl ("/usr/bin/ecl"))))
   :bind (:map sly-prefix-map ("M-h" . sly-documentation-lookup)))
 
-;; Racket - racket mode and Geiser
+;; Geiser - Scheme
+(use-package geiser)
+
+;; Racket - racket mode
 (use-package racket-mode)
 
 ;; (use-package geiser)
@@ -431,8 +435,9 @@ link to the JIRA issue."
                                       solarized-light
                                       spacemacs-dark
                                       spacemacs-light))
-  (global-set-key (kbd "C-{") 'theme-looper-enable-previous-theme)
-  (global-set-key (kbd "C-}") 'theme-looper-enable-next-theme))
+  (global-set-key (kbd "C-<") 'theme-looper-enable-previous-theme)
+  (global-set-key (kbd "C->") 'theme-looper-enable-next-theme))
 
 (provide 'init)
 ;;; init.el ends here
+(put 'narrow-to-region 'disabled nil)
