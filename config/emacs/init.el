@@ -346,7 +346,8 @@ link to the JIRA issue."
          (lisp-mode . enable-paredit-mode)
          (lisp-interaction-mode . enable-paredit-mode)
          (racket-mode . enable-paredit-mode)
-         (racket-repl-mode . enable-paredit-mode)))
+         (racket-repl-mode . enable-paredit-mode)
+         (scheme-mode . enable-paredit-mode)))
 
 ;; Common Lisp - SLY
 (use-package sly
@@ -359,7 +360,7 @@ link to the JIRA issue."
 ;; Racket - racket mode and Geiser
 (use-package racket-mode)
 
-;; (use-package geiser)
+(use-package geiser)
 
 ;; Clojure - Clojure mode and CIDER
 (use-package clojure-mode)
