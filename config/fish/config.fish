@@ -12,6 +12,9 @@ set --global --export EDITOR nvim
 set --global --export GOPATH ~/go
 set --global --export GOBIN $GOPATH/bin
 
+# Aliases
+alias xo=xdg-open
+
 # Fix fzf.fish C-f binding.
 bind --erase \cf
 bind \co __fzf_search_current_dir
