@@ -357,7 +357,10 @@ link to the JIRA issue."
                               (ecl ("/usr/bin/ecl"))))
   :bind (:map sly-prefix-map ("M-h" . sly-documentation-lookup)))
 
-;; Racket - racket mode and Geiser
+;; Geiser - Scheme
+(use-package geiser)
+
+;; Racket - racket mode
 (use-package racket-mode)
 
 (use-package geiser)
