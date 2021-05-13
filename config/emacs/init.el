@@ -226,9 +226,9 @@
 (use-package dap-mode
   :after (lsp-mode)
   :functions dap-hydra/nil
-  :bind (:map lsp-mode-map
-         ("<f5>" . dap-debug)
-         ("M-<f5>" . dap-hydra))
+  ;; :bind (:map lsp-mode-map
+  ;;        ("<f5>" . dap-debug)
+  ;;        ("M-<f5>" . dap-hydra))
   :hook ((dap-mode . dap-ui-mode)
     (dap-session-created . (lambda (&_rest) (dap-hydra)))
     (dap-terminated . (lambda (&_rest) (dap-hydra/nil)))))
@@ -261,6 +261,7 @@
   :hook ((lsp-mode . lsp-enable-which-key-integration)
 	 (java-mode . lsp-deferred)
 	 (go-mode . lsp-deferred)
+         (racket-mode . lsp-deferred)
 	 (typescript-mode . lsp-deferred)
 	 (web-mode . lsp-deferred)))
 
@@ -358,10 +359,11 @@ link to the JIRA issue."
   :bind (:map sly-prefix-map ("M-h" . sly-documentation-lookup)))
 
 ;; Geiser - Scheme
-(use-package geiser)
+;; (use-package geiser)
 
 ;; Racket - racket mode
-(use-package racket-mode)
+(use-package racket-mode
+  :bind (("C-\\" . racket-insert-lambda)))
 
 (use-package geiser)
 
@@ -407,9 +409,6 @@ link to the JIRA issue."
 (use-package moe-theme
   :defer t)
 
-(use-package nord-theme
-  :defer t)
-
 (use-package solarized-theme
   :defer t)
 
@@ -429,7 +428,6 @@ link to the JIRA issue."
                                       moe-dark
                                       moe-light
                                       molokai
-                                      nord
                                       oceanic
                                       solarized-dark
                                       solarized-light
