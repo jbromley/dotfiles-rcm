@@ -1,8 +1,4 @@
-set runtimepath^=~/.vim runtimepath+=~/.vim/after
-let &packpath=&runtimepath
-
-" Color scheme
-set termguicolors
+" Neovim configuration
 
 " Options {{{
 set splitbelow splitright
@@ -97,8 +93,9 @@ autocmd FileType rkt,scm setlocal commentstring=;\ %s
 
 " nvim-lspconfig
 lua << EOF
-require 'lspconfig'.racket_langserver.setup{}
 require 'lspconfig'.bashls.setup{}
+require 'lspconfig'.gopls.setup{}
+require 'lspconfig'.racket_langserver.setup{}
 EOF
 
 " }}}
@@ -195,6 +192,9 @@ inoremap <S-Tab> <Esc><<i
 "}}}
 
 " UI {{{
+
+" Color scheme
+set termguicolors
 
 " Modeline
 set modeline
