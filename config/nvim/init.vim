@@ -94,8 +94,15 @@ autocmd FileType rkt,scm setlocal commentstring=;\ %s
 " nvim-lspconfig
 lua << EOF
 require 'lspconfig'.bashls.setup{}
+require 'lspconfig'.clangd.setup{}
 require 'lspconfig'.gopls.setup{}
 require 'lspconfig'.racket_langserver.setup{}
+EOF
+
+" lspsaga
+lua << EOF
+local saga = require 'lspsaga'
+saga.init_lsp_saga()
 EOF
 
 " }}}
