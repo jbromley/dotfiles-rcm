@@ -261,6 +261,7 @@
   :hook ((lsp-mode . lsp-enable-which-key-integration)
 	 (java-mode . lsp-deferred)
 	 (go-mode . lsp-deferred)
+         (racket-mode . lsp-deferred)
 	 (typescript-mode . lsp-deferred)
 	 (web-mode . lsp-deferred)))
 
