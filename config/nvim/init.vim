@@ -84,6 +84,20 @@ nmap <Leader>a :Ag<CR>
 map <F2> :NERDTreeToggle<CR>
 let g:NERDTreeIgnore=['\~$', '__pycache__', '.git']
 
+function! StartUp()
+    if !argc() && !exists("s:std_in")
+        NERDTree
+    end
+    if argc() && isdirectory(argv()[0]) && !exists("s:std_in")
+        exe 'NERDTree' argv()[0]
+        wincmd p
+        ene
+    end
+endfunction
+
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * call StartUp()
+
 " VimWiki
 let g:vimwiki_list = [{'path': '~/Documents/Wiki/'}]
 
