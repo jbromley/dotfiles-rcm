@@ -114,9 +114,9 @@
    ("C-c C-n" . windmove-down)))
 
 ;; All the icons
-(use-package all-the-icons)
-(use-package all-the-icons-dired
-  :hook (dired-mode . all-the-icons-dired-mode))
+;; (use-package all-the-icons)
+;; (use-package all-the-icons-dired
+;;   :hook (dired-mode . all-the-icons-dired-mode))
 
 ;; Treemacs
 (use-package treemacs
@@ -373,7 +373,7 @@ link to the JIRA issue."
          (racket-repl-mode . enable-paredit-mode)
          (scheme-mode . enable-paredit-mode)))
 
-;; Lisp interaction mode
+;; Lisp interaction mode - bind eval-print-last-sexp
 (add-hook 'lisp-interaction-mode-hook
           (lambda ()
             (define-key lisp-interaction-mode-map (kbd "C-<return>") 'eval-print-last-sexp)))
@@ -420,18 +420,11 @@ link to the JIRA issue."
   :config
   (setq dracula-alternate-mode-line-and-minibuffer t))
 
-(use-package molokai-theme
-  :defer t)
-
-(use-package oceanic-theme
-  :defer t)
-
 (use-package modus-themes
   :init
   (setq modus-themes-slanted-constructs t
         modus-themes-bold-constructs t)
   (modus-themes-load-themes))
-
 
 (use-package moe-theme
   :defer t)
@@ -447,13 +440,13 @@ link to the JIRA issue."
   (theme-looper-set-favorite-themes '(*default*
                                       dichromacy
                                       misterioso
+                                      almost-mono-black
+                                      almost-mono-white
                                       dracula
                                       modus-operandi
                                       modus-vivendi
                                       moe-dark
                                       moe-light
-                                      molokai
-                                      oceanic
                                       solarized-dark
                                       solarized-light
                                       spacemacs-dark
