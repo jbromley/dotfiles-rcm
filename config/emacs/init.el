@@ -27,7 +27,8 @@
 (setq use-package-always-ensure t)
 
 ;; Add custom Emacs Lisp directory to the load path.
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/elisp"))
+(let ((default-directory (expand-file-name "~/.config/emacs/elisp")))
+  (normal-top-level-add-subdirs-to-load-path))
 
 ;; Set large file size limits
 (setq large-file-warning-threshold 16000000)
@@ -113,8 +114,9 @@
    ("C-c C-n" . windmove-down)))
 
 ;; All the icons
-(use-package all-the-icons)
-(use-package all-the-icons-dired)
+;; (use-package all-the-icons)
+;; (use-package all-the-icons-dired
+;;   :hook (dired-mode . all-the-icons-dired-mode))
 
 ;; Treemacs
 (use-package treemacs
@@ -210,6 +212,27 @@
   :bind (("C-x g" . magit-status)
          ("C-x M-g" . magit-dispatch)
          ("C-c g" . magit-file-dispatch)))
+
+;; Ligatures
+(use-package ligature
+  :ensure nil
+  :config
+  (ligature-set-ligatures 't '("www"))
+  (ligature-set-ligatures 'eww-mode '("ff" "fi" "ffi"))
+  (ligature-set-ligatures 'prog-mode '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
+                                       ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
+                                       "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
+                                       "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
+                                       "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
+                                       "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
+                                       "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
+                                       "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
+                                       ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
+                                       "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
+                                       "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
+                                       "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
+                                       "\\\\" "://"))
+  (global-ligature-mode t))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Languages and file format packages
@@ -350,6 +373,11 @@ link to the JIRA issue."
          (racket-repl-mode . enable-paredit-mode)
          (scheme-mode . enable-paredit-mode)))
 
+;; Lisp interaction mode - bind eval-print-last-sexp
+(add-hook 'lisp-interaction-mode-hook
+          (lambda ()
+            (define-key lisp-interaction-mode-map (kbd "C-<return>") 'eval-print-last-sexp)))
+
 ;; Common Lisp - SLY
 (use-package sly
   :custom
@@ -393,19 +421,11 @@ link to the JIRA issue."
   :config
   (setq dracula-alternate-mode-line-and-minibuffer t))
 
-(use-package molokai-theme
-  :defer t)
-
-(use-package oceanic-theme
-  :defer t)
-
 (use-package modus-themes
   :init
   (setq modus-themes-slanted-constructs t
         modus-themes-bold-constructs t)
-  (modus-themes-load-themes)
-  :bind
-  (("<f5>" . modus-themes-toggle)))
+  (modus-themes-load-themes))
 
 (use-package moe-theme
   :defer t)
@@ -421,15 +441,13 @@ link to the JIRA issue."
   (theme-looper-set-favorite-themes '(*default*
                                       dichromacy
                                       misterioso
-                                      tsdh-dark
-                                      tsdh-light
+                                      almost-mono-black
+                                      almost-mono-white
                                       dracula
                                       modus-operandi
                                       modus-vivendi
                                       moe-dark
                                       moe-light
-                                      molokai
-                                      oceanic
                                       solarized-dark
                                       solarized-light
                                       spacemacs-dark
