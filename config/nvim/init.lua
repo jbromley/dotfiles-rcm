@@ -39,6 +39,8 @@ paq {'frankier/neovim-colors-solarized-truecolor-only'}
 -- Options {{{
 
 -- Buffer options
+-- cmd 'colorscheme dracula'
+
 local indent = 4
 vim.bo.tabstop = indent
 vim.bo.shiftwidth = indent
