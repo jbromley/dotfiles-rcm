@@ -114,7 +114,7 @@
    ("C-c C-n" . windmove-down)))
 
 ;; All the icons
-;; (use-package all-the-icons)
+(use-package all-the-icons)
 ;; (use-package all-the-icons-dired
 ;;   :hook (dired-mode . all-the-icons-dired-mode))
 
@@ -245,6 +245,32 @@
 (use-package flycheck
   :init (global-flycheck-mode))
 
+(use-package lsp-mode
+  :init
+  (setq lsp-keymap-prefix "C-c l")
+  :hook ((lsp-mode . lsp-enable-which-key-integration)
+	 (java-mode . lsp-deferred)
+	 (go-mode . lsp-deferred)
+         (racket-mode . lsp-deferred)
+	 (typescript-mode . lsp-deferred)
+	 (web-mode . lsp-deferred))
+  :commands (lsp lsp-deferred))
+
+;; LSP mode user interface
+(use-package lsp-ui
+  :commands lsp-ui-mode)
+
+;; LSP ivy-mode integration
+(use-package lsp-ivy
+  :commands lsp-ivy-workspace-symbol)
+
+;; Treemacs for LSP
+(use-package lsp-treemacs
+  :after (lsp-mode treemacs)
+  :bind (:map lsp-mode-map
+              ("E" . lsp-treemacs-errors-list))
+  :commands lsp-treemacs-errors-list)
+
 ;;  Emacs Debug Adapter Protocol
 (use-package dap-mode
   :after (lsp-mode)
@@ -255,38 +281,6 @@
   :hook ((dap-mode . dap-ui-mode)
     (dap-session-created . (lambda (&_rest) (dap-hydra)))
     (dap-terminated . (lambda (&_rest) (dap-hydra/nil)))))
-
-;; Treemacs for LSP
-(use-package lsp-treemacs
-  :after (lsp-mode treemacs)
-  :commands lsp-treemacs-errors-list
-  :bind (:map lsp-mode-map
-         ("M-9" . lsp-treemacs-errors-list)))
-
-;; LSP mode
-(use-package lsp-ui
-:after (lsp-mode)
-:bind (:map lsp-ui-mode-map
-         ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
-         ([remap xref-find-references] . lsp-ui-peek-find-references))
-:init (setq lsp-ui-doc-delay 1.5
-      lsp-ui-doc-position 'bottom
-	  lsp-ui-doc-max-width 100))
-
-(use-package lsp-mode
-  :config
-  (defvar lsp-intelephense-multi-root)
-  (setq lsp-intelephense-multi-root nil) ; don't scan unnecessary projects
-  (with-eval-after-load 'lsp-intelephense
-    (setf (lsp--client-multi-root (gethash 'iph lsp-clients)) nil))
-  (define-key lsp-mode-map (kbd "C-c l") lsp-command-map)
-  :commands (lsp lsp-deferred)
-  :hook ((lsp-mode . lsp-enable-which-key-integration)
-	 (java-mode . lsp-deferred)
-	 (go-mode . lsp-deferred)
-         (racket-mode . lsp-deferred)
-	 (typescript-mode . lsp-deferred)
-	 (web-mode . lsp-deferred)))
 
 ;; Java
 (use-package lsp-java
