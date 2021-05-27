@@ -391,6 +391,7 @@ link to the JIRA issue."
 
 ;; Racket - racket mode
 (use-package racket-mode
+  :config (require 'lsp-racket)
   :bind (("C-\\" . racket-insert-lambda)))
 
 (use-package geiser)
