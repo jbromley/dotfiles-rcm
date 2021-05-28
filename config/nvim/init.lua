@@ -57,7 +57,8 @@ vim.o.sidescrolloff = 8
 vim.o.splitbelow = true
 vim.o.splitright = true
 vim.o.termguicolors =  true
-vim.o.wildmode = 'list:longest'
+vim.o.wildmode = 'longest:full'
+vim.o.wildmenu = true
 
 vim.o.clipboard = vim.o.clipboard .. 'unnamedplus'
 vim.o.autowriteall = true
