@@ -411,7 +411,7 @@ link to the JIRA issue."
 
 ;; Themes and theme switching
 (use-package dracula-theme
-  :defer t
+  ; :defer t
   :config
   (setq dracula-alternate-mode-line-and-minibuffer t))
 
@@ -420,9 +420,6 @@ link to the JIRA issue."
   (setq modus-themes-slanted-constructs t
         modus-themes-bold-constructs t)
   (modus-themes-load-themes))
-
-(use-package moe-theme
-  :defer t)
 
 (use-package solarized-theme
   :defer t)
@@ -440,14 +437,14 @@ link to the JIRA issue."
                                       dracula
                                       modus-operandi
                                       modus-vivendi
-                                      moe-dark
-                                      moe-light
                                       solarized-dark
                                       solarized-light
                                       spacemacs-dark
                                       spacemacs-light))
   (global-set-key (kbd "C-<") 'theme-looper-enable-previous-theme)
   (global-set-key (kbd "C->") 'theme-looper-enable-next-theme))
+
+(load-theme 'dracula)
 
 (provide 'init)
 ;;; init.el ends here
