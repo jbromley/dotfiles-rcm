@@ -33,7 +33,6 @@ paq {'vimwiki/vimwiki'}
 paq {'kyazdani42/nvim-web-devicons', opt = true}
 paq {'hoob3rt/lualine.nvim'}
 paq {'dracula/vim', as='dracula'}
-paq {'frankier/neovim-colors-solarized-truecolor-only'}
 -- }}}
 
 -- Options {{{
