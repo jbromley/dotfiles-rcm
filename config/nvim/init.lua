@@ -173,8 +173,8 @@ require('lualine').setup {
 
 -- Commands {{{
 -- Set comment strings.
-cmd 'autocmd FileType c,cpp,cs,java setlocal commentstring=// %s'
-cmd 'autocmd FileType rkt,scm setlocal commentstring=; %s'
+cmd 'autocmd FileType c,cpp,cs,java setlocal commentstring=//\\ %s'
+cmd 'autocmd FileType rkt,scm setlocal commentstring=;\\ %s'
 
 -- Show lightbulb when code actions are available.
 cmd [[autocmd CursorHold,CursorHoldI * lua require('nvim-lightbulb').update_lightbulb()]]
