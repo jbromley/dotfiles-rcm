@@ -249,6 +249,7 @@
   :init
   (setq lsp-keymap-prefix "C-c l")
   :hook ((lsp-mode . lsp-enable-which-key-integration)
+         (c++-mode . lsp-deferred)
 	 (java-mode . lsp-deferred)
 	 (go-mode . lsp-deferred)
          (racket-mode . lsp-deferred)
