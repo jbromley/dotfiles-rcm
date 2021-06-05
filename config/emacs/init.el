@@ -269,7 +269,7 @@
 (use-package lsp-treemacs
   :after (lsp-mode treemacs)
   :bind (:map lsp-mode-map
-              ("E" . lsp-treemacs-errors-list))
+              ("C-c l E" . lsp-treemacs-errors-list))
   :commands lsp-treemacs-errors-list)
 
 ;;  Emacs Debug Adapter Protocol
