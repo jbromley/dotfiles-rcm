@@ -252,6 +252,7 @@
          (c++-mode . lsp-deferred)
 	 (java-mode . lsp-deferred)
 	 (go-mode . lsp-deferred)
+         (elixir-mode . lsp-deferred)
          (racket-mode . lsp-deferred)
 	 (typescript-mode . lsp-deferred)
 	 (web-mode . lsp-deferred))
@@ -346,6 +347,9 @@ link to the JIRA issue."
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode)))
+
+;; Elixir
+(use-package elixir-mode)
 
 ;; YAML editing
 (use-package yaml-mode)
