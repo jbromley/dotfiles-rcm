@@ -349,7 +349,8 @@ link to the JIRA issue."
          ("\\.markdown\\'" . markdown-mode)))
 
 ;; Elixir
-(use-package elixir-mode)
+(use-package elixir-mode
+  :hook ((elixir-mode . (lambda () (add-to-list 'exec-path "/opt/elixir-ls/")))))
 
 ;; YAML editing
 (use-package yaml-mode)
