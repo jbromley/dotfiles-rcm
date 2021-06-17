@@ -93,6 +93,30 @@
 ;; Packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Selection framework
+(use-package selectrum
+  :config
+  (selectrum-mode t))
+
+(use-package selectrum-prescient
+  :after selectrum
+  :config
+  (prescient-persist-mode t)
+  (selectrum-prescient-mode t))
+
+(use-package consult
+  :init
+  (setq xref-show-xrefs-function #'consult-xref
+        xref-show-definitions-function #'consult-xref)
+  :config
+  (autoload 'projectile-project-root "projectile")
+  (setq consult-project-root-function #'projectile-project-root)
+  (with-eval-after-load 'selectrum
+    (require 'consult-selectrum)))
+
+(use-package consult-selectrum
+  :after consult)
+
 ;; initialize the path
 (use-package exec-path-from-shell
   :config
@@ -175,17 +199,6 @@
   :custom (smooth-scroll-margin 8)
   :config (smooth-scrolling-mode))
 
-;; Ivy selection
-(use-package ivy
-  :diminish
-  :custom
-  (ivy-use-virtual-buffers nil)
-  (enable-recursive-minibuffers t)
-  (ivy-count-format "(%d/%d) ")
-  :config
-  (ivy-mode 1)
-  :bind (("C-c r" . ivy-resume)))
-
 ;; Counsel
 (use-package counsel
   :config
@@ -262,10 +275,6 @@
 ;; LSP mode user interface
 (use-package lsp-ui
   :commands lsp-ui-mode)
-
-;; LSP ivy-mode integration
-(use-package lsp-ivy
-  :commands lsp-ivy-workspace-symbol)
 
 ;; Treemacs for LSP
 (use-package lsp-treemacs
