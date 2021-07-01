@@ -110,12 +110,10 @@
         xref-show-definitions-function #'consult-xref)
   :config
   (autoload 'projectile-project-root "projectile")
-  (setq consult-project-root-function #'projectile-project-root)
-  (with-eval-after-load 'selectrum
-    (require 'consult-selectrum)))
+  (setq consult-project-root-function #'projectile-project-root))
 
-(use-package consult-selectrum
-  :after consult)
+;; (use-package consult-selectrum
+;;   :after consult)
 
 ;; initialize the path
 (use-package exec-path-from-shell
@@ -340,6 +338,26 @@ link to the JIRA issue."
 	 ("C-c l" . org-store-link))
   :hook ((org-mode . org-graphics-for-bullets)))
 
+(use-package org-roam
+  :custom (org-roam-directory "~/Roam")
+  :config (require 'org-roam-protocol)
+  :hook ((after-init . org-roam-mode)))
+
+(use-package org-roam-server
+  :ensure t
+  :custom
+  (setq org-roam-server-host "127.0.0.1"
+        org-roam-server-port 8080
+        org-roam-server-authenticate nil
+        org-roam-server-export-inline-images t
+        org-roam-server-serve-files nil
+        org-roam-server-served-file-extensions '("pdf" "mp4" "ogv")
+        org-roam-server-network-poll t
+        org-roam-server-network-arrows nil
+        org-roam-server-network-label-truncate t
+        org-roam-server-network-label-truncate-length 60
+        org-roam-server-network-label-wrap-length 20))
+
 ;; Go
 (use-package go-mode
   :config
@@ -460,7 +478,7 @@ link to the JIRA issue."
   (global-set-key (kbd "C-<") 'theme-looper-enable-previous-theme)
   (global-set-key (kbd "C->") 'theme-looper-enable-next-theme))
 
-(load-theme 'dracula)
+; (load-theme 'dracula)
 
 (provide 'init)
 ;;; init.el ends here
