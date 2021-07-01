@@ -18,3 +18,6 @@ alias xo=xdg-open
 # Fix fzf.fish C-f binding.
 bind --erase \cf
 bind \co __fzf_search_current_dir
+
+# Adjust fzf preview options
+set --export FZF_DEFAULT_OPTS '--cycle --layout=reverse --border --height=75% --preview-window=right:60%:wrap --marker="*"'
