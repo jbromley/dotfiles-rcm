@@ -2,7 +2,7 @@
 Type=Application
 TryExec=alacritty
 Exec=alacritty -e tmux
-Icon=Alacritty
+Icon=com.alacritty.Alacritty
 Terminal=false
 Categories=System;TerminalEmulator;
 
