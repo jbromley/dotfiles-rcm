@@ -341,17 +341,22 @@ link to the JIRA issue."
 (use-package org-roam
   :custom (org-roam-directory "~/Roam")
   :config (require 'org-roam-protocol)
-  :hook ((after-init . org-roam-mode)))
+  ;; :hook ((after-init . org-roam-mode))
+  :bind (:map org-roam-mode-map
+	      ("C-c r f" . org-roam-find-file)
+	      ("C-c r i" . org-roam-insert)
+	      ("C-c r S" . org-roam-server-mode)))
 
 (use-package org-roam-server
   :ensure t
+  :after org-roam
   :custom
   (setq org-roam-server-host "127.0.0.1"
         org-roam-server-port 8080
         org-roam-server-authenticate nil
         org-roam-server-export-inline-images t
         org-roam-server-serve-files nil
-        org-roam-server-served-file-extensions '("pdf" "mp4" "ogv")
+        org-roam-server-served-file-extensions '("pdf" "mp4" "ogv" "png")
         org-roam-server-network-poll t
         org-roam-server-network-arrows nil
         org-roam-server-network-label-truncate t
