@@ -93,6 +93,16 @@
 ;; Packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Use miniframe for completions
+(use-package mini-frame
+  :config
+  (setq x-gtk-resize-child-frames 'resize-mode)
+  (mini-frame-mode t)
+  :custom
+  (mini-frame-show-parameters '((top . 5)
+                                (width . 0.9)
+                                (left . 0.5))))
+
 ;; Selection framework
 (use-package selectrum
   :config
@@ -111,9 +121,6 @@
   :config
   (autoload 'projectile-project-root "projectile")
   (setq consult-project-root-function #'projectile-project-root))
-
-;; (use-package consult-selectrum
-;;   :after consult)
 
 ;; initialize the path
 (use-package exec-path-from-shell
@@ -197,14 +204,6 @@
   :custom (smooth-scroll-margin 8)
   :config (smooth-scrolling-mode))
 
-;; Counsel
-(use-package counsel
-  :config
-  (global-set-key (kbd "M-x") 'counsel-M-x)
-  (global-set-key (kbd "C-x C-f") 'counsel-find-file)
-  (global-set-key (kbd "C-c k") 'counsel-ag)
-  (global-set-key (kbd "C-c z") 'counsel-fzf))
-
 ;; Swiper
 (use-package swiper
   :config (global-set-key "\C-s" 'swiper))
@@ -213,9 +212,6 @@
 (use-package projectile
   :config (projectile-mode 1)
   :bind (:map projectile-mode-map ("C-c p" . projectile-command-map)))
-
-(use-package counsel-projectile
-  :config (counsel-projectile-mode 1))
 
 ;; Magit mode
 (use-package magit
@@ -242,7 +238,7 @@
                             ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
                             "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
                             "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
-                            "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
+                            "?=" "?." "??" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
                             "\\\\" "://"))
   (global-ligature-mode t))
 
