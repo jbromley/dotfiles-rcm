@@ -54,6 +54,7 @@
       select-enable-clipboard t)
 
 ;; Set the default formats for modes derived from cc-mode.
+(setq-default c-basic-offset 4)
 (defvar c-default-style)
 (setq c-default-style (quote
                        ((c-mode . "k&r")
@@ -445,16 +446,16 @@ link to the JIRA issue."
                                        ("tsx" . "\\.ts[x]?\\'"))))
 
 ;; Themes and theme switching
+(use-package almost-mono-themes
+  :defer t)
+
 (use-package dracula-theme
   ; :defer t
   :config
   (setq dracula-alternate-mode-line-and-minibuffer t))
 
-(use-package modus-themes
-  :init
-  (setq modus-themes-slanted-constructs t
-        modus-themes-bold-constructs t)
-  (modus-themes-load-themes))
+(use-package leuven-theme
+  :defer t)
 
 (use-package solarized-theme
   :defer t)
@@ -470,8 +471,6 @@ link to the JIRA issue."
                                       almost-mono-black
                                       almost-mono-white
                                       dracula
-                                      modus-operandi
-                                      modus-vivendi
                                       solarized-dark
                                       solarized-light
                                       spacemacs-dark
