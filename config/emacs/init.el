@@ -186,6 +186,13 @@
 (use-package treemacs-magit
   :after treemacs magit)
 
+;; Snippets
+(use-package yasnippets
+  :config
+  (yas-global-mode t))
+
+(use-package yasnippets-snippets)
+
 ;; Completion
 (use-package company
   :diminish company-mode
@@ -258,6 +265,7 @@
   :init
   (setq lsp-keymap-prefix "C-c l")
   :hook ((lsp-mode . lsp-enable-which-key-integration)
+         (c-mode . lsp-deferred)
          (c++-mode . lsp-deferred)
 	 (java-mode . lsp-deferred)
 	 (go-mode . lsp-deferred)
@@ -268,8 +276,8 @@
   :commands (lsp lsp-deferred))
 
 ;; LSP mode user interface
-(use-package lsp-ui
-  :commands lsp-ui-mode)
+;; (use-package lsp-ui
+;;   :commands lsp-ui-mode)
 
 ;; Treemacs for LSP
 (use-package lsp-treemacs
@@ -455,7 +463,10 @@ link to the JIRA issue."
   (setq dracula-alternate-mode-line-and-minibuffer t))
 
 (use-package leuven-theme
-  :defer t)
+  :defer t
+  :custom
+  (leuven-scale-org-agenda-structure nil)
+  (leuven-scale-outline-headlines nil))
 
 (use-package solarized-theme
   :defer t)
@@ -467,6 +478,7 @@ link to the JIRA issue."
   :config
   (theme-looper-set-favorite-themes '(*default*
                                       dichromacy
+                                      leuven
                                       misterioso
                                       almost-mono-black
                                       almost-mono-white
@@ -477,8 +489,6 @@ link to the JIRA issue."
                                       spacemacs-light))
   (global-set-key (kbd "C-<") 'theme-looper-enable-previous-theme)
   (global-set-key (kbd "C->") 'theme-looper-enable-next-theme))
-
-; (load-theme 'dracula)
 
 (provide 'init)
 ;;; init.el ends here
