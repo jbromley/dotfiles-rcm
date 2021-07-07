@@ -94,24 +94,14 @@
 ;; Packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Use miniframe for completions
-(use-package mini-frame
-  :config
-  (setq x-gtk-resize-child-frames 'resize-mode)
-  (mini-frame-mode t)
-  :custom
-  (mini-frame-show-parameters '((top . 5)
-                                (width . 0.9)
-                                (left . 0.5))))
-
 ;; Selection framework
 (use-package selectrum
-  :config
+  :custom
   (selectrum-mode t))
 
 (use-package selectrum-prescient
   :after selectrum
-  :config
+  :custom
   (prescient-persist-mode t)
   (selectrum-prescient-mode t))
 
@@ -136,12 +126,8 @@
 (use-package windmove
   :config
   (windmove-default-keybindings)
-  (setq windmove-wrap-around t)
-  :bind
-  (("C-c C-f" . windmove-right)
-   ("C-c C-b" . windmove-left)
-   ("C-c C-p" . windmove-up)
-   ("C-c C-n" . windmove-down)))
+  :custom
+  (windmove-wrap-around t))
 
 ;; All the icons
 (use-package all-the-icons)
@@ -187,11 +173,11 @@
   :after treemacs magit)
 
 ;; Snippets
-(use-package yasnippets
+(use-package yasnippet
   :config
   (yas-global-mode t))
 
-(use-package yasnippets-snippets)
+(use-package yasnippet-snippets)
 
 ;; Completion
 (use-package company
@@ -275,10 +261,6 @@
 	 (web-mode . lsp-deferred))
   :commands (lsp lsp-deferred))
 
-;; LSP mode user interface
-;; (use-package lsp-ui
-;;   :commands lsp-ui-mode)
-
 ;; Treemacs for LSP
 (use-package lsp-treemacs
   :after (lsp-mode treemacs)
@@ -304,6 +286,21 @@
 ;; Org mode
 (use-package org-superstar)
 (use-package org
+  :config
+  (defun org-graphics-for-bullets ()
+    (if (display-graphic-p)
+	(org-superstar-mode 1)))
+  (defun insert-jira-link (start end)
+    "Prompt user to enter an issue number and generate an Org mode
+link to the JIRA issue."
+    (interactive "r")
+    (let ((issue (if (use-region-p)
+                     (buffer-substring start end)
+                   (read-string "JIRA issue: "))))
+      (message "Linking issue %s" issue)
+      (when (use-region-p)
+        (delete-region start end))
+      (insert (format "[[https://jira.appliedinvention.com/browse/%s][%s]]" issue issue))))
   :custom
   (org-directory "~/Org")
   (org-agenda-files '("~/Org/"))
@@ -322,21 +319,6 @@
   (org-log-done t)
   (org-default-notes-file (concat org-directory "/Notes.org"))
   (org-catch-invisible-edits 'show)
-  :config
-  (defun org-graphics-for-bullets ()
-    (if (display-graphic-p)
-	(org-superstar-mode 1)))
-  (defun insert-jira-link (start end)
-    "Prompt user to enter an issue number and generate an Org mode
-link to the JIRA issue."
-    (interactive "r")
-    (let ((issue (if (use-region-p)
-                     (buffer-substring start end)
-                   (read-string "JIRA issue: "))))
-      (message "Linking issue %s" issue)
-      (when (use-region-p)
-        (delete-region start end))
-      (insert (format "[[https://jira.appliedinvention.com/browse/%s][%s]]" issue issue))))
   :bind (("C-c a" . org-agenda)
 	 ("C-c c" . org-capture)
          ("C-c j" . insert-jira-link)
@@ -346,7 +328,6 @@ link to the JIRA issue."
 (use-package org-roam
   :custom (org-roam-directory "~/Roam")
   :config (require 'org-roam-protocol)
-  ;; :hook ((after-init . org-roam-mode))
   :bind (:map org-roam-mode-map
 	      ("C-c r f" . org-roam-find-file)
 	      ("C-c r i" . org-roam-insert)
@@ -393,15 +374,6 @@ link to the JIRA issue."
 ;; YAML editing
 (use-package yaml-mode)
 
-;; ;; Common Lisp/SLIME
-;; (use-package slime
-;;   :init
-;;   (require 'slime-autoloads)
-;;   :config
-;;   (setq inferior-lisp-program "~/.asdf/shims/sbcl"
-;;         slime-lisp-implementations '((sbcl ("~/.asdf/shims/sbcl"))
-;; 	                             (ecl ("/usr/bin/ecl")))))
-
 ;; Paredit
 (use-package paredit
   :hook ((emacs-lisp-mode . enable-paredit-mode)
@@ -423,9 +395,6 @@ link to the JIRA issue."
   (sly-lisp-implementations '((sbcl ("~/.asdf/shims/sbcl") :coding-system utf-8-unix)
                               (ecl ("/usr/bin/ecl"))))
   :bind (:map sly-prefix-map ("M-h" . sly-documentation-lookup)))
-
-;; Geiser - Scheme
-;; (use-package geiser)
 
 ;; Racket - racket mode
 (use-package racket-mode
