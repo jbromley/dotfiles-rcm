@@ -14,6 +14,16 @@
 ;; Configuration setup
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Set up timing information.
+(defun jb/display-startup-time ()
+  "Show startup time and the number of garbage collections."
+  (message "Emacs loaded %d features in %s with %d garbage collections."
+           (length features)
+           (format "%.2f seconds" (float-time (time-subtract after-init-time before-init-time)))
+           gcs-done))
+
+(add-hook 'emacs-startup-hook #'jb/display-startup-time)
+
 ;; Set up the package manager
 (require 'package)
 (add-to-list 'package-archives (cons "melpa" "https://melpa.org/packages/") t)
@@ -53,6 +63,10 @@
 (setq select-enable-primary t
       select-enable-clipboard t)
 
+;; Use xclip for copy/paste if we are running in a terminal.
+(if (not (display-graphic-p))
+    (xclip-mode 1))
+
 ;; Set the default formats for modes derived from cc-mode.
 (setq-default c-basic-offset 4)
 (defvar c-default-style)
@@ -88,7 +102,7 @@
 (add-hook 'minibuffer-setup-hook
 	  (lambda () (setq gc-cons-threshold most-positive-fixnum)))
 (add-hook 'minibuffer-exit-hook
-	  (lambda () (setq gc-cons-threshold 800000)))
+	  (lambda () (setq gc-cons-threshold 16000000)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Packages
@@ -136,7 +150,8 @@
 
 ;; Treemacs
 (use-package treemacs
-   :defer t
+  :commands (treemacs)
+  :defer t
   :init
   (with-eval-after-load 'winum
     (defvar winum-keymap)
@@ -152,7 +167,6 @@
        (treemacs-git-mode 'deferred))
       (`(t . _)
        (treemacs-git-mode 'simple))))
-  :commands (treemacs)
   :after (lsp-mode)
   :bind
   (:map global-map
@@ -164,12 +178,15 @@
 	("C-x t M-t" . treemacs-find-tag)))
 
 (use-package treemacs-projectile
+  :defer t
   :after treemacs projectile)
 
 (use-package treemacs-icons-dired
+  :defer t
   :after treemacs dired)
 
 (use-package treemacs-magit
+  :defer t
   :after treemacs magit)
 
 ;; Snippets
@@ -241,15 +258,20 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Snippets
-(use-package java-snippets)
+(use-package java-snippets
+  :defer t)
 
 ;; Flycheck
 (use-package flycheck
   :init (global-flycheck-mode))
 
 (use-package lsp-mode
+  :commands
+  (lsp lsp-deferred)
   :init
   (setq lsp-keymap-prefix "C-c l")
+  :config
+  (lsp-enable-which-key-integration t)
   :hook ((lsp-mode . lsp-enable-which-key-integration)
          (c-mode . lsp-deferred)
          (c++-mode . lsp-deferred)
@@ -258,8 +280,7 @@
          (elixir-mode . lsp-deferred)
          (racket-mode . lsp-deferred)
 	 (typescript-mode . lsp-deferred)
-	 (web-mode . lsp-deferred))
-  :commands (lsp lsp-deferred))
+	 (web-mode . lsp-deferred)))
 
 ;; Treemacs for LSP
 (use-package lsp-treemacs
@@ -270,6 +291,9 @@
 
 ;;  Emacs Debug Adapter Protocol
 (use-package dap-mode
+  :commands
+  (dap-mode dap-debug)
+  :defer t
   :after (lsp-mode)
   :functions dap-hydra/nil
   ;; :bind (:map lsp-mode-map
@@ -281,6 +305,7 @@
 
 ;; Java
 (use-package lsp-java
+  :defer t
   :hook (java-mode-hook . lsp))
 
 ;; Org mode
@@ -351,6 +376,7 @@ link to the JIRA issue."
 
 ;; Go
 (use-package go-mode
+  :defer t
   :config
   (defun jb/lsp-go-install-save-hooks ()
     (add-hook 'before-save-hook #'lsp-format-buffer t t)
@@ -372,7 +398,11 @@ link to the JIRA issue."
   :hook ((elixir-mode . (lambda () (add-to-list 'exec-path "/opt/elixir-ls/")))))
 
 ;; YAML editing
-(use-package yaml-mode)
+(use-package yaml-mode
+  :mode
+  ("\\.yaml\\'" "\\.yml\\'")
+  :commands
+  (yaml-mode))
 
 ;; Paredit
 (use-package paredit
@@ -401,12 +431,20 @@ link to the JIRA issue."
   :config (require 'lsp-racket)
   :bind (("C-\\" . racket-insert-lambda)))
 
-(use-package geiser)
+(use-package geiser
+  :commands (geiser run-geiser geiser-repl)
+  :defer t)
 
 ;; Clojure - Clojure mode and CIDER
-(use-package clojure-mode)
+(use-package clojure-mode
+  :commands
+  (clojure-mode)
+  :defer t)
 
-(use-package cider)
+(use-package cider
+  :commands
+  (cider)
+  :defer t)
 
 ;; Typescript
 (use-package typescript-mode
@@ -428,8 +466,8 @@ link to the JIRA issue."
 
 (use-package dracula-theme
   ; :defer t
-  :config
-  (setq dracula-alternate-mode-line-and-minibuffer t))
+  :custom
+  (dracula-alternate-mode-line-and-minibuffer t))
 
 (use-package leuven-theme
   :defer t
