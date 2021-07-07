@@ -17,4 +17,4 @@ alias xo=xdg-open
 
 # Configure fzf.
 set --export FZF_DEFAULT_OPTS '--cycle --layout=reverse --border --height=75% --preview-window=right:60%:wrap --marker="*"'
-fzf_configure_bindings --directory=\co
+# fzf_configure_bindings --directory=\co
