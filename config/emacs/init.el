@@ -192,7 +192,14 @@
 ;; Snippets
 (use-package yasnippet
   :config
-  (yas-global-mode t))
+  ;; (define-key yas-minor-mode-map (kbd "<tab>") nil)
+  ;; (define-key yas-minor-mode-map (kbd "<tab>") nil)
+  (yas-global-mode t)
+  :bind
+  (:map yas-minor-mode-map
+        ("<tab>" . nil)
+        ("TAB" . nil)
+        ("C-c y" . yas-expand)))
 
 (use-package yasnippet-snippets)
 
@@ -312,10 +319,10 @@
 (use-package org-superstar)
 (use-package org
   :config
-  (defun org-graphics-for-bullets ()
+  (defun jb/org-graphics-for-bullets ()
     (if (display-graphic-p)
 	(org-superstar-mode 1)))
-  (defun insert-jira-link (start end)
+  (defun jb/org-insert-jira-link (start end)
     "Prompt user to enter an issue number and generate an Org mode
 link to the JIRA issue."
     (interactive "r")
@@ -346,9 +353,9 @@ link to the JIRA issue."
   (org-catch-invisible-edits 'show)
   :bind (("C-c a" . org-agenda)
 	 ("C-c c" . org-capture)
-         ("C-c j" . insert-jira-link)
+         ("C-c j" . jb/org-insert-jira-link)
 	 ("C-c l" . org-store-link))
-  :hook ((org-mode . org-graphics-for-bullets)))
+  :hook ((org-mode . jb/org-graphics-for-bullets)))
 
 (use-package org-roam
   :custom (org-roam-directory "~/Roam")
@@ -359,7 +366,6 @@ link to the JIRA issue."
 	      ("C-c r S" . org-roam-server-mode)))
 
 (use-package org-roam-server
-  :ensure t
   :after org-roam
   :custom
   (setq org-roam-server-host "127.0.0.1"
@@ -395,6 +401,8 @@ link to the JIRA issue."
 
 ;; Elixir
 (use-package elixir-mode
+  :commands (elixir-mode)
+  :defer t
   :hook ((elixir-mode . (lambda () (add-to-list 'exec-path "/opt/elixir-ls/")))))
 
 ;; YAML editing
