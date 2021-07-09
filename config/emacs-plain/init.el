@@ -37,7 +37,7 @@
 (setq use-package-always-ensure t)
 
 ;; Add custom Emacs Lisp directory to the load path.
-(let ((default-directory (expand-file-name "~/.config/emacs/elisp")))
+(let ((default-directory (concat user-emacs-directory "elisp/")))
   (normal-top-level-add-subdirs-to-load-path))
 
 ;; Set large file size limits
@@ -56,7 +56,7 @@
 (setq-default fill-column 80
 	      indent-tabs-mode nil)
 
-(setq custom-file (expand-file-name "~/.config/emacs/custom.el"))
+(setq custom-file (concat user-emacs-directory "custom.el"))
 (load custom-file)
 
 ;; Integrate with system clipboard and selection.
