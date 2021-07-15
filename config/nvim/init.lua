@@ -4,6 +4,9 @@ local fn = vim.fn
 local g = vim.g
 
 -- Set up keymaps
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ','
+
 local function map(mode, lhs, rhs, opts)
   local options = {noremap = true}
   if opts then
@@ -17,12 +20,12 @@ end
 cmd 'packadd paq-nvim'
 local paq = require('paq-nvim').paq
 paq {'savq/paq-nvim', opt = true}
-
 paq {'junegunn/fzf', run = fn['fzf#install']}
 paq {'junegunn/fzf.vim'}
 paq {'nvim-treesitter/nvim-treesitter'}
 paq {'neovim/nvim-lspconfig'}
 paq {'kosayoda/nvim-lightbulb'}
+paq {'hrsh7th/nvim-compe'}
 paq {'elixir-editors/vim-elixir'}
 paq {'wlangstroth/vim-racket'}
 paq {'kovisoft/paredit'}
@@ -136,7 +139,6 @@ local on_attach = function(client, bufnr)
   -- buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   -- buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
   -- buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  -- buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
   -- buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
   -- buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   -- buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
@@ -157,6 +159,59 @@ local servers = { "bashls", "clangd", "gopls", "racket_langserver" }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { on_attach = on_attach }
 end
+-- }}}
+
+-- Compe {{{
+require'compe'.setup {
+    enabled = true;
+    autocomplete = true;
+    debug = false;
+    min_length = 1;
+    preselect = 'enable';
+    throttle_time = 80;
+    source_timeout = 200;
+    incomplete_delay = 400;
+    max_abbr_width = 100;
+    max_kind_width = 100;
+    max_menu_width = 100;
+    documentation = true;
+
+    source = {
+        path = true;
+        nvim_lsp = true;
+    }
+}
+
+local t = function(str)
+    return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
+local check_back_space = function()
+    local col = vim.fn.col('.') - 1
+    return col == 0 or vim.fn.getline(','):sub(col, col):match('%s')
+end
+
+_G.tab_complete = function()
+  if vim.fn.pumvisible() == 1 then
+    return t "<C-n>"
+  elseif check_back_space() then
+    return t "<Tab>"
+  else
+    return vim.fn['compe#complete']()
+  end
+end
+_G.s_tab_complete = function()
+  if vim.fn.pumvisible() == 1 then
+    return t "<C-p>"
+  else
+    return t "<S-Tab>"
+  end
+end
+
+vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 -- }}}
 
 -- lualine {{{
