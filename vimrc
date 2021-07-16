@@ -72,55 +72,6 @@ if &shell =~# 'fish$'
 endif
 " }}}
 
-" Plugin configuration and key bindings {{{
-
-" Key bindings for fzf
-nmap ; :Buffers<CR>
-nmap <Leader>t :Tags<CR>
-nmap <Leader>f :Files<CR>
-nmap <Leader>a :Ag<CR>
-
-" NerdTree configuration
-map <F2> :NERDTreeToggle<CR>
-let g:NERDTreeIgnore=['\~$', '__pycache__', '.git']
-
-" VimWiki
-let g:vimwiki_list = [{'path': '~/Documents/Wiki/'}]
-
-" vim-commentary
-autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
-
-" YouCompleteMe
-autocmd CompleteDone * pclose
-if has('mac')
-    let g:ycm_clangd_binary_path = "/opt/clang+llvm-10.0.0-x86_64-apple-darwin/bin/clangd"
-else
-    let g:ycm_clangd_binary_path = "/usr/bin/clangd"
-endif
-let g:ycm_language_server = 
-  \  [
-  \    {
-  \       'name': 'elixir',
-  \       'cmdline': [ '/opt/elixir-ls/language_server.sh' ],
-  \       'filetypes': [ 'elixir' ],
-  \       'project_root_files': [ 'mix.exs' ]
-  \    }
-  \  ]
-let g:ycm_auto_hover = ''
-let g:ycm_always_populate_location_list = 1
-let g:ycm_error_symbol = '!!'
-let g:ycm_warning_symbol = '??'
-let g:ycm_java_binary_path = "/usr/lib/jvm/java-11-openjdk-amd64/bin/java"
-map <Leader>i :YcmCompleter GoTo<CR>
-map <Leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
-map <Leader>r :YcmCompleter GoToReferences<CR>
-map <Leader>s :YcmCompleter GoToSymbol<CR>
-map <Leader>k :YcmCompleter GetDoc<CR>
-map <Leader>y :YcmCompleter GetType<CR>
-map <Leader>x :YcmCompleter FixIt<CR>
-map <Leader>D <Plug>(YCMHover)
-" }}}
-
 " Functions{{{
 function! StatuslineMode()
   let l:mode=mode()
