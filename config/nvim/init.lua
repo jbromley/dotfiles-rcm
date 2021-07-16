@@ -32,6 +32,7 @@ paq {'tpope/vim-fugitive'}
 paq {'vimwiki/vimwiki'}
 paq {'kyazdani42/nvim-web-devicons', opt = true}
 paq {'hoob3rt/lualine.nvim'}
+paq {'kristijanhusak/orgmode.nvim'}
 paq {'dracula/vim', as='dracula'}
 -- }}}
 
@@ -103,6 +104,13 @@ ts.setup {ensure_installed = 'maintained', highlight = {enable = true}}
 
 -- VimWiki {{{
 g['vimwiki_list'] = {{path = '~/Documents/Wiki'}}
+-- }}}
+
+-- {{{ orgmode.nvim
+require('orgmode').setup({
+    org_agenda_files = {'~/Org/*'},
+    org_default_notes_file = '~/Org/Notes.org',
+})
 -- }}}
 
 -- LSP {{{
