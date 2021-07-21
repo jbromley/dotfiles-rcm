@@ -54,7 +54,7 @@
 
 (column-number-mode t)
 (setq-default fill-column 80
-	      indent-tabs-mode nil)
+              indent-tabs-mode nil)
 
 (setq custom-file (concat user-emacs-directory "custom.el"))
 (load custom-file)
@@ -95,14 +95,14 @@
             (defvar sql-prompt-regexp)
             (defvar sql-prompt-cont-regexp)
             (when (string= sql-product "postgres")
-	      (setq sql-prompt-regexp "^[[:alnum:]_]*=[#>] ")
-	      (setq sql-prompt-cont-regexp "^[[:alnum:]_]*[-(][#>] "))))
+              (setq sql-prompt-regexp "^[[:alnum:]_]*=[#>] ")
+              (setq sql-prompt-cont-regexp "^[[:alnum:]_]*[-(][#>] "))))
 
 ;; Avoid garbage collection while in the mini-buffer.
 (add-hook 'minibuffer-setup-hook
-	  (lambda () (setq gc-cons-threshold most-positive-fixnum)))
+          (lambda () (setq gc-cons-threshold most-positive-fixnum)))
 (add-hook 'minibuffer-exit-hook
-	  (lambda () (setq gc-cons-threshold 16000000)))
+          (lambda () (setq gc-cons-threshold 16000000)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Packages
@@ -162,7 +162,7 @@
     (treemacs-filewatch-mode t)
     (treemacs-fringe-indicator-mode t)
     (pcase (cons (not (null (executable-find "git")))
-		 (not (null treemacs-python-executable)))
+                 (not (null treemacs-python-executable)))
       (`(t . t)
        (treemacs-git-mode 'deferred))
       (`(t . _)
@@ -170,12 +170,12 @@
   :after (lsp-mode)
   :bind
   (:map global-map
-	("M-0" . treemacs-select-window)
-	("C-x t 1" . treemacs-no-delete-other-windows)
-	("C-x t t" . treemacs)
-	("C-x t B" . treemacs-bookmark)
-	("C-x t C-t" . treemacs-find-file)
-	("C-x t M-t" . treemacs-find-tag)))
+        ("M-0" . treemacs-select-window)
+        ("C-x t 1" . treemacs-no-delete-other-windows)
+        ("C-x t t" . treemacs)
+        ("C-x t B" . treemacs-bookmark)
+        ("C-x t C-t" . treemacs-find-file)
+        ("C-x t M-t" . treemacs-find-tag)))
 
 (use-package treemacs-projectile
   :defer t
@@ -207,8 +207,8 @@
 (use-package company
   :diminish company-mode
   :custom (company-backends
-	   '(company-capf company-files
-			  (company-dabbrev-code company-gtags company-etags company-keywords company-dabbrev)))
+           '(company-capf company-files
+                          (company-dabbrev-code company-gtags company-etags company-keywords company-dabbrev)))
   :init (global-company-mode))
 
 ;; The silver searcher integration
@@ -282,12 +282,12 @@
   :hook ((lsp-mode . lsp-enable-which-key-integration)
          (c-mode . lsp-deferred)
          (c++-mode . lsp-deferred)
-	 (java-mode . lsp-deferred)
-	 (go-mode . lsp-deferred)
+         (java-mode . lsp-deferred)
+         (go-mode . lsp-deferred)
          (elixir-mode . lsp-deferred)
          (racket-mode . lsp-deferred)
-	 (typescript-mode . lsp-deferred)
-	 (web-mode . lsp-deferred)))
+         (typescript-mode . lsp-deferred)
+         (web-mode . lsp-deferred)))
 
 ;; Treemacs for LSP
 (use-package lsp-treemacs
@@ -321,7 +321,7 @@
   :config
   (defun jb/org-graphics-for-bullets ()
     (if (display-graphic-p)
-	(org-superstar-mode 1)))
+        (org-superstar-mode 1)))
   (defun jb/org-insert-jira-link (start end)
     "Prompt user to enter an issue number and generate an Org mode
 link to the JIRA issue."
@@ -342,8 +342,8 @@ link to the JIRA issue."
                             ("CANCELED" . (:foreground gray50 :weight bold))))
   (org-confirm-babel-evaluate nil)
   (org-agenda-exporter-settings '((ps-print-color-p nil)
-				                  (org-agnenda-add-entry-text-maxlines 0)
-				                  (htmlize-output-type 'css)))
+                                                  (org-agnenda-add-entry-text-maxlines 0)
+                                                  (htmlize-output-type 'css)))
   (org-hierarchical-todo-statistics nil)
   (org-enforce-todo-dependencies t)
   (org-enforce-todo-checkbox-dependencies t)
@@ -352,18 +352,18 @@ link to the JIRA issue."
   (org-default-notes-file (concat org-directory "/Notes.org"))
   (org-catch-invisible-edits 'show)
   :bind (("C-c a" . org-agenda)
-	 ("C-c c" . org-capture)
+         ("C-c c" . org-capture)
          ("C-c j" . jb/org-insert-jira-link)
-	 ("C-c l" . org-store-link))
+         ("C-c l" . org-store-link))
   :hook ((org-mode . jb/org-graphics-for-bullets)))
 
 (use-package org-roam
   :custom (org-roam-directory "~/Roam")
   :config (require 'org-roam-protocol)
   :bind (:map org-roam-mode-map
-	      ("C-c r f" . org-roam-find-file)
-	      ("C-c r i" . org-roam-insert)
-	      ("C-c r S" . org-roam-server-mode)))
+              ("C-c r f" . org-roam-find-file)
+              ("C-c r i" . org-roam-insert)
+              ("C-c r S" . org-roam-server-mode)))
 
 (use-package org-roam-server
   :after org-roam
@@ -388,7 +388,7 @@ link to the JIRA issue."
     (add-hook 'before-save-hook #'lsp-format-buffer t t)
     (add-hook 'before-save-hook #'lsp-organize-imports t t))
   :hook ((go-mode . jb/lsp-go-install-save-hooks)
-	 (go-mode . (lambda () (setq-default tab-width 4))))
+         (go-mode . (lambda () (setq-default tab-width 4))))
   :mode ((("\\.go\\'" . go-mode))))
 
 ;; Markdown editing
