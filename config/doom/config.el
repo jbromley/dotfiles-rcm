@@ -34,7 +34,8 @@
 (after! org
   (setq org-todo-keywords
         (cons '(sequence "TODO(t)" "PROJ(p)" "LOOP(r)" "STRT(s)" "WAIT(w@)" "HOLD(h@)" "IDEA(i)" "|" "DONE(d)" "KILL(k@)")
-              (cdr org-todo-keywords))))
+              (cdr org-todo-keywords))
+        org-hierarchical-todo-statistics nil))
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
