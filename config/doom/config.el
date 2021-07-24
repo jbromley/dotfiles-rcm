@@ -30,7 +30,8 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/Org/")
+(setq org-directory (expand-file-name  "~/Org/"))
+(setq org-roam-directory (expand-file-name "~/Roam/"))
 (after! org
   (setq org-todo-keywords
         (cons '(sequence "TODO(t)" "PROJ(p)" "LOOP(r)" "STRT(s)" "WAIT(w@)" "HOLD(h@)" "IDEA(i)" "|" "DONE(d)" "KILL(k@)")
