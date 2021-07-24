@@ -334,7 +334,7 @@ link to the JIRA issue."
         (delete-region start end))
       (insert (format "[[https://jira.appliedinvention.com/browse/%s][%s]]" issue issue))))
   :custom
-  (org-directory "~/Org")
+  (org-directory (expand-file-name  "~/Org"))
   (org-agenda-files '("~/Org/"))
   (org-todo-keywords '((sequence "TODO(t)" "IN-PROGRESS(i)" "WAITING(w@/!)" "|" "DONE(d!)" "CANCELED(c@)")))
   (org-todo-keyword-faces '(("IN-PROGRESS" . org-agenda-structure)
@@ -358,7 +358,7 @@ link to the JIRA issue."
   :hook ((org-mode . jb/org-graphics-for-bullets)))
 
 (use-package org-roam
-  :custom (org-roam-directory "~/Roam")
+  :custom (org-roam-directory (expand-file-name  "~/Roam"))
   :config (require 'org-roam-protocol)
   :bind (:map org-roam-mode-map
               ("C-c r f" . org-roam-find-file)
