@@ -149,9 +149,13 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "bashls", "clangd", "gopls", "racket_langserver", "elixir-ls" }
+local servers = { "bashls", "clangd", "gopls", "racket_langserver", "elixirls" }
 for _, lsp in ipairs(servers) do
-    nvim_lsp[lsp].setup { on_attach = on_attach }
+    local options = { on_attach = on_attach }
+    if lsp == "elixirls" then
+        options = vim.tbl_extend('force', options, { cmd = { "/opt/elixir-ls/language_server.sh" }}) 
+    end
+    nvim_lsp[lsp].setup(options)
 end
 -- }}}
 
