@@ -40,7 +40,6 @@ This function should only modify configuration layer settings."
      ;; ----------------------------------------------------------------
      auto-completion
      ;; better-defaults
-     evil-cleverparens
      git
      helm
      lsp
@@ -75,8 +74,8 @@ This function should only modify configuration layer settings."
    ;; `dotspacemacs/user-config'. To use a local version of a package, use the
    ;; `:location' property: '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '((ob-racket :location (recipe :fetcher github :repo "DEADB17/ob-racket"))
-                                      (ligature :location (recipe :fetcher github :repo "jbromley/ligature.el")))
+   dotspacemacs-additional-packages '();;(ob-racket :location (recipe :fetcher github :repo "DEADB17/ob-racket"))
+                                      ;;(ligature :location (recipe :fetcher github :repo "jbromley/ligature.el")))
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -554,33 +553,51 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  (add-hook 'racket-mode-hook #'evil-cleverparens-mode)
 
-  (use-package ligature
-    ;;:load-path "path-to-ligature-repo"
-    :config
-    (ligature-set-ligatures 't '("www"))
-    (ligature-set-ligatures 'eww-mode '("ff" "fi" "ffi"))
-    (ligature-set-ligatures 'prog-mode '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
-                                         ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
-                                         "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
-                                         "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
-                                         "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
-                                         "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
-                                         "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
-                                         "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
-                                         ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
-                                         "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
-                                         "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
-                                         "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
-                                         "\\\\" "://"))
-    (global-ligature-mode t))
+  ;; Set Org file locations
+  (setq org-directory (expand-file-name  "~/Org")
+        org-agenda-files '("~/Org/")
+        org-todo-keywords '((sequence "TODO(t)" "IN-PROGRESS(i)" "WAITING(w@/!)" "|" "DONE(d!)" "CANCELED(c@)"))
+        org-todo-keyword-faces '(("IN-PROGRESS" . org-agenda-structure)
+                                 ("WAITING" . compilation-warning)
+                                 ("CANCELED" . (:foreground gray50 :weight bold)))
+        org-confirm-babel-evaluate nil
+        org-agenda-exporter-settings '((ps-print-color-p nil)
+                                       (org-agnenda-add-entry-text-maxlines 0)
+                                       (htmlize-output-type 'css))
+        org-hierarchical-todo-statistics nil
+        org-enforce-todo-dependencies t
+        org-enforce-todo-checkbox-dependencies t
+        org-agenda-dim-blocked-tasks t
+        org-log-done t
+        org-default-notes-file (concat org-directory "/Notes.org")
+        org-catch-invisible-edits 'show)
+
+  ;; (use-package ligature
+  ;;   ;;:load-path "path-to-ligature-repo"
+  ;;   :config
+  ;;   (ligature-set-ligatures 't '("www"))
+  ;;   (ligature-set-ligatures 'eww-mode '("ff" "fi" "ffi"))
+  ;;   (ligature-set-ligatures 'prog-mode '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
+  ;;                                        ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
+  ;;                                        "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
+  ;;                                        "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
+  ;;                                        "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
+  ;;                                        "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
+  ;;                                        "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
+  ;;                                        "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
+  ;;                                        ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
+  ;;                                        "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
+  ;;                                        "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
+  ;;                                        "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
+  ;;                                        "\\\\" "://"))
+  ;;   (global-ligature-mode t))
 
   (use-package ob-racket
     :after org
     :pin manual
-    :config (append '((racket . t) (scribble . t)) org-babel-load-languages)))
-
+    :config (append '((racket . t) (scribble . t)) org-babel-load-languages))
+  )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
