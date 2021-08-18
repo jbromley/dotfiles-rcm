@@ -54,8 +54,6 @@
       select-enable-clipboard t)
 
 ;; Use xclip for copy/paste if we are running in a terminal.
-(if (not (display-graphic-p))
-    (xclip-mode 1))
 
 ;; Set the default formats for modes derived from cc-mode.
 (setq-default c-basic-offset 4)
@@ -97,6 +95,12 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Copy/paste from terminal emacs in X11
+(use-package xclip
+  :config
+  (if (not (display-graphic-p))
+    (xclip-mode 1)))
 
 ;; Selection framework
 (use-package selectrum
