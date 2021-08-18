@@ -12,7 +12,7 @@ set --global --export GOBIN $GOPATH/bin
 # Aliases
 alias xo=xdg-open
 alias et='emacsclient --tty'
-alias e=emacsclient
+alias e='emacsclient --create-frame'
 
 # Configure fzf.
 set --export FZF_DEFAULT_OPTS '--cycle --layout=reverse --border --height=75% --preview-window=right:60%:wrap --marker="*"'
