@@ -14,16 +14,6 @@
 ;; Configuration setup
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Set up timing information.
-(defun jb/display-startup-time ()
-  "Show startup time and the number of garbage collections."
-  (message "Emacs loaded %d features in %s with %d garbage collections."
-           (length features)
-           (format "%.2f seconds" (float-time (time-subtract after-init-time before-init-time)))
-           gcs-done))
-
-(add-hook 'emacs-startup-hook #'jb/display-startup-time)
-
 ;; Set up the package manager
 (require 'package)
 (add-to-list 'package-archives (cons "melpa" "https://melpa.org/packages/") t)
@@ -143,52 +133,6 @@
   :custom
   (windmove-wrap-around t))
 
-;; All the icons
-(use-package all-the-icons)
-;; (use-package all-the-icons-dired
-;;   :hook (dired-mode . all-the-icons-dired-mode))
-
-;; Treemacs
-(use-package treemacs
-  :commands (treemacs)
-  :defer t
-  :init
-  (with-eval-after-load 'winum
-    (defvar winum-keymap)
-    (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
-  :config
-  (progn
-    (treemacs-follow-mode t)
-    (treemacs-filewatch-mode t)
-    (treemacs-fringe-indicator-mode t)
-    (pcase (cons (not (null (executable-find "git")))
-                 (not (null treemacs-python-executable)))
-      (`(t . t)
-       (treemacs-git-mode 'deferred))
-      (`(t . _)
-       (treemacs-git-mode 'simple))))
-  :after (lsp-mode)
-  :bind
-  (:map global-map
-        ("M-0" . treemacs-select-window)
-        ("C-x t 1" . treemacs-no-delete-other-windows)
-        ("C-x t t" . treemacs)
-        ("C-x t B" . treemacs-bookmark)
-        ("C-x t C-t" . treemacs-find-file)
-        ("C-x t M-t" . treemacs-find-tag)))
-
-(use-package treemacs-projectile
-  :defer t
-  :after treemacs projectile)
-
-(use-package treemacs-icons-dired
-  :defer t
-  :after treemacs dired)
-
-(use-package treemacs-magit
-  :defer t
-  :after treemacs magit)
-
 ;; Snippets
 (use-package yasnippet
   :config
@@ -239,26 +183,26 @@
          ("C-c g" . magit-file-dispatch)))
 
 ;; Ligatures
-(use-package ligature
-  :ensure nil
-  :config
-  (ligature-set-ligatures 't '("www"))
-  (ligature-set-ligatures 'eww-mode '("ff" "fi" "ffi"))
-  (ligature-set-ligatures '(prog-mode racket-repl-mode)
-                          '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
-                            ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
-                            "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
-                            "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
-                            "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
-                            "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
-                            "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
-                            "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
-                            ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
-                            "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
-                            "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
-                            "?=" "?." "??" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
-                            "\\\\" "://"))
-  (global-ligature-mode t))
+;; (use-package ligature
+;;   :ensure nil
+;;   :config
+;;   (ligature-set-ligatures 't '("www"))
+;;   (ligature-set-ligatures 'eww-mode '("ff" "fi" "ffi"))
+;;   (ligature-set-ligatures '(prog-mode racket-repl-mode)
+;;                           '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
+;;                             ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
+;;                             "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
+;;                             "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
+;;                             "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
+;;                             "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
+;;                             "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
+;;                             "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
+;;                             ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
+;;                             "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
+;;                             "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
+;;                             "?=" "?." "??" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
+;;                             "\\\\" "://"))
+;;   (global-ligature-mode t))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Languages and file format packages
@@ -288,13 +232,6 @@
          (racket-mode . lsp-deferred)
          (typescript-mode . lsp-deferred)
          (web-mode . lsp-deferred)))
-
-;; Treemacs for LSP
-(use-package lsp-treemacs
-  :after (lsp-mode treemacs)
-  :bind (:map lsp-mode-map
-              ("C-c l E" . lsp-treemacs-errors-list))
-  :commands lsp-treemacs-errors-list)
 
 ;;  Emacs Debug Adapter Protocol
 (use-package dap-mode
@@ -342,8 +279,8 @@ link to the JIRA issue."
                             ("CANCELED" . (:foreground gray50 :weight bold))))
   (org-confirm-babel-evaluate nil)
   (org-agenda-exporter-settings '((ps-print-color-p nil)
-                                                  (org-agnenda-add-entry-text-maxlines 0)
-                                                  (htmlize-output-type 'css)))
+                                  (org-agnenda-add-entry-text-maxlines 0)
+                                  (htmlize-output-type 'css)))
   (org-hierarchical-todo-statistics nil)
   (org-enforce-todo-dependencies t)
   (org-enforce-todo-checkbox-dependencies t)
@@ -505,6 +442,7 @@ link to the JIRA issue."
   (global-set-key (kbd "C-<") 'theme-looper-enable-previous-theme)
   (global-set-key (kbd "C->") 'theme-looper-enable-next-theme))
 
+(put 'narrow-to-region 'disabled nil)
+
 (provide 'init)
 ;;; init.el ends here
-(put 'narrow-to-region 'disabled nil)
