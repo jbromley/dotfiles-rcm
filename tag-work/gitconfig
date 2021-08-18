@@ -1,6 +1,6 @@
 [user]
 	name = J. Bromley
-	email = jbromley@gmail.com
+	email = jay@appliedinvention.com
 [push]
 	default = simple
 [color]
@@ -11,6 +11,8 @@
 	process = git-lfs filter-process
 	required = true
 [core]
-	editor = nvim
+	editor = emacsclient -t --alternate-editor \"emacs -nw\"
 [pull]
 	rebase = false
+[init]
+	defaultBranch = main
