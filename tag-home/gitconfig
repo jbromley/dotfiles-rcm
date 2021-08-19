@@ -1,0 +1,18 @@
+[user]
+	name = J. Bromley
+	email = jbromley@gmail.com
+[push]
+	default = simple
+[color]
+	ui = auto
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[core]
+	editor = emacsclient -t --alternate-editor \"emacs -nw\"
+[pull]
+	rebase = false
+[init]
+	defaultBranch = main
