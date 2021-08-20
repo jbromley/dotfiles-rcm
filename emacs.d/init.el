@@ -96,6 +96,24 @@
 ;; Packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Show an Emacs dashboard on startup
+(use-package dashboard
+  :init
+  (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
+  :config
+  (dashboard-setup-startup-hook)
+  :custom
+  ;; (dashboard-startup-banner . 'logo)
+  (dashboard-items '((recents . 5)
+                     (projects . 3)
+                     (bookmarks . 3)
+                     (agenda . 3))))
+
+;; Expand regions intelligently
+(use-package expand-region
+  :bind
+  ("C-=" . er/expand-region))
+
 ;; Copy/paste from terminal emacs in X11
 (use-package xclip
   :config
@@ -128,7 +146,10 @@
 
 ;; which key
 (use-package which-key
-  :config (which-key-mode))
+  :config
+  (which-key-mode)
+  :custom
+  (which-key-idle-display 0.5))
 
 ;; windmove
 (use-package windmove
