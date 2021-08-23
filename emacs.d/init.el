@@ -458,15 +458,15 @@ link to the JIRA issue."
   :config
   (theme-looper-set-favorite-themes '(*default*
                                       dichromacy
+                                      solarized-light
+                                      spacemacs-light
+                                      almost-mono-white
                                       leuven
                                       misterioso
-                                      almost-mono-black
-                                      almost-mono-white
                                       dracula
-                                      solarized-dark
-                                      solarized-light
+                                      solarized-dark-high-contrast
                                       spacemacs-dark
-                                      spacemacs-light))
+                                      almost-mono-black))
   (global-set-key (kbd "C-<") 'theme-looper-enable-previous-theme)
   (global-set-key (kbd "C->") 'theme-looper-enable-next-theme))
 
