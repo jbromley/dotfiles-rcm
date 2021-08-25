@@ -253,9 +253,10 @@
   :hook ((lsp-mode . lsp-enable-which-key-integration)
          (c-mode . lsp-deferred)
          (c++-mode . lsp-deferred)
-         (java-mode . lsp-deferred)
-         (go-mode . lsp-deferred)
          (elixir-mode . lsp-deferred)
+         (go-mode . lsp-deferred)
+         (java-mode . lsp-deferred)
+         (lua-mode . lsp-deferred)
          (racket-mode . lsp-deferred)
          (typescript-mode . lsp-deferred)
          (web-mode . lsp-deferred)))
@@ -419,6 +420,13 @@ link to the JIRA issue."
   (cider)
   :defer t)
 
+;; Lua
+(use-package lua-mode
+  :mode (("\\.lua\\'" . lua-mode))
+  :custom
+  (lsp-clients-lua-language-server-bin "/opt/lua-language-server/bin/Linux/lua-language-server")
+  (lsp-clients-lua-language-server-main-location "/opt/lua-language-server/main.lua"))
+
 ;; Typescript
 (use-package typescript-mode
   :mode (("\\.ts[x]?\\'" . typescript-mode)))
@@ -449,7 +457,10 @@ link to the JIRA issue."
   (leuven-scale-outline-headlines nil))
 
 (use-package solarized-theme
-  :defer t)
+  :defer t
+  :custom
+  (solarized-scale-org-headlines nil)
+  (solarized-scale-outline-headlines nil))
 
 (use-package spacemacs-theme
   :defer t)
