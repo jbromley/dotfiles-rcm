@@ -38,19 +38,10 @@ paq {'dracula/vim', as='dracula'}
 
 -- Options {{{
 
--- Buffer options
 cmd 'colorscheme dracula'
 
 g.mapleader = '\\'
 g.maplocalleader = ','
-
-local indent = 4
-vim.bo.tabstop = indent
-vim.bo.shiftwidth = indent
-vim.bo.expandtab = true
-vim.bo.autoindent = true
-vim.bo.smartindent = true
-vim.bo.textwidth = 80
 
 -- Global options
 vim.o.hidden = true
@@ -71,6 +62,15 @@ vim.o.listchars = 'tab:▸ ,extends:❯,precedes:❮,nbsp:±'
 vim.o.modelines = 10
 vim.o.lazyredraw = true
 vim.o.showmatch = true
+
+-- Buffer options
+local indent = 4
+vim.bo.tabstop = indent
+vim.bo.shiftwidth = indent
+vim.bo.expandtab = true
+vim.bo.autoindent = true
+vim.bo.smartindent = true
+vim.bo.textwidth = 80
 
 -- Window options
 vim.wo.number = true
