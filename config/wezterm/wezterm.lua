@@ -10,5 +10,5 @@ return {
     tab_bar_at_bottom = true,
 
     window_decorations = "NONE",
-    window_background_opacity = 0.9375,
+    window_background_opacity = 0.875,
 }
