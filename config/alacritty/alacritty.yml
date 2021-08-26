@@ -5,8 +5,8 @@
 # These configuration files will be loaded in order, replacing values in files
 # loaded earlier with those loaded later in the chain. The file itself will
 # always be loaded last.
-import:
-  - ~/.config/alacritty/theme.yml
+# import:
+#   - ~/.config/alacritty/theme.yml
 
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
@@ -106,7 +106,7 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: Fira Code Nerd Font
+    family: JetBrainsMono Nerd Font
     # family: Hack Nerd Font
 
     # The `style` can be specified to pick a specific face.
@@ -118,7 +118,7 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Fira Code Nerd Font
+    family: JetBrainsMono Nerd Font
     # family: Hack Nerd Font
 
     # The `style` can be specified to pick a specific face.
@@ -130,11 +130,11 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Fira Code Nerd Font
+    family: JetBrainsMono Nerd Font
     # family: Hack Nerd Font
     # The `style` can be specified to pick a specific face.
-    # style: Italic
-    style: Regular
+    style: Italic
+    # style: Regular
 
   # Bold italic font face
   bold_italic:
@@ -142,10 +142,10 @@ font:
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Fira Code Nerd Font
+    family: JetBrainsMono Nerd Font
     # family: Hack Nerd Font
     # The `style` can be specified to pick a specific face.
-    style: Bold
+    style: Bold Italic
 
   # Point size
   size: 11.0
