@@ -2,7 +2,7 @@ local wezterm = require 'wezterm';
 
 return {
     font = wezterm.font("JetBrainsMono Nerd Font"),
-    font_size = 11.0,
+    font_size = 10.0,
 
     -- color_scheme = "Dracula",
 
