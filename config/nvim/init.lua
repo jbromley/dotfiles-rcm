@@ -37,11 +37,11 @@ paq {'kristijanhusak/orgmode.nvim'}
 
 -- Options {{{
 
--- Buffer options
-
+-- Global options
 g.mapleader = '\\'
 g.maplocalleader = ','
 
+-- Buffer options
 local indent = 4
 vim.bo.tabstop = indent
 vim.bo.shiftwidth = indent
@@ -51,6 +51,7 @@ vim.bo.smartindent = true
 vim.bo.textwidth = 80
 
 -- Global options
+vim.o.guifont = 'JetBrainsMono Nerd Font:h12'
 vim.o.hidden = true
 vim.o.joinspaces = false
 vim.o.scrolloff = 4
