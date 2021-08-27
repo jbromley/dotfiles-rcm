@@ -446,9 +446,7 @@ link to the JIRA issue."
   :config
   (theme-looper-set-favorite-themes '(*default*
                                       dichromacy
-                                      leuven
                                       misterioso
-                                      wombat
                                       deeper-blue
                                       manoj-dark))
   :bind
