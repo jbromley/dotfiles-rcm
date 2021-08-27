@@ -2,14 +2,24 @@ local wezterm = require 'wezterm';
 
 local my_keys = {
     {key = "r", mods = "CTRL|SHIFT", action = "ReloadConfiguration"},
+
+    -- Copy and paste
     {key = "c", mods = "CTRL|SHIFT", action = wezterm.action{CopyTo="ClipboardAndPrimarySelection"}},
     {key = "v", mods = "CTRL|SHIFT", action = wezterm.action{PasteFrom="PrimarySelection"}},
-    -- {key = "h", mods = "CTRL|ALT", action = "Hide"},
-    {key = "n", mods = "CTRL|SHIFT", action = "SpawnWindow"}, 
+    {key = "x", mods="CTRL|SHIFT", action = "ActivateCopyMode"},
+    {key = " ", mods="CTRL|SHIFT", action = "QuickSelect"},
+
+    -- Search
+    {key = "f", mods="CTRL|SHIFT", action = wezterm.action{Search = {CaseInSensitiveString = ""}}}, 
     {key = "Enter", mods = "ALT", action = "ToggleFullScreen"}, 
+
+    -- Font size adjustment
     {key = "-", mods = "CTRL", action = "DecreaseFontSize"},
     {key = "=", mods = "CTRL", action = "IncreaseFontSize"},
     {key = "0", mods = "CTRL", action = "ResetFontSize"},
+
+    -- New windows and tab creation, closing, and navigation
+    {key = "n", mods = "CTRL|SHIFT", action = "SpawnWindow"}, 
     {key = "t", mods = "CTRL|SHIFT", action = wezterm.action{SpawnTab = "CurrentPaneDomain"}},
     {key = "t", mods = "CTRL|ALT", action = wezterm.action{SpawnTab = "DefaultDomain"}},
     {key = "w", mods = "CTRL|SHIFT", action = wezterm.action{CloseCurrentTab = {confirm = true}}},
@@ -21,14 +31,14 @@ local my_keys = {
     {key = "o", mods = "LEADER", action = "ActivateLastTab"},
     {key = "[", mods = "CTRL|SUPER|ALT", action = wezterm.action{MoveTabRelative = -1}},
     {key = "]", mods = "CTRL|SUPER|ALT", action = wezterm.action{MoveTabRelative = 1}},
+    {key = "n", mods = "SUPER|ALT", action = "ShowTabNavigator"},
+
+    -- Scrollback buffer
     {key = "PageUp", mods = "SHIFT", action = wezterm.action{ScrollByPage = -1}},
     {key = "PageDown", mods = "SHIFT", action = wezterm.action{ScrollByPage = 1}},
-    {key = "n", mods = "SUPER|ALT", action = "ShowTabNavigator"},
-    {key = "F2", mods = "CTRL", action = "ShowDebugOverlay"}, 
     {key = "k", mods="CTRL|SHIFT", action = wezterm.action{ClearScrollback = "ScrollbackOnly"}},
-    {key = "f", mods="CTRL|SHIFT", action = wezterm.action{Search = {CaseInSensitiveString = ""}}}, 
-    {key = "x", mods="CTRL|SHIFT", action = "ActivateCopyMode"},
-    {key = " ", mods="CTRL|SHIFT", action = "QuickSelect"},
+
+    -- Pane creation, resizing, and navigation
     {key = "|", mods="SUPER", action = wezterm.action{SplitHorizontal = {domain = "CurrentPaneDomain"}}},
     {key = "-", mods="SUPER", action = wezterm.action{SplitVertical = {domain = "CurrentPaneDomain"}}},
     {key = "LeftArrow", mods="SHIFT", action = wezterm.action{ActivatePaneDirection = "Left"}},
@@ -40,6 +50,9 @@ local my_keys = {
     {key = "UpArrow", mods="SUPER|ALT", action = wezterm.action{AdjustPaneSize = {"Up", 1}}},
     {key = "DownArrow", mods="SUPER|ALT", action = wezterm.action{AdjustPaneSize = {"Down", 1}}},
     {key = "z", mods = "SUPER", action = "TogglePaneZoomState"},
+
+    -- Debugging
+    {key = "F2", mods = "CTRL", action = "ShowDebugOverlay"}, 
 }
 
 for i = 1, 8 do
