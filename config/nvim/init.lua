@@ -51,7 +51,7 @@ vim.bo.smartindent = true
 vim.bo.textwidth = 80
 
 -- Global options
-vim.o.guifont = 'JetBrainsMono Nerd Font:h12'
+vim.o.guifont = 'JetBrainsMono Nerd Font:h11'
 vim.o.hidden = true
 vim.o.joinspaces = false
 vim.o.scrolloff = 4
@@ -187,7 +187,6 @@ local t = function(str)
 end
 
 map('i', '<C-Space>', [[ compe#complete() ]], { silent = true, expr = true }) 
-map('i', '<CR>', [[ compe#confirm({ 'keys': '<CR>', 'select': v:true }) ]], { silent = true, expr = true })
 map('i', '<C-e>', [[ compe#close('<C-e>') ]], { silent = true, expr = true })
 -- }}}
 
