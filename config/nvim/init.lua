@@ -33,9 +33,12 @@ paq {'vimwiki/vimwiki'}
 paq {'kyazdani42/nvim-web-devicons', opt = true}
 paq {'hoob3rt/lualine.nvim'}
 paq {'kristijanhusak/orgmode.nvim'}
+paq {'dracula/vim.git', as = 'dracula'}
 -- }}}
 
 -- Options {{{
+
+cmd 'colorscheme dracula'
 
 -- Global options
 g.mapleader = '\\'
@@ -200,7 +203,7 @@ map('i', '<C-e>', [[ compe#close('<C-e>') ]], { silent = true, expr = true })
 -- }}}
 
 -- lualine {{{
-require('lualine').setup { options = { icons_enabled = false, theme = '16color', }, }
+require('lualine').setup { options = { icons_enabled = false, theme = 'dracula', }, }
 -- }}}
 
 -- }}}
