@@ -447,8 +447,7 @@ link to the JIRA issue."
   (theme-looper-set-favorite-themes '(*default*
                                       dichromacy
                                       misterioso
-                                      deeper-blue
-                                      manoj-dark))
+                                      deeper-blue))
   :bind
   (("C-<" . theme-looper-enable-previous-theme)
    ("C->" . theme-looper-enable-next-theme)
