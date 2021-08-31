@@ -442,10 +442,14 @@ link to the JIRA issue."
                                        ("tsx" . "\\.ts[x]?\\'"))))
 
 ;; Themes and theme switching
+(use-package dracula-theme
+  :defer t)
+
 (use-package theme-looper
   :config
   (theme-looper-set-favorite-themes '(*default*
                                       dichromacy
+                                      dracula
                                       misterioso
                                       deeper-blue))
   :bind
