@@ -442,44 +442,20 @@ link to the JIRA issue."
                                        ("tsx" . "\\.ts[x]?\\'"))))
 
 ;; Themes and theme switching
-(use-package almost-mono-themes
-  :defer t)
-
 (use-package dracula-theme
-  ; :defer t
-  :custom
-  (dracula-alternate-mode-line-and-minibuffer t))
-
-(use-package leuven-theme
-  :defer t
-  :custom
-  (leuven-scale-org-agenda-structure nil)
-  (leuven-scale-outline-headlines nil))
-
-(use-package solarized-theme
-  :defer t
-  :custom
-  (solarized-scale-org-headlines nil)
-  (solarized-scale-outline-headlines nil))
-
-(use-package spacemacs-theme
   :defer t)
 
 (use-package theme-looper
   :config
   (theme-looper-set-favorite-themes '(*default*
                                       dichromacy
-                                      solarized-light
-                                      spacemacs-light
-                                      almost-mono-white
-                                      leuven
-                                      misterioso
                                       dracula
-                                      solarized-dark-high-contrast
-                                      spacemacs-dark
-                                      almost-mono-black))
-  (global-set-key (kbd "C-<") 'theme-looper-enable-previous-theme)
-  (global-set-key (kbd "C->") 'theme-looper-enable-next-theme))
+                                      misterioso
+                                      deeper-blue))
+  :bind
+  (("C-<" . theme-looper-enable-previous-theme)
+   ("C->" . theme-looper-enable-next-theme)
+   ("C-|" . theme-looper-select-theme)))
 
 (put 'narrow-to-region 'disabled nil)
 

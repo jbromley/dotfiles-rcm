@@ -33,17 +33,25 @@ paq {'vimwiki/vimwiki'}
 paq {'kyazdani42/nvim-web-devicons', opt = true}
 paq {'hoob3rt/lualine.nvim'}
 paq {'kristijanhusak/orgmode.nvim'}
-paq {'dracula/vim', as='dracula'}
 -- }}}
 
 -- Options {{{
 
-cmd 'colorscheme dracula'
-
+-- Global options
 g.mapleader = '\\'
 g.maplocalleader = ','
 
+-- Buffer options
+local indent = 4
+vim.bo.tabstop = indent
+vim.bo.shiftwidth = indent
+vim.bo.expandtab = true
+vim.bo.autoindent = true
+vim.bo.smartindent = true
+vim.bo.textwidth = 80
+
 -- Global options
+vim.o.guifont = 'JetBrainsMono Nerd Font:h11'
 vim.o.hidden = true
 vim.o.joinspaces = false
 vim.o.scrolloff = 4
@@ -188,12 +196,11 @@ local t = function(str)
 end
 
 map('i', '<C-Space>', [[ compe#complete() ]], { silent = true, expr = true }) 
-map('i', '<CR>', [[ compe#confirm({ 'keys': '<CR>', 'select': v:true }) ]], { silent = true, expr = true })
 map('i', '<C-e>', [[ compe#close('<C-e>') ]], { silent = true, expr = true })
 -- }}}
 
 -- lualine {{{
-require('lualine').setup { options = { icons_enabled = false, theme = 'dracula', }, }
+require('lualine').setup { options = { icons_enabled = false, theme = '16color', }, }
 -- }}}
 
 -- }}}
