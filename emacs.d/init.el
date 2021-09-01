@@ -256,7 +256,7 @@
          (elixir-mode . lsp-deferred)
          (go-mode . lsp-deferred)
          (java-mode . lsp-deferred)
-         (lua-mode . lsp-deferred)
+         ; (lua-mode . lsp-deferred)
          (racket-mode . lsp-deferred)
          (typescript-mode . lsp-deferred)
          (web-mode . lsp-deferred)))
