@@ -15,30 +15,36 @@ end
 
 -- Plugin installation {{{
 cmd 'packadd paq-nvim'
-local paq = require('paq-nvim').paq
-paq {'savq/paq-nvim', opt = true}
-paq {'junegunn/fzf', run = fn['fzf#install']}
-paq {'junegunn/fzf.vim'}
-paq {'nvim-treesitter/nvim-treesitter'}
-paq {'neovim/nvim-lspconfig'}
-paq {'kosayoda/nvim-lightbulb'}
-paq {'hrsh7th/nvim-compe'}
-paq {'elixir-editors/vim-elixir'}
-paq {'wlangstroth/vim-racket'}
-paq {'kovisoft/paredit'}
-paq {'Olical/conjure'}
-paq {'tpope/vim-commentary'}
-paq {'tpope/vim-fugitive'}
-paq {'vimwiki/vimwiki'}
-paq {'kyazdani42/nvim-web-devicons', opt = true}
-paq {'hoob3rt/lualine.nvim'}
-paq {'kristijanhusak/orgmode.nvim'}
-paq {'dracula/vim.git', as = 'dracula'}
+
+local paq = require("paq")
+
+paq {
+	{'savq/paq-nvim', opt = true};
+	{'junegunn/fzf', run = fn['fzf#install']};
+	'junegunn/fzf.vim';
+	'nvim-treesitter/nvim-treesitter';
+	'neovim/nvim-lspconfig';
+	'kosayoda/nvim-lightbulb';
+	'hrsh7th/nvim-compe';
+	'elixir-editors/vim-elixir';
+	'wlangstroth/vim-racket';
+	'kovisoft/paredit';
+	'Olical/conjure';
+	'tpope/vim-commentary';
+	'tpope/vim-fugitive';
+	'vimwiki/vimwiki';
+	{'kyazdani42/nvim-web-devicons', opt = true};
+	'hoob3rt/lualine.nvim';
+	'kristijanhusak/orgmode.nvim';
+	{'dracula/vim.git', as = 'dracula'};
+}
+
+cmd 'packadd! dracula_pro'
 -- }}}
 
 -- Options {{{
 
-cmd 'colorscheme dracula'
+cmd 'colorscheme dracula_pro'
 
 -- Global options
 g.mapleader = '\\'
