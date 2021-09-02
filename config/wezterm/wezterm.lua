@@ -10,7 +10,7 @@ local my_keys = {
     {key = " ", mods="CTRL|SHIFT", action = "QuickSelect"},
 
     -- Search
-    {key = "f", mods="CTRL|SHIFT", action = wezterm.action{Search = {CaseInSensitiveString = ""}}}, 
+    {key = "f", mods="CTRL|SHIFT", action = wezterm.action{Search = {CaseInSensitiveString = ""}}},
 
     -- Font size adjustment
     {key = "-", mods = "CTRL", action = "DecreaseFontSize"},
@@ -18,7 +18,7 @@ local my_keys = {
     {key = "0", mods = "CTRL", action = "ResetFontSize"},
 
     -- New windows and tab creation, closing, and navigation
-    -- {key = "n", mods = "CTRL|SHIFT", action = "SpawnWindow"}, 
+    -- {key = "n", mods = "CTRL|SHIFT", action = "SpawnWindow"},
     {key = "w", mods = "LEADER", action = "SpawnWindow"},
     -- {key = "t", mods = "CTRL|SHIFT", action = wezterm.action{SpawnTab = "CurrentPaneDomain"}},
     {key = "t", mods = "LEADER", action = wezterm.action{SpawnTab = "CurrentPaneDomain"}},
@@ -38,11 +38,13 @@ local my_keys = {
     {key = "}", mods = "LEADER", action = wezterm.action{MoveTabRelative = 1}},
     -- {key = "n", mods = "SUPER|ALT", action = "ShowTabNavigator"},
     {key = "n", mods = "LEADER", action = "ShowTabNavigator"},
-    {key = "Enter", mods = "ALT", action = "ToggleFullScreen"}, 
+    {key = "Enter", mods = "ALT", action = "ToggleFullScreen"},
 
     -- Scrollback buffer
-    {key = "PageUp", mods = "SHIFT", action = wezterm.action{ScrollByPage = -1}},
-    {key = "PageDown", mods = "SHIFT", action = wezterm.action{ScrollByPage = 1}},
+    {key = "PageUp", mods = "SHIFT", action = wezterm.action{ScrollByLine = -1}},
+    {key = "PageUp", mods = "CTRL", action = wezterm.action{ScrollByPage = -1}},
+    {key = "PageDown", mods = "SHIFT", action = wezterm.action{ScrollByLine = 1}},
+    {key = "PageDown", mods = "CTRL", action = wezterm.action{ScrollByPage = 1}},
     {key = "k", mods="CTRL|SHIFT", action = wezterm.action{ClearScrollback = "ScrollbackOnly"}},
 
     -- Pane creation, resizing, and navigation
@@ -59,7 +61,7 @@ local my_keys = {
     {key = "z", mods = "LEADER", action = "TogglePaneZoomState"},
 
     -- Debugging
-    {key = "F2", mods = "CTRL", action = "ShowDebugOverlay"}, 
+    {key = "F2", mods = "CTRL", action = "ShowDebugOverlay"},
 }
 
 for i = 1, 8 do
