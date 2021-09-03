@@ -151,6 +151,13 @@ return {
        tab_bar = my_tab_bar,
     },
 
+    window_padding = {
+       top = 4,
+       left = 4,
+       bottom = 4,
+       right = 4,
+    },
+
     tab_max_width = 32,
     tab_bar_at_bottom = false,
 
