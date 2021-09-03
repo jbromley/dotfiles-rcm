@@ -142,8 +142,8 @@ local my_tab_bar = {
    }
 }
 
-local LEFT_ARROW = utf8.char(0xe0b6)
-local RIGHT_ARROW = utf8.char(0xe0b4)
+local LEFT_ARROW = utf8.char(0xe0b0)
+local RIGHT_ARROW = utf8.char(0xe0b0)
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
     local title = string.sub(tab.active_pane.title, 1, max_width - 2)
@@ -161,8 +161,8 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
         end
     end
     return {
-        {Background = {Color = tab_bg}},
-        {Foreground = {Color = bg}},
+        {Background = {Color = bg}},
+        {Foreground = {Color = tab_bg}},
         {Text = LEFT_ARROW},
         {Background = {Color = bg}},
         {Foreground = {Color = fg}},
@@ -174,6 +174,8 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 end)
 
 return {
+    term = "wezterm", 
+
     font = wezterm.font("JetBrainsMono Nerd Font"),
     font_size = 11.0,
 
