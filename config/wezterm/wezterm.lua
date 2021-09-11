@@ -24,8 +24,8 @@ local my_keys = {
     {key = "t", mods = "LEADER", action = wezterm.action{SpawnTab = "CurrentPaneDomain"}},
     {key = "T", mods = "LEADER", action = wezterm.action{SpawnTab = "DefaultDomain"}},
     {key = "x", mods = "LEADER", action = wezterm.action{CloseCurrentTab = {confirm = true}} },
-    {key = "[", mods = "LEADER", action = wezterm.action{ActivateTabRelative = -1}},
-    {key = "]", mods = "LEADER", action = wezterm.action{ActivateTabRelative = 1}},
+    {key = "h", mods = "LEADER", action = wezterm.action{ActivateTabRelative = -1}},
+    {key = "l", mods = "LEADER", action = wezterm.action{ActivateTabRelative = 1}},
     {key = "o", mods = "LEADER", action = "ActivateLastTab"},
     {key = "{", mods = "LEADER", action = wezterm.action{MoveTabRelative = -1}},
     {key = "}", mods = "LEADER", action = wezterm.action{MoveTabRelative = 1}},
@@ -42,10 +42,10 @@ local my_keys = {
     -- Pane creation, resizing, and navigation
     {key = "|", mods="LEADER", action = wezterm.action{SplitHorizontal = {domain = "CurrentPaneDomain"}} },
     {key = "-", mods="LEADER", action = wezterm.action{SplitVertical = {domain = "CurrentPaneDomain"}} },
-    {key = "h", mods="LEADER", action = wezterm.action{ActivatePaneDirection = "Left"}},
-    {key = "l", mods="LEADER", action = wezterm.action{ActivatePaneDirection = "Right"}},
-    {key = "k", mods="LEADER", action = wezterm.action{ActivatePaneDirection = "Up"}},
-    {key = "j", mods="LEADER", action = wezterm.action{ActivatePaneDirection = "Down"}},
+    {key = "h", mods="LEADER|SHIFT", action = wezterm.action{ActivatePaneDirection = "Left"}},
+    {key = "l", mods="LEADER|SHIFT", action = wezterm.action{ActivatePaneDirection = "Right"}},
+    {key = "k", mods="LEADER|SHIFT", action = wezterm.action{ActivatePaneDirection = "Up"}},
+    {key = "j", mods="LEADER|SHIFT", action = wezterm.action{ActivatePaneDirection = "Down"}},
     {key = "LeftArrow", mods="SHIFT", action = wezterm.action{AdjustPaneSize = {"Left", 1}} },
     {key = "RightArrow", mods="SHIFT", action = wezterm.action{AdjustPaneSize = {"Right", 1}} },
     {key = "UpArrow", mods="SHIFT", action = wezterm.action{AdjustPaneSize = {"Up", 1}} },
@@ -124,7 +124,7 @@ local my_tab_bar = {
        bg_color = tab_new.bg,
        fg_color = tab_new.fg,
        intensity = "Bold",
-       italic = false,   
+       italic = false,
 
        -- The same options that were listed under the `active_tab` section above
        -- can also be used for `new_tab`.
@@ -174,7 +174,7 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 end)
 
 return {
-    term = "wezterm", 
+    term = "wezterm",
 
     font = wezterm.font("JetBrainsMono Nerd Font"),
     font_size = 11.0,
