@@ -177,7 +177,7 @@ return {
     term = "wezterm",
 
     font = wezterm.font("JetBrainsMono Nerd Font"),
-    font_size = 11.0,
+    font_size = 10.0,
 
     color_scheme = "Dracula Pro",
 
@@ -196,7 +196,7 @@ return {
     tab_bar_at_bottom = false,
 
     window_decorations = "NONE",
-    window_background_opacity = 0.875,
+    window_background_opacity = 0.8125,
 
     -- Key bindings
     disable_default_key_bindings = true,
