@@ -176,8 +176,8 @@ end)
 return {
     term = "wezterm",
 
-    font = wezterm.font("JetBrainsMono Nerd Font"),
-    font_size = 10.0,
+    font = wezterm.font("JetBrains Mono"),
+    font_size = 11.0,
 
     color_scheme = "Dracula Pro",
 
