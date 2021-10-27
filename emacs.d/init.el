@@ -239,8 +239,8 @@
   :defer t)
 
 ;; Flycheck
-(use-package flycheck
-  :init (global-flycheck-mode))
+;; (use-package flycheck
+;;   :init (global-flycheck-mode))
 
 (use-package lsp-mode
   :commands
