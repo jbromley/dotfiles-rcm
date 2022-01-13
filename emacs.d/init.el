@@ -283,7 +283,9 @@
   :hook (java-mode-hook . lsp))
 
 ;; Org mode
-(use-package org-superstar)
+(use-package org-superstar
+  :custom
+  (org-superstar-leading-bullet ?\s))
 (use-package org
   :config
   (defun jb/org-insert-jira-link (start end)
@@ -450,12 +452,12 @@ link to the JIRA issue."
   :defer t)
 
 (use-package theme-looper
-  :config
-  (theme-looper-set-favorite-themes '(*default*
-                                      dichromacy
-                                      dracula
-                                      misterioso
-                                      deeper-blue))
+  ;; :config
+  ;; (theme-looper-set-favorite-themes '(*default*
+  ;;                                     dichromacy
+  ;;                                     dracula
+  ;;                                     misterioso
+  ;;                                     deeper-blue))
   :bind
   (("C-<" . theme-looper-enable-previous-theme)
    ("C->" . theme-looper-enable-next-theme)
