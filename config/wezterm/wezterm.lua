@@ -82,7 +82,7 @@ local my_tab_bar = {
      -- Specify whether you want "Half", "Normal" or "Bold" intensity for the
      -- label shown for this tab.
      -- The default is "Normal"
-     intensity = "Bold",
+     intensity = "Normal",
 
      -- Specify whether you want "None", "Single" or "Double" underline for
      -- label shown for this tab.
@@ -105,7 +105,7 @@ local my_tab_bar = {
 
      -- The same options that were listed under the `active_tab` section above
      -- can also be used for `inactive_tab`.
-     intensity = "Normal",
+     intensity = "Half",
    },
 
    -- You can configure some alternate styling when the mouse pointer
@@ -113,7 +113,7 @@ local my_tab_bar = {
    inactive_tab_hover = {
      bg_color = tab_inactive.hover_bg,
      fg_color = tab_inactive.hover_fg,
-     italic = true,
+     italic = false,
 
      -- The same options that were listed under the `active_tab` section above
      -- can also be used for `inactive_tab_hover`.
@@ -142,44 +142,20 @@ local my_tab_bar = {
    }
 }
 
-local LEFT_ARROW = utf8.char(0xe0b0)
-local RIGHT_ARROW = utf8.char(0xe0b0)
-
-wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
-    local title = string.sub(tab.active_pane.title, 1, max_width - 2)
-
-    if tab.is_active then
-        bg = tab_active.bg
-        fg = tab_active.fg
-    elseif not tab.is_active then
-        if hover then
-            bg = tab_inactive.hover_bg
-            fg = tab_inactive.hover_fg
-        else
-            bg = tab_inactive.bg
-            fg = tab_inactive.fg
-        end
-    end
-    return {
-        {Background = {Color = bg}},
-        {Foreground = {Color = tab_bg}},
-        {Text = LEFT_ARROW},
-        {Background = {Color = bg}},
-        {Foreground = {Color = fg}},
-        {Text = title},
-        {Background = {Color = tab_bg}},
-        {Foreground = {Color = bg}},
-        {Text = RIGHT_ARROW},
-    }
-end)
-
 return {
     term = "wezterm",
+
+    use_fancy_tab_bar = true,
+
+    window_frame = {
+        font = wezterm.font({family="Fira Sans Condensed SemiBold", weight="Regular"}),
+        font_size = 11.0,
+    },
 
     font = wezterm.font("JetBrains Mono"),
     font_size = 11.0,
 
-    color_scheme = "Dracula Pro",
+    color_scheme = "Dracula",
 
     colors = {
         tab_bar = my_tab_bar,
@@ -192,11 +168,11 @@ return {
        right = 4,
     },
 
-    tab_max_width = 32,
+    tab_max_width = 64,
     tab_bar_at_bottom = false,
 
     window_decorations = "NONE",
-    window_background_opacity = 0.8125,
+    window_background_opacity = 0.9375,
 
     -- Key bindings
     disable_default_key_bindings = true,

@@ -239,8 +239,8 @@
   :defer t)
 
 ;; Flycheck
-(use-package flycheck
-  :init (global-flycheck-mode))
+;; (use-package flycheck
+;;   :init (global-flycheck-mode))
 
 (use-package lsp-mode
   :commands
@@ -250,6 +250,7 @@
   :config
   (lsp-enable-which-key-integration t)
   (add-to-list 'lsp-client-packages 'lsp-racket)
+  :custom (lsp-rust-server 'rust-analyzer)
   :hook ((lsp-mode . lsp-enable-which-key-integration)
          (c-mode . lsp-deferred)
          (c++-mode . lsp-deferred)
@@ -258,6 +259,7 @@
          (java-mode . lsp-deferred)
          ; (lua-mode . lsp-deferred)
          (racket-mode . lsp-deferred)
+         (rust-mode . lsp-deferred)
          (typescript-mode . lsp-deferred)
          (web-mode . lsp-deferred)))
 
@@ -281,12 +283,11 @@
   :hook (java-mode-hook . lsp))
 
 ;; Org mode
-(use-package org-superstar)
+(use-package org-superstar
+  :custom
+  (org-superstar-leading-bullet ?\s))
 (use-package org
   :config
-  (defun jb/org-graphics-for-bullets ()
-    (if (display-graphic-p)
-        (org-superstar-mode 1)))
   (defun jb/org-insert-jira-link (start end)
     "Prompt user to enter an issue number and generate an Org mode
 link to the JIRA issue."
@@ -316,11 +317,12 @@ link to the JIRA issue."
   (org-log-done t)
   (org-default-notes-file (concat org-directory "/Notes.org"))
   (org-catch-invisible-edits 'show)
+  (org-hide-leading-stars t)
   :bind (("C-c a" . org-agenda)
          ("C-c c" . org-capture)
          ("C-c j" . jb/org-insert-jira-link)
          ("C-c l" . org-store-link))
-  :hook ((org-mode . jb/org-graphics-for-bullets)))
+  :hook ((org-mode . (lambda () (org-superstar-mode 1)))))
 
 (use-package org-roam
   :init (setq org-roam-v2-ack t)
@@ -345,6 +347,10 @@ link to the JIRA issue."
         org-roam-server-network-label-truncate t
         org-roam-server-network-label-truncate-length 60
         org-roam-server-network-label-wrap-length 20))
+
+;; Rust
+(use-package rust-mode
+  :hook ((rust-mode . (lambda () (setq indent-tabs-mode nil)))))
 
 ;; Go
 (use-package go-mode
@@ -446,12 +452,12 @@ link to the JIRA issue."
   :defer t)
 
 (use-package theme-looper
-  :config
-  (theme-looper-set-favorite-themes '(*default*
-                                      dichromacy
-                                      dracula
-                                      misterioso
-                                      deeper-blue))
+  ;; :config
+  ;; (theme-looper-set-favorite-themes '(*default*
+  ;;                                     dichromacy
+  ;;                                     dracula
+  ;;                                     misterioso
+  ;;                                     deeper-blue))
   :bind
   (("C-<" . theme-looper-enable-previous-theme)
    ("C->" . theme-looper-enable-next-theme)
