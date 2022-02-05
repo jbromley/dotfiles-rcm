@@ -145,8 +145,10 @@ local my_tab_bar = {
 return {
     term = "wezterm",
 
+    use_fancy_tab_bar = true,
+
     window_frame = {
-        font = wezterm.font({family="Roboto Condensed", weight="Regular"}),
+        font = wezterm.font({family="Fira Sans Condensed SemiBold", weight="Regular"}),
         font_size = 11.0,
     },
 
@@ -166,11 +168,11 @@ return {
        right = 4,
     },
 
-    tab_max_width = 32,
+    tab_max_width = 64,
     tab_bar_at_bottom = false,
 
     window_decorations = "NONE",
-    window_background_opacity = 0.8125,
+    window_background_opacity = 0.9375,
 
     -- Key bindings
     disable_default_key_bindings = true,
