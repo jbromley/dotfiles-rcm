@@ -16,7 +16,7 @@ fi
 bindkey -e 
 
 # Add plugins directory to path.
-fpath=(${HOME}/.zsh/plugins $fpath)
+fpath=(${HOME}/.zsh/plugins ${HOME}/.zsh/plugins/zsh-completions/src $fpath)
 
 # Navigation
 setopt AUTO_CD
