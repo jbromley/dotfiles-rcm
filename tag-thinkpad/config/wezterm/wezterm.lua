@@ -195,7 +195,7 @@ return {
     tab_max_width = 32,
     tab_bar_at_bottom = false,
 
-    -- window_decorations = "NONE",
+    window_decorations = "RESIZE",
     window_background_opacity = 0.875,
 
     -- Key bindings

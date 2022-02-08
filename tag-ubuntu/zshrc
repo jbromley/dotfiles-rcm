@@ -16,7 +16,7 @@ fi
 bindkey -e 
 
 # Add plugins directory to path.
-fpath=(${HOME}/.zsh/plugins ${HOME}/.zsh/plugins/zsh-completions/src $fpath)
+fpath=(${HOME}/.zsh/plugins $fpath)
 
 # Navigation
 setopt AUTO_CD
@@ -46,7 +46,7 @@ setopt HIST_VERIFY
 source ${HOME}/.aliases
 
 # ASDF
-source ${HOME}/.asdf/asdf.sh
+# source ${HOME}/.asdf/asdf.sh
 
 # Fzf
 source ${HOME}/.fzf/shell/completion.zsh
@@ -54,10 +54,10 @@ source ${HOME}/.fzf/shell/key-bindings.zsh
 bindkey -s '' 'nvim $(fzf);'
 
 # Syntax highlighting
-source ${HOME}/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Completion
-fpath=(${HOME}/.asdf/completions ${HOME}/.zsh/plugins/zsh-completions/src $fpath)
+# fpath=(${HOME}/.asdf/completions ${HOME}/.zsh/plugins/zsh-completions/src $fpath)
 autoload -Uz compinit; compinit
 _comp_options+=(globdots)
 source ${HOME}/.zsh/plugins/completion.zsh
@@ -65,6 +65,9 @@ source ${HOME}/.zsh/plugins/completion.zsh
 # Allow zsh to use bash completions
 autoload bashcompinit
 bashcompinit
+
+# Fish-like auto-suggestion
+source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # z
 source ~/.zsh/plugins/zsh-z/zsh-z.plugin.zsh
