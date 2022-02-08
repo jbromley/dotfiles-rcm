@@ -50,15 +50,6 @@ cmd 'colorscheme dracula_pro'
 g.mapleader = '\\'
 g.maplocalleader = ','
 
--- Buffer options
-local indent = 4
-vim.bo.tabstop = indent
-vim.bo.shiftwidth = indent
-vim.bo.expandtab = true
-vim.bo.autoindent = true
-vim.bo.smartindent = true
-vim.bo.textwidth = 80
-
 -- Global options
 vim.o.guifont = 'JetBrainsMono Nerd Font:h11'
 vim.o.hidden = true
@@ -169,7 +160,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "bashls", "clangd", "gopls", "racket_langserver", "elixirls" }
+local servers = { "bashls", "clangd", "gopls", "racket_langserver", "rls", "elixirls" }
 for _, lsp in ipairs(servers) do
     local options = { on_attach = on_attach }
     if lsp == "elixirls" then
