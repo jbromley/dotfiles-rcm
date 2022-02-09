@@ -66,6 +66,7 @@ source ${plugin_dir}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Fish-like auto-suggestions
 source ${plugin_dir}/zsh-autosuggestions/zsh-autosuggestions.zsh
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#606060"
 
 # Change directories with z
 source ${plugin_dir}/zsh-z/zsh-z.plugin.zsh
