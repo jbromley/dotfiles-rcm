@@ -7,16 +7,13 @@ fi
 
 #======================================================================
 # Zsh configuration file
-# Inspired by the blog post "Understanding and Configuring Zsh" 
-# (https://thevaluable.dev/zsh-install-configure/) and the from-scratch 
+# Inspired by the blog post "Understanding and Configuring Zsh"
+# (https://thevaluable.dev/zsh-install-configure/) and the from-scratch
 # configuration on GitHub at https://github.com/Phantas0s/.dotfiles/tree/master/zsh
 #======================================================================
 
 # Emacs key bindings
-bindkey -e 
-
-# Add plugins directory to path.
-fpath=(${HOME}/.zsh/plugins ${HOME}/.zsh/plugins/zsh-completions/src $fpath)
+bindkey -e
 
 # Navigation
 setopt AUTO_CD
@@ -46,28 +43,40 @@ setopt HIST_VERIFY
 source ${HOME}/.aliases
 
 # ASDF
-source ${HOME}/.asdf/asdf.sh
+ASDF_INIT=${HOME}/.asdf/asdf.sh
+[ -f ${ASDF_INIT} ] && source ${ASDF_INIT}
 
 # Fzf
 source ${HOME}/.fzf/shell/completion.zsh
 source ${HOME}/.fzf/shell/key-bindings.zsh
 bindkey -s '' 'nvim $(fzf);'
 
-# Syntax highlighting
-source ${HOME}/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#
+# Plugins
+#
+plugin_dir=${HOME}/.zsh/plugins
+fpath=(${HOME}/.zsh/plugins $fpath)
 
+# Syntax highlighting
+source ${plugin_dir}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Fish-like auto-suggestions
+source ${plugin_dir}/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Change directories with z
+source ${plugin_dir}/zsh-z/zsh-z.plugin.zsh
+
+#
 # Completion
-fpath=(${HOME}/.asdf/completions ${HOME}/.zsh/plugins/zsh-completions/src $fpath)
+#
+fpath=(${HOME}/.asdf/completions ${plugin_dir}/zsh-completions/src $fpath)
 autoload -Uz compinit; compinit
 _comp_options+=(globdots)
-source ${HOME}/.zsh/plugins/completion.zsh
+source ${plugin_dir}/completion.zsh
 
 # Allow zsh to use bash completions
 autoload bashcompinit
 bashcompinit
-
-# z
-source ~/.zsh/plugins/zsh-z/zsh-z.plugin.zsh
 
 # Prompt
 source ~/.zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme
