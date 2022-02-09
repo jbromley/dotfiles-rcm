@@ -207,29 +207,6 @@
          ("C-x M-g" . magit-dispatch)
          ("C-c g" . magit-file-dispatch)))
 
-;; Ligatures
-(use-package ligature
-  :load-path "elisp/ligature.el/"
-  :ensure nil
-  :config
-  (ligature-set-ligatures 't '("www"))
-  (ligature-set-ligatures 'eww-mode '("ff" "fi" "ffi"))
-  (ligature-set-ligatures '(prog-mode racket-repl-mode)
-                          '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
-                            ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
-                            "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
-                            "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
-                            "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
-                            "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
-                            "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
-                            "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
-                            ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
-                            "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
-                            "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
-                            "?=" "?." "??" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
-                            "\\\\" "://"))
-  (global-ligature-mode t))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Languages and file format packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -237,10 +214,6 @@
 ;; Snippets
 (use-package java-snippets
   :defer t)
-
-;; Flycheck
-;; (use-package flycheck
-;;   :init (global-flycheck-mode))
 
 (use-package lsp-mode
   :commands
@@ -254,14 +227,7 @@
   :hook ((lsp-mode . lsp-enable-which-key-integration)
          (c-mode . lsp-deferred)
          (c++-mode . lsp-deferred)
-         (elixir-mode . lsp-deferred)
-         (go-mode . lsp-deferred)
-         (java-mode . lsp-deferred)
-         ; (lua-mode . lsp-deferred)
-         (racket-mode . lsp-deferred)
-         (rust-mode . lsp-deferred)
-         (typescript-mode . lsp-deferred)
-         (web-mode . lsp-deferred)))
+         (go-mode . lsp-deferred)))
 
 ;;  Emacs Debug Adapter Protocol
 (use-package dap-mode
@@ -277,15 +243,11 @@
     (dap-session-created . (lambda (&_rest) (dap-hydra)))
     (dap-terminated . (lambda (&_rest) (dap-hydra/nil)))))
 
-;; Java
-(use-package lsp-java
-  :defer t
-  :hook (java-mode-hook . lsp))
-
 ;; Org mode
 (use-package org-superstar
   :custom
   (org-superstar-leading-bullet ?\s))
+
 (use-package org
   :config
   (defun jb/org-insert-jira-link (start end)
@@ -324,10 +286,6 @@ link to the JIRA issue."
          ("C-c l" . org-store-link))
   :hook ((org-mode . (lambda () (org-superstar-mode 1)))))
 
-;; Rust
-(use-package rust-mode
-  :hook ((rust-mode . (lambda () (setq indent-tabs-mode nil)))))
-
 ;; Go
 (use-package go-mode
   :defer t
@@ -346,12 +304,6 @@ link to the JIRA issue."
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode)))
-
-;; Elixir
-(use-package elixir-mode
-  :commands (elixir-mode)
-  :defer t
-  :hook ((elixir-mode . (lambda () (add-to-list 'exec-path "/opt/elixir-ls/")))))
 
 ;; YAML editing
 (use-package yaml-mode
@@ -374,66 +326,13 @@ link to the JIRA issue."
           (lambda ()
             (define-key lisp-interaction-mode-map (kbd "C-<return>") 'eval-print-last-sexp)))
 
-;; Common Lisp - SLY
-(use-package sly
-  :custom
-  (inferior-lisp-program (expand-file-name "~/.asdf/shims/sbcl"))
-  (sly-lisp-implementations '((sbcl ("~/.asdf/shims/sbcl") :coding-system utf-8-unix)
-                              (ecl ("/usr/bin/ecl"))))
-  :bind (:map sly-prefix-map ("M-h" . sly-documentation-lookup)))
-
-;; Racket - racket mode
-(use-package racket-mode
-  :config (require 'lsp-racket)
-  :bind (("C-\\" . racket-insert-lambda)))
-
-(use-package geiser
-  :commands (geiser run-geiser geiser-repl)
-  :defer t)
-
-;; Clojure - Clojure mode and CIDER
-(use-package clojure-mode
-  :commands
-  (clojure-mode)
-  :defer t)
-
-(use-package cider
-  :commands
-  (cider)
-  :defer t)
-
-;; Lua
-(use-package lua-mode
-  :mode (("\\.lua\\'" . lua-mode))
-  :custom
-  (lsp-clients-lua-language-server-bin "/opt/lua-language-server/bin/Linux/lua-language-server")
-  (lsp-clients-lua-language-server-main-location "/opt/lua-language-server/main.lua"))
-
-;; Typescript
-(use-package typescript-mode
-  :mode (("\\.ts[x]?\\'" . typescript-mode)))
-
-(use-package web-mode
-  :mode (("\\.html?\\'" . web-mode)
-         ("\\.css\\'"   . web-mode)
-         ("\\.jsx?\\'"  . web-mode)
-         ("\\.tsx?\\'"  . web-mode)
-         ("\\.json\\'"  . web-mode))
-  :config
-  (setq web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'")
-                                       ("tsx" . "\\.ts[x]?\\'"))))
-
 ;; Themes and theme switching
 (use-package dracula-theme
   :defer t)
 
+(load-theme 'dracula)
+
 (use-package theme-looper
-  ;; :config
-  ;; (theme-looper-set-favorite-themes '(*default*
-  ;;                                     dichromacy
-  ;;                                     dracula
-  ;;                                     misterioso
-  ;;                                     deeper-blue))
   :bind
   (("C-<" . theme-looper-enable-previous-theme)
    ("C->" . theme-looper-enable-next-theme)
