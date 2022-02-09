@@ -15,10 +15,13 @@ fi
 # Emacs key bindings
 bindkey -e
 
+# Add plugins directory to path.
+fpath=(${HOME}/.zsh/plugins $fpath)
+
 # Navigation
 setopt AUTO_CD
 
-# setopt auto_pushd
+setopt auto_pushd
 setopt PUSHD_IGNORE_DUPS
 # setopt pushd_silent
 
@@ -82,6 +85,10 @@ source ${plugin_dir}/completion.zsh
 # Allow zsh to use bash completions
 autoload bashcompinit
 bashcompinit
+
+# ROS 2
+source /opt/ros/foxy/setup.zsh
+export ROS_DOMAIN_ID=17
 
 # Prompt
 source ~/.zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme
