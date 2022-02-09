@@ -26,8 +26,6 @@ setopt CORRECT
 # setopt CDABLE_VARS
 setopt EXTENDED_GLOB
 
-autoload -Uz bd; bd
-
 # History
 setopt EXTENDED_HISTORY
 setopt SHARE_HISTORY
@@ -44,7 +42,10 @@ source ${HOME}/.aliases
 
 # ASDF
 ASDF_INIT=${HOME}/.asdf/asdf.sh
-[ -f ${ASDF_INIT} ] && source ${ASDF_INIT}
+if [ -f ${ASDF_INIT} ]; then
+    source ${ASDF_INIT}
+    fpath=(${HOME}/.asdf/completions $fpath)
+fi
 
 # Fzf
 source ${HOME}/.fzf/shell/completion.zsh
@@ -56,6 +57,9 @@ bindkey -s '' 'nvim $(fzf);'
 #
 plugin_dir=${HOME}/.zsh/plugins
 fpath=(${HOME}/.zsh/plugins $fpath)
+
+# bd
+autoload -Uz bd; bd
 
 # Syntax highlighting
 source ${plugin_dir}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -69,7 +73,7 @@ source ${plugin_dir}/zsh-z/zsh-z.plugin.zsh
 #
 # Completion
 #
-fpath=(${HOME}/.asdf/completions ${plugin_dir}/zsh-completions/src $fpath)
+fpath=(${plugin_dir}/zsh-completions/src $fpath)
 autoload -Uz compinit; compinit
 _comp_options+=(globdots)
 source ${plugin_dir}/completion.zsh
