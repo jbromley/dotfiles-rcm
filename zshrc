@@ -87,8 +87,10 @@ autoload bashcompinit
 bashcompinit
 
 # ROS 2
-source /opt/ros/foxy/setup.zsh
-export ROS_DOMAIN_ID=17
+if [ -f /opt/ros/foxy/setup.zsh ]; then
+    source /opt/ros/foxy/setup.zsh
+    export ROS_DOMAIN_ID=17
+fi
 
 # Prompt
 source ~/.zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme
