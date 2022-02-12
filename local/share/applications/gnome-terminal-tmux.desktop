@@ -1,0 +1,16 @@
+[Desktop Entry]
+Type=Application
+TryExec=gnome-terminal
+Exec=gnome-terminal -- tmux
+Icon=org.gnome.Terminal
+Terminal=false
+Categories=System;TerminalEmulator;
+
+Name=Tmux Terminal
+GenericName=Terminal
+Comment=GNOME Terminal with tmux
+Actions=New;
+
+[Desktop Action New]
+Name=New Terminal
+Exec=gnome-terminal -- tmux
