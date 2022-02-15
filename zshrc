@@ -82,6 +82,10 @@ autoload -Uz compinit; compinit
 _comp_options+=(globdots)
 source ${plugin_dir}/completion.zsh
 
+# ROS 2 colcon
+colcon_comp=/usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
+[ -f ${colcon_comp} ] && source ${colcon_comp}
+
 # Allow zsh to use bash completions
 autoload bashcompinit
 bashcompinit
