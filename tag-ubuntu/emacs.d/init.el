@@ -99,7 +99,7 @@
 ;; Show an Emacs dashboard on startup
 (use-package dashboard
   :init
-  (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
+  ;; (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
   :config
   (dashboard-setup-startup-hook)
   :custom
