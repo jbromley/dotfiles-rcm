@@ -301,13 +301,13 @@ link to the JIRA issue."
       (insert (format "[[https://jira.appliedinvention.com/browse/%s][%s]]" issue issue))))
   (setq org-publish-project-alist
         '(("gantry-org"
-           :base-directory "~/Code/gantry.wiki/"
+           :base-directory "~/Code/gantry-docs/"
            :base-extension "org"
            :publishing-directory "~/Public/"
            :recursive t
            :publishing-function org-html-publish-to-html)
           ("gantry-static"
-           :base-directory "~/Code/gantry.wiki/"
+           :base-directory "~/Code/gantry-docs/"
            :base-extension "css\\|png"
            :publishing-directory "~/Public/"
            :recursive t
