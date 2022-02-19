@@ -299,6 +299,21 @@ link to the JIRA issue."
       (when (use-region-p)
         (delete-region start end))
       (insert (format "[[https://jira.appliedinvention.com/browse/%s][%s]]" issue issue))))
+  (setq org-publish-project-alist
+        '(("gantry-org"
+           :base-directory "~/Code/gantry.wiki/"
+           :base-extension "org"
+           :publishing-directory "~/Public/"
+           :recursive t
+           :publishing-function org-html-publish-to-html)
+          ("gantry-static"
+           :base-directory "~/Code/gantry.wiki/"
+           :base-extension "css\\|png"
+           :publishing-directory "~/Public/"
+           :recursive t
+           :publishing-function org-publish-attachment)
+          ("gantry"
+           :components ("gantry-org" "gantry-static"))))
   :custom
   (org-directory (expand-file-name  "~/Org"))
   (org-agenda-files '("~/Org/"))
@@ -323,30 +338,6 @@ link to the JIRA issue."
          ("C-c j" . jb/org-insert-jira-link)
          ("C-c l" . org-store-link))
   :hook ((org-mode . (lambda () (org-superstar-mode 1)))))
-
-(use-package org-roam
-  :init (setq org-roam-v2-ack t)
-  :custom (org-roam-directory (expand-file-name  "~/Roam"))
-  :config (require 'org-roam-protocol)
-  :bind (:map org-roam-mode-map
-              ("C-c r f" . org-roam-find-file)
-              ("C-c r i" . org-roam-insert)
-              ("C-c r S" . org-roam-server-mode)))
-
-(use-package org-roam-server
-  :after org-roam
-  :custom
-  (setq org-roam-server-host "127.0.0.1"
-        org-roam-server-port 8080
-        org-roam-server-authenticate nil
-        org-roam-server-export-inline-images t
-        org-roam-server-serve-files nil
-        org-roam-server-served-file-extensions '("pdf" "mp4" "ogv" "png")
-        org-roam-server-network-poll t
-        org-roam-server-network-arrows nil
-        org-roam-server-network-label-truncate t
-        org-roam-server-network-label-truncate-length 60
-        org-roam-server-network-label-wrap-length 20))
 
 ;; Rust
 (use-package rust-mode
