@@ -297,6 +297,9 @@
 (use-package org-superstar
   :custom
   (org-superstar-leading-bullet ?\s))
+
+(use-package ox-gfm)
+
 (use-package org
   :config
   (defun jb/org-insert-jira-link (start end)
@@ -348,7 +351,9 @@ link to the JIRA issue."
          ("C-c c" . org-capture)
          ("C-c j" . jb/org-insert-jira-link)
          ("C-c l" . org-store-link))
-  :hook ((org-mode . (lambda () (org-superstar-mode 1)))))
+  :hook ((org-mode . (lambda ()
+                       (org-superstar-mode 1)
+                       (require 'ox-gfm nil t)))))
 
 ;; Rust
 (use-package rust-mode
