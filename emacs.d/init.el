@@ -49,6 +49,17 @@
 (setq custom-file (concat user-emacs-directory "custom.el"))
 (load custom-file)
 
+;; Automatically update buffers from disk.
+(global-auto-revert-mode 1)
+(setq global-auto-revert-non-file-buffers t)
+
+;; Save last place in a file.
+(save-place-mode 1)
+
+;; Enable mini-buffer history.
+(setq history-length 8)
+(savehist-mode 1)
+
 ;; Integrate with system clipboard and selection.
 (setq select-enable-primary t
       select-enable-clipboard t)
