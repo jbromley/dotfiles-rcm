@@ -294,11 +294,10 @@
   :hook (java-mode-hook . lsp))
 
 ;; Org mode
-(use-package org-superstar
-  :custom
-  (org-superstar-leading-bullet ?\s))
-
 (use-package ox-gfm)
+
+(use-package org-bullets
+  :hook (org-mode . org-bullets-mode))
 
 (use-package org
   :config
@@ -337,7 +336,7 @@ link to the JIRA issue."
                             ("CANCELED" . (:foreground gray50 :weight bold))))
   (org-confirm-babel-evaluate nil)
   (org-agenda-exporter-settings '((ps-print-color-p nil)
-                                  (org-agnenda-add-entry-text-maxlines 0)
+                                  (org-agenda-add-entry-text-maxlines 0)
                                   (htmlize-output-type 'css)))
   (org-hierarchical-todo-statistics nil)
   (org-enforce-todo-dependencies t)
@@ -351,9 +350,7 @@ link to the JIRA issue."
          ("C-c c" . org-capture)
          ("C-c j" . jb/org-insert-jira-link)
          ("C-c l" . org-store-link))
-  :hook ((org-mode . (lambda ()
-                       (org-superstar-mode 1)
-                       (require 'ox-gfm nil t)))))
+  :hook ((org-mode . (lambda () (require 'ox-gfm nil t)))))
 
 ;; Rust
 (use-package rust-mode
