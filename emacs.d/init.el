@@ -313,20 +313,20 @@ link to the JIRA issue."
         (delete-region start end))
       (insert (format "[[https://jira.appliedinvention.com/browse/%s][%s]]" issue issue))))
   (setq org-publish-project-alist
-        '(("gantry-org"
-           :base-directory "~/Code/gantry-docs/"
+        '(("grow-org"
+           :base-directory "~/Org/grow/"
            :base-extension "org"
            :publishing-directory "~/Public/"
            :recursive t
            :publishing-function org-html-publish-to-html)
-          ("gantry-static"
-           :base-directory "~/Code/gantry-docs/"
-           :base-extension "css\\|png"
+          ("grow-static"
+           :base-directory "~/Org/grow/"
+           :base-extension "css\\|png\\|svg\\|ico"
            :publishing-directory "~/Public/"
            :recursive t
            :publishing-function org-publish-attachment)
           ("gantry"
-           :components ("gantry-org" "gantry-static"))))
+           :components ("grow-org" "grow-static"))))
   :custom
   (org-directory (expand-file-name  "~/Org"))
   (org-agenda-files '("~/Org/"))
@@ -346,6 +346,8 @@ link to the JIRA issue."
   (org-default-notes-file (concat org-directory "/Notes.org"))
   (org-catch-invisible-edits 'show)
   (org-hide-leading-stars t)
+  (org-html-postamble t)
+  (org-html-postamble-format '(("en" "<hr/><p style=\"text-align:center\">Modified: %C</p>")))
   :bind (("C-c a" . org-agenda)
          ("C-c c" . org-capture)
          ("C-c j" . jb/org-insert-jira-link)
