@@ -148,7 +148,7 @@ return {
     use_fancy_tab_bar = true,
 
     window_frame = {
-        font = wezterm.font({family="Fira Sans Condensed SemiBold", weight="Regular"}),
+        font = wezterm.font({family="Fira Sans", weight="Bold"}),
         font_size = 11.0,
     },
 
