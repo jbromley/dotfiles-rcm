@@ -168,8 +168,8 @@ return {
        right = 4,
     },
 
-    tab_max_width = 64,
-    tab_bar_at_bottom = false,
+    tab_max_width = 128,
+    tab_bar_at_bottom = true,
 
     window_decorations = "NONE",
     window_background_opacity = 0.9375,
