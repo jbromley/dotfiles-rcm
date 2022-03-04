@@ -22,7 +22,7 @@ paq {
 	{'savq/paq-nvim', opt = true};
 	{'junegunn/fzf', run = fn['fzf#install']};
 	'junegunn/fzf.vim';
-	'nvim-treesitter/nvim-treesitter';
+    {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'};
 	'neovim/nvim-lspconfig';
 	'kosayoda/nvim-lightbulb';
 	'hrsh7th/nvim-compe';
@@ -211,7 +211,7 @@ cmd 'autocmd FileType c,cpp,cs,java setlocal commentstring=//\\ %s'
 cmd 'autocmd FileType rkt,scm setlocal commentstring=;\\ %s'
 
 -- Show lightbulb when code actions are available.
-cmd [[autocmd CursorHold,CursorHoldI * lua require('nvim-lightbulb').update_lightbulb()]]
+-- cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
 -- }}}
 
 -- vim: foldmethod=marker:foldlevel=10
