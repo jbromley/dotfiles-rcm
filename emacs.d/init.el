@@ -329,7 +329,7 @@ link to the JIRA issue."
            :components ("grow-org" "grow-static"))))
   :custom
   (org-directory (expand-file-name  "~/Org"))
-  (org-agenda-files '("~/Org/"))
+  (org-agenda-files '("~/Org/" "~/Org/grow/"))
   (org-todo-keywords '((sequence "TODO(t)" "IN-PROGRESS(i)" "WAITING(w@/!)" "|" "DONE(d!)" "CANCELED(c@)")))
   (org-todo-keyword-faces '(("IN-PROGRESS" . org-agenda-structure)
                             ("WAITING" . compilation-warning)
