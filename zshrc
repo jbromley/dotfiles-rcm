@@ -1,9 +1,9 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
 
 #======================================================================
 # Zsh configuration file
@@ -21,9 +21,9 @@ fpath=(${HOME}/.zsh/plugins $fpath)
 # Navigation
 setopt AUTO_CD
 
-# setopt auto_pushd
+# setopt AUTO_PUSHD
 setopt PUSHD_IGNORE_DUPS
-# setopt pushd_silent
+# setopt PUSHD_SILENT
 
 setopt CORRECT
 # setopt CDABLE_VARS
@@ -53,7 +53,7 @@ fi
 # Fzf
 source ${HOME}/.fzf/shell/completion.zsh
 source ${HOME}/.fzf/shell/key-bindings.zsh
-bindkey -s '' 'nvim $(fzf);'
+bindkey -s '^V' 'emacsclient -tty $(fzf);^M'
 
 #
 # Plugins
@@ -80,15 +80,14 @@ source ${plugin_dir}/zsh-z/zsh-z.plugin.zsh
 fpath=(${plugin_dir}/zsh-completions/src $fpath)
 autoload -Uz compinit; compinit
 _comp_options+=(globdots)
-source ${plugin_dir}/completion.zsh
+# source ${plugin_dir}/completion.zsh
 
 # ROS 2 colcon
 colcon_comp=/usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
 [ -f ${colcon_comp} ] && source ${colcon_comp}
 
 # Allow zsh to use bash completions
-autoload bashcompinit
-bashcompinit
+autoload bashcompinit; bashcompinit
 
 # ROS 2
 if [ -f /opt/ros/foxy/setup.zsh ]; then
@@ -99,4 +98,12 @@ fi
 # Prompt
 # source ~/.zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+function set_term_title() {
+    title=$(pwd | sed -e "s|${HOME}|~|")
+    echo -ne "\e]0;${title}\a"
+}
+precmd_functions+=(set_term_title)
 eval "$(starship init zsh)"
+# source ${plugin_dir}/git.zsh
+# autoload -U promptinit; promptinit
+# prompt purity
