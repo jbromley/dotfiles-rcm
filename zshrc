@@ -50,7 +50,7 @@ plugin_dir=${HOME}/.zsh
 fpath=(${plugin_dir} $fpath)
 
 # bd
-autoload -Uz bd; bd
+source ${plugin_dir}/zsh-bd/bd.zsh
 
 # Syntax highlighting
 source ${plugin_dir}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
