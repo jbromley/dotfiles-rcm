@@ -1,17 +1,17 @@
 [submodule "zsh/plugins/zsh-autosuggestions"]
-	path = zsh/plugins/zsh-autosuggestions
+	path = zsh/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
 [submodule "zsh/plugins/zsh-z"]
-	path = zsh/plugins/zsh-z
+	path = zsh/zsh-z
 	url = https://github.com/agkozak/zsh-z.git
 [submodule "zsh/plugins/zsh-completions"]
-	path = zsh/plugins/zsh-completions
+	path = zsh/zsh-completions
 	url = git://github.com/zsh-users/zsh-completions.git
 [submodule "zsh/plugins/zsh-syntax-highlighting"]
-	path = zsh/plugins/zsh-syntax-highlighting
+	path = zsh/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
 [submodule "zsh/plugins/powerlevel10k"]
-	path = zsh/plugins/powerlevel10k
+	path = zsh/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git
 [submodule "emacs.d/elisp/ligature.el"]
 	path = emacs.d/elisp/ligature.el
