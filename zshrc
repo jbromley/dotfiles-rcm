@@ -21,7 +21,7 @@ fpath=(${HOME}/.zsh/plugins $fpath)
 # Navigation
 setopt AUTO_CD
 
-setopt auto_pushd
+# setopt auto_pushd
 setopt PUSHD_IGNORE_DUPS
 # setopt pushd_silent
 
