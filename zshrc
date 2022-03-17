@@ -15,15 +15,12 @@
 # Emacs key bindings
 bindkey -e
 
-# Add plugins directory to path.
-fpath=(${HOME}/.zsh/plugins $fpath)
-
-# Navigation
+# Changing directories
 setopt AUTO_CD
-
-# setopt AUTO_PUSHD
+setopt AUTO_PUSHD
 setopt PUSHD_IGNORE_DUPS
 # setopt PUSHD_SILENT
+
 
 setopt CORRECT
 # setopt CDABLE_VARS
@@ -44,16 +41,16 @@ setopt HIST_VERIFY
 source ${HOME}/.aliases
 
 # ASDF
-ASDF_INIT=${HOME}/.asdf/asdf.sh
-if [ -f ${ASDF_INIT} ]; then
-    source ${ASDF_INIT}
+asdf_init=${HOME}/.asdf/asdf.sh
+if [ -f ${asdf_init} ]; then
+    source ${asdf_init}
     fpath=(${HOME}/.asdf/completions $fpath)
 fi
 
 # Fzf
 source ${HOME}/.fzf/shell/completion.zsh
 source ${HOME}/.fzf/shell/key-bindings.zsh
-bindkey -s '^V' 'emacsclient -tty $(fzf);^M'
+bindkey -s '^V' 'emacsclient --tty $(fzf);^M'
 
 #
 # Plugins
@@ -80,7 +77,7 @@ source ${plugin_dir}/zsh-z/zsh-z.plugin.zsh
 fpath=(${plugin_dir}/zsh-completions/src $fpath)
 autoload -Uz compinit; compinit
 _comp_options+=(globdots)
-# source ${plugin_dir}/completion.zsh
+source ${plugin_dir}/completion.zsh
 
 # ROS 2 colcon
 colcon_comp=/usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
