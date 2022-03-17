@@ -34,9 +34,9 @@ local my_keys = {
 
     -- Scrollback buffer
     {key = "PageUp", mods = "SHIFT", action = wezterm.action{ScrollByLine = -1}},
-    {key = "PageUp", mods = "CTRL", action = wezterm.action{ScrollByPage = -1}},
+    {key = "PageUp", mods = "", action = wezterm.action{ScrollByPage = -1}},
     {key = "PageDown", mods = "SHIFT", action = wezterm.action{ScrollByLine = 1}},
-    {key = "PageDown", mods = "CTRL", action = wezterm.action{ScrollByPage = 1}},
+    {key = "PageDown", mods = "", action = wezterm.action{ScrollByPage = 1}},
     {key = "k", mods="CTRL|SHIFT", action = wezterm.action{ClearScrollback = "ScrollbackOnly"}},
 
     -- Pane creation, resizing, and navigation
