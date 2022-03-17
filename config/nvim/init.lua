@@ -22,7 +22,7 @@ paq {
 	{'savq/paq-nvim', opt = true};
 	{'junegunn/fzf', run = fn['fzf#install']};
 	'junegunn/fzf.vim';
-    {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'};
+        {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'};
 	'neovim/nvim-lspconfig';
 	'kosayoda/nvim-lightbulb';
 	'hrsh7th/nvim-compe';
