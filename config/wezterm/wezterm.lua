@@ -148,7 +148,7 @@ return {
     use_fancy_tab_bar = true,
 
     window_frame = {
-        font = wezterm.font({family="Fira Sans", weight="Bold"}),
+        font = wezterm.font({family="Lato", weight="Bold"}),
         font_size = 11.0,
     },
 
@@ -171,7 +171,7 @@ return {
     tab_max_width = 128,
     tab_bar_at_bottom = true,
 
-    window_decorations = "NONE",
+    window_decorations = "RESIZE",
     window_background_opacity = 0.9375,
 
     -- Key bindings
