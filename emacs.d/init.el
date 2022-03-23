@@ -272,7 +272,8 @@
          (racket-mode . lsp-deferred)
          (rust-mode . lsp-deferred)
          (typescript-mode . lsp-deferred)
-         (web-mode . lsp-deferred)))
+         (web-mode . lsp-deferred)
+         (python-mode . lsp-deferred)))
 
 ;;  Emacs Debug Adapter Protocol
 (use-package dap-mode
@@ -290,11 +291,9 @@
 
 ;; Python
 (use-package lsp-python-ms
-  :ensure t
-  :init (setq lsp-python-ms-auto-install-server t)
-  :hook (python-mode . (lambda ()
-                         (require 'lsp-python-ms)
-                         (lsp-deferred))))
+  :init (setq lsp-python-ms-auto-install-server t
+              lsp-python-ms-python-executable "/usr/bin/python3")
+  :hook (python-mode . (lambda () (require 'lsp-python-ms))))
 
 ;; Java
 (use-package lsp-java
