@@ -250,8 +250,8 @@
   :defer t)
 
 ;; Flycheck
-;; (use-package flycheck
-;;   :init (global-flycheck-mode))
+(use-package flycheck
+  :init (global-flycheck-mode))
 
 (use-package lsp-mode
   :commands
@@ -275,6 +275,8 @@
          (web-mode . lsp-deferred)
          (python-mode . lsp-deferred)))
 
+(use-package lsp-ui)
+
 ;;  Emacs Debug Adapter Protocol
 (use-package dap-mode
   :commands
@@ -291,7 +293,7 @@
 
 ;; Python
 (use-package lsp-python-ms
-  :init (setq lsp-python-ms-auto-install-server t
+  :init (setq lsp-python-ms-auto-install-server nil
               lsp-python-ms-python-executable "/usr/bin/python3")
   :hook (python-mode . (lambda () (require 'lsp-python-ms))))
 
