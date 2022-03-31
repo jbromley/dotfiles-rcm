@@ -10,7 +10,7 @@ bindkey -e
 
 # Changing directories
 setopt AUTO_CD
-setopt AUTO_PUSHD
+# setopt AUTO_PUSHD
 setopt PUSHD_IGNORE_DUPS
 # setopt PUSHD_SILENT
 setopt CORRECT
@@ -82,6 +82,15 @@ if [ -f /opt/ros/foxy/setup.zsh ]; then
     source /opt/ros/foxy/setup.zsh
     export ROS_DOMAIN_ID=17
 fi
+
+# Check ps for a process
+function psinfo() {
+    if [ -z "$1" ]; then
+        echo "Usage: psinfo <regex>"
+    else
+        ps -ef | grep -E "$1" | grep -v grep
+    fi
+}
 
 # Prompt
 function set_term_title() {
