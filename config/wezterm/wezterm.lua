@@ -144,7 +144,8 @@ local my_tab_bar = {
 
 return {
     term = "wezterm",
-
+    initial_cols = 100,
+    initial_rows = 50,
     use_fancy_tab_bar = true,
 
     window_frame = {
@@ -156,6 +157,7 @@ return {
     font_size = 11.0,
 
     color_scheme = "Dracula",
+    -- color_scheme = "Violet Light",
 
     colors = {
         tab_bar = my_tab_bar,
