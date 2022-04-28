@@ -253,44 +253,6 @@
 (use-package flycheck
   :init (global-flycheck-mode))
 
-(use-package lsp-mode
-  :commands
-  (lsp lsp-deferred)
-  :init
-  (setq lsp-keymap-prefix "C-c l")
-  :config
-  (lsp-enable-which-key-integration t)
-  (add-to-list 'lsp-client-packages 'lsp-racket)
-  :custom (lsp-rust-server 'rust-analyzer)
-  :hook ((lsp-mode . lsp-enable-which-key-integration)
-         (c-mode . lsp-deferred)
-         (c++-mode . lsp-deferred)
-         (elixir-mode . lsp-deferred)
-         (go-mode . lsp-deferred)
-         (java-mode . lsp-deferred)
-         ; (lua-mode . lsp-deferred)
-         (racket-mode . lsp-deferred)
-         (rust-mode . lsp-deferred)
-         (typescript-mode . lsp-deferred)
-         (web-mode . lsp-deferred)
-         (python-mode . lsp-deferred)))
-
-(use-package lsp-ui)
-
-;;  Emacs Debug Adapter Protocol
-(use-package dap-mode
-  :commands
-  (dap-mode dap-debug)
-  :defer t
-  :after (lsp-mode)
-  :functions dap-hydra/nil
-  ;; :bind (:map lsp-mode-map
-  ;;        ("<f5>" . dap-debug)
-  ;;        ("M-<f5>" . dap-hydra))
-  :hook ((dap-mode . dap-ui-mode)
-    (dap-session-created . (lambda (&_rest) (dap-hydra)))
-    (dap-terminated . (lambda (&_rest) (dap-hydra/nil)))))
-
 ;; Python
 (use-package lsp-python-ms
   :init (setq lsp-python-ms-auto-install-server nil
@@ -364,8 +326,34 @@ link to the JIRA issue."
   :hook ((org-mode . (lambda () (require 'ox-gfm nil t)))))
 
 ;; Rust
-(use-package rust-mode
-  :hook ((rust-mode . (lambda () (setq indent-tabs-mode nil)))))
+(use-package rustic
+  :bind (:map rustic-mode-map
+              ("M-j" . lsp-ui-imenu)
+              ("M-?" . lsp-find-references)
+              ("C-c C-c l" . flycheck-list-errors)
+              ("C-c C-c a" . lsp-execute-code-action)
+              ("C-c C-c r" . lsp-rename)
+              ("C-c C-c q" . lsp-workspace-restart)
+              ("C-c C-c Q" . lsp-workspace-shutdown)
+              ("C-c C-c s" . lsp-rust-analyzer-status))
+  :config
+  ;; uncomment for less flashiness
+  ;; (setq lsp-eldoc-hook nil)
+  ;; (setq lsp-enable-symbol-highlighting nil)
+  ;; (setq lsp-signature-auto-activate nil)
+
+  ;; comment to disable rustfmt on save
+  ;; (setq rustic-format-on-save t)
+  ;;(add-hook 'rustic-mode-hook 'jb/rustic-mode-hook)
+)
+
+(defun jb/rustic-mode-hook ()
+  ;; Make C-c C-c C-r work without having to confirm, but don't try to save rust
+  ;; buffers that are not file visiting. Once
+  ;; https://github.com/brotzeit/rustic/issues/253 has been resolved this should
+  ;; no longer be necessary.
+  (when buffer-file-name
+    (setq-local buffer-save-without-query t)))
 
 ;; Go
 (use-package go-mode
@@ -461,6 +449,63 @@ link to the JIRA issue."
   :config
   (setq web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'")
                                        ("tsx" . "\\.ts[x]?\\'"))))
+
+(use-package lsp-mode
+  :commands
+  (lsp lsp-deferred)
+  :init
+  (setq lsp-keymap-prefix "C-c l")
+  :config
+  (lsp-enable-which-key-integration t)
+  ;; Rustic
+  (lsp-rust-analyzer-cargo-watch-command "clippy")
+  (lsp-eldoc-render-all t)
+  (lsp-idle-delay 0.6)
+  ;; enable / disable the hints as you prefer:
+  (lsp-rust-analyzer-server-display-inlay-hints t)
+  (lsp-rust-analyzer-display-lifetime-elision-hints-enable "skip_trivial")
+  (lsp-rust-analyzer-display-chaining-hints t)
+  (lsp-rust-analyzer-display-lifetime-elision-hints-use-parameter-names nil)
+  (lsp-rust-analyzer-display-closure-return-type-hints t)
+  (lsp-rust-analyzer-display-parameter-hints nil)
+  (lsp-rust-analyzer-display-reborrow-hints nil)
+  ;; Racket
+  (add-to-list 'lsp-client-packages 'lsp-racket)
+  :custom (lsp-rust-server 'rust-analyzer)
+  :hook ((lsp-mode . lsp-enable-which-key-integration)
+         (lsp-mode . lsp-ui-mode)
+         (c-mode . lsp-deferred)
+         (c++-mode . lsp-deferred)
+         (elixir-mode . lsp-deferred)
+         (go-mode . lsp-deferred)
+         (java-mode . lsp-deferred)
+         ; (lua-mode . lsp-deferred)
+         (racket-mode . lsp-deferred)
+         (rust-mode . lsp-deferred)
+         (typescript-mode . lsp-deferred)
+         (web-mode . lsp-deferred)
+         (python-mode . lsp-deferred)))
+
+(use-package lsp-ui
+  :commands lsp-ui-mode
+  :custom
+  (lsp-ui-peek-always-show t)
+  (lsp-ui-sideline-show-hover t)
+  (lsp-ui-doc-enable nil))
+
+;;  Emacs Debug Adapter Protocol
+(use-package dap-mode
+  :commands
+  (dap-mode dap-debug)
+  :defer t
+  :after (lsp-mode)
+  :functions dap-hydra/nil
+  ;; :bind (:map lsp-mode-map
+  ;;        ("<f5>" . dap-debug)
+  ;;        ("M-<f5>" . dap-hydra))
+  :hook ((dap-mode . dap-ui-mode)
+    (dap-session-created . (lambda (&_rest) (dap-hydra)))
+    (dap-terminated . (lambda (&_rest) (dap-hydra/nil)))))
 
 ;; Themes and theme switching
 (use-package dracula-theme
