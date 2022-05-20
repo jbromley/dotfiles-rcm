@@ -77,12 +77,6 @@ colcon_comp=/usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
 # Allow zsh to use bash completions
 autoload bashcompinit; bashcompinit
 
-# ROS 2
-if [ -f /opt/ros/foxy/setup.zsh ]; then
-    source /opt/ros/foxy/setup.zsh
-    export ROS_DOMAIN_ID=17
-fi
-
 # Check ps for a process
 function psinfo() {
     if [ -z "$1" ]; then
