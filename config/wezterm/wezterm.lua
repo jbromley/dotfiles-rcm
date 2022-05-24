@@ -9,7 +9,7 @@ local my_keys = {
     {key = "c", mods = "CTRL|SHIFT", action = wezterm.action{CopyTo="ClipboardAndPrimarySelection"}},
     {key = "v", mods = "CTRL|SHIFT", action = wezterm.action{PasteFrom="Clipboard"}},
     {key = "x", mods="CTRL|SHIFT", action = "ActivateCopyMode"},
-    {key = " ", mods="CTRL|SHIFT", action = "QuickSelect"},
+    {key = "z", mods="CTRL|SHIFT", action = "QuickSelect"},
 
     -- Search
     {key = "f", mods="CTRL|SHIFT", action = wezterm.action{Search = {CaseInSensitiveString = ""}} },
