@@ -27,8 +27,8 @@ local my_keys = {
     {key = "h", mods = "LEADER", action = wezterm.action{ActivateTabRelative = -1}},
     {key = "l", mods = "LEADER", action = wezterm.action{ActivateTabRelative = 1}},
     {key = "o", mods = "LEADER", action = "ActivateLastTab"},
-    {key = "{", mods = "LEADER", action = wezterm.action{MoveTabRelative = -1}},
-    {key = "}", mods = "LEADER", action = wezterm.action{MoveTabRelative = 1}},
+    {key = "[", mods = "LEADER", action = wezterm.action{MoveTabRelative = -1}},
+    {key = "]", mods = "LEADER", action = wezterm.action{MoveTabRelative = 1}},
     {key = "n", mods = "LEADER", action = "ShowTabNavigator"},
     {key = "Enter", mods = "ALT", action = "ToggleFullScreen"},
 
