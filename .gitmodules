@@ -13,3 +13,6 @@
 [submodule "zsh/zsh-bd"]
 	path = zsh/zsh-bd
 	url = https://github.com/Tarrasch/zsh-bd.git
+[submodule "emacs.d/elisp/ligature.el"]
+	path = emacs.d/elisp/ligature.el
+	url = https://github.com/mickeynp/ligature.el.git
