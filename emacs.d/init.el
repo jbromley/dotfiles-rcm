@@ -64,8 +64,6 @@
 (setq select-enable-primary t
       select-enable-clipboard t)
 
-;; Use xclip for copy/paste if we are running in a terminal.
-
 ;; Set the default formats for modes derived from cc-mode.
 (setq-default c-basic-offset 4)
 (defvar c-default-style)
@@ -152,6 +150,8 @@
 
 ;; initialize the path
 (use-package exec-path-from-shell
+  :custom
+  (exec-path-from-shell-arguments '("-l"))
   :config
   (exec-path-from-shell-initialize))
 
