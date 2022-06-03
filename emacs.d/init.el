@@ -11,7 +11,7 @@
 ;;; Code:
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Configuration setup
+;; Configuration setup - package archives and use-package
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Set up the package manager
@@ -29,10 +29,6 @@
 
 (setq use-package-always-ensure t)
 
-;; Add custom Emacs Lisp directory to the load path.
-(let ((default-directory (concat user-emacs-directory "elisp/")))
-  (normal-top-level-add-subdirs-to-load-path))
-
 ;; Set large file size limits
 (setq large-file-warning-threshold 16000000)
 
@@ -44,6 +40,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; General editing configuration
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(setq inhibit-startup-screen t)
 
 (column-number-mode t)
 (setq-default fill-column 80
@@ -429,7 +427,9 @@ link to the JIRA issue."
 ;; Racket - racket mode
 (use-package racket-mode
   :config (require 'lsp-racket)
-  :bind (("C-\\" . racket-insert-lambda)))
+  :bind
+  (:map racket-mode-map
+        ("C-\\" . racket-insert-lambda)))
 
 ;; Snippets
 (use-package yasnippet
@@ -520,20 +520,27 @@ link to the JIRA issue."
 ;; Themes and theme switching
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(use-package dracula-theme
-  :defer t)
+(use-package dracula-theme)
+(use-package exotica-theme)
+
+(load-theme 'dracula t t)
 
 (use-package theme-looper
-  ;; :config
-  ;; (theme-looper-set-favorite-themes '(*default*
-  ;;                                     dichromacy
-  ;;                                     dracula
-  ;;                                     misterioso
-  ;;                                     deeper-blue))
+  :config
+  (theme-looper-set-favorite-themes '(dracula
+                                      exotica
+                                      deeper-blue
+                                      manoj-dark
+                                      misterioso
+                                      modus-vivendi
+                                      *default*
+                                      dichromacy
+                                      modus-operandi))
   :bind
   (("C-<" . theme-looper-enable-previous-theme)
    ("C->" . theme-looper-enable-next-theme)
-   ("C-|" . theme-looper-select-theme)))
+   ("C-|" . theme-looper-select-theme)
+   ("C-\\" . theme-looper-enable-random-theme)))
 
 (put 'narrow-to-region 'disabled nil)
 
