@@ -414,6 +414,9 @@ link to the JIRA issue."
               ("C-c C-c s" . lsp-rust-analyzer-status))
 )
 
+;; CMake
+(use-package cmake-mode)
+
 ;; Paredit
 (use-package paredit
   :diminish "()"
@@ -431,7 +434,16 @@ link to the JIRA issue."
   (:map racket-mode-map
         ("C-\\" . racket-insert-lambda)))
 
-;; Snippets
+;; Common Lisp - SLY
+(use-package sly
+  :custom
+  (inferior-lisp-program (expand-file-name "~/.asdf/shims/sbcl"))
+  (sly-lisp-implementations '((sbcl ("~/.asdf/shims/sbcl") :coding-system utf-8-unix)
+                              (ecl ("/usr/bin/ecl"))))
+  :bind
+  (:map sly-prefix-map ("M-h" . sly-documentation-lookup)))
+
+;; snippets
 (use-package yasnippet
   :functions yas-reload-all
   :config
@@ -480,14 +492,6 @@ link to the JIRA issue."
 ;;   :hook ((go-mode . jb/lsp-go-install-save-hooks)
 ;;          (go-mode . (lambda () (setq-default tab-width 4))))
 ;;   :mode ((("\\.go\\'" . go-mode))))
-
-;; ;; Common Lisp - SLY
-;; (use-package sly
-;;   :custom
-;;   (inferior-lisp-program (expand-file-name "~/.asdf/shims/sbcl"))
-;;   (sly-lisp-implementations '((sbcl ("~/.asdf/shims/sbcl") :coding-system utf-8-unix)
-;;                               (ecl ("/usr/bin/ecl"))))
-;;   :bind (:map sly-prefix-map ("M-h" . sly-documentation-lookup)))
 
 ;; ;; Clojure - Clojure mode and CIDER
 ;; (use-package clojure-mode
