@@ -415,7 +415,10 @@ link to the JIRA issue."
 )
 
 ;; CMake
-(use-package cmake-mode)
+(use-package cmake-project)
+(use-package cmake-mode
+  :hook
+  (cmake-mode . cmake-project-mode))
 
 ;; Paredit
 (use-package paredit
