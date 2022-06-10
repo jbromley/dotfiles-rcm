@@ -507,12 +507,9 @@ link to the JIRA issue."
 ;;   (cider)
 ;;   :defer t)
 
-;; ;; Lua
-;; (use-package lua-mode
-;;   :mode (("\\.lua\\'" . lua-mode))
-;;   :custom
-;;   (lsp-clients-lua-language-server-bin "/opt/lua-language-server/bin/Linux/lua-language-server")
-;;   (lsp-clients-lua-language-server-main-location "/opt/lua-language-server/main.lua"))
+;; Lua
+(use-package lua-mode
+  :mode (("\\.lua\\'" . lua-mode)))
 
 ;; ;; Typescript
 ;; (use-package typescript-mode
