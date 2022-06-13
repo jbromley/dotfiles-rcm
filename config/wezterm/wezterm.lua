@@ -40,7 +40,7 @@ local my_keys = {
     {key = "k", mods="CTRL|SHIFT", action = wezterm.action{ClearScrollback = "ScrollbackOnly"}},
 
     -- Pane creation, resizing, and navigation
-    {key = "|", mods="LEADER", action = wezterm.action{SplitHorizontal = {domain = "CurrentPaneDomain"}} },
+    {key = "\\", mods="LEADER", action = wezterm.action{SplitHorizontal = {domain = "CurrentPaneDomain"}} },
     {key = "-", mods="LEADER", action = wezterm.action{SplitVertical = {domain = "CurrentPaneDomain"}} },
     {key = "h", mods="LEADER|SHIFT", action = wezterm.action{ActivatePaneDirection = "Left"}},
     {key = "l", mods="LEADER|SHIFT", action = wezterm.action{ActivatePaneDirection = "Right"}},
@@ -143,7 +143,7 @@ local my_tab_bar = {
 }
 
 return {
-    term = "wezterm",
+    -- term = "wezterm",
     initial_cols = 100,
     initial_rows = 50,
     use_fancy_tab_bar = true,
