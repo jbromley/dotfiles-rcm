@@ -6,5 +6,5 @@ GenericName=Terminal emulator
 Comment=Fast, feature-rich, GPU based terminal
 TryExec=kitty
 Exec=kitty
-Icon=/home/jay/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png
+Icon=kitty
 Categories=System;TerminalEmulator;
