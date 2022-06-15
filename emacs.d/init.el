@@ -188,6 +188,32 @@
          ("C-c g" . magit-file-dispatch)))
 
 ;; Completion
+(defun company-yasnippet-or-completion ()
+  "Insert a snippet or completion based on context."
+  (interactive)
+  (or (yas-expand)
+      (company-complete)))
+
+(defun check-expansion ()
+  "Check if we are expanding a snippet."
+  (save-excursion
+    (if (looking-at "\\_>") t
+      (backward-char 1)
+      (if (looking-at "\\.") t
+        (backward-char 1)
+        (if (looking-at "::") t nil)))))
+
+(defun tab-indent-or-complete ()
+  "Complete, indent, or expand snippets according to context."
+  (interactive)
+  (if (minibufferp)
+      (minibuffer-complete)
+    (if (or (not yas-minor-mode)
+            (null (yas-expand)))
+        (if (check-expansion)
+            (company-complete)
+          (indent-for-tab-command)))))
+
 (use-package company
   :diminish company-mode
   :custom
@@ -458,32 +484,6 @@ link to the JIRA issue."
 (use-package yasnippet-snippets)
 (use-package elixir-yasnippets)
 
-
-(defun company-yasnippet-or-completion ()
-  "Insert a snippet or completion based on context."
-  (interactive)
-  (or (yas-expand)
-      (company-complete)))
-
-(defun check-expansion ()
-  "Check if we are expanding a snippet."
-  (save-excursion
-    (if (looking-at "\\_>") t
-      (backward-char 1)
-      (if (looking-at "\\.") t
-        (backward-char 1)
-        (if (looking-at "::") t nil)))))
-
-(defun tab-indent-or-complete ()
-  "Complete, indent, or expand snippets according to context."
-  (interactive)
-  (if (minibufferp)
-      (minibuffer-complete)
-    (if (or (not yas-minor-mode)
-            (null (yas-expand)))
-        (if (check-expansion)
-            (company-complete)
-          (indent-for-tab-command)))))
 
 ;; ;; Go
 ;; (use-package go-mode
