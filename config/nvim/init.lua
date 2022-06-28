@@ -24,19 +24,12 @@ paq {
 	'junegunn/fzf.vim';
         {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'};
 	'neovim/nvim-lspconfig';
-	'kosayoda/nvim-lightbulb';
 	'hrsh7th/nvim-compe';
 	'elixir-editors/vim-elixir';
-	'wlangstroth/vim-racket';
-	'kovisoft/paredit';
-	'Olical/conjure';
 	'tpope/vim-commentary';
 	'tpope/vim-fugitive';
 	'vimwiki/vimwiki';
-	{'kyazdani42/nvim-web-devicons', opt = true};
 	'hoob3rt/lualine.nvim';
-	'kristijanhusak/orgmode.nvim';
-	{'dracula/vim.git', as = 'dracula'};
 }
 
 cmd 'packadd! dracula_pro'
@@ -104,18 +97,16 @@ map('n', '<Leader>t', '<cmd>Tags<CR>')
 -- Plugin configuration {{{
 
 -- Treesitter {{{
-local ts = require 'nvim-treesitter.configs'
-ts.setup {ensure_installed = 'maintained', highlight = {enable = true}}
+require 'nvim-treesitter.configs'.setup {
+	ensure_installed = 'all',
+	highlight = {
+		enable = true,
+	}
+}
 -- }}}
 
 -- VimWiki {{{
 g['vimwiki_list'] = {{path = '~/Documents/Wiki'}}
--- }}}
-
--- {{{ orgmode.nvim
-require('orgmode').setup({
-    org_agenda_files = {'~/Org/*'},
-    org_default_notes_file = '~/Org/Notes.org' })
 -- }}}
 
 -- LSP {{{
@@ -160,7 +151,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "bashls", "clangd", "gopls", "racket_langserver", "rls", "elixirls" }
+local servers = { "bashls", "clangd", "gopls", "rls", "elixirls" }
 for _, lsp in ipairs(servers) do
     local options = { on_attach = on_attach }
     if lsp == "elixirls" then
@@ -209,9 +200,5 @@ require('lualine').setup { options = { icons_enabled = false, theme = 'dracula',
 -- Set comment strings.
 cmd 'autocmd FileType c,cpp,cs,java setlocal commentstring=//\\ %s'
 cmd 'autocmd FileType rkt,scm setlocal commentstring=;\\ %s'
-
--- Show lightbulb when code actions are available.
--- cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
--- }}}
 
 -- vim: foldmethod=marker:foldlevel=10
