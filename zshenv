@@ -4,9 +4,9 @@
 export LANG=en_US.UTF-8
 
 # Editor
-export EDITOR="emacsclient"
-export VISUAL="emacsclient --no-wait --create-frame"
-export GIT_EDITOR="emacsclient"
+export EDITOR="nvim"
+export VISUAL="neovide"
+export GIT_EDITOR="nvim"
 
 # Zsh environment variables
 export HISTFILE="${HOME}/.zhistory"
