@@ -44,7 +44,7 @@ paq {
 
 	'elixir-editors/vim-elixir';
 	'tpope/vim-commentary';
-	'tpope/vim-fugitive';
+    'jreybert/vimagit';
 	'vimwiki/vimwiki';
 	'hoob3rt/lualine.nvim';
 }
@@ -143,5 +143,6 @@ require('lualine').setup { options = { icons_enabled = false, theme = 'dracula',
 -- Set comment strings.
 cmd 'autocmd FileType c,cpp,cs,java setlocal commentstring=//\\ %s'
 cmd 'autocmd FileType rkt,scm setlocal commentstring=;\\ %s'
+-- }}}
 
 -- vim: foldmethod=marker:foldlevel=10
