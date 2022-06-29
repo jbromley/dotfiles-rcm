@@ -133,35 +133,6 @@ lsp.nvim_workspace()
 lsp.setup()
 -- }}}
 
--- Compe {{{
-require'compe'.setup {
-    enabled = true;
-    autocomplete = true;
-    debug = false;
-    min_length = 1;
-    preselect = 'enable';
-    throttle_time = 80;
-    source_timeout = 200;
-    incomplete_delay = 400;
-    max_abbr_width = 100;
-    max_kind_width = 100;
-    max_menu_width = 100;
-    documentation = true;
-    
-    source = {
-        path = true;
-        nvim_lsp = true;
-    }
-}
-
-local t = function(str)
-    return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-
-map('i', '<C-Space>', [[ compe#complete() ]], { silent = true, expr = true }) 
-map('i', '<C-e>', [[ compe#close('<C-e>') ]], { silent = true, expr = true })
--- }}}
-
 -- lualine {{{
 require('lualine').setup { options = { icons_enabled = false, theme = 'dracula', }, }
 -- }}}
