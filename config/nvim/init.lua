@@ -61,7 +61,7 @@ g.mapleader = '\\'
 g.maplocalleader = ','
 
 -- Global options
-vim.o.guifont = 'JetBrainsMono Nerd Font:h11'
+vim.o.guifont = 'JetBrains Mono:h11'
 vim.o.hidden = true
 vim.o.joinspaces = false
 vim.o.scrolloff = 4
