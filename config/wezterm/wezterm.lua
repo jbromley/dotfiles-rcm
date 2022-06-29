@@ -22,7 +22,7 @@ local my_keys = {
     -- New windows and tab creation, closing, and navigation
     {key = "w", mods = "LEADER", action = "SpawnWindow"},
     {key = "t", mods = "LEADER", action = wezterm.action{SpawnTab = "CurrentPaneDomain"}},
-    {key = "T", mods = "LEADER", action = wezterm.action{SpawnTab = "DefaultDomain"}},
+    {key = "u", mods = "LEADER", action = wezterm.action{SpawnTab = "DefaultDomain"}},
     {key = "x", mods = "LEADER", action = wezterm.action{CloseCurrentTab = {confirm = true}} },
     {key = "h", mods = "LEADER", action = wezterm.action{ActivateTabRelative = -1}},
     {key = "l", mods = "LEADER", action = wezterm.action{ActivateTabRelative = 1}},
@@ -57,7 +57,10 @@ local my_keys = {
 }
 
 for i = 1, 8 do
-    table.insert(my_keys, {key = tostring(i), mods = "LEADER", action = wezterm.action{ActivateTab = i - 1}})
+    table.insert(my_keys, {
+        key = tostring(i), 
+        mods = "LEADER", 
+        action = wezterm.action{ActivateTab = i - 1}})
 end
 -- }}}
 
@@ -150,27 +153,26 @@ return {
 
     window_frame = {
         font = wezterm.font({family="Lato", weight="Bold"}),
-        font_size = 11.0,
+        font_size = 10.0,
     },
 
     font = wezterm.font("JetBrains Mono"),
     font_size = 11.0,
 
     color_scheme = "Dracula",
-    -- color_scheme = "Violet Light",
 
     colors = {
         tab_bar = my_tab_bar,
     },
 
     window_padding = {
-       top = 4,
-       left = 4,
-       bottom = 4,
-       right = 4,
+       top = 2,
+       left = 2,
+       bottom = 2,
+       right = 2,
     },
 
-    tab_max_width = 128,
+    tab_max_width = 256,
     tab_bar_at_bottom = true,
 
     window_decorations = "RESIZE",
