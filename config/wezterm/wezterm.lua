@@ -144,8 +144,10 @@ local my_tab_bar = {
 
 return {
     term = "wezterm",
+    initial_cols = 104,
+    initial_rows = 48,
 
-    use_fancy_tab_bar = true,
+    use_fancy_tab_bar = false,
 
     window_frame = {
         font = wezterm.font({family="Lato", weight="Bold"}),
