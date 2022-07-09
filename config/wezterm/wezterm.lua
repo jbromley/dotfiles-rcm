@@ -150,7 +150,7 @@ return {
     initial_cols = 104,
     initial_rows = 48,
 
-    use_fancy_tab_bar = false,
+    use_fancy_tab_bar = true,
 
     window_frame = {
         font = wezterm.font({family="Lato", weight="Bold"}),
