@@ -23,20 +23,30 @@ paq {
 	{'junegunn/fzf', run = fn['fzf#install']};
 	'junegunn/fzf.vim';
         {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'};
-	'neovim/nvim-lspconfig';
-	'kosayoda/nvim-lightbulb';
-	'hrsh7th/nvim-compe';
+
+	{'VonHeikemen/lsp-zero.nvim'};
+
+	-- LSP Support
+	{'neovim/nvim-lspconfig'};
+	{'williamboman/nvim-lsp-installer'};
+
+	-- Autocompletion
+	{'hrsh7th/nvim-cmp'};
+	{'hrsh7th/cmp-buffer'};
+	{'hrsh7th/cmp-path'};
+	{'saadparwaiz1/cmp_luasnip'};
+	{'hrsh7th/cmp-nvim-lsp'};
+	{'hrsh7th/cmp-nvim-lua'};
+
+	-- Snippets
+	{'L3MON4D3/LuaSnip'};
+	{'rafamadriz/friendly-snippets'};
+
 	'elixir-editors/vim-elixir';
-	'wlangstroth/vim-racket';
-	'kovisoft/paredit';
-	'Olical/conjure';
 	'tpope/vim-commentary';
-	'tpope/vim-fugitive';
+    'jreybert/vimagit';
 	'vimwiki/vimwiki';
-	{'kyazdani42/nvim-web-devicons', opt = true};
 	'hoob3rt/lualine.nvim';
-	'kristijanhusak/orgmode.nvim';
-	{'dracula/vim.git', as = 'dracula'};
 }
 
 cmd 'packadd! dracula_pro'
@@ -51,7 +61,7 @@ g.mapleader = '\\'
 g.maplocalleader = ','
 
 -- Global options
-vim.o.guifont = 'JetBrainsMono Nerd Font:h11'
+vim.o.guifont = 'JetBrains Mono:h11'
 vim.o.hidden = true
 vim.o.joinspaces = false
 vim.o.scrolloff = 4
@@ -104,99 +114,23 @@ map('n', '<Leader>t', '<cmd>Tags<CR>')
 -- Plugin configuration {{{
 
 -- Treesitter {{{
-local ts = require 'nvim-treesitter.configs'
-ts.setup {ensure_installed = 'maintained', highlight = {enable = true}}
+require 'nvim-treesitter.configs'.setup {
+	ensure_installed = 'all',
+	highlight = {
+		enable = true,
+	}
+}
 -- }}}
 
 -- VimWiki {{{
 g['vimwiki_list'] = {{path = '~/Documents/Wiki'}}
 -- }}}
 
--- {{{ orgmode.nvim
-require('orgmode').setup({
-    org_agenda_files = {'~/Org/*'},
-    org_default_notes_file = '~/Org/Notes.org' })
--- }}}
-
 -- LSP {{{
-local nvim_lsp = require('lspconfig')
-
--- Use an on_attach function to only map the following keys 
--- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
-    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-    local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-    
-    --Enable completion triggered by <c-x><c-o>
-    buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-    
-    -- Mappings.
-    local opts = { noremap=true, silent=true }
-    
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    buf_set_keymap('n', '<LocalLeader>,', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-    buf_set_keymap('n', '<LocalLeader>.', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-    buf_set_keymap('n', '<LocalLeader>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-    buf_set_keymap('n', '<LocalLeader>d', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    buf_set_keymap("n", "<LocalLeader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-    buf_set_keymap('n', '<LocalLeader>h', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    buf_set_keymap('n', '<LocalLeader>m', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    buf_set_keymap('n', '<LocalLeader>r', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    buf_set_keymap('n', '<LocalLeader>s', '<cmd>lua vim.lsp.buf.document_symbol()<CR>', opts)
-    buf_set_keymap('n', '<LocalLeader>i', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-    buf_set_keymap('n', '<LocalLeader>l', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-    
-    -- buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-    -- buf_set_keymap('n', '<LocalLeader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-    -- buf_set_keymap('n', '<LocalLeader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-    -- buf_set_keymap('n', '<LocalLeader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-    -- buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-    -- buf_set_keymap('n', '<LocalLeader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-    -- buf_set_keymap('n', '<LocalLeader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-end
-
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics, { --[[ signs = false, ]] virtual_text = false, })
-
--- Use a loop to conveniently call 'setup' on multiple servers and
--- map buffer local keybindings when the language server attaches
-local servers = { "bashls", "clangd", "gopls", "racket_langserver", "rls", "elixirls" }
-for _, lsp in ipairs(servers) do
-    local options = { on_attach = on_attach }
-    if lsp == "elixirls" then
-        options = vim.tbl_extend('force', options, { cmd = { "/opt/elixir-ls/language_server.sh" }}) 
-    end
-    nvim_lsp[lsp].setup(options)
-end
--- }}}
-
--- Compe {{{
-require'compe'.setup {
-    enabled = true;
-    autocomplete = true;
-    debug = false;
-    min_length = 1;
-    preselect = 'enable';
-    throttle_time = 80;
-    source_timeout = 200;
-    incomplete_delay = 400;
-    max_abbr_width = 100;
-    max_kind_width = 100;
-    max_menu_width = 100;
-    documentation = true;
-    
-    source = {
-        path = true;
-        nvim_lsp = true;
-    }
-}
-
-local t = function(str)
-    return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-
-map('i', '<C-Space>', [[ compe#complete() ]], { silent = true, expr = true }) 
-map('i', '<C-e>', [[ compe#close('<C-e>') ]], { silent = true, expr = true })
+local lsp = require('lsp-zero')
+lsp.preset('recommended')
+lsp.nvim_workspace()
+lsp.setup()
 -- }}}
 
 -- lualine {{{
@@ -209,9 +143,6 @@ require('lualine').setup { options = { icons_enabled = false, theme = 'dracula',
 -- Set comment strings.
 cmd 'autocmd FileType c,cpp,cs,java setlocal commentstring=//\\ %s'
 cmd 'autocmd FileType rkt,scm setlocal commentstring=;\\ %s'
-
--- Show lightbulb when code actions are available.
--- cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
 -- }}}
 
 -- vim: foldmethod=marker:foldlevel=10

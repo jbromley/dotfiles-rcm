@@ -49,5 +49,8 @@ alias po='popd'
 # Open files easily with desktop tools
 alias o='xdg-open'
 
+# bat
+alias b='batcat'
+
 # bc
 alias bc='bc -ql'

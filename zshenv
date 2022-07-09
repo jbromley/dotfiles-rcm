@@ -4,9 +4,9 @@
 export LANG=en_US.UTF-8
 
 # Editor
-export EDITOR="emacsclient"
-export VISUAL="emacsclient --no-wait --create-frame"
-export GIT_EDITOR="emacsclient"
+export EDITOR="nvim"
+export VISUAL="neovide"
+export GIT_EDITOR="nvim"
 
 # Zsh environment variables
 export HISTFILE="${HOME}/.zhistory"
@@ -36,3 +36,9 @@ path=(${HOME}/.local/bin ${HOME}/.fzf/bin $path)
 [ -n "${GOBIN}" ] && path+=("${GOBIN}")
 [ -d /usr/local/cuda/bin ] && path+=(/usr/local/cuda/bin)
 [ -d /opt/local/bin ] && path+=(/opt/local/bin)
+
+# ROS 2
+if [ -f /opt/ros/galactic/setup.zsh ]; then
+    source /opt/ros/galactic/setup.zsh
+    export ROS_DOMAIN_ID=17
+fi

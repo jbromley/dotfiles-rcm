@@ -9,7 +9,7 @@ local my_keys = {
     {key = "c", mods = "CTRL|SHIFT", action = wezterm.action{CopyTo="ClipboardAndPrimarySelection"}},
     {key = "v", mods = "CTRL|SHIFT", action = wezterm.action{PasteFrom="Clipboard"}},
     {key = "x", mods="CTRL|SHIFT", action = "ActivateCopyMode"},
-    {key = " ", mods="CTRL|SHIFT", action = "QuickSelect"},
+    {key = "z", mods="CTRL|SHIFT", action = "QuickSelect"},
 
     -- Search
     {key = "f", mods="CTRL|SHIFT", action = wezterm.action{Search = {CaseInSensitiveString = ""}} },
@@ -22,13 +22,13 @@ local my_keys = {
     -- New windows and tab creation, closing, and navigation
     {key = "w", mods = "LEADER", action = "SpawnWindow"},
     {key = "t", mods = "LEADER", action = wezterm.action{SpawnTab = "CurrentPaneDomain"}},
-    {key = "T", mods = "LEADER", action = wezterm.action{SpawnTab = "DefaultDomain"}},
+    {key = "u", mods = "LEADER", action = wezterm.action{SpawnTab = "DefaultDomain"}},
     {key = "x", mods = "LEADER", action = wezterm.action{CloseCurrentTab = {confirm = true}} },
     {key = "h", mods = "LEADER", action = wezterm.action{ActivateTabRelative = -1}},
     {key = "l", mods = "LEADER", action = wezterm.action{ActivateTabRelative = 1}},
     {key = "o", mods = "LEADER", action = "ActivateLastTab"},
-    {key = "{", mods = "LEADER", action = wezterm.action{MoveTabRelative = -1}},
-    {key = "}", mods = "LEADER", action = wezterm.action{MoveTabRelative = 1}},
+    {key = "[", mods = "LEADER", action = wezterm.action{MoveTabRelative = -1}},
+    {key = "]", mods = "LEADER", action = wezterm.action{MoveTabRelative = 1}},
     {key = "n", mods = "LEADER", action = "ShowTabNavigator"},
     {key = "Enter", mods = "ALT", action = "ToggleFullScreen"},
 
@@ -40,7 +40,7 @@ local my_keys = {
     {key = "k", mods="CTRL|SHIFT", action = wezterm.action{ClearScrollback = "ScrollbackOnly"}},
 
     -- Pane creation, resizing, and navigation
-    {key = "|", mods="LEADER", action = wezterm.action{SplitHorizontal = {domain = "CurrentPaneDomain"}} },
+    {key = "\\", mods="LEADER", action = wezterm.action{SplitHorizontal = {domain = "CurrentPaneDomain"}} },
     {key = "-", mods="LEADER", action = wezterm.action{SplitVertical = {domain = "CurrentPaneDomain"}} },
     {key = "h", mods="LEADER|SHIFT", action = wezterm.action{ActivatePaneDirection = "Left"}},
     {key = "l", mods="LEADER|SHIFT", action = wezterm.action{ActivatePaneDirection = "Right"}},
@@ -57,7 +57,10 @@ local my_keys = {
 }
 
 for i = 1, 8 do
-    table.insert(my_keys, {key = tostring(i), mods = "LEADER", action = wezterm.action{ActivateTab = i - 1}})
+    table.insert(my_keys, {
+        key = tostring(i), 
+        mods = "LEADER", 
+        action = wezterm.action{ActivateTab = i - 1}})
 end
 -- }}}
 
@@ -151,7 +154,7 @@ return {
 
     window_frame = {
         font = wezterm.font({family="Lato", weight="Bold"}),
-        font_size = 11.0,
+        font_size = 10.0,
     },
 
     font = wezterm.font("JetBrains Mono"),
@@ -164,13 +167,13 @@ return {
     },
 
     window_padding = {
-       top = 4,
-       left = 4,
-       bottom = 4,
-       right = 4,
+       top = 2,
+       left = 2,
+       bottom = 2,
+       right = 2,
     },
 
-    tab_max_width = 128,
+    tab_max_width = 256,
     tab_bar_at_bottom = true,
 
     window_decorations = "RESIZE",
