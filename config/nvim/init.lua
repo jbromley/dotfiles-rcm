@@ -48,6 +48,8 @@ paq {
 	'jreybert/vimagit';
 	'vimwiki/vimwiki';
 	'hoob3rt/lualine.nvim';
+
+    'lifepillar/vim-solarized8';
 }
 
 cmd 'packadd! dracula_pro'
