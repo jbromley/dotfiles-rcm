@@ -159,7 +159,7 @@
 ;; Ivy
 (use-package ivy
   :config
-  (setq enable-recursive-minibuffers t)
+  ;; (setq enable-recursive-minibuffers t)
   (ivy-mode 1)
   :custom
   (ivy-use-virtual-buffers t))
@@ -187,33 +187,6 @@
          ("C-x M-g" . magit-dispatch)
          ("C-c g" . magit-file-dispatch)))
 
-;; Completion
-(defun company-yasnippet-or-completion ()
-  "Insert a snippet or completion based on context."
-  (interactive)
-  (or (yas-expand)
-      (company-complete)))
-
-(defun check-expansion ()
-  "Check if we are expanding a snippet."
-  (save-excursion
-    (if (looking-at "\\_>") t
-      (backward-char 1)
-      (if (looking-at "\\.") t
-        (backward-char 1)
-        (if (looking-at "::") t nil)))))
-
-(defun tab-indent-or-complete ()
-  "Complete, indent, or expand snippets according to context."
-  (interactive)
-  (if (minibufferp)
-      (minibuffer-complete)
-    (if (or (not yas-minor-mode)
-            (null (yas-expand)))
-        (if (check-expansion)
-            (company-complete)
-          (indent-for-tab-command)))))
-
 (use-package company
   :diminish company-mode
   :custom
@@ -221,9 +194,6 @@
   :config
   (global-company-mode)
   :bind
-  (:map company-mode-map
-        ("<tab>" . tab-indent-or-complete)
-        ("TAB" . tab-indent-or-complete))
   (:map company-active-map
         ("C-n" . company-select-next)
         ("C-p" . company-select-previous)
@@ -265,32 +235,21 @@
 
 (use-package org
   :config
-  (defun jb/org-insert-jira-link (start end)
-    "Prompt user to enter an issue number and generate an Org mode
-link to the JIRA issue."
-    (interactive "r")
-    (let ((issue (if (use-region-p)
-                     (buffer-substring start end)
-                   (read-string "JIRA issue: "))))
-      (message "Linking issue %s" issue)
-      (when (use-region-p)
-        (delete-region start end))
-      (insert (format "[[https://jira.appliedinvention.com/browse/%s][%s]]" issue issue))))
   (setq org-publish-project-alist
-        '(("grow-org"
-           :base-directory "~/Org/grow/"
+        '(("org-org"
+           :base-directory "~/Org/"
            :base-extension "org"
            :publishing-directory "~/Public/"
            :recursive t
            :publishing-function org-html-publish-to-html)
-          ("grow-static"
-           :base-directory "~/Org/grow/"
+          ("static"
+           :base-directory "~/Org/"
            :base-extension "css\\|png\\|svg\\|ico"
            :publishing-directory "~/Public/"
            :recursive t
            :publishing-function org-publish-attachment)
-          ("gantry"
-           :components ("grow-org" "grow-static"))))
+          ("org"
+           :components ("org-org" "org-static"))))
   :custom
   (org-directory (expand-file-name  "~/Org"))
   (org-agenda-files '("~/Org/" "~/Org/grow/"))
@@ -314,8 +273,10 @@ link to the JIRA issue."
   (org-html-postamble-format '(("en" "<hr/><p style=\"text-align:center\">Modified: %C</p>")))
   :bind (("C-c a" . org-agenda)
          ("C-c c" . org-capture)
-         ("C-c j" . jb/org-insert-jira-link)
-         ("C-c l" . org-store-link))
+         ("C-c l" . org-store-link)
+         :map org-mode-map
+         ("C-<up>" . org-timestamp-up)
+         ("C-<down>" . org-timestamp-down))
   :hook ((org-mode . (lambda () (require 'ox-gfm nil t)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
