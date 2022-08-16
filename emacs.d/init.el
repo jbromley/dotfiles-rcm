@@ -236,7 +236,7 @@
 (use-package org
   :config
   (setq org-publish-project-alist
-        '(("org-org"
+        '(("org"
            :base-directory "~/Org/"
            :base-extension "org"
            :publishing-directory "~/Public/"
@@ -248,8 +248,8 @@
            :publishing-directory "~/Public/"
            :recursive t
            :publishing-function org-publish-attachment)
-          ("org"
-           :components ("org-org" "org-static"))))
+          ("projects"
+           :components ("org" "static"))))
   :custom
   (org-directory (expand-file-name  "~/Org"))
   (org-agenda-files '("~/Org/" "~/Org/grow/"))
