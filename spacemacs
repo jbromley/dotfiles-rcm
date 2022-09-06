@@ -80,7 +80,7 @@ This function should only modify configuration layer settings."
    ;; `dotspacemacs/user-config'. To use a local version of a package, use the
    ;; `:location' property: '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(cmake-mode cmake-project)
+   dotspacemacs-additional-packages '(cmake-mode cmake-project ligature)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -272,7 +272,7 @@ It should only modify the values of Spacemacs settings."
    ;; Default font or prioritized list of fonts. The `:size' can be specified as
    ;; a non-negative integer (pixel size), or a floating-point (point size).
    ;; Point size is recommended, because it's device independent. (default 10.0)
-   dotspacemacs-default-font '("Source Code Pro"
+   dotspacemacs-default-font '("JetBrains Mono"
                                :size 10.0
                                :weight normal
                                :width normal)
@@ -613,7 +613,24 @@ before packages are loaded."
         org-catch-invisible-edits 'show
         org-hide-leading-stars t
         org-html-postamble t
-        org-html-postamble-format '(("en" "<hr/><p style=\"text-align:center\">Modified: %C</p>"))))
+        org-html-postamble-format '(("en" "<hr/><p style=\"text-align:center\">Modified: %C</p>")))
+    (ligature-set-ligatures 't '("www"))
+    (ligature-set-ligatures 'eww-mode '("ff" "fi" "ffi"))
+    (ligature-set-ligatures '(prog-mode racket-repl-mode)
+                            '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
+                              ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
+                              "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
+                              "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
+                              "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
+                              "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
+                              "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
+                              "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
+                              ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
+                              "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
+                              "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
+                              "?=" "?." "??" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
+                              "\\\\" "://"))
+    (global-ligature-mode t))
 
 
 
@@ -632,7 +649,7 @@ This function is called at the very end of Spacemacs initialization."
  '(custom-safe-themes
    '("fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" default))
  '(package-selected-packages
-   '(cmake-mode cmake-project dap-mode lsp-docker bui alchemist auctex-latexmk blacken cargo ccls code-cells common-lisp-snippets company-anaconda anaconda-mode company-auctex company-c-headers company-lua company-math company-reftex company-rtags company-shell company-web web-completion-data company-ycmd cpp-auto-include cython-mode disaster elixir-mode emmet-mode erlang evil-tex auctex fish-mode flycheck-bashate flycheck-credo flycheck-rtags flycheck-rust flycheck-ycmd gendoxy google-c-style graphviz-dot-mode helm-css-scss helm-pydoc helm-rtags impatient-mode importmagic epc ctable concurrent insert-shebang js-doc js2-refactor multiple-cursors json-mode json-navigator hierarchy json-reformat json-snatcher live-py-mode livid-mode lsp-latex lsp-pyright lsp-python-ms lua-mode math-symbol-lists nodejs-repl nose npm-mode ob-elixir pip-requirements pipenv load-env-vars pippel poetry prettier-js pug-mode py-isort pydoc pyenv-mode pythonic pylookup pytest pyvenv ron-mode rtags rust-mode sass-mode haml-mode scss-mode shfmt reformatter skewer-mode js2-mode simple-httpd slim-mode slime-company slime sphinx-doc sql-indent tagedit toml-mode web-beautify web-mode yaml-mode yapfify ycmd request-deferred deferred ac-ispell auto-complete auto-yasnippet evil-org flycheck-pos-tip pos-tip fuzzy gh-md git-link git-messenger git-modes git-timemachine gitignore-templates gnuplot helm-c-yasnippet helm-company company helm-git-grep helm-ls-git helm-lsp helm-org-rifle htmlize lsp-origami origami lsp-treemacs lsp-ui lsp-mode markdown-toc mmm-mode org-cliplink org-contrib org-download org-mime org-pomodoro alert log4e gntp org-present org-projectile org-category-capture org-rich-yank orgit-forge orgit forge yaml markdown-mode ghub closql emacsql-sqlite emacsql treepy smeargle treemacs-magit magit magit-section git-commit with-editor transient yasnippet-snippets yasnippet ws-butler writeroom-mode winum which-key volatile-highlights vim-powerline vi-tilde-fringe uuidgen use-package undo-tree treemacs-projectile treemacs-persp treemacs-icons-dired treemacs-evil toc-org term-cursor symon symbol-overlay string-inflection string-edit spacemacs-whitespace-cleanup spacemacs-purpose-popwin spaceline-all-the-icons space-doc restart-emacs request rainbow-delimiters quickrun popwin pcre2el password-generator paradox overseer org-superstar open-junk-file nameless multi-line macrostep lorem-ipsum link-hint inspector info+ indent-guide hybrid-mode hungry-delete holy-mode hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio font-lock+ flycheck-package flycheck-elsa flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-evilified-state evil-escape evil-ediff evil-easymotion evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu emr elisp-slime-nav elisp-def editorconfig dumb-jump drag-stuff dotenv-mode dired-quick-sort diminish devdocs define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line)))
+   '(ligature cmake-mode cmake-project dap-mode lsp-docker bui alchemist auctex-latexmk blacken cargo ccls code-cells common-lisp-snippets company-anaconda anaconda-mode company-auctex company-c-headers company-lua company-math company-reftex company-rtags company-shell company-web web-completion-data company-ycmd cpp-auto-include cython-mode disaster elixir-mode emmet-mode erlang evil-tex auctex fish-mode flycheck-bashate flycheck-credo flycheck-rtags flycheck-rust flycheck-ycmd gendoxy google-c-style graphviz-dot-mode helm-css-scss helm-pydoc helm-rtags impatient-mode importmagic epc ctable concurrent insert-shebang js-doc js2-refactor multiple-cursors json-mode json-navigator hierarchy json-reformat json-snatcher live-py-mode livid-mode lsp-latex lsp-pyright lsp-python-ms lua-mode math-symbol-lists nodejs-repl nose npm-mode ob-elixir pip-requirements pipenv load-env-vars pippel poetry prettier-js pug-mode py-isort pydoc pyenv-mode pythonic pylookup pytest pyvenv ron-mode rtags rust-mode sass-mode haml-mode scss-mode shfmt reformatter skewer-mode js2-mode simple-httpd slim-mode slime-company slime sphinx-doc sql-indent tagedit toml-mode web-beautify web-mode yaml-mode yapfify ycmd request-deferred deferred ac-ispell auto-complete auto-yasnippet evil-org flycheck-pos-tip pos-tip fuzzy gh-md git-link git-messenger git-modes git-timemachine gitignore-templates gnuplot helm-c-yasnippet helm-company company helm-git-grep helm-ls-git helm-lsp helm-org-rifle htmlize lsp-origami origami lsp-treemacs lsp-ui lsp-mode markdown-toc mmm-mode org-cliplink org-contrib org-download org-mime org-pomodoro alert log4e gntp org-present org-projectile org-category-capture org-rich-yank orgit-forge orgit forge yaml markdown-mode ghub closql emacsql-sqlite emacsql treepy smeargle treemacs-magit magit magit-section git-commit with-editor transient yasnippet-snippets yasnippet ws-butler writeroom-mode winum which-key volatile-highlights vim-powerline vi-tilde-fringe uuidgen use-package undo-tree treemacs-projectile treemacs-persp treemacs-icons-dired treemacs-evil toc-org term-cursor symon symbol-overlay string-inflection string-edit spacemacs-whitespace-cleanup spacemacs-purpose-popwin spaceline-all-the-icons space-doc restart-emacs request rainbow-delimiters quickrun popwin pcre2el password-generator paradox overseer org-superstar open-junk-file nameless multi-line macrostep lorem-ipsum link-hint inspector info+ indent-guide hybrid-mode hungry-delete holy-mode hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio font-lock+ flycheck-package flycheck-elsa flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-evilified-state evil-escape evil-ediff evil-easymotion evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu emr elisp-slime-nav elisp-def editorconfig dumb-jump drag-stuff dotenv-mode dired-quick-sort diminish devdocs define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

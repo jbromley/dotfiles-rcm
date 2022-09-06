@@ -158,7 +158,7 @@ return {
     },
 
     font = wezterm.font("JetBrains Mono"),
-    font_size = 11.0,
+    font_size = 10.0,
 
     color_scheme = "Dracula",
 
@@ -167,10 +167,10 @@ return {
     },
 
     window_padding = {
-       top = 2,
-       left = 2,
-       bottom = 2,
-       right = 2,
+       top = '0.5cell',
+       left = '0.5cell',
+       bottom = '0.25cell',
+       right = '0.25cell',
     },
 
     tab_max_width = 256,
@@ -178,6 +178,11 @@ return {
 
     window_decorations = "RESIZE",
     window_background_opacity = 0.9375,
+
+    inactive_pane_hsb = {
+      saturation = 0.8,
+      brightness = 0.625,
+    },
 
     -- Key bindings
     disable_default_key_bindings = true,
