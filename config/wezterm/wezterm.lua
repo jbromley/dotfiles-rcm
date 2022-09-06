@@ -179,6 +179,11 @@ return {
     window_decorations = "RESIZE",
     window_background_opacity = 0.9375,
 
+    inactive_pane_hsb = {
+      saturation = 0.8,
+      brightness = 0.625,
+    },
+
     -- Key bindings
     disable_default_key_bindings = true,
     leader = {key = "VoidSymbol", mods = ""},
