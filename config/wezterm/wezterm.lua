@@ -167,10 +167,10 @@ return {
     },
 
     window_padding = {
-       top = 2,
-       left = 2,
-       bottom = 2,
-       right = 2,
+       top = '0.5cell',
+       left = '0.5cell',
+       bottom = '0.25cell',
+       right = '0.25cell',
     },
 
     tab_max_width = 256,
