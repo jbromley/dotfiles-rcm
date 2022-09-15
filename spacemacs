@@ -580,7 +580,7 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
   ;; C/C++ basic indent
-  (setq c-basic-offset 4)
+  (setq-default c-basic-offset 4)
   ;; Org customizations
   (setq org-directory (expand-file-name  "~/Org")
         org-agenda-files '("~/Org/")
