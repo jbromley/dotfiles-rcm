@@ -16,3 +16,6 @@
 [submodule "zsh/zsh-z"]
 	path = zsh/zsh-z
 	url = https://github.com/agkozak/zsh-z.git
+[submodule "zsh/zsh-abbr"]
+	path = zsh/zsh-abbr
+	url = https://github.com/olets/zsh-abbr.git

@@ -49,6 +49,9 @@ bindkey -s '^V' 'emacsclient --tty $(fzf);^M'
 plugin_dir=${HOME}/.zsh
 fpath=(${plugin_dir} $fpath)
 
+# Abbreviations
+source ${plugin_dir}/zsh-abbr/zsh-abbr.zsh
+
 # bd
 source ${plugin_dir}/zsh-bd/bd.zsh
 
