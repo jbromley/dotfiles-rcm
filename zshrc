@@ -86,6 +86,15 @@ function psinfo() {
     fi
 }
 
+# Use z to jump and push the directory.
+function zp() {
+    if [ -z "$1" ]; then
+        echo "Usage: zp DIRECTORY"
+    else
+        pushd $(z -e "$1")
+    fi
+}
+
 # Prompt
 function set_term_title() {
     title=$(pwd | sed -e "s|${HOME}|~|")
