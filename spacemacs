@@ -579,22 +579,9 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  (setq org-publish-project-alist
-        '(("org"
-           :base-directory "~/Org/"
-           :base-extension "org"
-           :publishing-directory "~/Public/"
-           :recursive t
-           :publishing-function org-html-publish-to-html)
-          ("static"
-           :base-directory "~/Org/"
-           :base-extension "css\\|png\\|svg\\|ico"
-           :publishing-directory "~/Public/"
-           :recursive t
-           :publishing-function org-publish-attachment)
-          ("projects"
-           :components ("org" "static"))))
-  ;; Customizations
+  ;; C/C++ basic indent
+  (setq-default c-basic-offset 4)
+  ;; Org customizations
   (setq org-directory (expand-file-name  "~/Org")
         org-agenda-files '("~/Org/")
         org-todo-keywords '((sequence "TODO(t)" "IN-PROGRESS(i)" "WAITING(w@/!)" "|" "DONE(d!)" "CANCELED(c@)"))
@@ -613,7 +600,23 @@ before packages are loaded."
         org-catch-invisible-edits 'show
         org-hide-leading-stars t
         org-html-postamble t
-        org-html-postamble-format '(("en" "<hr/><p style=\"text-align:center\">Modified: %C</p>")))
+        org-html-postamble-format '(("en" "<hr/><p style=\"text-align:center\">Modified: %C</p>"))
+        ;; Org project list for publishing
+        org-publish-project-alist '(("org"
+                                     :base-directory "~/Org/"
+                                     :base-extension "org"
+                                     :publishing-directory "~/Public/"
+                                     :recursive t
+                                     :publishing-function org-html-publish-to-html)
+                                    ("static"
+                                     :base-directory "~/Org/"
+                                     :base-extension "css\\|png\\|svg\\|ico"
+                                     :publishing-directory "~/Public/"
+                                     :recursive t
+                                     :publishing-function org-publish-attachment)
+                                    ("projects"
+                                     :components ("org" "static"))))
+    ;; Ligature mode
     (ligature-set-ligatures 't '("www"))
     (ligature-set-ligatures 'eww-mode '("ff" "fi" "ffi"))
     (ligature-set-ligatures '(prog-mode racket-repl-mode)
@@ -623,13 +626,14 @@ before packages are loaded."
                               "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
                               "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
                               "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
-                              "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
+                              "~>" "~-" "**" "*>" "||" "|}" "|]" "|=" "|>" "|-" "{|"
                               "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
                               ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
                               "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
                               "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
-                              "?=" "?." "??" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
+                              "?=" "?." "??" "/=" "/>" "//" "__" "~~" "(*" "*)"
                               "\\\\" "://"))
+    ;; Removed ligatures: "/*" "*/"
     (global-ligature-mode t))
 
 
