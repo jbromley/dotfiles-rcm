@@ -13,6 +13,11 @@ export HISTFILE="${HOME}/.zhistory"
 export HISTSIZE=8192
 export SAVEHIST=8192
 
+# Fzf prompt customizations
+export FZF_CTRL_T_OPTS="--prompt 'file> '"
+export FZF_ALT_C_OPTS="--prompt 'cd> '"
+export FZF_CTRL_R_OPTS="--prompt 'history> '"
+
 # Linux-specific configuration
 if [ $(uname) = "Linux" ]; then
     # Set up stuff for snap applications.
