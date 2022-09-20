@@ -158,7 +158,7 @@ return {
     },
 
     font = wezterm.font("JetBrains Mono"),
-    font_size = 12.0,
+    font_size = 10.0,
 
     color_scheme = "Dracula",
 
