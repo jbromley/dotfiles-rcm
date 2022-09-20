@@ -52,7 +52,7 @@ paq {
     'lifepillar/vim-solarized8';
 }
 
-cmd 'packadd! dracula_pro'
+-- cmd 'packadd! dracula_pro'
 
 require('mason').setup()
 require('mason-lspconfig').setup()
@@ -61,7 +61,7 @@ require('mason-lspconfig').setup()
 
 -- Options {{{
 
-cmd 'colorscheme dracula_pro'
+-- cmd 'colorscheme dracula_pro'
 
 -- Global options
 g.mapleader = '\\'
@@ -140,7 +140,8 @@ lsp.setup()
 -- }}}
 
 -- lualine {{{
-require('lualine').setup { options = { icons_enabled = false, theme = 'dracula', }, }
+-- require('lualine').setup { options = { icons_enabled = false, theme = 'dracula', }, }
+require('lualine').setup { options = { icons_enabled = false, theme = 'molokai', }, }
 -- }}}
 
 -- }}}
