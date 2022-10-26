@@ -25,8 +25,6 @@ my_keys = {
   { key = 'Tab', mods = 'SHIFT|LEADER', action = act.ActivateTabRelative(-1) },
   { key = '[', mods = 'LEADER', action = act.ActivateTabRelative(-1) },
   { key = ']', mods = 'LEADER', action = act.ActivateTabRelative(1) },
-  { key = ',', mods = 'LEADER', action = act.ActivateTabRelative(-1) },
-  { key = '.', mods = 'LEADER', action = act.ActivateTabRelative(1) },
   { key = '1', mods = 'LEADER', action = act.ActivateTab(0) },
   { key = '2', mods = 'LEADER', action = act.ActivateTab(1) },
   { key = '3', mods = 'LEADER', action = act.ActivateTab(2) },
@@ -87,7 +85,7 @@ return {
 
     inactive_pane_hsb = {
       saturation = 0.8,
-      brightness = 0.625,
+      brightness = 0.75,
     },
 
     disable_default_key_bindings = true,
