@@ -43,7 +43,8 @@ path=(${HOME}/.local/bin ${HOME}/.fzf/bin $path)
 [ -d /opt/local/bin ] && path+=(/opt/local/bin)
 
 # ROS 2
-if [ -f /opt/ros/galactic/setup.zsh ]; then
-    source /opt/ros/galactic/setup.zsh
+ROS_DIR=/opt/ros/humble
+if [ -f ${ROS_DIR}/setup.zsh ]; then
+    source ${ROS_DIR}/setup.zsh
     export ROS_DOMAIN_ID=17
 fi
