@@ -172,13 +172,32 @@
 (use-package swiper
   :bind (("C-s" . swiper)))
 
-;; Projectile mode for project management
-(use-package projectile
+(use-package project
+  :init
+  (defun jb/find-mix-project (dir)
+    "Find a parent directory of DIR containing a 'mix.exs' file."
+    (let ((dir (locate-dominating-file dir "mix.exs")))
+      (and dir (cons 'explicit dir))))
+  (defmethod project-root ((project (head explicit)))
+    (cdr project))
   :config
-  (projectile-mode 1)
-  :bind
-  (:map projectile-mode-map
-        ("C-c p" . projectile-command-map)))
+  (add-hook 'project-find-functions #'jb/find-mix-project))
+
+;; ;; Projectile mode for project management
+;; (use-package projectile
+;;   :config
+;;   (defun elixir/find-mix-project (dir)
+;;     "Try to locate an Elixir project root by 'mix.exs' above DIR."
+;;     (let ((mix-root (locate-dominating-file dir "mix.exs")))
+;;       (message "Found Elixir project root in '%s' starting from '%s'" mix-root dir)
+;;       (if (stringp mix-root)
+;;           `(transient . ,mix-root)
+;;         nil)))
+;;   (add-hook 'project-find-functions 'elixir/find-mix-project nil nil)
+;;   (projectile-mode 1)
+;;   :bind
+;;   (:map projectile-mode-map
+;;         ("C-c p" . projectile-command-map)))
 
 ;; Magit mode
 (use-package magit
@@ -315,8 +334,9 @@
    :preview-key '(:debounce 0.4 any))
   (setq consult-narrow-key "<")
   ;; Use projectile for defining projects.
-  (autoload 'projectile-project-root "projectile")
-  (setq consult-project-function (lambda (_) (projectile-project-root))))
+  ;; (autoload 'projectile-project-root "projectile")
+  ;; (setq consult-project-function (lambda (_) (projectile-project-root)))
+  )
 
 (use-package embark-consult
   :hook
@@ -388,7 +408,7 @@
 ;; Elixir
 (use-package elixir-mode
   :commands (elixir-mode)
-  :hook ((elixir-mode . (lambda () (add-to-list 'exec-path "/opt/elixir-ls/")))))
+  :hook (elixir-mode . eglot-ensure))
 
 ;; Web mode - HTML, CSS, JSON
 (use-package web-mode
@@ -468,7 +488,10 @@
 ;; LSP (eglot)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(use-package eglot)
+(use-package eglot
+  :config
+  (add-to-list 'eglot-server-programs
+               '(elixir-mode "/opt/elixir-ls/language_server.sh")))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Themes and theme switching
