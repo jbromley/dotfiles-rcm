@@ -63,6 +63,9 @@ require('mason-lspconfig').setup()
 
 -- cmd 'colorscheme dracula_pro'
 
+vim.cmd([[highlight Pmenu ctermbg=Black guibg=Black ctermfg=LightGray guifg=LightGray]])
+vim.cmd([[highlight PmenuSel ctermbg=Gray guibg=Gray ctermfg=White guifg=White]])
+
 -- Global options
 g.mapleader = '\\'
 g.maplocalleader = ','
