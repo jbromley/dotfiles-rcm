@@ -91,6 +91,14 @@ return {
     disable_default_key_bindings = true,
     leader = { key ='VoidSymbol', mods='', timeout_milliseconds=500 },
     keys = my_keys,
+
+    ssh_domains = {
+        {
+            name = 'llama',
+            remote_address = 'llama.ai.appliedinvention.com',
+            username = 'jay'
+        },
+    }
 }
 
 -- vim: foldmethod=marker:foldlevel=10
