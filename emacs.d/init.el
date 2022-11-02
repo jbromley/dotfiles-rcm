@@ -491,7 +491,10 @@
 (use-package eglot
   :config
   (add-to-list 'eglot-server-programs
-               '(elixir-mode "/opt/elixir-ls/language_server.sh")))
+               '(elixir-mode "/opt/elixir-ls/language_server.sh"))
+  :bind
+  (("M-n" . flymake-goto-next-error)
+   ("M-p" . flymake-goto-prev-error)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Themes and theme switching
