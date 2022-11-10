@@ -69,8 +69,8 @@ my_keys = {
 
 return {
     term = "wezterm",
-    initial_cols = 104,
-    initial_rows = 48,
+    initial_cols = 120,
+    initial_rows = 50,
 
     window_frame = {
         font_size = 11.0,
