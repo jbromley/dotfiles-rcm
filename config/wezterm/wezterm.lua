@@ -71,6 +71,7 @@ return {
     term = "wezterm",
     initial_cols = 120,
     initial_rows = 50,
+    color_scheme = "Solarized Light (base16)",
 
     window_frame = {
         font_size = 11.0,
@@ -81,7 +82,7 @@ return {
     tab_max_width = 256,
 
     window_decorations = "RESIZE",
-    window_background_opacity = 0.875,
+    window_background_opacity = 0.95,
 
     inactive_pane_hsb = {
       saturation = 0.8,
