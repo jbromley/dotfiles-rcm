@@ -35,13 +35,13 @@ paq {
 	{'hrsh7th/nvim-cmp'};
 	{'hrsh7th/cmp-buffer'};
 	{'hrsh7th/cmp-path'};
-	{'saadparwaiz1/cmp_luasnip'};
+	-- {'saadparwaiz1/cmp_luasnip'};
 	{'hrsh7th/cmp-nvim-lsp'};
 	{'hrsh7th/cmp-nvim-lua'};
 
 	-- Snippets
 	{'L3MON4D3/LuaSnip'};
-	{'rafamadriz/friendly-snippets'};
+	-- {'rafamadriz/friendly-snippets'};
 
 	'elixir-editors/vim-elixir';
 	'tpope/vim-commentary';
@@ -52,7 +52,7 @@ paq {
     'lifepillar/vim-solarized8';
 }
 
--- cmd 'packadd! dracula_pro'
+cmd 'packadd! dracula_pro'
 
 require('mason').setup()
 require('mason-lspconfig').setup()
@@ -61,10 +61,13 @@ require('mason-lspconfig').setup()
 
 -- Options {{{
 
--- cmd 'colorscheme dracula_pro'
+-- Theme and background
+cmd [[silent! colorscheme dracula_pro]] 
+-- cmd [[silent! colorscheme solarized8_high]]
+-- cmd [[silent! set background=light]]
 
-vim.cmd([[highlight Pmenu ctermbg=Black guibg=Black ctermfg=LightGray guifg=LightGray]])
-vim.cmd([[highlight PmenuSel ctermbg=Gray guibg=Gray ctermfg=White guifg=White]])
+cmd([[highlight Pmenu ctermbg=Black guibg=Black ctermfg=LightGray guifg=LightGray]])
+cmd([[highlight PmenuSel ctermbg=Gray guibg=Gray ctermfg=White guifg=White]])
 
 -- Global options
 g.mapleader = '\\'
@@ -143,8 +146,7 @@ lsp.setup()
 -- }}}
 
 -- lualine {{{
--- require('lualine').setup { options = { icons_enabled = false, theme = 'dracula', }, }
-require('lualine').setup { options = { icons_enabled = false, theme = 'molokai', }, }
+require('lualine').setup { options = { icons_enabled = false, theme = 'dracula', }, }
 -- }}}
 
 -- }}}
