@@ -45,7 +45,7 @@ paq {
 
 	'elixir-editors/vim-elixir';
 	'tpope/vim-commentary';
-	'jreybert/vimagit';
+    'tpope/vim-fugitive';
 	'vimwiki/vimwiki';
 	'hoob3rt/lualine.nvim';
 
@@ -61,7 +61,7 @@ require('mason-lspconfig').setup()
 
 -- Options {{{
 
--- cmd 'colorscheme dracula_pro'
+cmd 'colorscheme dracula_pro'
 
 -- Global options
 g.mapleader = '\\'
