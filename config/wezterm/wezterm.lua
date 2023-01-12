@@ -69,8 +69,11 @@ my_keys = {
 
 return {
     term = "wezterm",
-    initial_cols = 104,
-    initial_rows = 48,
+    initial_cols = 120,
+    initial_rows = 50,
+    color_scheme = "Dracula Pro",
+
+    color_scheme = 'Dracula (Official)',
 
     window_frame = {
         font_size = 11.0,
@@ -81,7 +84,7 @@ return {
     tab_max_width = 256,
 
     window_decorations = "RESIZE",
-    window_background_opacity = 0.875,
+    window_background_opacity = 0.95,
 
     inactive_pane_hsb = {
       saturation = 0.8,
@@ -91,6 +94,14 @@ return {
     disable_default_key_bindings = true,
     leader = { key ='VoidSymbol', mods='', timeout_milliseconds=500 },
     keys = my_keys,
+
+    ssh_domains = {
+        {
+            name = 'llama',
+            remote_address = 'llama.ai.appliedinvention.com',
+            username = 'jay'
+        },
+    }
 }
 
 -- vim: foldmethod=marker:foldlevel=10

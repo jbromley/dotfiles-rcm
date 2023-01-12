@@ -110,6 +110,18 @@
 ;; Packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Icons!
+(use-package all-the-icons
+  :if (display-graphic-p))
+
+;; Dashboard
+(use-package dashboard
+  :custom
+  (dashboard-set-heading-icons t)
+  (dashboard-set-file-icons t)
+  :config
+  (dashboard-setup-startup-hook))
+
 ;; Diminish modeline text
 (use-package diminish)
 
@@ -156,29 +168,36 @@
   :custom (smooth-scroll-margin 4)
   :config (smooth-scrolling-mode))
 
-;; Ivy
-(use-package ivy
-  :config
-  ;; (setq enable-recursive-minibuffers t)
-  (ivy-mode 1)
-  :custom
-  (ivy-use-virtual-buffers t))
-
-(use-package counsel
-  :config
-  (counsel-mode 1))
-
 ;; Swiper
 (use-package swiper
   :bind (("C-s" . swiper)))
 
-;; Projectile mode for project management
-(use-package projectile
+(use-package project
+  :init
+  (defun jb/find-mix-project (dir)
+    "Find a parent directory of DIR containing a 'mix.exs' file."
+    (let ((dir (locate-dominating-file dir "mix.exs")))
+      (and dir (cons 'explicit dir))))
+  (defmethod project-root ((project (head explicit)))
+    (cdr project))
   :config
-  (projectile-mode 1)
-  :bind
-  (:map projectile-mode-map
-        ("C-c p" . projectile-command-map)))
+  (add-hook 'project-find-functions #'jb/find-mix-project))
+
+;; ;; Projectile mode for project management
+;; (use-package projectile
+;;   :config
+;;   (defun elixir/find-mix-project (dir)
+;;     "Try to locate an Elixir project root by 'mix.exs' above DIR."
+;;     (let ((mix-root (locate-dominating-file dir "mix.exs")))
+;;       (message "Found Elixir project root in '%s' starting from '%s'" mix-root dir)
+;;       (if (stringp mix-root)
+;;           `(transient . ,mix-root)
+;;         nil)))
+;;   (add-hook 'project-find-functions 'elixir/find-mix-project nil nil)
+;;   (projectile-mode 1)
+;;   :bind
+;;   (:map projectile-mode-map
+;;         ("C-c p" . projectile-command-map)))
 
 ;; Magit mode
 (use-package magit
@@ -187,23 +206,8 @@
          ("C-x M-g" . magit-dispatch)
          ("C-c g" . magit-file-dispatch)))
 
-(use-package company
-  :diminish company-mode
-  :custom
-  (company-idle-delay 0.5)
-  :config
-  (global-company-mode)
-  :bind
-  (:map company-active-map
-        ("C-n" . company-select-next)
-        ("C-p" . company-select-previous)
-        ("M-<" . company-select-first)
-        ("M->" . company-select-last)))
-
 ;; Ligatures
 (use-package ligature
-  :load-path "elisp/ligature.el/"
-  :ensure nil
   :config
   (ligature-set-ligatures 't '("www"))
   (ligature-set-ligatures 'eww-mode '("ff" "fi" "ffi"))
@@ -223,6 +227,124 @@
                             "\\\\" "://"))
   (global-ligature-mode t))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Completion
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package vertico
+  :init
+  (vertico-mode))
+
+(use-package orderless
+  :custom
+  (completion-styles '(orderless basic))
+  (orderless-matching-styles '(orderless-flex orderless-regexp))
+  (completion-category-overrides '((file (styles partial-completion)))))
+
+(use-package marginalia
+  :bind ("M-a" . marginalia-cycle)
+  :init
+  (marginalia-mode))
+
+(use-package embark
+  :bind
+  (("C-." . embark-act)
+   ("C-;" . embark-dwim)
+   ("C-h b" . embark-bindings))
+
+  :init
+  (setq prefix-help-command #'embark-prefix-help-command)
+
+  :config
+  (add-to-list 'display-buffer-alist
+               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+                 nil
+                 (window-parameters (mode-line-format . none)))))
+
+(use-package consult
+  :bind
+  (;; C-c bindings (mode-specific-map)
+   ("C-c h" . consult-history)
+   ("C-c m" . consult-mode-command)
+   ("C-c k" . consult-kmacro)
+   ;; C-x bindings (ctl-x-map)
+   ("C-x M-:" . consult-complex-command)     ;; orig. repeat-complex-command
+   ("C-x b" . consult-buffer)                ;; orig. switch-to-buffer
+   ("C-x 4 b" . consult-buffer-other-window) ;; orig. switch-to-buffer-other-window
+   ("C-x 5 b" . consult-buffer-other-frame)  ;; orig. switch-to-buffer-other-frame
+   ("C-x r b" . consult-bookmark)            ;; orig. bookmark-jump
+   ("C-x p b" . consult-project-buffer)      ;; orig. project-switch-to-buffer
+   ;; Custom M-# bindings for fast register access
+   ("M-#" . consult-register-load)
+   ("M-'" . consult-register-store)          ;; orig. abbrev-prefix-mark (unrelated)
+   ("C-M-#" . consult-register)
+   ;; Other custom bindings
+   ("M-y" . consult-yank-pop)                ;; orig. yank-pop
+   ("<help> a" . consult-apropos)            ;; orig. apropos-command
+   ;; M-g bindings (goto-map)
+   ("M-g e" . consult-compile-error)
+   ("M-g f" . consult-flymake)               ;; Alternative: consult-flycheck
+   ("M-g g" . consult-goto-line)             ;; orig. goto-line
+   ("M-g M-g" . consult-goto-line)           ;; orig. goto-line
+   ("M-g o" . consult-outline)               ;; Alternative: consult-org-heading
+   ("M-g m" . consult-mark)
+   ("M-g k" . consult-global-mark)
+   ("M-g i" . consult-imenu)
+   ("M-g I" . consult-imenu-multi)
+   ;; ;; M-s bindings (search-map)
+   ;; ("M-s d" . consult-find)
+   ;; ("M-s D" . consult-locate)
+   ;; ("M-s g" . consult-grep)
+   ;; ("M-s G" . consult-git-grep)
+   ;; ("M-s r" . consult-ripgrep)
+   ;; ("M-s l" . consult-line)
+   ;; ("M-s L" . consult-line-multi)
+   ;; ("M-s m" . consult-multi-occur)
+   ;; ("M-s k" . consult-keep-lines)
+   ;; ("M-s u" . consult-focus-lines)
+   ;; ;; Isearch integration
+   ;; ("M-s e" . consult-isearch-history)
+   :map isearch-mode-map
+   ("M-e" . consult-isearch-history)         ;; orig. isearch-edit-string
+   ;; ("M-s e" . consult-isearch-history)       ;; orig. isearch-edit-string
+   ;; ("M-s l" . consult-line)                  ;; needed by consult-line to detect isearch
+   ;; ("M-s L" . consult-line-multi)            ;; needed by consult-line to detect isearch
+   ;; Minibuffer history
+   :map minibuffer-local-map
+   ("M-s" . consult-history)
+   ("M-r" . consult-history))
+  :hook
+  (completion-list-mode . consult-preview-at-point-mode)
+
+  :init
+  (setq register-preview-delay 0.5
+        register-preview-function #'consult-register-format)
+  (advice-add #'register-preview :override #'consult-register-window)
+  (setq xref-show-xrefs-function #'consult-xref
+        xref-show-definitions-function #'consult-xref)
+
+  :config
+  (consult-customize
+   consult-theme :preview-key '(:debounce 0.2 any)
+   consult-ripgrep consult-git-grep consult-grep
+   consult-bookmark consult-recent-file consult-xref
+   consult--source-bookmark consult--source-file-register
+   consult--source-recent-file consult--source-project-recent-file
+   ;; :preview-key (kbd "M-.")
+   :preview-key '(:debounce 0.4 any))
+  (setq consult-narrow-key "<")
+  ;; Use projectile for defining projects.
+  ;; (autoload 'projectile-project-root "projectile")
+  ;; (setq consult-project-function (lambda (_) (projectile-project-root)))
+  )
+
+(use-package embark-consult
+  :hook
+  (embark-collect-mode . consult-preview-at-point-mode))
+
+(use-package corfu
+  :init
+  (global-corfu-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Org mode
@@ -252,7 +374,7 @@
            :components ("org" "static"))))
   :custom
   (org-directory (expand-file-name  "~/Org"))
-  (org-agenda-files '("~/Org/" "~/Org/grow/"))
+  (org-agenda-files '("~/Org/"))
   (org-todo-keywords '((sequence "TODO(t)" "IN-PROGRESS(i)" "WAITING(w@/!)" "|" "DONE(d!)" "CANCELED(c@)")))
   (org-todo-keyword-faces '(("IN-PROGRESS" . org-agenda-structure)
                             ("WAITING" . compilation-warning)
@@ -283,76 +405,10 @@
 ;; Languages and file format packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Flycheck
-(use-package flycheck
-  :init (global-flycheck-mode))
-
-(use-package lsp-mode
-  :commands
-  (lsp lsp-deferred)
-  :init
-  (setq lsp-keymap-prefix "C-c l")
-  :config
-  (lsp-enable-which-key-integration t)
-  (add-to-list 'lsp-client-packages 'lsp-racket)
-  :custom
-  (lsp-rust-analyzer-cargo-watch-command "clippy")
-  (lsp-eldoc-render-all t)
-  ;; enable / disable the hints as you prefer:
-  (lsp-rust-analyzer-server-display-inlay-hints t)
-  (lsp-rust-analyzer-display-lifetime-elision-hints-enable "skip_trivial")
-  (lsp-rust-analyzer-display-chaining-hints t)
-  (lsp-rust-analyzer-display-lifetime-elision-hints-use-parameter-names nil)
-  (lsp-rust-analyzer-display-closure-return-type-hints t)
-  (lsp-rust-analyzer-display-parameter-hints nil)
-  (lsp-rust-analyzer-display-reborrow-hints nil)
-  (lsp-rust-server 'rust-analyzer)
-  :hook ((lsp-mode . lsp-enable-which-key-integration)
-         (lsp-mode . lsp-ui-mode)
-         (c-mode . lsp-deferred)
-         (c++-mode . lsp-deferred)
-         (elixir-mode . lsp-deferred)
-         (go-mode . lsp-deferred)
-         ; (java-mode . lsp-deferred)
-         ; (lua-mode . lsp-deferred)
-         (racket-mode . lsp-deferred)
-         ; (typescript-mode . lsp-deferred)
-         (web-mode . lsp-deferred)
-         (python-mode . (lambda ()
-                          (require 'lsp-pyright)
-                          (lsp-deferred)))))
-
-(use-package lsp-ui
-  :commands lsp-ui-mode
-  :custom
-  (lsp-ui-peek-always-show t)
-  (lsp-ui-sideline-show-hover t)
-  (lsp-ui-doc-enable nil))
-
-;;  Emacs Debug Adapter Protocol
-(use-package dap-mode
-  :commands
-  (dap-mode dap-debug)
-  :defer t
-  :after (lsp-mode)
-  :functions dap-hydra/nil
-  ;; :bind (:map lsp-mode-map
-  ;;        ("<f5>" . dap-debug)
-  ;;        ("M-<f5>" . dap-hydra))
-  :hook ((dap-mode . dap-ui-mode)
-    (dap-session-created . (lambda (&_rest) (dap-hydra)))
-    (dap-terminated . (lambda (&_rest) (dap-hydra/nil)))))
-
-
-;; Python
-(use-package lsp-pyright
-  :custom
-  (lsp-pyright-typechecking-mode "off"))
-
 ;; Elixir
 (use-package elixir-mode
   :commands (elixir-mode)
-  :hook ((elixir-mode . (lambda () (add-to-list 'exec-path "/opt/elixir-ls/")))))
+  :hook (elixir-mode . eglot-ensure))
 
 ;; Web mode - HTML, CSS, JSON
 (use-package web-mode
@@ -379,27 +435,6 @@
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode)))
-
-;; Rust
-(use-package rustic
-  :config
-  ;; uncomment for less flashiness
-  ;; (setq lsp-eldoc-hook nil)
-  ;; (setq lsp-enable-symbol-highlighting nil)
-  ;; (setq lsp-signature-auto-activate nil)
-
-  ;; comment to disable rustfmt on save
-  ;; (setq rustic-format-on-save t)
-  :bind (:map rustic-mode-map
-              ("M-j" . lsp-ui-imenu)
-              ("M-?" . lsp-find-references)
-              ("C-c C-c l" . flycheck-list-errors)
-              ("C-c C-c a" . lsp-execute-code-action)
-              ("C-c C-c r" . lsp-rename)
-              ("C-c C-c q" . lsp-workspace-restart)
-              ("C-c C-c Q" . lsp-workspace-shutdown)
-              ("C-c C-c s" . lsp-rust-analyzer-status))
-)
 
 ;; CMake
 (use-package cmake-project)
@@ -445,41 +480,21 @@
 (use-package yasnippet-snippets)
 (use-package elixir-yasnippets)
 
-
-;; ;; Go
-;; (use-package go-mode
-;;   :defer t
-;;   :init
-;;   (defun jb/lsp-go-install-save-hooks ()
-;;     (add-hook 'before-save-hook #'lsp-format-buffer t t)
-;;     (add-hook 'before-save-hook #'lsp-organize-imports t t))
-;;   :hook ((go-mode . jb/lsp-go-install-save-hooks)
-;;          (go-mode . (lambda () (setq-default tab-width 4))))
-;;   :mode ((("\\.go\\'" . go-mode))))
-
-;; ;; Clojure - Clojure mode and CIDER
-;; (use-package clojure-mode
-;;   :commands
-;;   (clojure-mode)
-;;   :defer t)
-
-;; (use-package cider
-;;   :commands
-;;   (cider)
-;;   :defer t)
-
 ;; Lua
 (use-package lua-mode
   :mode (("\\.lua\\'" . lua-mode)))
 
-;; ;; Typescript
-;; (use-package typescript-mode
-;;   :mode (("\\.ts[x]?\\'" . typescript-mode)))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; LSP (eglot)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; ;; Java
-;; (use-package lsp-java
-;;   :defer t
-;;   :hook (java-mode-hook . lsp))
+(use-package eglot
+  :config
+  (add-to-list 'eglot-server-programs
+               '(elixir-mode "/opt/elixir-ls/language_server.sh"))
+  :bind
+  (("M-n" . flymake-goto-next-error)
+   ("M-p" . flymake-goto-prev-error)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Themes and theme switching
