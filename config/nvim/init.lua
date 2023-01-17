@@ -39,12 +39,15 @@ require 'paq' {
     {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'};
     {'nvim-telescope/telescope.nvim'};
 
+    -- Terminal
+    {"akinsho/toggleterm.nvim", tag = '*'};
     'elixir-editors/vim-elixir';
     'tpope/vim-commentary';
     'tpope/vim-fugitive';
     'vimwiki/vimwiki';
     'hoob3rt/lualine.nvim';
 
+    -- Themes
     'lifepillar/vim-solarized8';
 }
 
@@ -52,6 +55,14 @@ cmd 'packadd! dracula_pro'
 
 require('mason').setup()
 require('mason-lspconfig').setup()
+require('toggleterm').setup{
+    open_mapping = [[<c-\>]],
+    direction = 'float',
+    float_opts = {
+        width = 100,
+        height = 50
+    },
+}
 require('telescope').load_extension('fzf')
 
 -- }}}
