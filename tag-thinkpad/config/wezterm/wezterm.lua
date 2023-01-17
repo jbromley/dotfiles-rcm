@@ -61,8 +61,8 @@ my_keys = {
   -- Miscellaneous
   { key = 'PageUp', mods = 'SHIFT', action = act.ScrollByPage(-1) },
   { key = 'PageDown', mods = 'SHIFT', action = act.ScrollByPage(1) },
-  { key = 'PageUp', mods = 'CTRL', action = act.ScrollByLine(-1) },
-  { key = 'PageDown', mods = 'CTRL', action = act.ScrollByLine(1) },
+  { key = 'PageUp', action = act.ScrollByLine(-1) },
+  { key = 'PageDown', action = act.ScrollByLine(1) },
   { key = 'k', mods = 'SHIFT|CTRL', action = act.ClearScrollback 'ScrollbackOnly' },
   { key = 'l', mods = 'SHIFT|CTRL', action = act.ShowDebugOverlay },
   { key = 'r', mods = 'SHIFT|CTRL', action = act.ReloadConfiguration },
@@ -73,6 +73,8 @@ return {
     term = "wezterm",
     initial_cols = 104,
     initial_rows = 48,
+
+    color_scheme = "Dracula (Official)",
 
     window_frame = {
         font_size = 11.0,
