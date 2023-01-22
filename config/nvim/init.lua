@@ -10,41 +10,44 @@ local keymap = vim.keymap
 cmd 'packadd paq-nvim'
 
 require 'paq' {
-	{'savq/paq-nvim', opt = true};
-	-- {'junegunn/fzf', run = fn['fzf#install']};
-	-- 'junegunn/fzf.vim';
-   	{'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'};
+    {'savq/paq-nvim', opt = true};
+    -- {'junegunn/fzf', run = fn['fzf#install']};
+    -- 'junegunn/fzf.vim';
+    {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'};
 
-	{'VonHeikemen/lsp-zero.nvim'};
+    {'VonHeikemen/lsp-zero.nvim'};
 
-	-- LSP Support
-	{'williamboman/mason.nvim'};
-	{'williamboman/mason-lspconfig.nvim'};
-	{'neovim/nvim-lspconfig'};
+    -- LSP Support
+    {'williamboman/mason.nvim'};
+    {'williamboman/mason-lspconfig.nvim'};
+    {'neovim/nvim-lspconfig'};
 
-	-- Autocompletion
-	{'hrsh7th/nvim-cmp'};
-	{'hrsh7th/cmp-buffer'};
-	{'hrsh7th/cmp-path'};
-	-- {'saadparwaiz1/cmp_luasnip'};
-	{'hrsh7th/cmp-nvim-lsp'};
-	{'hrsh7th/cmp-nvim-lua'};
+    -- Autocompletion
+    {'hrsh7th/nvim-cmp'};
+    {'hrsh7th/cmp-buffer'};
+    {'hrsh7th/cmp-path'};
+    -- {'saadparwaiz1/cmp_luasnip'};
+    {'hrsh7th/cmp-nvim-lsp'};
+    {'hrsh7th/cmp-nvim-lua'};
 
-	-- Snippets
-	{'L3MON4D3/LuaSnip'};
-	-- {'rafamadriz/friendly-snippets'};
+    -- Snippets
+    {'L3MON4D3/LuaSnip'};
+    -- {'rafamadriz/friendly-snippets'};
 
-   	-- Telescope
-   	{'nvim-lua/plenary.nvim'};
-   	{'nvim-telescope/telescope-fzf-native.nvim', run = 'make'};
-   	{'nvim-telescope/telescope.nvim'};
+    -- Telescope
+    {'nvim-lua/plenary.nvim'};
+    {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'};
+    {'nvim-telescope/telescope.nvim'};
 
-	'elixir-editors/vim-elixir';
-	'tpope/vim-commentary';
-	'jreybert/vimagit';
-	'vimwiki/vimwiki';
-	'hoob3rt/lualine.nvim';
+    -- Terminal
+    {"akinsho/toggleterm.nvim", tag = '*'};
+    'elixir-editors/vim-elixir';
+    'tpope/vim-commentary';
+    'tpope/vim-fugitive';
+    'vimwiki/vimwiki';
+    'hoob3rt/lualine.nvim';
 
+    -- Themes
     'lifepillar/vim-solarized8';
 }
 
@@ -52,6 +55,14 @@ cmd 'packadd! dracula_pro'
 
 require('mason').setup()
 require('mason-lspconfig').setup()
+require('toggleterm').setup{
+    open_mapping = [[<c-\>]],
+    direction = 'float',
+    float_opts = {
+        width = 100,
+        height = 50
+    },
+}
 require('telescope').load_extension('fzf')
 
 -- }}}
@@ -124,10 +135,10 @@ keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
 -- Treesitter {{{
 require 'nvim-treesitter.configs'.setup {
-	ensure_installed = 'all',
-	highlight = {
-		enable = true,
-	}
+        ensure_installed = 'all',
+        highlight = {
+                enable = true,
+        }
 }
 -- }}}
 
