@@ -6,10 +6,12 @@ my_keys = {
   {key = 'Tab', mods = 'CTRL', action = act.ActivateTabRelative(1)},
 
   -- {key = '[', mods = 'SHIFT|SUPER', action = act.ActivateTabRelative(-1)},
-  {key = '{', mods = 'SHIFT|SUPER', action =  act.ActivateTabRelative(-1)},
+  -- {key = '{', mods = 'SHIFT|SUPER', action =  act.ActivateTabRelative(-1)},
+  {key = '{', mods = 'SHIFT|CTRL', action =  act.ActivateTabRelative(-1)},
 
   -- {key = ']', mods = 'SHIFT|SUPER', action = act.ActivateTabRelative(1)},
-  {key = '}', mods = 'SHIFT|SUPER', action =  act.ActivateTabRelative(1)},
+  -- {key = '}', mods = 'SHIFT|SUPER', action =  act.ActivateTabRelative(1)},
+  {key = '}', mods = 'SHIFT|CTRL', action =  act.ActivateTabRelative(1)},
 
   {key = 'PageUp', mods = 'CTRL', action = act.ActivateTabRelative(-1)},
   {key = 'PageDown', mods = 'CTRL', action = act.ActivateTabRelative(1)},
@@ -190,6 +192,7 @@ return {
     font_size = 11.0,
   },
 
+  font = wezterm.font 'Fira Code',
   font_size = 11.0,
 
   tab_max_width = 256,
