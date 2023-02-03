@@ -154,8 +154,11 @@ my_keys = {
 
   {key = 'phys:Space', mods = 'SHIFT|CTRL', action = act.QuickSelect},
 
-  {key = 'PageUp', mods = 'SHIFT', action = act.ScrollByPage(-1)},
-  {key = 'PageDown', mods = 'SHIFT', action = act.ScrollByPage(1)},
+  {key = 'PageUp', mods = '', action = act.ScrollByPage(-1)},
+  {key = 'PageDown', mods = '', action = act.ScrollByPage(1)},
+
+  {key = 'PageUp', mods = 'SHIFT', action = act.ScrollByLine(-1)},
+  {key = 'PageDown', mods = 'SHIFT', action = act.ScrollByLine(1)},
 
   {key = 'PageUp', mods = 'SHIFT|CTRL', action = act.MoveTabRelative(-1)},
   {key = 'PageDown', mods = 'SHIFT|CTRL', action = act.MoveTabRelative(1)},
@@ -178,38 +181,38 @@ my_keys = {
 }
 
 return {
-    term = "wezterm",
-    initial_cols = 120,
-    initial_rows = 50,
-    color_scheme = 'Dracula (Official)',
+  term = "wezterm",
+  initial_cols = 120,
+  initial_rows = 50,
+  color_scheme = 'Dracula (Official)',
 
-    window_frame = {
-        font_size = 11.0,
-    },
-
+  window_frame = {
     font_size = 11.0,
+  },
 
-    tab_max_width = 256,
+  font_size = 11.0,
 
-    window_decorations = "RESIZE",
-    window_background_opacity = 0.95,
+  tab_max_width = 256,
 
-    inactive_pane_hsb = {
-      saturation = 0.8,
-      brightness = 0.75,
+  window_decorations = "RESIZE",
+  window_background_opacity = 0.95,
+
+  inactive_pane_hsb = {
+    saturation = 0.8,
+    brightness = 0.75,
+  },
+
+  disable_default_key_bindings = true,
+  -- leader = { key ='VoidSymbol', mods='', timeout_milliseconds=500 },
+  keys = my_keys,
+
+  ssh_domains = {
+    {
+      name = 'llama',
+      remote_address = 'llama.ai.appliedinvention.com',
+      username = 'jay'
     },
-
-    disable_default_key_bindings = true,
-    -- leader = { key ='VoidSymbol', mods='', timeout_milliseconds=500 },
-    keys = my_keys,
-
-    ssh_domains = {
-        {
-            name = 'llama',
-            remote_address = 'llama.ai.appliedinvention.com',
-            username = 'jay'
-        },
-    }
+  }
 }
 
 -- vim: foldmethod=marker:foldlevel=10
