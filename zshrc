@@ -39,8 +39,8 @@ if [ -f ${asdf_init} ]; then
 fi
 
 # Fzf
-source ${HOME}/.fzf/shell/completion.zsh
-source ${HOME}/.fzf/shell/key-bindings.zsh
+source /usr/share/doc/fzf/examples/completion.zsh
+source /usr/share/doc/fzf/examples/key-bindings.zsh
 bindkey -s '^V' 'emacsclient --tty $(fzf);^M'
 
 #
