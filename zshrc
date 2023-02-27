@@ -41,7 +41,7 @@ fi
 # Fzf
 source /usr/share/doc/fzf/examples/completion.zsh
 source /usr/share/doc/fzf/examples/key-bindings.zsh
-bindkey -s '^V' 'emacsclient --tty $(fzf);^M'
+bindkey -s '^V' 'nvim $(fzf);^M'
 
 #
 # Plugins
