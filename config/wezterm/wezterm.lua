@@ -75,6 +75,11 @@ my_keys = {
   {key = 'UpArrow', mods = 'SHIFT|CTRL', action = act.ActivatePaneDirection 'Up'},
   {key = 'DownArrow', mods = 'SHIFT|CTRL', action = act.ActivatePaneDirection 'Down'},
 
+  {key = 'h', mods = 'ALT|CTRL', action = act.ActivatePaneDirection 'Left'},
+  {key = 'l', mods = 'ALT|CTRL', action = act.ActivatePaneDirection 'Right'},
+  {key = 'k', mods = 'ALT|CTRL', action = act.ActivatePaneDirection 'Up'},
+  {key = 'j', mods = 'ALT|CTRL', action = act.ActivatePaneDirection 'Down'},
+
   {key = 'LeftArrow', mods = 'SHIFT|ALT|CTRL', action = act.AdjustPaneSize{'Left', 1}},
   {key = 'RightArrow', mods = 'SHIFT|ALT|CTRL', action = act.AdjustPaneSize{'Right', 1}},
   {key = 'UpArrow', mods = 'SHIFT|ALT|CTRL', action = act.AdjustPaneSize{'Up', 1}},
