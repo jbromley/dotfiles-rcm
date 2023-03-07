@@ -27,6 +27,8 @@ fi
 # Don't let Python venv add anything to the prompt.
 export VIRTUAL_ENV_DISABLE_PROMPT=yes
 
+# Custom zsh-abbr temp directory
+export ABBR_TMPDIR=/tmp/zsh-abbr-${USER}/
 
 # Golang
 if [ -d "${HOME}/go" ]; then
