@@ -80,6 +80,9 @@ colcon_comp=/usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
 # Allow zsh to use bash completions
 autoload bashcompinit; bashcompinit
 
+# GHC configuration
+[ -f "/home/jay/.ghcup/env" ] && source "/home/jay/.ghcup/env" # ghcup-env
+
 # Check ps for a process
 function psinfo() {
     if [ -z "$1" ]; then
@@ -105,3 +108,5 @@ function set_term_title() {
 }
 precmd_functions+=(set_term_title)
 eval "$(starship init zsh)"
+
+
