@@ -36,13 +36,12 @@ if [ -d "${HOME}/go" ]; then
     export GOBIN="${GOPATH}/bin"
 fi
 
-# Configure the path. On MacOS user path_helper.
+# Configure the path.
 typeset -Ux PATH path
-path=(${HOME}/.local/bin ${HOME}/.fzf/bin $path)
-
+path=(${HOME}/.local/bin $path)
+[ -d ${HOME}/.cargo/bin ] && path=(${HOME}/.cargo/bin $path)
 [ -n "${GOBIN}" ] && path+=("${GOBIN}")
 [ -d /usr/local/cuda/bin ] && path+=(/usr/local/cuda/bin)
-[ -d /opt/local/bin ] && path+=(/opt/local/bin)
 
 # ROS 2
 ROS_DIR=/opt/ros/humble
