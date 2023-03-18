@@ -39,8 +39,13 @@ if [ -f ${asdf_init} ]; then
 fi
 
 # Fzf
-source /usr/share/doc/fzf/examples/completion.zsh
-source /usr/share/doc/fzf/examples/key-bindings.zsh
+if [ "$(uname)" = "Darwin" ]; then
+    fzf_dir=/usr/local/opt/fzf/shell
+else
+    fzf_dir=/usr/share/doc/fzf/examples
+fi
+source ${fzf_dir}/completion.zsh
+source ${fzf_dir}/key-bindings.zsh
 bindkey -s '^V' 'nvim $(fzf);^M'
 
 #
@@ -108,5 +113,4 @@ function set_term_title() {
 }
 precmd_functions+=(set_term_title)
 eval "$(starship init zsh)"
-
 
