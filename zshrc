@@ -86,7 +86,7 @@ colcon_comp=/usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
 autoload bashcompinit; bashcompinit
 
 # GHC configuration
-[ -f "/home/jay/.ghcup/env" ] && source "/home/jay/.ghcup/env" # ghcup-env
+[ -f "${HOME}/.ghcup/env" ] && source "${HOME}/.ghcup/env" # ghcup-env
 
 # Check ps for a process
 function psinfo() {
