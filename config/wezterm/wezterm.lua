@@ -42,13 +42,14 @@ my_keys = {
 
   {key = 'n', mods = 'SHIFT|CTRL', action = act.SpawnWindow},
 
-  {key = 'p', mods = 'SHIFT|CTRL', action = act.PaneSelect{alphabet =  '', mode =  'Activate'}},
+  {key = 'p', mods = 'SHIFT|CTRL', action = act.ActivateCommandPalette},
 
   {key = 'r', mods = 'SHIFT|CTRL', action = act.ReloadConfiguration},
 
+  {key = 's', mods = 'SHIFT|CTRL', action = act.PaneSelect{alphabet =  '', mode =  'Activate'}},
+
   {key = 't', mods = 'SHIFT|CTRL', action = act.SpawnTab 'CurrentPaneDomain'},
 
-  {key = 'U', mods = 'SHIFT|CTRL', action = act.CharSelect{copy_on_select = true, copy_to =  'ClipboardAndPrimarySelection'}},
   {key = 'u', mods = 'SHIFT|CTRL', action = act.CharSelect{copy_on_select = true, copy_to = 'ClipboardAndPrimarySelection'}},
 
   {key = 'v', mods = 'SHIFT|CTRL', action = act.PasteFrom 'Clipboard'},
