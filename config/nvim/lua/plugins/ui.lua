@@ -1,23 +1,25 @@
 return {
-  -- Add dracula theme for Neovim.
-  { "Mofiqul/dracula.nvim" },
-
-  -- Configure LazyVim to load dracula.
+  -- { "Mofiqul/dracula.nvim" },
+  {
+    "folke/tokyonight.nvim",
+    lazy = true,
+  },
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "dracula",
+      colorscheme = "tokyonight",
     },
   },
-  {
-    "folke/noice.nvim",
-    opts = {
-      presets = {
-        bottom_search = true,
-        command_palette = true,
-        -- long_message_to_split = true,
-      },
-      cmdline = { view = "cmdline" },
-    },
-  },
+  -- {
+  --   "folke/noice.nvim",
+  --   -- enabled = false,
+  --   opts = {
+  --     presets = {
+  --       bottom_search = true,
+  --       command_palette = true,
+  --       -- long_message_to_split = true,
+  --     },
+  --     cmdline = { view = "cmdline" },
+  --   },
+  -- },
 }
