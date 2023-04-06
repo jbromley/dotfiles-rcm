@@ -59,7 +59,7 @@ detect_folders = []
 
 [cmd_duration]
 min_time = 2000
-format = 'took [$duration]($style) '
+format = '\([$duration]($style)\) '
 style = 'yellow bold'
 show_milliseconds = false
 disabled = false
@@ -338,7 +338,7 @@ disabled = true
 [hostname]
 ssh_only = true
 trim_at = '.'
-format = '[$hostname]($style) in '
+format = '[$hostname]($style) '
 style = 'green dimmed bold'
 disabled = false
 
@@ -757,7 +757,7 @@ utc_time_offset = 'local'
 time_range = '-'
 
 [username]
-format = '[$user]($style) in '
+format = '[$user]($style)@'
 style_root = 'red bold'
 style_user = 'yellow bold'
 show_always = false
