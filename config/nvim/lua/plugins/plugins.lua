@@ -13,4 +13,7 @@ return {
       { "<leader>ww", "<Cmd>VimwikiIndex<CR>", desc = "Open Vimwiki index" },
     },
   },
+  {
+    "elixir-editors/vim-elixir",
+  },
 }
