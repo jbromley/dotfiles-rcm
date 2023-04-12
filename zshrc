@@ -46,7 +46,9 @@ else
 fi
 source ${fzf_dir}/completion.zsh
 source ${fzf_dir}/key-bindings.zsh
+
 bindkey -s '^V' 'nvim $(fzf);^M'
+bindkey -s '^W' 'fzf --preview "bat --color always {}";^M'
 
 #
 # Plugins
