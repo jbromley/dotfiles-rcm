@@ -14,11 +14,8 @@ return {
     },
     {
       "elixir-editors/vim-elixir",
-      lazy = true,
-      event = "BufEnter *.ex",
+      -- lazy = true,
+      -- event = "BufEnter *.ex",
     },
-  },
-  {
-    "elixir-editors/vim-elixir",
   },
 }
