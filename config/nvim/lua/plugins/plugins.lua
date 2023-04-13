@@ -18,4 +18,7 @@ return {
       event = "BufEnter *.ex",
     },
   },
+  {
+    "elixir-editors/vim-elixir",
+  },
 }
