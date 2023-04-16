@@ -47,7 +47,7 @@ fi
 source ${fzf_dir}/completion.zsh
 source ${fzf_dir}/key-bindings.zsh
 bindkey -s '^V' 'nvim $(fzf --preview "bat --color always {}");^M'
-bindkey -s '^W' 'bindkey -s "^W" 'fzf --preview="bat --color always {}" --bind shift-up:preview-page-up,shift-down:preview-page-down;^M
+bindkey -s '^W' 'fzf --preview="bat --color always {}" --bind shift-up:preview-page-up,shift-down:preview-page-down;^M'
 
 #
 # Plugins
