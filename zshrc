@@ -83,6 +83,9 @@ source ${plugin_dir}/completion.zsh
 colcon_comp=/usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
 [ -f ${colcon_comp} ] && source ${colcon_comp}
 
+ros2_arg_comp=/opt/ros/humble/share/ros2cli/environment/ros2-argcomplete.zsh
+[ -f ${ros2_arg_comp} ] && source ${ros2_arg_comp}
+
 # Allow zsh to use bash completions
 autoload bashcompinit; bashcompinit
 
