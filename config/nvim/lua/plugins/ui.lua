@@ -3,14 +3,26 @@ return {
     "Mofiqul/dracula.nvim",
     lazy = true,
   },
-  -- {
-  --   "folke/tokyonight.nvim",
-  --   lazy = true,
-  -- },
+  {
+    "folke/tokyonight.nvim",
+    lazy = true,
+  },
+  {
+    "kdheepak/monochrome.nvim",
+    lazy = true,
+  },
+  {
+    "rebelot/kanagawa.nvim",
+    lazy = true,
+  },
+  {
+    "ntk148v/komau.vim",
+    lazy = true,
+  },
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "dracula",
+      colorscheme = "kanagawa",
     },
   },
   {
