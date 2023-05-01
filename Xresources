@@ -35,7 +35,7 @@ XTerm.vt100.metaSendsEscape: true
 ! XTerm Styling
 XTerm.vt100.faceName: JetBrains Mono
 XTerm.vt100.boldMode: true
-XTerm.vt100.faceSize: 11
+XTerm.vt100.faceSize: 12
 XTerm.vt100.internalBorder: 16
 XTerm.borderWidth: 0
 
