@@ -33,8 +33,9 @@ XTerm.vt100.bellIsUrgent: true
 XTerm.vt100.metaSendsEscape: true
 
 ! XTerm Styling
-XTerm.vt100.faceName: JetBrains Mono
-XTerm.vt100.boldMode: true
+XTerm.vt100.faceName: JetBrainsMono Nerd Font
+XTerm.vt100.boldFont: JetBrainsMono Nerd Font:style=Bold
+XTerm.vt100.boldMode: false
 XTerm.vt100.faceSize: 12
 XTerm.vt100.internalBorder: 16
 XTerm.borderWidth: 0
