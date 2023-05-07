@@ -6,7 +6,7 @@ export LANG=en_US.UTF-8
 # Editor
 export EDITOR="nvim"
 export VISUAL="neovide"
-export GIT_EDITOR="nvim"
+export GIT_EDITOR="nvim --clean"
 
 # Zsh environment variables
 export HISTFILE="${HOME}/.zhistory"
