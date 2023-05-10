@@ -18,12 +18,6 @@ export FZF_CTRL_T_OPTS="--prompt 'file> '"
 export FZF_ALT_C_OPTS="--prompt 'cd> '"
 export FZF_CTRL_R_OPTS="--prompt 'history> '"
 
-# Linux-specific configuration
-if [ $(uname) = "Linux" ]; then
-    # Set up stuff for snap applications.
-    [ -f /etc/profile.d/apps-bin-path.sh ] && emulate sh -c  'source /etc/profile.d/apps-bin-path.sh'
-fi
-
 # Don't let Python venv add anything to the prompt.
 export VIRTUAL_ENV_DISABLE_PROMPT=yes
 
@@ -36,16 +30,16 @@ if [ -d "${HOME}/go" ]; then
     export GOBIN="${GOPATH}/bin"
 fi
 
-# Configure the path.
-typeset -Ux PATH path
-path=(${HOME}/.local/bin $path)
-[ -d ${HOME}/.cargo/bin ] && path=(${HOME}/.cargo/bin $path)
-[ -n "${GOBIN}" ] && path+=("${GOBIN}")
-[ -d /usr/local/cuda/bin ] && path+=(/usr/local/cuda/bin)
-
 # ROS 2
 ROS_DIR=/opt/ros/humble
 if [ -f ${ROS_DIR}/setup.zsh ]; then
     source ${ROS_DIR}/setup.zsh
     export ROS_DOMAIN_ID=17
 fi
+
+# Configure the path.
+typeset -Ux PATH path
+path=(${HOME}/.local/bin $path)
+[ -d ${HOME}/.cargo/bin ] && path=(${HOME}/.cargo/bin $path)
+[ -n "${GOBIN}" ] && path+=("${GOBIN}")
+[ -d /usr/local/cuda/bin ] && path+=(/usr/local/cuda/bin)
