@@ -5,7 +5,7 @@ return {
     "vimwiki/vimwiki",
     delay = false,
     init = function(_)
-      vim.g.vimwiki_list = { { path = "~/Documents/Wiki" } }
+      vim.g.vimwiki_list = { { path = "~/Documents/Wiki", syntax = "markdown", ext = ".md" } }
     end,
     lazy = true,
     cmd = "VimwikiIndex",
