@@ -1,9 +1,7 @@
 # Colorize output, add file type indicator, and put sizes in human readable format
-[ $(uname) = "Darwin" ] && alias ls='ls -F -G' || alias ls='ls --color=auto --classify'
-alias lsa='ls -la'
-alias l='ls -la'
+[ $(uname) = "Darwin" ] && alias ls='ls -F -G' || alias ls='exa --color=auto --classify'
 alias ll='ls -l'
-alias la='ls -lA'
+alias lla='ls -la'
 
 # On Linux use some color options for grep
 [ "$(uname -s)" = "Linux" ] && alias grep='grep --color=auto'
