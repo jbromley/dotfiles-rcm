@@ -107,7 +107,7 @@ return {
 		font_size = 11.0,
 	},
 
-	font = wezterm.font("JetBrains Mono"),
+	font = wezterm.font("JetBrainsMono Nerd Font"),
 	font_size = 11.0,
 
 	tab_max_width = 256,
