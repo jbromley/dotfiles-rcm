@@ -43,3 +43,5 @@ path=(${HOME}/.local/bin $path)
 [ -d ${HOME}/.cargo/bin ] && path=(${HOME}/.cargo/bin $path)
 [ -n "${GOBIN}" ] && path+=("${GOBIN}")
 [ -d /usr/local/cuda/bin ] && path+=(/usr/local/cuda/bin)
+
+source "$HOME/.cargo/env"
