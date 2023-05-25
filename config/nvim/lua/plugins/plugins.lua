@@ -2,6 +2,14 @@ return {
   "tpope/vim-commentary",
   "tpope/vim-fugitive",
   {
+    "tpope/vim-dadbod",
+    delay = true,
+  },
+  {
+    "kristijanhusak/vim-dadbod-ui",
+    delay = true,
+  },
+  {
     "vimwiki/vimwiki",
     delay = false,
     init = function(_)
@@ -11,6 +19,7 @@ return {
     cmd = "VimwikiIndex",
     keys = {
       { "<leader>ww", "<Cmd>VimwikiIndex<CR>", desc = "Open Vimwiki index" },
+      { "<leader>w<Space>x", "<Cmd>VimwikiToggleListItem<CR>", desc = "Toggle Vimwiki list item" },
     },
   },
 }
