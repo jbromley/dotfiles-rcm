@@ -9,15 +9,15 @@ return {
   },
   {
     "kdheepak/monochrome.nvim",
-    lazy = true,
+    -- lazy = true,
   },
   {
     "rebelot/kanagawa.nvim",
-    lazy = true,
+    -- lazy = true,
   },
   {
     "ntk148v/komau.vim",
-    lazy = true,
+    -- lazy = true,
   },
   {
     "LazyVim/LazyVim",
