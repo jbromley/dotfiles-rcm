@@ -1,7 +1,7 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 
-my_keys = {
+local my_keys = {
 	{ key = "Tab", mods = "SHIFT|CTRL", action = act.ActivateTabRelative(-1) },
 	{ key = "Tab", mods = "CTRL", action = act.ActivateTabRelative(1) },
 
@@ -107,8 +107,8 @@ return {
 		font_size = 11.0,
 	},
 
-	font = wezterm.font("JetBrainsMono Nerd Font"),
-	font_size = 11.0,
+	font = wezterm.font("Fantasque Sans Mono"),
+	font_size = 14.0,
 
 	tab_max_width = 256,
 
