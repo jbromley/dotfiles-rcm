@@ -41,3 +41,4 @@ include dark-256.theme
 
 context.task-manager.read=project:tm
 context.task-manager.write=project:tm
+news.version=2.6.0
