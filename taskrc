@@ -39,3 +39,5 @@ include dark-256.theme
 #include solarized-light-256.theme
 #include no-color.theme
 
+context.task-manager.read=project:tm
+context.task-manager.write=project:tm
