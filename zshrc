@@ -31,7 +31,7 @@ setopt HIST_SAVE_NO_DUPS
 setopt HIST_VERIFY
 
 # Aliases
-source ${HOME}/.aliases
+[ -f ${HOME}/.aliases ] && source ${HOME}/.aliases
 
 # ASDF
 asdf_init=${HOME}/.asdf/asdf.sh
