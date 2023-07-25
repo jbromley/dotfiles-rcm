@@ -57,9 +57,6 @@ bindkey -s '^W' 'fzf --preview="bat --color always {}" --bind shift-up:preview-p
 plugin_dir=${HOME}/.zsh
 fpath=(${plugin_dir} $fpath)
 
-# Abbreviations
-source ${plugin_dir}/zsh-abbr/zsh-abbr.zsh
-
 # bd
 source ${plugin_dir}/zsh-bd/bd.zsh
 

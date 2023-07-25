@@ -52,3 +52,9 @@ alias b='batcat'
 
 # bc
 alias bc='bc -ql'
+
+# git
+gco="git checkout"
+
+# WezTerm
+vimg="wezterm imgcat"
