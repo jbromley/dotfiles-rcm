@@ -1,0 +1,13 @@
+;;; The following lines added by ql:add-to-init-file:
+#-quicklisp
+(let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp"
+                                       (user-homedir-pathname))))
+  (when (probe-file quicklisp-init)
+    (load quicklisp-init)))
+
+#-ocicl
+(when (probe-file #P"/home/jay/.local/share/ocicl/ocicl-runtime.lisp")
+  (load #P"/home/jay/.local/share/ocicl/ocicl-runtime.lisp"))
+;; Any systems you install in /home/jay/.local/share/ocicl/
+;; will be available globally unless you comment out this line:
+(asdf:initialize-source-registry '(:source-registry :ignore-inherited-configuration (:tree #P"/home/jay/.local/share/ocicl/")))
