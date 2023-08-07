@@ -30,6 +30,9 @@ if [ -d "${HOME}/go" ]; then
     export GOBIN="${GOPATH}/bin"
 fi
 
+# Rust
+[ -f "${HOME}/.cargo/env" ] && source "${HOME}/.cargo/env"
+
 # ROS 2
 ROS_DIR=/opt/ros/humble
 if [ -f ${ROS_DIR}/setup.zsh ]; then
@@ -43,5 +46,3 @@ path=(${HOME}/.local/bin $path)
 [ -d ${HOME}/.cargo/bin ] && path=(${HOME}/.cargo/bin $path)
 [ -n "${GOBIN}" ] && path+=("${GOBIN}")
 [ -d /usr/local/cuda/bin ] && path+=(/usr/local/cuda/bin)
-
-source "$HOME/.cargo/env"
