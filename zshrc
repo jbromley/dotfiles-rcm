@@ -70,6 +70,9 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#606060"
 # Change directories with z
 source ${plugin_dir}/zsh-z/zsh-z.plugin.zsh
 
+# Powerlevel10k prompt
+source ${plugin_dir}/powerlevel10k/powerlevel10k.zsh-theme
+
 #
 # Completion
 #
@@ -82,7 +85,7 @@ source ${plugin_dir}/completion.zsh
 colcon_comp=/usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
 [ -f ${colcon_comp} ] && source ${colcon_comp}
 
-ros2_arg_comp=/opt/ros/humble/share/ros2cli/environment/ros2-argcomplete.zsh
+ros2_arg_comp=${ROS_DIR}/share/ros2cli/environment/ros2-argcomplete.zsh
 [ -f ${ros2_arg_comp} ] && source ${ros2_arg_comp}
 
 # Allow zsh to use bash completions
@@ -117,5 +120,4 @@ function set_term_title() {
 precmd_functions+=(set_term_title)
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-source ~/.zsh/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

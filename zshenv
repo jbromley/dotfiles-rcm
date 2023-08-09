@@ -10,8 +10,8 @@ export GIT_EDITOR="nvim --clean"
 
 # Zsh environment variables
 export HISTFILE="${HOME}/.zhistory"
-export HISTSIZE=8192
-export SAVEHIST=8192
+export HISTSIZE=16384
+export SAVEHIST=16384
 
 # Fzf prompt customizations
 export FZF_CTRL_T_OPTS="--prompt 'file> '"
@@ -34,7 +34,7 @@ fi
 [ -f "${HOME}/.cargo/env" ] && source "${HOME}/.cargo/env"
 
 # ROS 2
-ROS_DIR=/opt/ros/humble
+ROS_DIR=/opt/ros/iron
 if [ -f ${ROS_DIR}/setup.zsh ]; then
     source ${ROS_DIR}/setup.zsh
     export ROS_DOMAIN_ID=17
