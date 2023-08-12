@@ -38,6 +38,7 @@ ROS_DIR=/opt/ros/iron
 if [ -f ${ROS_DIR}/setup.zsh ]; then
     source ${ROS_DIR}/setup.zsh
     export ROS_DOMAIN_ID=17
+    export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 fi
 
 # Configure the path.
