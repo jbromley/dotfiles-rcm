@@ -1,0 +1,32 @@
+import = ["/home/jayai/.config/alacritty/theme.toml"]
+
+[bell]
+animation = "EaseOutExpo"
+duration = 100
+
+[font]
+size = 11.0
+
+[font.bold]
+family = "JetBrainsMono Nerd Font Mono"
+style = "Bold"
+
+[font.bold_italic]
+family = "JetBrainsMono Nerd Font Mono"
+style = "Bold Italic"
+
+[font.italic]
+family = "JetBrainsMono Nerd Font Mono"
+style = "Italic"
+
+[font.normal]
+family = "JetBrainsMono Nerd Font Mono"
+style = "Regular"
+
+[window]
+decorations = "none"
+opacity = 0.9375
+
+[window.dimensions]
+columns = 100
+lines = 50
