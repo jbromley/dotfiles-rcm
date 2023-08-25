@@ -44,6 +44,11 @@ fi
 # Configure the path.
 typeset -Ux PATH path
 path=(${HOME}/.local/bin $path)
-[ -d ${HOME}/.cargo/bin ] && path=(${HOME}/.cargo/bin $path)
-[ -n "${GOBIN}" ] && path+=("${GOBIN}")
-[ -d /usr/local/cuda/bin ] && path+=(/usr/local/cuda/bin)
+
+# If these paths exist, add them to PATH.
+extra_paths=(~/.cargo/bin /usr/lib/llvm-15/bin /usr/local/cuda/bin)
+[ -n "${GOBIN}" ] && extra_paths+=("${GOBIN}")
+
+for extra_path in $extra_paths do
+    [ -d "$extra_path" ] && path+=("$extra_path")
+done
