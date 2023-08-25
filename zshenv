@@ -49,6 +49,6 @@ path=(${HOME}/.local/bin $path)
 extra_paths=(~/.cargo/bin /usr/lib/llvm-15/bin /usr/local/cuda/bin)
 [ -n "${GOBIN}" ] && extra_paths+=("${GOBIN}")
 
-for extra_path in $extra_paths do
+for extra_path in $extra_paths; do
     [ -d "$extra_path" ] && path+=("$extra_path")
 done
