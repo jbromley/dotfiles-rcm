@@ -1,1 +1,4 @@
 theme = "dracula"
+
+[keys.select]
+"C-`" = "switch_to_uppercase"
