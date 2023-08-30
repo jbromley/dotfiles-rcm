@@ -6,7 +6,7 @@ auto-format = true
 flake8 = {enabled = true, maxLineLength = 108}
 autopep8 = {enabled = false}
 mccabe = {enabled = false}
-pycodestyle = {enabled = false}
+pycodestyle = {enabled = true}
 pyflakes = {enabled = false}
 pylint = {enabled = false}
 yapf = {enabled = false}
