@@ -76,17 +76,17 @@ source ${plugin_dir}/powerlevel10k/powerlevel10k.zsh-theme
 #
 # Completion
 #
-fpath=(${plugin_dir}/zsh-completions/src $fpath)
-autoload -Uz compinit; compinit
-_comp_options+=(globdots)
-source ${plugin_dir}/completion.zsh
-
 # ROS 2 colcon
 colcon_comp=/usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
 [ -f ${colcon_comp} ] && source ${colcon_comp}
 
 ros2_arg_comp=${ROS_DIR}/share/ros2cli/environment/ros2-argcomplete.zsh
 [ -f ${ros2_arg_comp} ] && source ${ros2_arg_comp}
+
+fpath=(${plugin_dir}/zsh-completions/src $fpath)
+autoload -Uz compinit; compinit
+_comp_options+=(globdots)
+source ${plugin_dir}/completion.zsh
 
 # Allow zsh to use bash completions
 autoload bashcompinit; bashcompinit
