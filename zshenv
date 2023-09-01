@@ -2,9 +2,10 @@
 
 # Make sure language is set properly.
 export LANG=en_US.UTF-8
+export LC_NUMERIC=en_US.UTF-8
 
 # Editor
-export EDITOR="nvim"
+export EDITOR="hx"
 export VISUAL="neovide"
 export GIT_EDITOR=hx
 
