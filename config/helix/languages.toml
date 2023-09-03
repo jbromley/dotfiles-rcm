@@ -14,3 +14,11 @@ ruff = { enabled = true, ignore = ["F401"], lineLength = 120 }
 
 [language-server.elixir-ls.config]
 elixirLS.dialyzerEnabled = true
+
+[[language]]
+name = "xml"
+scope = "source.xml"
+injection-regex = "xml"
+file-types = ["xml", "mobileconfig", "plist", "xib", "storyboard", "svg", "xsd", "gml", "xaml", "gir", "xacro"]
+indent = { tab-width = 2, unit = "  " }
+roots = []
