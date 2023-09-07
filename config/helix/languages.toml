@@ -17,8 +17,8 @@ elixirLS.dialyzerEnabled = true
 
 [[language]]
 name = "xml"
-scope = "source.xml"
-injection-regex = "xml"
 file-types = ["xml", "mobileconfig", "plist", "xib", "storyboard", "svg", "xsd", "gml", "xaml", "gir", "xacro"]
-indent = { tab-width = 2, unit = "  " }
-roots = []
+
+[[language]]
+name = "yaml"
+file-types = ["yml", "yaml", "rviz"]
