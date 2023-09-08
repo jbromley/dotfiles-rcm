@@ -112,6 +112,22 @@ function zp() {
     fi
 }
 
+# Push or pop just using `p` and context.
+function p() {
+    case "$#" in
+    0)
+        popd
+        ;;
+    1)
+        pushd "$1"
+        ;;
+    *)
+        echo "p [DIR]"
+        false
+        ;;
+    esac
+}
+
 # Prompt
 function set_term_title() {
     title=$(pwd | sed -e "s|${HOME}|~|")
