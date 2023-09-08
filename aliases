@@ -1,5 +1,5 @@
 # Colorize output, add file type indicator, and put sizes in human readable format
-[ $(uname) = "Darwin" ] && alias ls='ls -F -G' || alias ls='exa --color=auto --classify'
+[ $(uname) = "Darwin" ] && alias ls='ls -F -G' || alias ls='eza --color=auto --classify'
 alias ll='ls --long --git'
 alias lla='ls --long --all'
 
