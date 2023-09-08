@@ -54,7 +54,9 @@ alias b='batcat'
 alias bc='bc -ql'
 
 # git
-alias gco="git checkout"
+alias gadd='git add'
+alias gco='git checkout'
+alias gcomm='git commit'
 
 # WezTerm
 alias vimg="wezterm imgcat"
