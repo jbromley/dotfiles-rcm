@@ -1,5 +1,6 @@
 ! Font settings
-#include "/home/jayai/.fonts"
+#define FONT JetBrainsMono Nerd Font Mono
+#define FONT_SIZE 12.0
 
 ! Dracula Xresources palette
 *.foreground: #F8F8F2
