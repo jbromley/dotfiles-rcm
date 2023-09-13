@@ -28,6 +28,7 @@ URxvt.boldItalicFont: xft:FONT:style=Bold Italic:size=FONT_SIZE
 URxvt.scrollBar: off
 
 ! XTerm
+XTerm.termName: xterm-256color
 XTerm.vt100.locale: false
 XTerm.vt100.utf8: true
 XTerm.vt100.scrollTtyOutput: false
