@@ -2,3 +2,20 @@ theme = "dracula"
 
 [keys.select]
 "C-`" = "switch_to_uppercase"
+
+[keys.normal]
+C-n = [
+  "extend_line",
+  ":insert-output echo 'FILL_THIS'",
+  "extend_line_below",
+  ":pipe sgpt --code --no-cache 'Using this comment, fill the line have the comment FILL_THIS'",
+]
+
+[keys.insert]
+C-n = [
+  "normal_mode",
+  "extend_line",
+  ":insert-output echo 'FILL_THIS'",
+  "extend_line_below",
+  ":pipe sgpt --code --no-cache 'Using this comment, fill the line having the comment FILL_THIS.'",
+]
