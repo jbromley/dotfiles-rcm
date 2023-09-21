@@ -1,6 +1,5 @@
 ! Font settings
-! #define FONT JetBrainsMono Nerd Font Mono
-#define FONT Monospace
+#define FONT JetBrainsMono Nerd Font Mono
 #define FONT_SIZE 12.0
 
 ! Dracula Xresources palette
