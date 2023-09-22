@@ -1,6 +1,4 @@
-! Font settings
-#define FONT JetBrainsMono Nerd Font Mono
-#define FONT_SIZE 11.0
+! X Resrouces
 
 ! Dracula Xresources palette
 *.foreground: #F8F8F2
@@ -22,10 +20,10 @@
 *.color7:     #BFBFBF
 *.color15:    #E6E6E6
 
-URxvt.font: xft:FONT:style=Regular:size=FONT_SIZE
-URxvt.boldFont: xft:FONT:style=Bold:size=FONT_SIZE
-URxvt.italicFont: xft:FONT:style=Italic:size=FONT_SIZE
-URxvt.boldItalicFont: xft:FONT:style=Bold Italic:size=FONT_SIZE
+URxvt.font: xft:JetBrainsMono Nerd Font Mono:style=Regular:size=11.0
+URxvt.boldFont: xft:JetBrainsMono Nerd Font Mono:style=Bold:size=11.0
+URxvt.italicFont: xft:JetBrainsMono Nerd Font Mono:style=Italic:size=11.0
+URxvt.boldItalicFont: xft:JetBrainsMono Nerd Font Mono:style=Bold Italic:size=11.0
 URxvt.scrollBar: off
 
 ! XTerm
@@ -38,10 +36,10 @@ XTerm.vt100.bellIsUrgent: true
 XTerm.vt100.metaSendsEscape: true
 
 ! XTerm Styling
-XTerm.vt100.faceName: FONT:style=Regular
-XTerm.vt100.boldFont: FONT:style=Bold
+XTerm.vt100.faceName: JetBrainsMono Nerd Font Mono:style=Regular
+XTerm.vt100.boldFont: JetBrainsMono Nerd Font Mono:style=Bold
 XTerm.vt100.boldMode: false
-XTerm.vt100.faceSize: FONT_SIZE
+XTerm.vt100.faceSize: 11.0
 XTerm.vt100.internalBorder: 4 
 XTerm.borderWidth: 0
 
