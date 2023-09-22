@@ -1,6 +1,8 @@
-remove lock = Caps_Lock
-remove mod2 = Num_Lock
-keysym Caps_Lock = Hyper_L
+! Use Caps_Lock as Hyper_L (mod3)
+clear lock
+keycode 66 = Hyper_L
+
+! Make Hyper_L mod3
 remove mod4 = Hyper_L
-add mod2 = Hyper_L
+add mod3 = Hyper_L
 
