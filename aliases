@@ -59,4 +59,4 @@ alias gco='git checkout'
 alias gcomm='git commit'
 
 # WezTerm
-alias vimg="wezterm imgcat"
+alias vimg="kitty + kitten icat"
