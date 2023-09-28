@@ -48,7 +48,7 @@ alias po='popd'
 alias o='xdg-open'
 
 # bat
-alias b='batcat'
+alias b='bat'
 
 # bc
 alias bc='bc -ql'
@@ -59,4 +59,4 @@ alias gco='git checkout'
 alias gcomm='git commit'
 
 # WezTerm
-alias vimg="wezterm imgcat"
+alias vimg="kitty + kitten icat"
