@@ -57,6 +57,7 @@ alias bc='bc -ql'
 alias gadd='git add'
 alias gco='git checkout'
 alias gcomm='git commit'
+alias gpull='git pull'
 
 # WezTerm
 alias vimg="kitty + kitten icat"
