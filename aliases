@@ -48,7 +48,7 @@ alias po='popd'
 alias o='xdg-open'
 
 # bat
-alias b='batcat'
+alias b='bat'
 
 # bc
 alias bc='bc -ql'
