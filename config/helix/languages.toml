@@ -22,3 +22,7 @@ file-types = ["xml", "mobileconfig", "plist", "xib", "storyboard", "svg", "xsd",
 [[language]]
 name = "yaml"
 file-types = ["yml", "yaml", "rviz"]
+
+[[language]]
+name = "cpp"
+indent = { tab-width = 4, unit = " " }
