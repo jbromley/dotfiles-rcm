@@ -104,9 +104,12 @@ local my_key_tables = {
 	}	
 }
 
-wezterm.on("update-right-status", function(window, pane)
+wezterm.on("update-status", function(window, pane)
   local name = window:active_key_table()
-  window:set_right_status(name or "")
+  window:set_right_status(wezterm.format{
+		{ Attribute = { Intensity = "Normal" }},
+		{ Text = name .. " " or "" }
+	})
 end)
 
 return {
@@ -116,7 +119,7 @@ return {
 	color_scheme = "Dracula (Official)",
 
 	window_frame = {
-		font_size = 11.0,
+		font_size = 10.0,
 	},
 
 	font = wezterm.font("JetBrains Mono"),
