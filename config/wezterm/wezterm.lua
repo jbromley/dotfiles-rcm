@@ -44,7 +44,7 @@ local my_keys = {
 
 	{ key = "p", mods = "LEADER", action = act.ActivateCommandPalette },
 
-	{ key = "r", mods = "LEADER", action = act.ReloadConfiguration },
+	{ key = "r", mods = "SHIFT|LEADER", action = act.ReloadConfiguration },
 
 	{ key = "s", mods = "LEADER", action = act.PaneSelect({ alphabet = "", mode = "Activate" }) },
 
@@ -66,29 +66,26 @@ local my_keys = {
 
 	{ key = "phys:Space", mods = "LEADER", action = act.QuickSelect },
 
-	{ key = "PageUp", mods = "", action = act.ScrollByPage(-1) },
-	{ key = "PageDown", mods = "", action = act.ScrollByPage(1) },
+	{ key = "PageUp", action = act.ScrollByPage(-1) },
+	{ key = "PageDown", action = act.ScrollByPage(1) },
 
 	{ key = "PageUp", mods = "SHIFT", action = act.ScrollByLine(-1) },
 	{ key = "PageDown", mods = "SHIFT", action = act.ScrollByLine(1) },
 
-	{ key = "PageUp", mods = "SHIFT|LEADER", action = act.MoveTabRelative(-1) },
-	{ key = "PageDown", mods = "SHIFT|LEADER", action = act.MoveTabRelative(1) },
+	{ key = ",", mods = "LEADER", action = act.MoveTabRelative(-1) },
+	{ key = ".", mods = "LEADER", action = act.MoveTabRelative(1) },
 
-	{ key = "LeftArrow", mods = "SHIFT|LEADER", action = act.ActivatePaneDirection("Left") },
-	{ key = "RightArrow", mods = "SHIFT|LEADER", action = act.ActivatePaneDirection("Right") },
-	{ key = "UpArrow", mods = "SHIFT|LEADER", action = act.ActivatePaneDirection("Up") },
-	{ key = "DownArrow", mods = "SHIFT|LEADER", action = act.ActivatePaneDirection("Down") },
+	{ key = "LeftArrow", mods = "LEADER", action = act.ActivatePaneDirection("Left") },
+	{ key = "RightArrow", mods = "LEADER", action = act.ActivatePaneDirection("Right") },
+	{ key = "UpArrow", mods = "LEADER", action = act.ActivatePaneDirection("Up") },
+	{ key = "DownArrow", mods = "LEADER", action = act.ActivatePaneDirection("Down") },
 
 	{ key = "h", mods = "LEADER", action = act.ActivatePaneDirection("Left") },
 	{ key = "l", mods = "LEADER", action = act.ActivatePaneDirection("Right") },
 	{ key = "k", mods = "LEADER", action = act.ActivatePaneDirection("Up") },
 	{ key = "j", mods = "LEADER", action = act.ActivatePaneDirection("Down") },
 
-	{ key = "LeftArrow", mods = "SHIFT|ALT|CTRL", action = act.AdjustPaneSize({ "Left", 1 }) },
-	{ key = "RightArrow", mods = "SHIFT|ALT|CTRL", action = act.AdjustPaneSize({ "Right", 1 }) },
-	{ key = "UpArrow", mods = "SHIFT|ALT|CTRL", action = act.AdjustPaneSize({ "Up", 1 }) },
-	{ key = "DownArrow", mods = "SHIFT|ALT|CTRL", action = act.AdjustPaneSize({ "Down", 1 }) },
+	{ key = "r", mods="LEADER", action = act.ActivateKeyTable{name = "resize_pane", one_shot=false}},
 
 	{ key = "Insert", mods = "SHIFT", action = act.PasteFrom("PrimarySelection") },
 	{ key = "Paste", mods = "NONE", action = act.PasteFrom("Clipboard") },
@@ -96,6 +93,21 @@ local my_keys = {
 	{ key = "Insert", mods = "CTRL", action = act.CopyTo("PrimarySelection") },
 	{ key = "Copy", mods = "NONE", action = act.CopyTo("Clipboard") },
 }
+
+local my_key_tables = {
+	resize_pane = {
+		{ key = "LeftArrow", action = act.AdjustPaneSize({ "Left", 1 }) },
+		{ key = "RightArrow", action = act.AdjustPaneSize({ "Right", 1 }) },
+		{ key = "UpArrow", action = act.AdjustPaneSize({ "Up", 1 }) },
+		{ key = "DownArrow", action = act.AdjustPaneSize({ "Down", 1 }) },
+		{ key = "Escape", action = "PopKeyTable"},
+	}	
+}
+
+wezterm.on("update-right-status", function(window, pane)
+  local name = window:active_key_table()
+  window:set_right_status(name or "")
+end)
 
 return {
 	term = "wezterm",
@@ -123,6 +135,7 @@ return {
 	disable_default_key_bindings = true,
 	leader = { key = "VoidSymbol", mods = "", timeout_milliseconds = 500 },
 	keys = my_keys,
+	key_tables = my_key_tables,
 
 	ssh_domains = {
 		{
