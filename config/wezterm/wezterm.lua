@@ -100,15 +100,18 @@ local my_key_tables = {
 		{ key = "RightArrow", action = act.AdjustPaneSize({ "Right", 1 }) },
 		{ key = "UpArrow", action = act.AdjustPaneSize({ "Up", 1 }) },
 		{ key = "DownArrow", action = act.AdjustPaneSize({ "Down", 1 }) },
-		{ key = "Escape", action = "PopKeyTable"},
+		{ key = "Escape", action = 'PopKeyTable'},
 	}	
 }
 
 wezterm.on("update-status", function(window, pane)
   local name = window:active_key_table()
+	if name then
+		name = name .. " "
+	end
   window:set_right_status(wezterm.format{
 		{ Attribute = { Intensity = "Normal" }},
-		{ Text = name .. " " or "" }
+		{ Text = name or "" }
 	})
 end)
 
