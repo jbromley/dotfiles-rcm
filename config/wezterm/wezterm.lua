@@ -30,7 +30,7 @@ local my_keys = {
 	{ key = "_", mods = "SHIFT|LEADER", action = act.DecreaseFontSize },
 	{ key = ")", mods = "SHIFT|LEADER", action = act.ResetFontSize },
 
-	{ key = "c", mods = "SHIFT|CTRL", action = act.CopyTo("Clipboard") },
+	{ key = "c", mods = "LEADER", action = act.CopyTo("Clipboard") },
 
 	{ key = "f", mods = "SHIFT|CTRL", action = act.Search("CurrentSelectionOrEmptyString") },
 
@@ -56,11 +56,11 @@ local my_keys = {
 		action = act.CharSelect({ copy_on_select = true, copy_to = "ClipboardAndPrimarySelection" }),
 	},
 
-	{ key = "v", mods = "SHIFT|CTRL", action = act.PasteFrom("Clipboard") },
+	{ key = "v", mods = "LEADER", action = act.PasteFrom("Clipboard") },
 
 	{ key = "w", mods = "LEADER", action = act.CloseCurrentTab({ confirm = true }) },
 
-	{ key = "x", mods = "SHIFT|CTRL", action = act.ActivateCopyMode },
+	{ key = "x", mods = "LEADER", action = act.ActivateCopyMode },
 
 	{ key = "z", mods = "LEADER", action = act.TogglePaneZoomState },
 
