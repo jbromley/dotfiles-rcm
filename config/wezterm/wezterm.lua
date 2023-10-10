@@ -101,7 +101,9 @@ return {
 	term = "wezterm",
 	initial_cols = 120,
 	initial_rows = 50,
-	color_scheme = "Dracula (Official)",
+	color_scheme = "Flexoki Dark",
+	-- color_scheme = "Dracula (Official)",
+
 
 	window_frame = {
 		font_size = 11.0,
