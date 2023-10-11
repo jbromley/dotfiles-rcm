@@ -85,7 +85,7 @@ local my_keys = {
 	{ key = "k", mods = "LEADER", action = act.ActivatePaneDirection("Up") },
 	{ key = "j", mods = "LEADER", action = act.ActivatePaneDirection("Down") },
 
-	{ key = "r", mods="LEADER", action = act.ActivateKeyTable{name = "resize_pane", one_shot=false}},
+	{ key = "r", mods = "LEADER", action = act.ActivateKeyTable({ name = "resize_pane", one_shot = false }) },
 
 	{ key = "Insert", mods = "SHIFT", action = act.PasteFrom("PrimarySelection") },
 	{ key = "Paste", mods = "NONE", action = act.PasteFrom("Clipboard") },
@@ -100,28 +100,26 @@ local my_key_tables = {
 		{ key = "RightArrow", action = act.AdjustPaneSize({ "Right", 1 }) },
 		{ key = "UpArrow", action = act.AdjustPaneSize({ "Up", 1 }) },
 		{ key = "DownArrow", action = act.AdjustPaneSize({ "Down", 1 }) },
-		{ key = "Escape", action = 'PopKeyTable'},
-	}	
+		{ key = "Escape", action = "PopKeyTable" },
+	},
 }
 
 wezterm.on("update-status", function(window, pane)
-  local name = window:active_key_table()
+	local name = window:active_key_table()
 	if name then
 		name = name .. " "
 	end
-  window:set_right_status(wezterm.format{
-		{ Attribute = { Intensity = "Normal" }},
-		{ Text = name or "" }
-	})
+	window:set_right_status(wezterm.format({
+		{ Attribute = { Intensity = "Normal" } },
+		{ Text = name or "" },
+	}))
 end)
 
 return {
 	term = "wezterm",
 	initial_cols = 120,
 	initial_rows = 50,
-	color_scheme = "Flexoki Dark",
-	-- color_scheme = "Dracula (Official)",
-
+	color_scheme = "Dracula (Official)",
 
 	window_frame = {
 		font_size = 10.0,
