@@ -1,3 +1,9 @@
+# name: Flexoki (Light)
+# author: Kepano
+# license: MIT
+# upstream: https://stephango.com/flexoki
+# blurb: An inky color scheme for prose and code[colors]
+
 [colors]
 ansi = [
   "#AF3029",
