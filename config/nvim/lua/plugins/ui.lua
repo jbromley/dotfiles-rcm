@@ -20,6 +20,11 @@ return {
     -- lazy = true,
   },
   {
+    "stevedylandev/flexoki-nvim",
+    name = "flexoki",
+    -- lazy = true,
+  },
+  {
     "LazyVim/LazyVim",
     opts = {
       colorscheme = "dracula",
