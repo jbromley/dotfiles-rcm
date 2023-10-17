@@ -23,6 +23,9 @@ return {
     },
   },
   {
+    "gleam-lang/gleam.vim",
+  },
+  {
     "github/copilot.vim",
     init = function(_)
       vim.g.copilot_no_tab_map = true
