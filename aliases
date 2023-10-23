@@ -60,4 +60,4 @@ alias gcomm='git commit'
 alias gpull='git pull'
 
 # WezTerm
-alias vimg="kitty + kitten icat"
+alias vimg="wezterm imgcat"
