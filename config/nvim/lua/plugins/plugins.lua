@@ -2,14 +2,6 @@ return {
   "tpope/vim-commentary",
   "tpope/vim-fugitive",
   {
-    "tpope/vim-dadbod",
-    delay = true,
-  },
-  {
-    "kristijanhusak/vim-dadbod-ui",
-    delay = true,
-  },
-  {
     "vimwiki/vimwiki",
     delay = false,
     init = function(_)
