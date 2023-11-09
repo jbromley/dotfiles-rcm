@@ -1,14 +1,4 @@
 return {
-  {
-    "dracula/vim",
-    lazy = true,
-  },
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "dracula",
-    },
-  },
   -- {
   --   "folke/noice.nvim",
   --   enabled = false,
