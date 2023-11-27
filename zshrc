@@ -36,7 +36,7 @@ setopt HIST_VERIFY
 # RTX
 rtx_executable=/usr/local/bin/rtx
 if [ -x ${rtx_executable} ]; then
-  eval "$(${rtx_excutable} activate)"
+  eval "$(${rtx_executable} activate)"
 fi
 
 # Fzf
