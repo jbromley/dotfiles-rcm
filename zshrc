@@ -33,11 +33,10 @@ setopt HIST_VERIFY
 # Aliases
 [ -f ${HOME}/.aliases ] && source ${HOME}/.aliases
 
-# ASDF
-asdf_init=${HOME}/.asdf/asdf.sh
-if [ -f ${asdf_init} ]; then
-    source ${asdf_init}
-    fpath=(${HOME}/.asdf/completions $fpath)
+# RTX
+rtx_executable=/usr/local/bin/rtx
+if [ -x ${rtx_executable} ]; then
+  eval "$(${rtx_excutable} activate)"
 fi
 
 # Fzf
