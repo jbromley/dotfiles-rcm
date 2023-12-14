@@ -7,4 +7,10 @@ return {
       draw = { animation = require("mini.indentscope").gen_animation.none() },
     },
   },
+  {
+    "benknoble/vim-racket",
+  },
+  {
+    "Olical/conjure",
+  },
 }
