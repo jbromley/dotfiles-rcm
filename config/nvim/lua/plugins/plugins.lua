@@ -13,4 +13,15 @@ return {
   {
     "Olical/conjure",
   },
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        racket_langserver = {
+          cmd = { "racket", "--lib", "racket-langserver" },
+          filetypes = { "racket", "scheme" },
+        },
+      },
+    },
+  },
 }
