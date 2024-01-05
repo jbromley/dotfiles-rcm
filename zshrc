@@ -33,26 +33,7 @@ setopt HIST_VERIFY
 # Aliases
 [ -f ${HOME}/.aliases ] && source ${HOME}/.aliases
 
-# Mise en place
-mise_executable=${HOME}/.local/bin/mise
-if [ -x ${mise_executable} ]; then
-  eval "$(${mise_executable} activate zsh)"
-fi
-
-# Fzf
-if [ "$(uname)" = "Darwin" ]; then
-    fzf_dir=/usr/local/opt/fzf/shell
-else
-    fzf_dir=${HOME}/.fzf/shell
-fi
-source ${fzf_dir}/completion.zsh
-source ${fzf_dir}/key-bindings.zsh
-bindkey -s '^V' 'nvim $(fzf --preview "bat --color always {}");^M'
-bindkey -s '^W' 'fzf --preview="bat --color always {}" --bind shift-up:preview-page-up,shift-down:preview-page-down;^M'
-
-#
 # Plugins
-#
 plugin_dir=${HOME}/.zsh
 fpath=(${plugin_dir} $fpath)
 
@@ -90,9 +71,6 @@ source ${plugin_dir}/completion.zsh
 # Allow zsh to use bash completions
 autoload bashcompinit; bashcompinit
 
-# GHC configuration
-[ -f "${HOME}/.ghcup/env" ] && source "${HOME}/.ghcup/env" # ghcup-env
-
 # Check ps for a process
 function psinfo() {
     if [ -z "$1" ]; then
@@ -127,16 +105,36 @@ function p() {
     esac
 }
 
+# Mise en place
+mise_executable=${HOME}/.local/bin/mise
+if [ -x ${mise_executable} ]; then
+  eval "$(${mise_executable} activate zsh)"
+fi
+
+# Fzf
+if [ "$(uname)" = "Darwin" ]; then
+    fzf_dir=/usr/local/opt/fzf/shell
+else
+    fzf_dir=${HOME}/.fzf/shell
+fi
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source ${fzf_dir}/completion.zsh
+source ${fzf_dir}/key-bindings.zsh
+bindkey -s '^V' 'nvim $(fzf --preview "bat --color always {}");^M'
+bindkey -s '^W' 'fzf --preview="bat --color always {}" --bind shift-up:preview-page-up,shift-down:preview-page-down;^M'
+
+# zoxide
+[ -x /usr/bin/zoxide ] && eval "$(zoxide init zsh)" 
+
+# Dircolors
+[ -f ${HOME}/.dircolors ] && eval "$(dircolors -b ${HOME}/.dircolors)"
+
 # Prompt
 function set_term_title() {
     title=$(pwd | sed -e "s|${HOME}|~|")
     echo -ne "\e]0;${title}\a"
 }
 precmd_functions+=(set_term_title)
-
-# Set up helper programs
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[ -x /usr/bin/zoxide ] && eval "$(zoxide init zsh)" 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
