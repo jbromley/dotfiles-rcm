@@ -43,7 +43,7 @@ fi
 if [ "$(uname)" = "Darwin" ]; then
     fzf_dir=/usr/local/opt/fzf/shell
 else
-    fzf_dir=/usr/share/doc/fzf/examples
+    fzf_dir=${HOME}/.fzf/shell
 fi
 source ${fzf_dir}/completion.zsh
 source ${fzf_dir}/key-bindings.zsh
@@ -67,7 +67,7 @@ source ${plugin_dir}/zsh-autosuggestions/zsh-autosuggestions.zsh
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#606060"
 
 # Change directories with z
-source ${plugin_dir}/zsh-z/zsh-z.plugin.zsh
+# source ${plugin_dir}/zsh-z/zsh-z.plugin.zsh
 
 # Powerlevel10k prompt
 source ${plugin_dir}/powerlevel10k/powerlevel10k.zsh-theme
@@ -134,5 +134,10 @@ function set_term_title() {
 }
 precmd_functions+=(set_term_title)
 
+# Set up helper programs
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -x /usr/bin/zoxide ] && eval "$(zoxide init zsh)" 
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
