@@ -33,10 +33,10 @@ setopt HIST_VERIFY
 # Aliases
 [ -f ${HOME}/.aliases ] && source ${HOME}/.aliases
 
-# RTX
-rtx_executable=/usr/local/bin/rtx
-if [ -x ${rtx_executable} ]; then
-  eval "$(${rtx_executable} activate)"
+# Mise en place
+mise_executable=${HOME}/.local/bin/mise
+if [ -x ${mise_executable} ]; then
+  eval "$(${mise_executable} activate zsh)"
 fi
 
 # Fzf
