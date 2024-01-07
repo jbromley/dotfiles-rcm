@@ -235,13 +235,18 @@ If the new path's directories does not exist, create them."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(blink-cursor-mode nil)
+ '(column-number-mode t)
  '(custom-safe-themes
    '("603a831e0f2e466480cdc633ba37a0b1ae3c3e9a4e90183833bc4def3421a961" default))
- '(package-selected-packages '(elixir-mode racket-mode dracula-theme which-key)))
+ '(display-time-mode t)
+ '(package-selected-packages
+   '(avy cape compat consult corfu corfu-terminal dash embark embark-consult evil git-commit json-mode kind-icon magit magit-section marginalia orderless popon sly svg-lib transient vertico wgrep with-editor yaml-mode elixir-mode racket-mode dracula-theme which-key))
+ '(tool-bar-mode nil))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:family "JetBrainsMono Nerd Font" :foundry "JB" :slant normal :weight regular :height 113 :width normal)))))
