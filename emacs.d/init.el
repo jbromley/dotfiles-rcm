@@ -71,11 +71,11 @@
 (defun bedrock--backup-file-name (fpath)
   "Return a new file path of a given file path.
 If the new path's directories does not exist, create them."
-  (let* ((backupRootDir "~/.emacs.d/emacs-backup/")
-         (filePath (replace-regexp-in-string "[A-Za-z]:" "" fpath )) ; remove Windows driver letter in path
-         (backupFilePath (replace-regexp-in-string "//" "/" (concat backupRootDir filePath "~") )))
-    (make-directory (file-name-directory backupFilePath) (file-name-directory backupFilePath))
-    backupFilePath))
+  (let* ((backup-root-dir "~/.emacs.d/emacs-backup/")
+         (file-path (replace-regexp-in-string "[A-Za-z]:" "" fpath )) ; remove Windows driver letter in path
+         (backup-file-path (replace-regexp-in-string "//" "/" (concat backup-root-dir file-path "~") )))
+    (make-directory (file-name-directory backup-file-path) (file-name-directory backup-file-path))
+    backup-file-path))
 (setq make-backup-file-name-function 'bedrock--backup-file-name)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
