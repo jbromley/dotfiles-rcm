@@ -117,8 +117,7 @@ if [ "$(uname)" = "Darwin" ]; then
 else
     fzf_dir=${HOME}/.fzf/shell
 fi
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source ${fzf_dir}/completion.zsh
+[[ $- == *i* ]] && source ${fzf_dir}/completion.zsh 2> /dev/null
 source ${fzf_dir}/key-bindings.zsh
 bindkey -s '^V' 'nvim $(fzf --preview "bat --color always {}");^M'
 bindkey -s '^W' 'fzf --preview="bat --color always {}" --bind shift-up:preview-page-up,shift-down:preview-page-down;^M'
