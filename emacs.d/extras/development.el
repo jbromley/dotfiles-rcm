@@ -1,31 +1,21 @@
-;;; Emacs Bedrock
-;;;
-;;; Extra config: Development tools
+;;; development.el - configure development tools for Emacs Bedrock -*- lexical-binding: t; -*-
 
-;;; Usage: Append or require this file from init.el for some software
-;;; development-focused packages.
-;;;
-;;; It is **STRONGLY** recommended that you use the base.el config if you want to
-;;; use Eglot. Lots of completion things will work better.
-;;;
-;;; This will try to use tree-sitter modes for many languages. Please run
-;;;
-;;;   M-x treesit-install-language-grammar
-;;;
-;;; Before trying to use a treesit mode.
+;;; Commentary:
 
-;;; Contents:
-;;;
-;;;  - Built-in config for developers
-;;;  - Version Control
-;;;  - Common file types
-;;;  - Eglot, the built-in LSP client for Emacs
+;; Contents:
+;;
+;;  - Built-in config for developers
+;;  - Version Control
+;;  - Common file types
+;;  - Eglot, the built-in LSP client for Emacs
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;
-;;;   Built-in config for developers
-;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Code:
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;   Built-in config for developers
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package emacs
   :config
@@ -48,22 +38,22 @@
   ;; Auto parenthesis matching
   ((prog-mode . electric-pair-mode)))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;
-;;;   Version Control
-;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;   Version Control
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Magit: best Git client to ever exist
 (use-package magit
   :ensure t
   :bind (("C-x g" . magit-status)))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;
-;;;   Set exec-path
-;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;   Set exec-path
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (let ((mise-dir (expand-file-name "~/.local/share/mise/installs/")))
   (when (file-directory-p mise-dir)
@@ -71,19 +61,21 @@
 			   "erlang/25.3.2.5"
 			   "gleam/0.32.4"
 			   "node/18.18.2"
-			   "racket/8.11.1"
 			   "sbcl/2.3.11")))
       (dolist (dir mise-bin-dirs)
 	(add-to-list 'exec-path (concat mise-dir dir "/bin"))))))
 
+(when (eq system-type 'gnu/linux)
+  (add-to-list 'exec-path "/opt/elixir-ls"))
+
 (when (eq system-type 'darwin)
   (add-to-list 'exec-path "Applications/Racket v8.11.1/bin"))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;
-;;;   Common file types
-;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;   Common file types
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package markdown-mode
   :hook ((markdown-mode . visual-line-mode)))
@@ -149,13 +141,14 @@
 
   ;; Configure hooks to automatically turn-on eglot for selected modes
   :hook
-  (((c-mode c++-mode python-mode elixir-mode racket-mode gleam-ts-mode) . eglot-ensure))
+  (((c-mode c++-mode python-mode elixir-mode gleam-ts-mode racket-mode) . eglot-ensure))
   :custom
   (eglot-send-changes-idle-time 0.1)
 
   :config
   (fset #'jsonrpc--log-event #'ignore)  ; massive perf boost---don't log every event
   ;; Sometimes you need to tell Eglot where to find the language server
-  ; (add-to-list 'eglot-server-programs
-  ;              '(haskell-mode . ("haskell-language-server-wrapper" "--lsp")))
-  )
+  ; (add-to-list 'eglot-server-programs '(haskell-mode . ("haskell-language-server-wrapper" "--lsp")))
+  ; (add-to-list 'eglot-server-programs '(elixir-mode . ("/opt/elixir-ls/language_server.sh"))))
+
+(provide 'development)
