@@ -108,7 +108,7 @@
 (use-package sly
   :init
   (setq sly-lisp-implementations
-	'((sbcl ("sbcl" "--core" "/usr/local/bin/sbcl-sly.core") :coding-system utf-8-unix)))
+	'((sbcl ("sbcl" "--core" "/opt/sbcl/sbcl-sly.core") :coding-system utf-8-unix)))
   :ensure t)
 
 (use-package ligature
