@@ -99,7 +99,7 @@
 
 (use-package gleam-ts-mode
   :ensure nil 
-  :load-path "~/.config/emacs/packages/gleam-mode/"
+  :load-path "~/.emacs.d/packages/gleam-mode/"
   :commands (gleam-ts-mode)
   :bind ("C-c g f" . gleam-format)
   :init (add-to-list 'auto-mode-alist '("\\.gleam$" . gleam-ts-mode))
@@ -116,7 +116,7 @@
   :ensure t)
 
 (use-package ligature
-  :load-path "~/.config/emacs/packages/ligature.el"
+  :load-path "~/.emacs.d/packages/ligature.el"
   :config
   ;; Enable all JetBrains Mono ligatures in programming modes
   (ligature-set-ligatures 'prog-mode '("-|" "-~" "---" "-<<" "-<" "--" "->" "->>" "-->" "///" "/=" "/=="
