@@ -124,7 +124,7 @@ bindkey -s '^V' 'nvim $(fzf --preview "bat --color always {}");^M'
 bindkey -s '^W' 'fzf --preview="bat --color always {}" --bind shift-up:preview-page-up,shift-down:preview-page-down;^M'
 
 # zoxide
-[ -x /usr/bin/zoxide ] && eval "$(zoxide init zsh)" 
+[ -x /usr/bin/zoxide ] || [ -x /usr/local/bin/zoxide ] && eval "$(zoxide init zsh)" 
 
 # Dircolors
 [ -f ${HOME}/.dircolors ] && eval "$(dircolors -b ${HOME}/.dircolors)"
