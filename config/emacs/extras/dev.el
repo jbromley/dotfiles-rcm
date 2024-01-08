@@ -95,7 +95,7 @@
 
 (use-package gleam-ts-mode
   :ensure nil 
-  :load-path "~/.emacs.d/packages/gleam-mode/"
+  :load-path "~/.config/emacs/packages/gleam-mode/"
   :commands (gleam-ts-mode)
   :bind ("C-c g f" . gleam-format)
   :init (add-to-list 'auto-mode-alist '("\\.gleam$" . gleam-ts-mode))
@@ -112,7 +112,7 @@
   :ensure t)
 
 (use-package ligature
-  :load-path "~/.emacs.d/packages/ligature.el"
+  :load-path "~/.config/emacs/packages/ligature.el"
   :config
   ;; Enable all JetBrains Mono ligatures in programming modes
   (ligature-set-ligatures 'prog-mode '("-|" "-~" "---" "-<<" "-<" "--" "->" "->>" "-->" "///" "/=" "/=="
@@ -145,7 +145,7 @@
 
   ;; Configure hooks to automatically turn-on eglot for selected modes
   :hook
-  (((c-mode c++-mode python-mode elixir-mode racket-mode gleam-ts-mode) . eglot))
+  (((c-mode c++-mode python-mode elixir-mode racket-mode gleam-ts-mode) . eglot-ensure))
   :custom
   (eglot-send-changes-idle-time 0.1)
 
