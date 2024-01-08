@@ -45,6 +45,10 @@
 ;; If you want to turn off the welcome screen, uncomment this
 ;(setq inhibit-splash-screen t)
 
+(use-package server
+  :config (when (not (server-running-p))
+	    (server-start)))
+
 (setq initial-major-mode 'fundamental-mode)  ; default mode for the *scratch* buffer
 (setq display-time-default-load-average nil) ; this information is useless for most
 
