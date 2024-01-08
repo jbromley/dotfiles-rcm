@@ -45,9 +45,14 @@
 ;; If you want to turn off the welcome screen, uncomment this
 ;(setq inhibit-splash-screen t)
 
+;; Start the Emacs server if it is not running.
 (use-package server
   :config (when (not (server-running-p))
 	    (server-start)))
+
+;; Add extras configuration directory to load-path.
+(add-to-list 'load-path
+	     (file-name-concat (expand-file-name user-emacs-directory) "extras"))
 
 (setq initial-major-mode 'fundamental-mode)  ; default mode for the *scratch* buffer
 (setq display-time-default-load-average nil) ; this information is useless for most
@@ -109,7 +114,7 @@ If the new path's directories does not exist, create them."
 (setq enable-recursive-minibuffers t)                ; Use the minibuffer whilst in the minibuffer
 (setq completion-cycle-threshold 1)                  ; TAB cycles candidates
 (setq completions-detailed t)                        ; Show annotations
-(setq tab-always-indent 'complete)                   ; When I hit TAB, try to complete, otherwise, indent
+(setq tab-always-indpent 'complete)                   ; When I hit TAB, try to complete, otherwise, indent
 (setq completion-styles '(basic initials substring)) ; Different styles to match input to candidates
 
 (setq completion-auto-help 'always)                  ; Open completion always; `lazy' another option
@@ -207,10 +212,12 @@ If the new path's directories does not exist, create them."
 
 ;; UI/UX enhancements mostly focused on minibuffer and autocompletion interfaces
 ;; These ones are *strongly* recommended!
-(load-file (expand-file-name "extras/base.el" user-emacs-directory))
+; (load-file (expand-file-name "extras/base.el" user-emacs-directory))
+(require 'base)
 
 ;; Packages for software development
-(load-file (expand-file-name "extras/dev.el" user-emacs-directory))
+; (load-file (expand-file-name "extras/dev.el" user-emacs-directory))
+(require 'development)
 
 ;; Vim-bindings in Emacs (evil-mode configuration)
 ;; (load-file (expand-file-name "extras/vim-like.el" user-emacs-directory))
