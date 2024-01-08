@@ -61,19 +61,23 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
-;;;   Set exec-path for mise
+;;;   Set exec-path
 ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(let* ((mise-dir (expand-file-name "~/.local/share/mise/installs/"))
-       (mise-bin-dirs '("elixir/1.15.7-otp-25"
-			"erlang/25.3.2.5"
-			"gleam/0.32.4"
-			"node/18.18.2"
-			"racket/8.11.1"
-			"sbcl/2.3.11")))
-  (dolist (dir mise-bin-dirs)
-    (add-to-list 'exec-path (concat mise-dir dir "/bin"))))
+(let ((mise-dir (expand-file-name "~/.local/share/mise/installs/")))
+  (when (file-directory-p mise-dir)
+    (let ((mise-bin-dirs '("elixir/1.15.7-otp-25"
+			   "erlang/25.3.2.5"
+			   "gleam/0.32.4"
+			   "node/18.18.2"
+			   "racket/8.11.1"
+			   "sbcl/2.3.11")))
+      (dolist (dir mise-bin-dirs)
+	(add-to-list 'exec-path (concat mise-dir dir "/bin"))))))
+
+(when (eq system-type 'darwin)
+  (add-to-list 'exec-path "Applications/Racket v8.11.1/bin"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
