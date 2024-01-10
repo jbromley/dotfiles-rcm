@@ -101,6 +101,7 @@ If the new path's directories does not exist, create them."
 (use-package which-key
   :ensure t
   :config
+  (setq which-key-idle-delay 0.25)
   (which-key-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
