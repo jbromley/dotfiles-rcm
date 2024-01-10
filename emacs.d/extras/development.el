@@ -126,6 +126,9 @@
   ;; per mode with `ligature-mode'.
   (global-ligature-mode t))
 
+(use-package vterm
+  :load-path "~/.emacs.d/packages/emacs-libvterm")
+
 ;; Emacs ships with a lot of popular programming language modes. If it's not
 ;; built in, you're almost certain to find a mode for the language you're
 ;; looking for with a quick Internet search.
