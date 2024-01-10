@@ -1,44 +1,47 @@
-;;; Emacs Bedrock
-;;;
-;;; Extra config: Org-mode starter config
+;;; org.el - Org-mode starter config    -*- lexical-binding: t; -*-
 
-;;; Usage: Append or require this file from init.el for some software
-;;; development-focused packages.
-;;;
-;;; Org-mode is a fantastically powerful package. It does a lot of things, which
-;;; makes it a little difficult to understand at first.
-;;;
-;;; We will configure Org-mode in phases. Work with each phase as you are
-;;; comfortable.
-;;;
-;;; YOU NEED TO CONFIGURE SOME VARIABLES! The most important variable is the
-;;; `org-directory', which tells org-mode where to look to find your agenda
-;;; files.
+;; Package-Requires: ((org "9.6"))
+;;; Commentary: 
 
-;;; See "org-intro.txt" for a high-level overview.
+;; Usage: Append or require this file from init.el for some software
+;; development-focused packages.
+;;
+;; Org-mode is a fantastically powerful package. It does a lot of things, which
+;; makes it a little difficult to understand at first.
+;;
+;; We will configure Org-mode in phases. Work with each phase as you are
+;; comfortable.
+;;
+;; YOU NEED TO CONFIGURE SOME VARIABLES! The most important variable is the
+;; `org-directory', which tells org-mode where to look to find your agenda
+;; files.
 
-;;; Contents:
-;;;
-;;;  - Critical variables
-;;;  - Phase 1: editing and exporting files
-;;;  - Phase 2: todos, agenda generation, and task tracking
-;;;  - Phase 3: extensions (org-roam, etc.)
+;; See "org-intro.txt" for a high-level overview.
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;
-;;;   Critical variables
-;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Contents:
+;;
+;;  - Critical variables
+;;  - Phase 1: editing and exporting files
+;;  - Phase 2: todos, agenda generation, and task tracking
+;;  - Phase 3: extensions (org-roam, etc.)
 
-;;; These variables need to be set for Org-mode's full power to be unlocked!
-;;;
-;;; You can read the documentation for any variable with `C-h v'. If you have
-;;; Consult configured (see the `base.el' file) then it should help you find
-;;; what you're looking for.
+;;; Code:
 
-;;; Phase 1 variables
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;   Critical variables
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;; Phase 2 variables
+;; These variables need to be set for Org-mode's full power to be unlocked!
+;;
+;; You can read the documentation for any variable with `C-h v'. If you have
+;; Consult configured (see the `base.el' file) then it should help you find
+;; what you're looking for.
+
+;; Phase 1 variables
+
+;; Phase 2 variables
 
 ;; Agenda variables
 (setq org-directory "~/Documents/org/") ; Non-absolute paths for agenda and
@@ -83,11 +86,11 @@
 (setq org-link-abbrev-alist
       '(("family_search" . "https://www.familysearch.org/tree/person/details/%s")))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;
-;;;   Phase 1: editing and exporting files
-;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;   Phase 1: editing and exporting files
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package org
   :hook ((org-mode . visual-line-mode)  ; wrap lines at word breaks
@@ -107,11 +110,11 @@
   (setq org-export-with-smart-quotes t)
   )
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;
-;;;   Phase 2: todos, agenda generation, and task tracking
-;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;   Phase 2: todos, agenda generation, and task tracking
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Yes, you can have multiple use-package declarations. It's best if their
 ;; configs don't overlap. Once you've reached Phase 2, I'd recommend merging the
@@ -147,11 +150,11 @@
             ("w" "Work" agenda ""
              ((org-agenda-files '("work.org")))))))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;
-;;;   Phase 3: extensions (org-roam, etc.)
-;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;   Phase 3: extensions (org-roam, etc.)
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package org-roam
   :ensure t
@@ -174,3 +177,4 @@
 ;        org-roam-ui-follow t
 ;        org-roam-ui-update-on-save t
 ;        org-roam-ui-open-on-start t))
+(provide 'org)

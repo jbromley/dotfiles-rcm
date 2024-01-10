@@ -1,18 +1,18 @@
-;;; Emacs Bedrock
-;;;
-;;; Extra config: Vim emulation
+;;; vim-like.el - configure Vim key bindings for Emacs Bedrock -*- lexical-binding: t; -*-
 
-;;; Usage: Append or require this file from init.el for bindings in Emacs.
+;;; Commentary:
 
-;;; Contents:
-;;;
-;;;  - Core Packages
+;; Contents:
+;;
+;;  - Core Packages
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;
-;;;   Core Packages
-;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Code
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;   Core Packages
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Evil: vi emulation
 (use-package evil
@@ -30,3 +30,5 @@
 
   ;; Configuring initial major mode for some modes
   (evil-set-initial-state 'vterm-mode 'emacs))
+
+(provide 'vim-like)
