@@ -227,6 +227,7 @@ If the new path's directories does not exist, create them."
 
 ;; Vim-bindings in Emacs (evil-mode configuration)
 ;; (load-file (expand-file-name "extras/vim-like.el" user-emacs-directory))
+(require 'vim-like)
 
 ;; Org-mode configuration
 ;; WARNING: need to customize things inside the elisp file before use! See
