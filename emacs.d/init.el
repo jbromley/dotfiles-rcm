@@ -1,4 +1,4 @@
-;;;  ________                                                _______                 __                            __
+/;;;  ________                                                _______                 __                            __
 ;;; /        |                                              /       \               /  |                          /  |
 ;;; $$$$$$$$/ _____  ____   ______   _______  _______       $$$$$$$  | ______   ____$$ | ______   ______   _______$$ |   __
 ;;; $$ |__   /     \/    \ /      \ /       |/       |      $$ |__$$ |/      \ /    $$ |/      \ /      \ /       $$ |  /  |
@@ -39,8 +39,8 @@
 ;; You can simply uncomment the following if you'd like to get started with
 ;; MELPA packages quickly:
 ;;
-;; (with-eval-after-load 'package
-;;   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t))
+(with-eval-after-load 'package
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t))
 
 ;; If you want to turn off the welcome screen, uncomment this
 ;(setq inhibit-splash-screen t)
@@ -130,7 +130,7 @@ If the new path's directories does not exist, create them."
 
 ;; For a fancier built-in completion option, try ido-mode or fido-mode. See also
 ;; the file extras/base.el
-;(fido-vertical-mode)
+(fido-vertical-mode)
 ;(setq icomplete-delay-completions-threshold 4000)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -198,6 +198,9 @@ If the new path's directories does not exist, create them."
 ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(use-package spacemacs-theme
+  :ensure t)
+
 (use-package dracula-theme
   :ensure t
   :config
@@ -218,21 +221,19 @@ If the new path's directories does not exist, create them."
 
 ;; UI/UX enhancements mostly focused on minibuffer and autocompletion interfaces
 ;; These ones are *strongly* recommended!
-; (load-file (expand-file-name "extras/base.el" user-emacs-directory))
 (require 'base)
 
 ;; Packages for software development
-; (load-file (expand-file-name "extras/dev.el" user-emacs-directory))
 (require 'development)
 
 ;; Vim-bindings in Emacs (evil-mode configuration)
 ;; (load-file (expand-file-name "extras/vim-like.el" user-emacs-directory))
-(require 'vim-like)
+;; (require 'vim-like)
 
 ;; Org-mode configuration
 ;; WARNING: need to customize things inside the elisp file before use! See
 ;; the file extras/org-intro.txt for help.
-;(load-file (expand-file-name "extras/org.el" user-emacs-directory))
+(require 'org-config)
 
 ;; Email configuration in Emacs
 ;; WARNING: needs the `mu' program installed; see the elisp file for more
@@ -256,7 +257,7 @@ If the new path's directories does not exist, create them."
  '(blink-cursor-mode nil)
  '(column-number-mode t)
  '(custom-safe-themes
-   '("603a831e0f2e466480cdc633ba37a0b1ae3c3e9a4e90183833bc4def3421a961" default))
+   '("7fd8b914e340283c189980cd1883dbdef67080ad1a3a9cc3df864ca53bdc89cf" "603a831e0f2e466480cdc633ba37a0b1ae3c3e9a4e90183833bc4def3421a961" default))
  '(display-time-mode t)
  '(package-selected-packages
    '(avy cape compat consult corfu corfu-terminal dash embark embark-consult evil git-commit json-mode kind-icon magit magit-section marginalia orderless popon sly svg-lib transient vertico wgrep with-editor yaml-mode elixir-mode racket-mode dracula-theme which-key))
