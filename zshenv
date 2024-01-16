@@ -47,7 +47,7 @@ typeset -Ux PATH path
 path=(${HOME}/.local/bin $path)
 
 # If these paths exist, add them to PATH.
-extra_paths=(/usr/local/sbin ~/.cargo/bin /usr/lib/llvm-15/bin /usr/local/cuda/bin /Applications/Racket\ v8.11.1/bin)
+extra_paths=(/usr/local/sbin ~/.fzf/bin ~/.cargo/bin /usr/lib/llvm-15/bin /usr/local/cuda/bin /Applications/Racket\ v8.11.1/bin)
 [ -n "${GOBIN}" ] && extra_paths+=("${GOBIN}")
 
 for extra_path in $extra_paths; do
