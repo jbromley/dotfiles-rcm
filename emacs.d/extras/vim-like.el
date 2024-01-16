@@ -28,6 +28,12 @@
   :config
   (evil-mode)
 
+  (let ((mode-state-list '((sly-db-mode . emacs)
+			   (mrepl-mode . emacs)
+			   (vterm-mode . emacs))))
+    (pcase-dolist (`(,mode . ,state) mode-state-list)
+      (evil-set-initial-state mode state)))
+  
   ;; Configuring initial major mode for some modes
   (evil-set-initial-state 'vterm-mode 'emacs))
 

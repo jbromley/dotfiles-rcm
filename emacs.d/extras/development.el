@@ -108,7 +108,8 @@
   :ensure t)
 
 (use-package ligature
-  :load-path "~/.emacs.d/packages/ligature.el"
+  :ensure t
+  ;; :load-path "~/.emacs.d/packages/ligature.el"
   :config
   ;; Enable all JetBrains Mono ligatures in programming modes
   (ligature-set-ligatures 'prog-mode '("-|" "-~" "---" "-<<" "-<" "--" "->" "->>" "-->" "///" "/=" "/=="
@@ -127,7 +128,8 @@
   (global-ligature-mode t))
 
 (use-package vterm
-  :load-path "~/.emacs.d/packages/emacs-libvterm")
+  :ensure t)
+  ;; :load-path "~/.emacs.d/packages/emacs-libvterm")
 
 ;; Emacs ships with a lot of popular programming language modes. If it's not
 ;; built in, you're almost certain to find a mode for the language you're
@@ -147,7 +149,11 @@
   (((c-mode c++-mode python-mode elixir-mode gleam-ts-mode racket-mode) . eglot-ensure))
   :custom
   (eglot-send-changes-idle-time 0.1)
-
+  :bind-keymap
+  ("C-c e" . eglot-mode-map)
+  :bind
+  (:map eglot-mode-map
+	("f" . eglot-find-declaration))
   :config
   (fset #'jsonrpc--log-event #'ignore)  ; massive perf boost---don't log every event
   ;; Sometimes you need to tell Eglot where to find the language server

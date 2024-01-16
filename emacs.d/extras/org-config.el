@@ -1,6 +1,5 @@
-;;; org.el - Org-mode starter config    -*- lexical-binding: t; -*-
+;;; org-config.el - Org-mode starter config    -*- lexical-binding: t; -*-
 
-;; Package-Requires: ((org "9.6"))
 ;;; Commentary: 
 
 ;; Usage: Append or require this file from init.el for some software
@@ -177,4 +176,4 @@
 ;        org-roam-ui-follow t
 ;        org-roam-ui-update-on-save t
 ;        org-roam-ui-open-on-start t))
-(provide 'org)
+(provide 'org-config)
