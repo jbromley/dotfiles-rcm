@@ -18,11 +18,11 @@ _yazi() {
 '--cwd-file=[Write the cwd on exit to this file]:CWD_FILE:_files' \
 '--chooser-file=[Write the selected files on open emitted by the chooser mode]:CHOOSER_FILE:_files' \
 '--clear-cache[Clear the cache directory]' \
-'-h[Print help]' \
-'--help[Print help]' \
 '-V[Print version]' \
 '--version[Print version]' \
-'::cwd -- Set the current working directory:_files' \
+'-h[Print help]' \
+'--help[Print help]' \
+'::entry -- Set the current working entry:_files' \
 && ret=0
 }
 
