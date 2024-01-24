@@ -152,8 +152,7 @@
   :bind-keymap
   ("C-c e" . eglot-mode-map)
   :bind
-  (:map eglot-mode-map
-	("f" . eglot-find-declaration))
+  (:map eglot-mode-map ("C-c e f" . eglot-find-declaration))
   :config
   (fset #'jsonrpc--log-event #'ignore)  ; massive perf boost---don't log every event
   ;; Sometimes you need to tell Eglot where to find the language server
