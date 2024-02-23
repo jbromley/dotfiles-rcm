@@ -24,4 +24,28 @@ return {
       },
     },
   },
+  {
+    "nvim-neorg/neorg",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    build = ":Neorg sync-parsers",
+    -- tag = "*",
+    lazy = true,
+    ft = "norg",
+    cmd = "Neorg",
+    config = function()
+      require("neorg").setup({
+        load = {
+          ["core.defaults"] = {},
+          ["core.concealer"] = {},
+          ["core.dirman"] = {
+            config = {
+              workspaces = {
+                notes = "~/Documents/notes",
+              },
+            },
+          },
+        },
+      })
+    end,
+  },
 }
