@@ -10,7 +10,7 @@ vim.g.neovide_window_blurred = true
 
 -- Some LSPs use node. Make sure it is in the path.
 if vim.fn.executable("node") == 0 then
-  vim.env.PATH = vim.env.PATH .. ":/home/jay/.local/share/mise/installs/node/20/bin"
+  vim.env.PATH = vim.env.PATH .. ":" .. vim.env.HOME .. "/.local/share/mise/installs/node/20/bin"
 end
 
 -- Set the font for GUI clients.
