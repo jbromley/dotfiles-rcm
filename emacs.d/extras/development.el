@@ -19,21 +19,34 @@
 
 (use-package emacs
   :config
-  ;; Treesitter config
+  ;; Set the languages we will use for tree-sitter
+  (setq treesit-language-source-alist
+   '((bash "https://github.com/tree-sitter/tree-sitter-bash")
+     (cmake "https://github.com/uyha/tree-sitter-cmake")
+     (elisp "https://github.com/Wilfred/tree-sitter-elisp")
+     (elixir "https://github.com/elixir-lang/tree-sitter-elixir")
+     (erlang "https://github.com/WhatsApp/tree-sitter-erlang")
+     (html "https://github.com/tree-sitter/tree-sitter-html")
+     (json "https://github.com/tree-sitter/tree-sitter-json")
+     (make "https://github.com/alemuller/tree-sitter-make")
+     (markdown "https://github.com/ikatyang/tree-sitter-markdown")
+     (python "https://github.com/tree-sitter/tree-sitter-python")
+     (toml "https://github.com/tree-sitter/tree-sitter-toml")
+     (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
 
   ;; Tell Emacs to prefer the treesitter mode
   ;; You'll want to run the command `M-x treesit-install-language-grammar' before editing.
   (setq major-mode-remap-alist
-        '((yaml-mode . yaml-ts-mode)
-	  (toml-mode . toml-ts-mode)
-          (bash-mode . bash-ts-mode)
-          (js2-mode . js-ts-mode)
-          (typescript-mode . typescript-ts-mode)
-          (json-mode . json-ts-mode)
-          (css-mode . css-ts-mode)
-          (python-mode . python-ts-mode)
+        '((bash-mode . bash-ts-mode)
+	  (cmake-mode . cmake-ts-mode)
 	  (c-mode . c-ts-mode)
-	  (cpp-mode . cpp-ts-mode)))
+	  (cpp-mode . cpp-ts-mode)
+	  (elixir-mode . elixir-ts-mode)
+	  ;; (erlang-mode . erlang-ts-mode)
+	  (json-mode . json-ts-mode)
+          (python-mode . python-ts-mode)
+	  (toml-mode . toml-ts-mode)
+	  (yaml-mode . yaml-ts-mode)))
   :hook
   ;; Auto parenthesis matching
   ((prog-mode . electric-pair-mode)))
@@ -60,7 +73,7 @@
     (let ((mise-bin-dirs '("elixir/1.15.7-otp-25"
 			   "erlang/25.3.2.5"
 			   "gleam/0.32.4"
-			   "node/18.18.2"
+			   "node/20"
 			   "sbcl/2.3.11")))
       (dolist (dir mise-bin-dirs)
 	(add-to-list 'exec-path (concat mise-dir dir "/bin"))))))
@@ -86,8 +99,15 @@
 (use-package json-mode
   :ensure t)
 
-(use-package elixir-mode
+;; (use-package elixir-mode
+;;   :ensure t)
+
+(use-package elixir-ts-mode
   :ensure t)
+
+(use-package erlang
+  :ensure t
+  :init (require 'erlang-start))
 
 (use-package gleam-ts-mode
   :ensure nil 
