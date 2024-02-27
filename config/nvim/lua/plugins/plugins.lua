@@ -36,7 +36,7 @@ return {
       require("neorg").setup({
         load = {
           ["core.defaults"] = {},
-          ["core.concealer"] = {},
+          ["core.concealer"] = { config = { icons = { todo = { undone = { icon = " " } } } } },
           ["core.dirman"] = {
             config = {
               workspaces = {
