@@ -11,10 +11,12 @@ export GIT_EDITOR="nvim"
 
 # Zsh environment variables
 export HISTFILE="${HOME}/.zhistory"
-export HISTSIZE=16384
-export SAVEHIST=16384
+export HISTSIZE=65536
+export SAVEHIST=65536
+export HISTORY_IGNORE="(ls|cd|pwd|exit|cd)*"
 
-# Fzf prompt customizations
+# Fzf customizations
+export FZF_DEFAULT_COMMAND='ag --hidden -g ""'
 export FZF_CTRL_T_OPTS="--prompt 'file> '"
 export FZF_ALT_C_OPTS="--prompt 'cd> '"
 export FZF_CTRL_R_OPTS="--prompt 'history> '"
