@@ -11,9 +11,6 @@ return {
     "benknoble/vim-racket",
   },
   {
-    "Olical/conjure",
-  },
-  {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
