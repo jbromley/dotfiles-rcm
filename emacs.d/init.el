@@ -54,7 +54,7 @@
 (add-to-list 'load-path
 	     (file-name-concat (expand-file-name user-emacs-directory) "extras"))
 
-(setq initial-major-mode 'fundamental-mode)  ; default mode for the *scratch* buffer
+;; (setq initial-major-mode 'fundamental-mode)  ; default mode for the *scratch* buffer
 (setq display-time-default-load-average nil) ; this information is useless for most
 
 ;; Automatically reread from disk if the underlying file changes
@@ -112,7 +112,7 @@ If the new path's directories does not exist, create them."
 
 ;; For help, see: https://www.masteringemacs.org/article/understanding-minibuffer-completion
 
-(setq enable-recursive-minibuffers t)                ; Use the minibuffer whilst in the minibuffer
+(setq enable-recursive-minibuffers nil)                ; Use the minibuffer whilst in the minibuffer
 (setq completion-cycle-threshold 1)                  ; TAB cycles candidates
 (setq completions-detailed t)                        ; Show annotations
 (setq tab-always-indpent 'complete)                   ; When I hit TAB, try to complete, otherwise, indent
@@ -130,7 +130,7 @@ If the new path's directories does not exist, create them."
 
 ;; For a fancier built-in completion option, try ido-mode or fido-mode. See also
 ;; the file extras/base.el
-(fido-vertical-mode)
+;(fido-vertical-mode)
 ;(setq icomplete-delay-completions-threshold 4000)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -257,10 +257,16 @@ If the new path's directories does not exist, create them."
  '(blink-cursor-mode nil)
  '(column-number-mode t)
  '(custom-safe-themes
-   '("7fd8b914e340283c189980cd1883dbdef67080ad1a3a9cc3df864ca53bdc89cf" "603a831e0f2e466480cdc633ba37a0b1ae3c3e9a4e90183833bc4def3421a961" default))
+   '("7fd8b914e340283c189980cd1883dbdef67080ad1a3a9cc3df864ca53bdc89cf"
+     "603a831e0f2e466480cdc633ba37a0b1ae3c3e9a4e90183833bc4def3421a961"
+     default))
  '(display-time-mode t)
  '(package-selected-packages
-   '(avy cape compat consult corfu corfu-terminal dash embark embark-consult evil git-commit json-mode kind-icon magit magit-section marginalia orderless popon sly svg-lib transient vertico wgrep with-editor yaml-mode elixir-mode racket-mode dracula-theme which-key))
+   '(avy cape compat consult corfu corfu-terminal dash dracula-theme
+	 elixir-mode embark embark-consult evil exec-path-from-shell
+	 git-commit json-mode kind-icon magit magit-section marginalia
+	 orderless popon racket-mode rustic sly svg-lib transient
+	 vertico wgrep which-key with-editor yaml-mode))
  '(tool-bar-mode nil))
 
 (custom-set-faces

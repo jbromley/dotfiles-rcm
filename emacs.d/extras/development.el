@@ -70,15 +70,14 @@
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(let ((mise-dir (expand-file-name "~/.local/share/mise/installs/")))
-  (when (file-directory-p mise-dir)
-    (let ((mise-bin-dirs '("elixir/1.15.7-otp-25"
-			   "erlang/25.3.2.5"
-			   "gleam/0.32.4"
-			   "node/20"
-			   "sbcl/2.3.11")))
-      (dolist (dir mise-bin-dirs)
-	(add-to-list 'exec-path (concat mise-dir dir "/bin"))))))
+;; If mise is in use, add all binary directories installed.
+(require 'seq)
+
+(let* ((mise-dir-regexp (expand-file-name "~/.local/share/mise/installs/[a-z0-9]+/[a-z0-9\\.\\-]+"))
+       (mise-dirs (seq-filter (lambda (f) (not (file-symlink-p f)))
+			     (file-expand-wildcards mise-dir-regexp t t))))
+  (dolist (dir mise-dirs)
+    (add-to-list 'exec-path (concat dir "/bin"))))
 
 (when (eq system-type 'gnu/linux)
   (add-to-list 'exec-path "/opt/elixir-ls"))
@@ -123,8 +122,13 @@
 (use-package racket-mode
   :ensure t)
 
-(use-package rust-mode
-  :ensure t)
+;; (use-package rust-mode
+;;   :ensure t)
+
+(use-package rustic
+  :mode ("\\.rs$" . rustic-mode)
+  :config (setq rustic-lsp-client 'eglot)
+  :custom (rustic-analyzer-command '("rustup" "run" "stable" "rust-analyzer")))
 
 (use-package sly
   :init
