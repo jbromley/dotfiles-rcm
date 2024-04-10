@@ -128,6 +128,7 @@ return {
 	font = wezterm.font("JetBrains Mono"),
 	font_size = 10.0,
 
+        tab_bar_at_bottom = true,
 	tab_max_width = 256,
 
 	window_decorations = "RESIZE",
