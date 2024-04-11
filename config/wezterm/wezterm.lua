@@ -104,7 +104,7 @@ local my_key_tables = {
 	},
 }
 
-wezterm.on("update-status", function(window, pane)
+wezterm.on("update-status", function(window, _)
 	local name = window:active_key_table()
 	if name then
 		name = name .. " "
@@ -114,6 +114,48 @@ wezterm.on("update-status", function(window, pane)
 		{ Text = name or "" },
 	}))
 end)
+
+local my_hyperlink_rules = {
+	-- Matches: a URL in parens: (URL)
+	{
+		regex = "\\((\\w+://\\S+)\\)",
+		format = "$1",
+		highlight = 1,
+	},
+	-- Matches: a URL in brackets: [URL]
+	{
+		regex = "\\[(\\w+://\\S+)\\]",
+		format = "$1",
+		highlight = 1,
+	},
+	-- Matches: a URL in curly braces: {URL}
+	{
+		regex = "\\{(\\w+://\\S+)\\}",
+		format = "$1",
+		highlight = 1,
+	},
+	-- Matches: a URL in angle brackets: <URL>
+	{
+		regex = "<(\\w+://\\S+)>",
+		format = "$1",
+		highlight = 1,
+	},
+	-- Then handle URLs not wrapped in brackets
+	{
+		-- Before
+		--regex = '\\b\\w+://\\S+[)/a-zA-Z0-9-]+',
+		--format = '$0',
+		-- After
+		regex = "[^(]\\b(\\w+://\\S+[)/a-zA-Z0-9-]+)",
+		format = "$1",
+		highlight = 1,
+	},
+	-- implicit mailto link
+	{
+		regex = "\\b\\w+@[\\w-]+(\\.[\\w-]+)+\\b",
+		format = "mailto:$0",
+	},
+}
 
 return {
 	term = "wezterm",
@@ -128,7 +170,7 @@ return {
 	font = wezterm.font("JetBrains Mono"),
 	font_size = 10.0,
 
-        tab_bar_at_bottom = true,
+	tab_bar_at_bottom = true,
 	tab_max_width = 256,
 
 	window_decorations = "RESIZE",
@@ -143,6 +185,8 @@ return {
 	leader = { key = "VoidSymbol", mods = "", timeout_milliseconds = 500 },
 	keys = my_keys,
 	key_tables = my_key_tables,
+
+	hyperlink_rules = my_hyperlink_rules,
 
 	ssh_domains = {
 		{
