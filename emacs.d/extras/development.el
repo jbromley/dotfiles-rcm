@@ -28,6 +28,7 @@
      (erlang "https://github.com/WhatsApp/tree-sitter-erlang")
      (html "https://github.com/tree-sitter/tree-sitter-html")
      (json "https://github.com/tree-sitter/tree-sitter-json")
+     (lua "https://github.com/tree-sitter-grammars/tree-sitter-lua")
      (make "https://github.com/alemuller/tree-sitter-make")
      (markdown "https://github.com/ikatyang/tree-sitter-markdown") 
      (python "https://github.com/tree-sitter/tree-sitter-python")
@@ -135,6 +136,13 @@
   (setq sly-lisp-implementations
 	'((sbcl ("sbcl" "--core" "/opt/sbcl/sbcl-sly.core") :coding-system utf-8-unix)))
   :ensure t)
+
+(use-package lua-mode
+  :mode ("\\.lua$" . lua-mode)
+  :ensure t
+  :init
+  (with-eval-after-load 'eglot
+    (add-to-list 'eglot-server-programs '(lua-ts-mode . ("lua-language-server")))))
 
 (use-package ligature
   :ensure t
