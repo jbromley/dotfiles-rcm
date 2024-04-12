@@ -115,7 +115,7 @@ If the new path's directories does not exist, create them."
 (setq enable-recursive-minibuffers nil)                ; Use the minibuffer whilst in the minibuffer
 (setq completion-cycle-threshold 1)                  ; TAB cycles candidates
 (setq completions-detailed t)                        ; Show annotations
-(setq tab-always-indpent 'complete)                   ; When I hit TAB, try to complete, otherwise, indent
+(setq tab-always-indent 'complete)                   ; When I hit TAB, try to complete, otherwise, indent
 (setq completion-styles '(basic initials substring)) ; Different styles to match input to candidates
 
 (setq completion-auto-help 'always)                  ; Open completion always; `lazy' another option
