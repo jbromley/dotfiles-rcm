@@ -1,6 +1,17 @@
 return {
   {
     "dracula/vim",
+    priority = 1000,
+    lazy = false,
+  },
+  {
+    "shaunsingh/solarized.nvim",
+    priority = 1000,
+    lazy = false,
+  },
+  {
+    "miikanissi/modus-themes.nvim",
+    priority = 1000,
     lazy = false,
   },
   {
@@ -48,7 +59,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "tokyonight",
+      colorscheme = "modus",
     },
   },
 }

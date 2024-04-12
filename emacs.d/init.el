@@ -202,13 +202,14 @@ If the new path's directories does not exist, create them."
   :ensure t)
 
 (use-package dracula-theme
-  :ensure t
-  :config
-  (load-theme 'dracula t nil))
+  :ensure t)
 
-;; (use-package emacs
-;;   :config
-;;   (load-theme 'modus-vivendi))          ; for light theme, use modus-operandi
+(use-package solarized-theme
+  :ensure t)
+
+(use-package emacs
+  :config
+  (load-theme 'modus-operandi))          ; for light theme, use modus-operandi
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
@@ -257,16 +258,23 @@ If the new path's directories does not exist, create them."
  '(blink-cursor-mode nil)
  '(column-number-mode t)
  '(custom-safe-themes
-   '("7fd8b914e340283c189980cd1883dbdef67080ad1a3a9cc3df864ca53bdc89cf"
+   '("1ea82e39d89b526e2266786886d1f0d3a3fa36c87480fad59d8fab3b03ef576e"
+     "0f76f9e0af168197f4798aba5c5ef18e07c926f4e7676b95f2a13771355ce850"
+     "bbb13492a15c3258f29c21d251da1e62f1abb8bbd492386a673dcfab474186af"
+     "4c56af497ddf0e30f65a7232a8ee21b3d62a8c332c6b268c81e9ea99b11da0d3"
+     "eab123a5ed21463c780e17fc44f9ffc3e501655b966729a2d5a2072832abd3ac"
+     "7fd8b914e340283c189980cd1883dbdef67080ad1a3a9cc3df864ca53bdc89cf"
      "603a831e0f2e466480cdc633ba37a0b1ae3c3e9a4e90183833bc4def3421a961"
-     default))
+     "524fa911b70d6b94d71585c9f0c5966fe85fb3a9ddd635362bfabd1a7981a307"))
  '(display-time-mode t)
  '(package-selected-packages
    '(avy cape compat consult corfu corfu-terminal dash dracula-theme
-	 elixir-mode embark embark-consult evil exec-path-from-shell
-	 git-commit json-mode kind-icon magit magit-section marginalia
-	 orderless popon racket-mode rustic sly svg-lib transient
-	 vertico wgrep which-key with-editor yaml-mode))
+	 elixir-mode elixir-ts-mode emacsql embark embark-consult
+	 erlang evil exec-path-from-shell git-commit json-mode
+	 kind-icon ligature lua-mode magit magit-section marginalia
+	 orderless org-roam popon racket-mode rustic sly
+	 solarized-theme spacemacs-theme svg-lib transient vertico
+	 vterm wgrep which-key with-editor yaml-mode yasnippet))
  '(tool-bar-mode nil))
 
 (custom-set-faces
@@ -274,4 +282,4 @@ If the new path's directories does not exist, create them."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "JetBrainsMono Nerd Font" :foundry "JB" :slant normal :weight regular :height 113 :width normal)))))
+ '(cursor ((t (:background "purple")))))

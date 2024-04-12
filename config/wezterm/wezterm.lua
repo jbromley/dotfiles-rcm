@@ -161,14 +161,16 @@ return {
 	term = "wezterm",
 	initial_cols = 120,
 	initial_rows = 50,
-	color_scheme = "Dracula (Official)",
+	-- color_scheme = "Dracula (Official)",
+	-- color_scheme = "Solarized Light (Gogh)",
+	color_scheme = "Modus-Operandi",
 
 	window_frame = {
 		font_size = 10.0,
 	},
 
 	font = wezterm.font("JetBrains Mono"),
-	font_size = 10.0,
+	font_size = 10.5,
 
 	tab_bar_at_bottom = true,
 	tab_max_width = 256,
