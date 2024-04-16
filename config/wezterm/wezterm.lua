@@ -1,6 +1,7 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 
+-- Customize key bindings.
 local my_keys = {
 	{ key = "Tab", mods = "SHIFT|LEADER", action = act.ActivateTabRelative(-1) },
 	{ key = "Tab", mods = "LEADER", action = act.ActivateTabRelative(1) },
@@ -115,6 +116,7 @@ wezterm.on("update-status", function(window, _)
 	}))
 end)
 
+-- Fix hyperlink selection rules to avoid picking up closing brackets or parentheses.
 local my_hyperlink_rules = {
 	-- Matches: a URL in parens: (URL)
 	{
@@ -157,6 +159,11 @@ local my_hyperlink_rules = {
 	},
 }
 
+-- Customize the cursor color.
+local my_colors = {
+	cursor_bg = "magenta",
+}
+
 return {
 	term = "wezterm",
 	initial_cols = 120,
@@ -164,6 +171,7 @@ return {
 	-- color_scheme = "Dracula (Official)",
 	-- color_scheme = "Solarized Light (Gogh)",
 	color_scheme = "Modus-Operandi",
+	colors = my_colors,
 
 	window_frame = {
 		font_size = 10.0,
