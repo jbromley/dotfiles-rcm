@@ -168,8 +168,6 @@ return {
 	term = "wezterm",
 	initial_cols = 120,
 	initial_rows = 50,
-	-- color_scheme = "Dracula (Official)",
-	-- color_scheme = "Solarized Light (Gogh)",
 	color_scheme = "Modus-Operandi",
 	colors = my_colors,
 
@@ -184,11 +182,11 @@ return {
 	tab_max_width = 256,
 
 	window_decorations = "RESIZE",
-	window_background_opacity = 0.95,
+	window_background_opacity = 0.90,
 
 	inactive_pane_hsb = {
-		saturation = 0.8,
-		brightness = 0.75,
+		saturation = 0.9,
+		brightness = 0.9,
 	},
 
 	disable_default_key_bindings = true,
