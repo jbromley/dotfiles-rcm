@@ -168,7 +168,7 @@ return {
 	term = "wezterm",
 	initial_cols = 120,
 	initial_rows = 50,
-	color_scheme = "Modus-Operandi",
+	color_scheme = "Dracula (Official)",
 	colors = my_colors,
 
 	window_frame = {
