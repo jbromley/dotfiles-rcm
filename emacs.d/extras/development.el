@@ -144,6 +144,11 @@
   (with-eval-after-load 'eglot
     (add-to-list 'eglot-server-programs '(lua-ts-mode . ("lua-language-server")))))
 
+(use-package nxml
+  :init
+  (with-eval-after-load 'eglot
+    (add-to-list 'eglot-server-programs '(nxml-mode . ("lemminx")))))
+
 (use-package ligature
   :ensure t
   ;; :load-path "~/.emacs.d/packages/ligature.el"
