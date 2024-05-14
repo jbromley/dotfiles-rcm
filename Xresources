@@ -39,7 +39,7 @@ XTerm.vt100.metaSendsEscape: true
 XTerm.vt100.faceName: JetBrainsMono Nerd Font Mono:style=Regular
 XTerm.vt100.boldFont: JetBrainsMono Nerd Font Mono:style=Bold
 XTerm.vt100.boldMode: false
-XTerm.vt100.faceSize: 11.0
+XTerm.vt100.faceSize: 10.0
 XTerm.vt100.internalBorder: 4 
 XTerm.borderWidth: 0
 
