@@ -3,7 +3,7 @@
 ! Modus operandi Xresources palette
 *.foreground: #000000
 *.background: #FFFFFF
-*.color0:     #595959
+*.color0:     #000000
 *.color8:     #193668
 *.color1:     #A60000
 *.color9:     #D00000
@@ -17,8 +17,8 @@
 *.color13:    #DD22DD
 *.color6:     #005E8B
 *.color14:    #008899
-*.color7:     #C4C4C4
-*.color15:    #E0E0E0
+*.color7:     #E0E0E0
+*.color15:    #FFFFFF
 
 URxvt.font: xft:JetBrainsMono Nerd Font Mono:style=Regular:size=11.0
 URxvt.boldFont: xft:JetBrainsMono Nerd Font Mono:style=Bold:size=11.0
