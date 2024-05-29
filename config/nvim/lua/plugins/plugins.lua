@@ -13,6 +13,7 @@ return {
           filetypes = { "racket", "scheme" },
         },
       },
+      inlay_hints = { enabled = false },
     },
   },
   {
