@@ -5,11 +5,6 @@
 # configuration on GitHub at https://github.com/Phantas0s/.dotfiles/tree/master/zsh
 #======================================================================
 
-# Enable Powerlevel10k instant prompt. 
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # Emacs key bindings
 bindkey -e
 
@@ -51,9 +46,6 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#606060"
 
 # Change directories with z
 # source ${plugin_dir}/zsh-z/zsh-z.plugin.zsh
-
-# Powerlevel10k prompt
-source ${plugin_dir}/powerlevel10k/powerlevel10k.zsh-theme
 
 #
 # Completion
@@ -137,6 +129,5 @@ function set_term_title() {
 }
 precmd_functions+=(set_term_title)
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
+# Starship prompt
+eval "$(starship init zsh)"
