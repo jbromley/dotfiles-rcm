@@ -175,7 +175,7 @@ return {
 		font_size = 10.0,
 	},
 
-	font = wezterm.font("JetBrains Mono"),
+	font = wezterm.font("Maple Mono NF"),
 	font_size = 10.5,
 
 	tab_bar_at_bottom = true,
