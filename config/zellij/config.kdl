@@ -266,12 +266,26 @@ pane_frames false
 //         black 0 0 0
 //         white 255 255 255
 //     }
+//
+//     modus_operandi {
+//         fg 0 0 0
+//         bg 255 255 255
+//         black 0 0 0
+//         red 166 0 0
+//         green 0 104 0
+//         yellow 111 85 0
+//         blue 0 49 169
+//         magenta 114 16 69
+//         orange 255 140 0
+//         cyan 0 94 139
+//         white 224 224 224
+//       }
 // }
 
 // Choose the theme that is specified in the themes section.
 // Default: default
 //
-// theme "dracula"
+theme "catppuccin-latte"
 
 // The name of the default layout to load on startup
 // Default: "default"
@@ -327,7 +341,7 @@ pane_frames false
 // Path to the default editor to use to edit pane scrollbuffer
 // Default: $EDITOR or $VISUAL
 //
-// scrollback_editor "/usr/bin/vim"
+scrollback_editor "/usr/bin/nvim"
 
 // When attaching to an existing session with other users,
 // should the session be mirrored (true)
@@ -342,7 +356,7 @@ pane_frames false
 
 // The folder in which Zellij will look for themes
 //
-// theme_dir "/path/to/my/theme_dir"
+theme_dir "/home/jay/.config/zellij/themes"
 
 // Enable or disable the rendering of styled and colored underlines (undercurl).
 // May need to be disabled for certain unsupported terminals
