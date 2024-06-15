@@ -16,4 +16,4 @@ if vim.fn.executable("node") == 0 then
 end
 
 -- Set the font for GUI clients.
-vim.opt.guifont = "Maple Mono NF:h10"
+vim.opt.guifont = "JetBrains Mono:h10"
