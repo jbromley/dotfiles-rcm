@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=/home/jayai/.local/bin/run-xmodmap
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=xmodmap
+Name=xmodmap
+Comment[en_US]=Custom keyboard configuration
+Comment=Custom keyboard configuration
