@@ -106,15 +106,9 @@ if [ -x ${mise_executable} ]; then
 fi
 
 # Fzf
-if [ "$(uname)" = "Darwin" ]; then
-    fzf_dir=/usr/local/opt/fzf/shell
-else
-    fzf_dir=${HOME}/.fzf/shell
-fi
-[[ $- == *i* ]] && source ${fzf_dir}/completion.zsh 2> /dev/null
-source ${fzf_dir}/key-bindings.zsh
+source <(fzf --zsh)
 bindkey -s '^V' 'nvim $(fzf --preview "bat --color always {}");^M'
-bindkey -s '^W' 'fzf --preview="bat --color always {}" --bind shift-up:preview-page-up,shift-down:preview-page-down;^M'
+# bindkey -s '^W' 'fzf --preview="bat --color always {}" --bind shift-up:preview-page-up,shift-down:preview-page-down;^M'
 
 # zoxide
 [ -x /usr/bin/zoxide ] || [ -x /usr/local/bin/zoxide ] && eval "$(zoxide init zsh)" 
@@ -131,3 +125,5 @@ precmd_functions+=(set_term_title)
 
 # Starship prompt
 eval "$(starship init zsh)"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
