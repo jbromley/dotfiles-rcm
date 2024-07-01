@@ -1,9 +1,8 @@
 ! Remove unwanted modifiers
 clear lock
-clear mod2
 remove mod4 = Hyper_L
 
 ! Use Caps_Lock as Hyper_L (mod3)
 keycode 66 = Hyper_L
-add mod2 = Hyper_L
+add mod3 = Hyper_L
 
