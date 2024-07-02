@@ -65,6 +65,32 @@ source ${plugin_dir}/completion.zsh
 # Allow zsh to use bash completions
 autoload bashcompinit; bashcompinit
 
+# Mise en place
+mise_executable=${HOME}/.local/bin/mise
+if [ -x ${mise_executable} ]; then
+  eval "$(${mise_executable} activate zsh)"
+fi
+
+# Fzf
+source <(fzf --zsh)
+bindkey -s '^V' 'nvim $(fzf --preview "bat --color always {}");^M'
+# bindkey -s '^W' 'fzf --preview="bat --color always {}" --bind shift-up:preview-page-up,shift-down:preview-page-down;^M'
+
+# zoxide
+[ -x /usr/bin/zoxide ] || [ -x /usr/local/bin/zoxide ] && eval "$(zoxide init zsh)" 
+
+# Dircolors
+[ -f ${HOME}/.dircolors ] && eval "$(dircolors -b ${HOME}/.dircolors)"
+
+# Prompt
+function set_term_title() {
+    title=$(pwd | sed -e "s|${HOME}|~|")
+    echo -ne "\e]0;${title}\a"
+}
+precmd_functions+=(set_term_title)
+
+# Functions
+
 # Check ps for a process
 function psinfo() {
     if [ -z "$1" ]; then
@@ -99,31 +125,15 @@ function p() {
     esac
 }
 
-# Mise en place
-mise_executable=${HOME}/.local/bin/mise
-if [ -x ${mise_executable} ]; then
-  eval "$(${mise_executable} activate zsh)"
-fi
-
-# Fzf
-source <(fzf --zsh)
-bindkey -s '^V' 'nvim $(fzf --preview "bat --color always {}");^M'
-# bindkey -s '^W' 'fzf --preview="bat --color always {}" --bind shift-up:preview-page-up,shift-down:preview-page-down;^M'
-
-# zoxide
-[ -x /usr/bin/zoxide ] || [ -x /usr/local/bin/zoxide ] && eval "$(zoxide init zsh)" 
-
-# Dircolors
-[ -f ${HOME}/.dircolors ] && eval "$(dircolors -b ${HOME}/.dircolors)"
-
-# Prompt
-function set_term_title() {
-    title=$(pwd | sed -e "s|${HOME}|~|")
-    echo -ne "\e]0;${title}\a"
+# Change to directory when exiting yazi
+function yy() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
 }
-precmd_functions+=(set_term_title)
 
 # Starship prompt
 eval "$(starship init zsh)"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
