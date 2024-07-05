@@ -59,7 +59,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "dracula",
+      colorscheme = "modus_operandi",
     },
   },
 }
