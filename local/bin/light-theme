@@ -1,0 +1,4 @@
+#! /usr/bin/env bash
+kitty +kitten themes --config-file-name=themes.conf Catppuccin-Latte
+ln -sf ~/.dotfiles/config/bat/config-light ~/.config/bat/config
+ln -sf ~/.dotfiles/config/nvim/lua/plugins/light-colorscheme.lua ~/.config/nvim/lua/plugins/current-colorscheme.lua
