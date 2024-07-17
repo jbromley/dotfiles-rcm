@@ -1,4 +1,4 @@
 #! /usr/bin/env bash
-kitty +kitten themes --config-file-name=themes.conf Catppuccin-Mocha
+kitty +kitten themes --config-file-name=themes.conf Dracula
 ln -sf ~/.dotfiles/config/bat/config-dark ~/.config/bat/config
 ln -sf ~/.dotfiles/config/nvim/lua/plugins/dark-colorscheme.lua ~/.config/nvim/lua/plugins/current-colorscheme.lua
