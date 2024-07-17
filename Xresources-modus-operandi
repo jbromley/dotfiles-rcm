@@ -1,0 +1,78 @@
+! X Resrouces
+
+! Modus operandi Xresources palette
+*.foreground: #000000
+*.background: #FFFFFF
+*.color0:     #000000
+*.color8:     #193668
+*.color1:     #A60000
+*.color9:     #D00000
+*.color2:     #006800
+*.color10:    #008900
+*.color3:     #6F5500
+*.color11:    #808000
+*.color4:     #0031A9
+*.color12:    #0000FF
+*.color5:     #721045
+*.color13:    #DD22DD
+*.color6:     #005E8B
+*.color14:    #008899
+*.color7:     #E0E0E0
+*.color15:    #FFFFFF
+
+URxvt.font: xft:JetBrainsMono Nerd Font Mono:style=Regular:size=11.0
+URxvt.boldFont: xft:JetBrainsMono Nerd Font Mono:style=Bold:size=11.0
+URxvt.italicFont: xft:JetBrainsMono Nerd Font Mono:style=Italic:size=11.0
+URxvt.boldItalicFont: xft:JetBrainsMono Nerd Font Mono:style=Bold Italic:size=11.0
+URxvt.scrollBar: off
+
+! XTerm
+XTerm.termName: xterm-256color
+XTerm.vt100.locale: false
+XTerm.vt100.utf8: true
+XTerm.vt100.scrollTtyOutput: false
+XTerm.vt100.scrollKey: true
+XTerm.vt100.bellIsUrgent: true
+XTerm.vt100.metaSendsEscape: true
+
+! XTerm Styling
+XTerm.vt100.faceName: JetBrainsMono Nerd Font Mono:style=Regular
+XTerm.vt100.boldFont: JetBrainsMono Nerd Font Mono:style=Bold
+XTerm.vt100.boldMode: false
+XTerm.vt100.faceSize: 10.0
+XTerm.vt100.internalBorder: 4 
+XTerm.borderWidth: 0
+
+XTerm.vt100.translations: #override \n\
+    Ctrl Shift <Key>N: scroll-back(1, halfpage) \n\
+    Ctrl Shift <Key>T: scroll-forw(1, halfpage) \n\
+    Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+    Ctrl Shift <Key>V: insert-selection(CLIPBOARD) \n\
+    Ctrl Shift <Key>H: set-altscreen(toggle) \n\
+    Shift <Btn1Up>: exec-formatted("xdg-open '%t'", PRIMARY) select-start() select-end()
+
+! UXTerm
+UXTerm.termName: xterm-256color
+UXTerm.vt100.locale: false
+UXTerm.vt100.utf8: true
+UXTerm.vt100.scrollTtyOutput: false
+UXTerm.vt100.scrollKey: true
+UXTerm.vt100.bellIsUrgent: true
+UXTerm.vt100.metaSendsEscape: true
+
+! UXTerm Styling
+UXTerm.vt100.faceName: JetBrainsMono Nerd Font Mono:style=Regular
+UXTerm.vt100.boldFont: JetBrainsMono Nerd Font Mono:style=Bold
+UXTerm.vt100.boldMode: false
+UXTerm.vt100.faceSize: 11.0
+UXTerm.vt100.internalBorder: 4 
+UXTerm.borderWidth: 0
+
+! Keyboard and mouse overrides
+UXTerm.vt100.translations: #override \n\
+    Ctrl Shift <Key>N: scroll-back(1, halfpage) \n\
+    Ctrl Shift <Key>T: scroll-forw(1, halfpage) \n\
+    Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+    Ctrl Shift <Key>V: insert-selection(CLIPBOARD) \n\
+    Ctrl Shift <Key>H: set-altscreen(toggle) \n\
+    Shift <Btn1Up>: exec-formatted("xdg-open '%t'", PRIMARY) select-start() select-end()
