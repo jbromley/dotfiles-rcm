@@ -1,24 +1,24 @@
 ! X Resrouces
 
-! Dracula Xresources palette
-*.foreground: #F8F8F2
-*.background: #282A36
+! Modus operandi Xresources palette
+*.foreground: #000000
+*.background: #FFFFFF
 *.color0:     #000000
-*.color8:     #4D4D4D
-*.color1:     #FF5555
-*.color9:     #FF6E67
-*.color2:     #50FA7B
-*.color10:    #5AF78E
-*.color3:     #F1FA8C
-*.color11:    #F4F99D
-*.color4:     #BD93F9
-*.color12:    #CAA9FA
-*.color5:     #FF79C6
-*.color13:    #FF92D0
-*.color6:     #8BE9FD
-*.color14:    #9AEDFE
-*.color7:     #BFBFBF
-*.color15:    #E6E6E6
+*.color8:     #193668
+*.color1:     #A60000
+*.color9:     #D00000
+*.color2:     #006800
+*.color10:    #008900
+*.color3:     #6F5500
+*.color11:    #808000
+*.color4:     #0031A9
+*.color12:    #0000FF
+*.color5:     #721045
+*.color13:    #DD22DD
+*.color6:     #005E8B
+*.color14:    #008899
+*.color7:     #E0E0E0
+*.color15:    #FFFFFF
 
 URxvt.font: xft:JetBrainsMono Nerd Font Mono:style=Regular:size=11.0
 URxvt.boldFont: xft:JetBrainsMono Nerd Font Mono:style=Bold:size=11.0
