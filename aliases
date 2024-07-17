@@ -59,5 +59,6 @@ alias gco='git checkout'
 alias gcomm='git commit'
 alias gpull='git pull'
 
-# WezTerm
+# Kitty aliases
 alias vimg="kitten icat"
+alias kitty-theme="kitten themes --config-file-name=themes.conf"
