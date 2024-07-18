@@ -11,7 +11,7 @@
 	process = git-lfs filter-process
 	required = true
 [core]
-	editor = emacsclient -t --alternate-editor \"emacs -nw\"
+	editor = nvim
 [pull]
 	rebase = false
 [init]
