@@ -5,8 +5,6 @@ local alpha = function()
   return string.format("%x", math.floor((255 * vim.g.transparency) or 0.875))
 end
 
--- vim.opt.background = "dark"
-
 vim.g.neovide_transparency = 0.96875
 vim.g.neovide_window_blurred = true
 
@@ -16,4 +14,4 @@ if vim.fn.executable("node") == 0 then
 end
 
 -- Set the font for GUI clients.
-vim.opt.guifont = "JetBrains Mono:h10"
+vim.opt.guifont = "JetBrainsMono Nerd Font:h10"
