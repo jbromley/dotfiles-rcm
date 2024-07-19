@@ -16,7 +16,7 @@ if [ "$#" != "1" ]; then
 fi
 
 light_theme() {
-  kitty +kitten themes --config-file-name=themes.conf Catppuccin-Latte
+  kitty +kitten themes --config-file-name=themes.conf "Modus Operandi"
   ln -sf ~/.dotfiles/config/bat/config-light ~/.config/bat/config
   ln -sf ~/.dotfiles/config/nvim/lua/plugins/light-colorscheme.lua ~/.config/nvim/lua/plugins/current-colorscheme.lua
 }
