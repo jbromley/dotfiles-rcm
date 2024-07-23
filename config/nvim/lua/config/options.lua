@@ -14,4 +14,4 @@ if vim.fn.executable("node") == 0 then
 end
 
 -- Set the font for GUI clients.
-vim.opt.guifont = "JetBrainsMono Nerd Font:h10"
+vim.opt.guifont = "Hack Nerd Font:h10"
