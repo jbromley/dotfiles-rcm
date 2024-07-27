@@ -41,6 +41,17 @@ return {
         org_hide_leading_stars = true,
       })
 
+      local wk = require("which-key")
+      wk.add({
+        { "<leader>o", group = "Org mode" },
+        { "<leader>ob", group = "org tangle" },
+        { "<leader>od", group = "org date" },
+        { "<leader>oi", group = "org insert" },
+        { "<leader>ol", group = "org link" },
+        { "<leader>on", group = "org note" },
+        { "<leader>ox", group = "org clock" },
+      })
+
       -- NOTE: If you are using nvim-treesitter with ~ensure_installed = "all"~ option
       -- add ~org~ to ignore_install
       -- require('nvim-treesitter.configs').setup({
