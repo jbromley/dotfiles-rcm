@@ -12,8 +12,39 @@ return {
           cmd = { "racket", "--lib", "racket-langserver" },
           filetypes = { "racket", "scheme" },
         },
+        lexical = {
+          filetypes = { "elixir", "eelixir", "heex" },
+          cmd = { "/opt/lexical/bin/start_lexical.sh" },
+          settings = {},
+        },
       },
       inlay_hints = { enabled = false },
+    },
+    setup = {
+      lexical = function(_, opts)
+        local lspconfig = require("lspconfig")
+        local configs = require("lspconfig.configs")
+        local util = require("lspconfig.util")
+
+        if not configs.lexical then
+          configs.lexical = {
+            default_config = {
+              cmd = { "/opt/lexical/bin/start_lexical.sh" },
+              filetypes = { "elixir", "eelixir", "heex" },
+              single_file_support = true,
+              root_dir = function(fname)
+                return util.root_pattern("mix.exs", ".git")(fname) or vim.loop.os_homedir
+              end,
+              settings = {},
+            },
+            commands = {},
+            docs = {
+              description = [[ Next-generation LSP for Elixir ]],
+            },
+          }
+        end
+        lspconfig.lexical.setup(opts)
+      end,
     },
   },
   {
