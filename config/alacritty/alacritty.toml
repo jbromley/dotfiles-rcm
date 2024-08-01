@@ -8,19 +8,19 @@ duration = 100
 size = 10.0
 
 [font.bold]
-family = "JetBrainsMono Nerd Font"
+family = "Fira Code"
 style = "Bold"
 
 [font.bold_italic]
-family = "JetBrainsMono Nerd Font"
+family = "Fira Code"
 style = "Bold Italic"
 
 [font.italic]
-family = "JetBrainsMono Nerd Font"
+family = "Fira Code"
 style = "Italic"
 
 [font.normal]
-family = "JetBrainsMono Nerd Font"
+family = "Fira Code"
 style = "Regular"
 
 [window]

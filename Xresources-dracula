@@ -18,10 +18,10 @@
 *.color7:     #BFBFBF
 *.color15:    #E6E6E6
 
-URxvt.font: xft:JetBrainsMono Nerd Font Mono:style=Regular:size=11.0
-URxvt.boldFont: xft:JetBrainsMono Nerd Font Mono:style=Bold:size=11.0
-URxvt.italicFont: xft:JetBrainsMono Nerd Font Mono:style=Italic:size=11.0
-URxvt.boldItalicFont: xft:JetBrainsMono Nerd Font Mono:style=Bold Italic:size=11.0
+URxvt.font: xft:Fira Code:style=Regular:size=11.0
+URxvt.boldFont: xft:Fira Code:style=Bold:size=11.0
+URxvt.italicFont: xft:Fira Code:style=Italic:size=11.0
+URxvt.boldItalicFont: xft:Fira Code:style=Bold Italic:size=11.0
 URxvt.scrollBar: off
 
 ! XTerm
@@ -34,8 +34,8 @@ XTerm.vt100.bellIsUrgent: true
 XTerm.vt100.metaSendsEscape: true
 
 ! XTerm Styling
-XTerm.vt100.faceName: JetBrainsMono Nerd Font Mono:style=Regular
-XTerm.vt100.boldFont: JetBrainsMono Nerd Font Mono:style=Bold
+XTerm.vt100.faceName: Fira Code:style=Regular
+XTerm.vt100.boldFont: Fira Code:style=Bold
 XTerm.vt100.boldMode: false
 XTerm.vt100.faceSize: 10.0
 XTerm.vt100.internalBorder: 4 
@@ -59,8 +59,8 @@ UXTerm.vt100.bellIsUrgent: true
 UXTerm.vt100.metaSendsEscape: true
 
 ! UXTerm Styling
-UXTerm.vt100.faceName: JetBrainsMono Nerd Font Mono:style=Regular
-UXTerm.vt100.boldFont: JetBrainsMono Nerd Font Mono:style=Bold
+UXTerm.vt100.faceName: Fira Code:style=Regular
+UXTerm.vt100.boldFont: Fira Code:style=Bold
 UXTerm.vt100.boldMode: false
 UXTerm.vt100.faceSize: 11.0
 UXTerm.vt100.internalBorder: 4 
