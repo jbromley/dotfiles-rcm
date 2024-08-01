@@ -17,12 +17,14 @@ fi
 
 light_theme() {
   kitty +kitten themes --config-file-name=themes.conf "Modus Operandi"
+  ln -sf ~/.config/alacritty/theme.toml ~/.config/alacritty/themes/catppuccin_latte.toml
   ln -sf ~/.dotfiles/config/bat/config-light ~/.config/bat/config
   ln -sf ~/.dotfiles/config/nvim/lua/plugins/light-colorscheme.lua ~/.config/nvim/lua/plugins/current-colorscheme.lua
 }
 
 dark_theme() {
   kitty +kitten themes --config-file-name=themes.conf Dracula
+  ln -sf ~/.config/alacritty/theme.toml ~/.config/alacritty/themes/dracula.toml
   ln -sf ~/.dotfiles/config/bat/config-dark ~/.config/bat/config
   ln -sf ~/.dotfiles/config/nvim/lua/plugins/dark-colorscheme.lua ~/.config/nvim/lua/plugins/current-colorscheme.lua
 }
