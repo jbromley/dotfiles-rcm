@@ -1,0 +1,28 @@
+# Colors (Modus Operandi)
+
+# Default colors
+[colors.primary]
+background = '#ffffff'
+foreground = '#000000'
+
+# Normal colors
+[colors.normal]
+black   = '#000000'
+red     = '#a60000'
+green   = '#006800'
+yellow  = '#6f5500'
+blue    = '#0031a9'
+magenta = '#721045'
+cyan    = '#005e8b'
+white   = '#e0e0e0'
+
+# Bright colors
+[colors.bright]
+black   = '#193668'
+red     = '#d00000'
+green   = '#008900'
+yellow  = '#808000'
+blue    = '#0000ff'
+magenta = '#dd22dd'
+cyan    = '#008899'
+white   = '#ffffff'
