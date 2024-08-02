@@ -20,11 +20,13 @@
 *.color7:     #E0E0E0
 *.color15:    #FFFFFF
 
-URxvt.font: xft:Iosevka Nerd Font:style=Regular:size=11.0
-URxvt.boldFont: xft:Iosevka Nerd Font:style=Bold:size=11.0
-URxvt.italicFont: xft:Iosevka Nerd Font:style=Italic:size=11.0
-URxvt.boldItalicFont: xft:Iosevka Nerd Font:style=Bold Italic:size=11.0
+URxvt.font: xft:Hack Nerd Font:style=Regular:size=10.0:antialias=true
+URxvt.boldFont: xft:Hack Nerd Font:style=Bold:size=10.0:antialias=true
+URxvt.italicFont: xft:Hack Nerd Font:style=Italic:size=10.0:antialias=true
+URxvt.boldItalicFont: xft:Hack Nerd Font:style=Bold Italic:size=10.0:antialias=true
 URxvt.scrollBar: off
+URxvt*background: [90]#FFFFFF
+URxvt*depth: 32
 
 ! XTerm
 XTerm.termName: xterm-256color
@@ -36,8 +38,8 @@ XTerm.vt100.bellIsUrgent: true
 XTerm.vt100.metaSendsEscape: true
 
 ! XTerm Styling
-XTerm.vt100.faceName: Iosevka Nerd Font:style=Regular
-XTerm.vt100.boldFont: Iosevka Nerd Font:style=Bold
+XTerm.vt100.faceName: Hack Nerd Font:style=Regular
+XTerm.vt100.boldFont: Hack Nerd Font:style=Bold
 XTerm.vt100.boldMode: false
 XTerm.vt100.faceSize: 10.0
 XTerm.vt100.internalBorder: 4 
@@ -61,8 +63,8 @@ UXTerm.vt100.bellIsUrgent: true
 UXTerm.vt100.metaSendsEscape: true
 
 ! UXTerm Styling
-UXTerm.vt100.faceName: Iosevka Nerd Font:style=Regular
-UXTerm.vt100.boldFont: Iosevka Nerd Font:style=Bold
+UXTerm.vt100.faceName: Hack Nerd Font:style=Regular
+UXTerm.vt100.boldFont: Hack Nerd Font:style=Bold
 UXTerm.vt100.boldMode: false
 UXTerm.vt100.faceSize: 11.0
 UXTerm.vt100.internalBorder: 4 
