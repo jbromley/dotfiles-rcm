@@ -20,6 +20,7 @@ light_theme() {
   ln -sf ~/.config/alacritty/themes/modus_operandi.toml ~/.config/alacritty/theme.toml
   ln -sf ~/.dotfiles/config/bat/config-light ~/.config/bat/config
   ln -sf ~/.dotfiles/config/nvim/lua/plugins/light-colorscheme.lua ~/.config/nvim/lua/plugins/current-colorscheme.lua
+  ln -sf ~/.dotfiles/Xresources-modus-operandi ~/.Xresources
 }
 
 dark_theme() {
@@ -27,6 +28,7 @@ dark_theme() {
   ln -sf ~/.config/alacritty/themes/dracula.toml ~/.config/alacritty/theme.toml
   ln -sf ~/.dotfiles/config/bat/config-dark ~/.config/bat/config
   ln -sf ~/.dotfiles/config/nvim/lua/plugins/dark-colorscheme.lua ~/.config/nvim/lua/plugins/current-colorscheme.lua
+  ln -sf ~/.dotfiles/Xresources-dracula ~/.Xresources
 }
 
 case "$1" in
@@ -42,3 +44,5 @@ dark)
   exit 2
   ;;
 esac
+
+xrdb -merge ~/.Xresources
