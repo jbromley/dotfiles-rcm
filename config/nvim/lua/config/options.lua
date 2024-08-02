@@ -10,4 +10,4 @@ if vim.fn.executable("node") == 0 then
 end
 
 -- Set the font for GUI clients.
-vim.opt.guifont = "Fira Code:h10"
+vim.opt.guifont = "Iosevka Nerd Font:h10"
