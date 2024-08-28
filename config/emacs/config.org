@@ -287,7 +287,7 @@ Use consult-theme to easily try out themes (*Epilepsy* Warning).
 ** Transparency
 With Emacs version 29, true transparency has been added.
 #+begin_src emacs-lisp
-    (add-to-list 'default-frame-alist '(alpha-background . 90)) ;; For all new frames henceforth
+    (add-to-list 'default-frame-alist '(alpha-background . 95)) ;; For all new frames henceforth
 #+end_src
 
 ** Fonts
@@ -362,7 +362,7 @@ Project interaction library for Emacs.
       :custom
       (projectile-run-use-comint-mode t) ;; Interactive run dialog when running projects inside emacs (like giving input)
       (projectile-switch-project-action #'projectile-dired) ;; Open dired when switching to a project
-      (projectile-project-search-path '("~/Code/" "~/work/" ("~/github" . 1)))) ;; . 1 means only search the first subdirectory level for projects
+      (projectile-project-search-path '("~/Code/"))) ;; . 1 means only search the first subdirectory level for projects
     ;; Use Bookmarks for smaller, not standard projects
 #+end_src
 
@@ -418,6 +418,21 @@ Currently it's tedious to use Treesitter, because emacs has not yet fully migrat
     (use-package elixir-mode :mode "\\.ex\\'")
     (use-package julia-ts-mode :mode "\\.jl\\'")
     (use-package lua-mode :mode "\\.lua\\'")
+#+end_src
+
+This configuration uses projectile to handle projects, but projectile requires that the root of a project have
+a ~.git~ directory, which is not the case in Elixir umbrella projects. The following function and hook cause 
+projectile to look for a ~mix.exs~ file to determine the root of a project.
+
+#+begin_src emacs-lisp
+    (defun elixir/find-mix-project (dir)
+      "Try to locate a Elixir project root by 'mix.exs' above DIR."
+      (let ((mix_root (locate-dominating-file dir "mix.exs")))
+        (message "Found Elixir project root in '%s' starting from '%s'" mix_root dir)
+        (if (stringp mix_root) `(transient . ,mix_root) nil)))
+    
+    (add-hook 'project-find-functions 'elixir/find-mix-project nil nil)
+
 #+end_src
 
 *** Org Mode

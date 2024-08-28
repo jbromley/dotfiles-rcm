@@ -180,7 +180,7 @@
 (use-package dracula-theme
   :config (load-theme 'dracula t))
 
-(add-to-list 'default-frame-alist '(alpha-background . 90)) ;; For all new frames henceforth
+(add-to-list 'default-frame-alist '(alpha-background . 95)) ;; For all new frames henceforth
 
 ;; (set-frame-font "JetBrains Mono-10" nil t)
 ;; (set-face-attribute 'default nil
@@ -234,7 +234,7 @@
   :custom
   (projectile-run-use-comint-mode t) ;; Interactive run dialog when running projects inside emacs (like giving input)
   (projectile-switch-project-action #'projectile-dired) ;; Open dired when switching to a project
-  (projectile-project-search-path '("~/Code/" "~/work/" ("~/github" . 1)))) ;; . 1 means only search the first subdirectory level for projects
+  (projectile-project-search-path '("~/Code/"))) ;; . 1 means only search the first subdirectory level for projects
 ;; Use Bookmarks for smaller, not standard projects
 
 (use-package eglot-jl)
@@ -258,6 +258,14 @@
 (use-package elixir-mode :mode "\\.ex\\'")
 (use-package julia-ts-mode :mode "\\.jl\\'")
 (use-package lua-mode :mode "\\.lua\\'")
+
+(defun elixir/find-mix-project (dir)
+  "Try to locate a Elixir project root by 'mix.exs' above DIR."
+  (let ((mix_root (locate-dominating-file dir "mix.exs")))
+    (message "Found Elixir project root in '%s' starting from '%s'" mix_root dir)
+    (if (stringp mix_root) `(transient . ,mix_root) nil)))
+
+(add-hook 'project-find-functions 'elixir/find-mix-project nil nil)
 
 (use-package org
   :ensure nil
