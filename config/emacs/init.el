@@ -122,11 +122,15 @@
     "w" '(:ignore t :wk "Window")
     "w |" '(split-window-right :wk "Split window right")
     "w -" '(split-window-below :wk "Split window below")
-    "w n" '(other-window :wk "Next window")
-    "w p" '((lambda () (interactive) (other-window -1)) :wk "Previous window")
+    ; "w n" '(other-window :wk "Next window")
+    ; "w p" '((lambda () (interactive) (other-window -1)) :wk "Previous window")
 	"w 0" '(delete-other-windows :wk "Close all other windows")
     "w q" '(quit-window :wk "Close the current window")
-    "w =" '(balance-windows :wk "Balance size of all windows"))
+    "w =" '(balance-windows :wk "Balance size of all windows")
+    "w h" '(windmove-left :wk "Move to window to left")
+    "w j" '(windmove-down :wk "Move to window below")
+    "w k" '(windmove-up :wk "Move to window above")
+    "w l" '(windmove-right :wk "Move to window to right"))
 
 (use-package emacs
   :custom
