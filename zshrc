@@ -1,4 +1,11 @@
-#======================================================================
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# ======================================================================
 # Zsh configuration file
 # Inspired by the blog post "Understanding and Configuring Zsh"
 # (https://thevaluable.dev/zsh-install-configure/) and the from-scratch
@@ -26,6 +33,13 @@ setopt HIST_VERIFY
 setopt APPEND_HISTORY
 setopt HIST_NO_STORE
 setopt HIST_REDUCE_BLANKS
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 # Aliases
 [ -f ${HOME}/.aliases ] && source ${HOME}/.aliases
@@ -135,5 +149,12 @@ function yy() {
 	rm -f -- "$tmp"
 }
 
-# Starship prompt
-eval "$(starship init zsh)"
+# Prompt
+# eval "$(starship init zsh)"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+source ~/.zsh/powerlevel10k/powerlevel10k.zsh-theme
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
