@@ -139,6 +139,16 @@ function p() {
     esac
 }
 
+# Open a file in nvim using an argument or fzf
+function n() { 
+  nvim "${1:-"$(fzf)"}" 
+} 
+
+# Open a file in emacs using an argument or fzf
+function e() { 
+  emacs "${1:-"$(fzf)"}" &
+} 
+
 # Change to directory when exiting yazi
 function yy() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
