@@ -232,6 +232,9 @@
    (toml-mode . toml-ts-mode)
    (yaml-mode . yaml-ts-mode)))
 
+(use-package mise
+  :hook (after-init . global-mise-mode))
+
 (use-package projectile
   :init
   (projectile-mode)
@@ -245,7 +248,7 @@
 
 (use-package eglot
   :ensure nil ;; Don't install eglot because it's now built-in
-  :hook ((c-mode c++-mode elixir-mode lua-mode) . eglot-ensure)
+  :hook ((c-mode c++-mode elixir-mode elixir-ts-mode julia-mode julia-ts-mode lua-mode) . eglot-ensure)
   :custom
   ;; Good default
   (eglot-events-buffer-size 0) ;; No event buffers (Lsp server logs)
@@ -260,7 +263,8 @@
   :hook (prog-mode . yas-minor-mode))
 
 (use-package elixir-mode :mode "\\.ex\\'")
-(use-package julia-ts-mode :mode "\\.jl\\'")
+(use-package julia-ts-mode :mode "\\.jl\\'"
+  :hook ((julia-mode julia-ts-mode). eglot-jl-init))
 (use-package lua-mode :mode "\\.lua\\'")
 
 (defun elixir/find-mix-project (dir)

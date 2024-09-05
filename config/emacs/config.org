@@ -21,6 +21,7 @@
   - [[#modeline][Modeline]]
 - [[#development][Development]]
   - [[#major-mode-treesitter-remaps][Major mode treesitter remaps]]
+  - [[#mise-integration][Mise integration]]
   - [[#projectile][Projectile]]
   - [[#eglot][Eglot]]
   - [[#yasnippet][Yasnippet]]
@@ -57,22 +58,27 @@
 
 * Important to load first
 ** Startup Performance
-Make startup faster by reducing the frequency of garbage collection. This will be set back when startup finishes.
+Make startup faster by reducing the frequency of garbage collection. This will
+be set back when startup finishes.
 #+begin_src emacs-lisp
     ;; The default is 800 kilobytes. Measured in bytes.
     (setq gc-cons-threshold (* 50 1000 1000))
 #+end_src
 
 ** Auto-tangle Configuration file
-Auto-Tangle Org configuration file for better startup times.
-If you want to use this don't forget to add this to the top of the org document (#+PROPERTY: header-args:emacs-lisp :tangle ./init.el :mkdirp yes)
+Auto-Tangle Org configuration file for better startup times.  If you want to use
+this don't forget to add this to the top of the org document (#+PROPERTY:
+header-args:emacs-lisp :tangle ./init.el :mkdirp yes)
 
-*Remember*, if this code can't be loaded (errors before this code), the init.el file won't update on change!
-To fix this, you need to find this file (C-x C-f), fix the error and press C-c C-v t to tangle it manually.
+*Remember*, if this code can't be loaded (errors before this code), the init.el
+file won't update on change!  To fix this, you need to find this file (C-x C-f),
+fix the error and press C-c C-v t to tangle it manually.
 
-This snippet adds a hook to org-mode buffers so that start/org-babel-tangle-config gets executed each time such a buffer gets saved.
-This function checks to see if the file being saved is the Emacs.org file you’re looking at right now, and if so,
-automatically exports the configuration here to the associated output files.
+This snippet adds a hook to org-mode buffers so that
+start/org-babel-tangle-config gets executed each time such a buffer gets saved.
+This function checks to see if the file being saved is the Emacs.org file you’re
+looking at right now, and if so, automatically exports the configuration here to
+the associated output files.
 #+begin_src emacs-lisp
     (defun start/org-babel-tangle-config ()
       "Automatically tangle our Emacs.org config file when we save it. Credit to Emacs From Scratch for this one!"
@@ -86,16 +92,19 @@ automatically exports the configuration here to the associated output files.
 #+end_src
 
 ** Use Package
-We use the default package manager package.el with use-package. Alternative package managers (straight.el, elpaca, etc.) are useful if you want to
-install packages from git repositories, if you want a specific, not very popular package that is not available on elpa or melpa,
-or you want UI (elpaca) and other things.
+We use the default package manager package.el with use-package. Alternative
+package managers (straight.el, elpaca, etc.) are useful if you want to install
+packages from git repositories, if you want a specific, not very popular package
+that is not available on elpa or melpa, or you want UI (elpaca) and other
+things.
 
-If you are interested in these other package managers, check out their git repositories or search for more package managers.
-In my experience Package.el is not slow and gets the job done.
+If you are interested in these other package managers, check out their git
+repositories or search for more package managers.  In my experience Package.el
+is not slow and gets the job done.
 
-To update/upgrade packages, use the package-upgrade-all command.
-Check out the use-package [[https://www.gnu.org/software/emacs/manual/use-package.html][documentation]] to see how to use it.
-With Emacs 29 use-package is now built-in.
+To update/upgrade packages, use the package-upgrade-all command.  Check out the
+use-package [[https://www.gnu.org/software/emacs/manual/use-package.html][documentation]] to see how to use it.  With Emacs 29 use-package is
+now built-in.
 #+begin_src emacs-lisp
     (require 'use-package-ensure) ;; Load use-package-always-ensure
     (setq use-package-always-ensure t) ;; Always ensures that a package is installed
@@ -106,14 +115,15 @@ With Emacs 29 use-package is now built-in.
 #+end_src
 
 ** Evil Mode
-An extensible vi/vim layer for Emacs. Because…let’s face it. The Vim keybindings are just plain better.
-Notes:
+An extensible vi/vim layer for Emacs. Because…let’s face it. The Vim keybindings
+are just plain better.  Notes:
 - You can toggle evil mode with C-z.
 - To paste without copy (yank) select the text and use P (shift-p).
 
 If you don't want to use evil-mode don't forget to remove:
 - Messages buffer fix in Good default section (:ghook)
-- And also change general.el keybindings and setup (general-evil-setup, :states, etc.)
+- And also change general.el keybindings and setup (general-evil-setup, :states,
+  etc.)
 #+begin_src emacs-lisp
     (use-package evil
       :init ;; Execute code Before a package is loaded
@@ -140,9 +150,10 @@ If you don't want to use evil-mode don't forget to remove:
 #+end_src
 
 ** General Keybindings
-A keybinding framework to set keybindings easily.
-The Leader key is what you will press when you want to access your keybindings (SPC + . Find file).
-To search and replace, use query-replace-regexp to replace one by one C-M-% (SPC to replace n to skip).
+A keybinding framework to set keybindings easily.  The Leader key is what you
+will press when you want to access your keybindings (SPC + . Find file).  To
+search and replace, use query-replace-regexp to replace one by one C-M-% (SPC to
+replace n to skip).
 #+begin_src emacs-lisp
     (use-package general
       :config
@@ -279,7 +290,7 @@ To search and replace, use query-replace-regexp to replace one by one C-M-% (SPC
 
 * Appearance
 ** Set Theme
-Set gruvbox theme, if you want some themes try out doom-themes.
+Set dracula theme, if you want some themes try out doom-themes.
 Use consult-theme to easily try out themes (*Epilepsy* Warning).
 #+begin_src emacs-lisp
     ;; (use-package gruvbox-theme
@@ -313,7 +324,8 @@ With Emacs version 29, true transparency has been added.
 #+end_src
 
 *** Zooming In/Out
-You can use the bindings C-+ C-- for zooming in/out. You can also use CTRL plus the mouse wheel for zooming in/out.
+You can use the bindings C-+ C-- for zooming in/out. You can also use CTRL plus
+the mouse wheel for zooming in/out.
 #+begin_src emacs-lisp
     (use-package emacs
       :bind
@@ -337,8 +349,8 @@ Replace the default modeline with a prettier more useful.
 
 * Development
 ** Major mode treesitter remaps
-We'd like to use treesitter modes for language editing whenever they are available. Use the treesitter mode instead
-of the following modes.
+We'd like to use treesitter modes for language editing whenever they are
+available. Use the treesitter mode instead of the following modes.
 #+begin_src emacs-lisp
     (setq major-mode-remap-alist
      '((bash-mode . bash-ts-mode)
@@ -357,6 +369,18 @@ of the following modes.
        (toml-mode . toml-ts-mode)
        (yaml-mode . yaml-ts-mode)))
 #+end_src
+
+** Mise integration 
+I use [[https://mise.jdx.dev/][mise]] to manage different versions of the language tools that I
+use. Unfortunately, it installs programs in a location that is not on the
+standard path. The [[https://github.com/liuyinz/mise.el][mise.el]] Emacs package integrates mise binaries into the Emacs
+environment so I don't have to do path-based tweaks to get things to work
+properly.
+#+begin_src emacs-lisp
+    (use-package mise
+	  :hook (after-init . global-mise-mode))
+#+end_src
+
 ** Projectile
 Project interaction library for Emacs.
 #+begin_src emacs-lisp
@@ -371,19 +395,26 @@ Project interaction library for Emacs.
 #+end_src
 
 ** Eglot
-Language Server Protocol Support for Emacs. The built-in is now Eglot (with emacs 29).
+Language Server Protocol Support for Emacs. The built-in is now Eglot (with
+emacs 29).
 
-Eglot is fast and minimal, but requires manual setup for LSP servers (downloading).
-For more [[https://www.gnu.org/software/emacs/manual/html_mono/eglot.html][information how to use.]] One alternative to Eglot is Lsp-mode, check out the [[https://github.com/MiniApollo/kickstart.emacs/wiki][project wiki]] page for more information.
+Eglot is fast and minimal, but requires manual setup for LSP servers
+(downloading).  For more [[https://www.gnu.org/software/emacs/manual/html_mono/eglot.html][information how to use.]] One alternative to Eglot is
+Lsp-mode, check out the [[https://github.com/MiniApollo/kickstart.emacs/wiki][project wiki]] page for more information.
 
-Eglot is easy to set up, but the only difficult part is downloading and setting up the lsp servers.
-After that just add a hook with eglot-ensure to automatically start eglot for a given file type. And you are done.
+Eglot is easy to set up, but the only difficult part is downloading and setting
+up the lsp servers.  After that just add a hook with eglot-ensure to
+automatically start eglot for a given file type. And you are done.
 
-As an example to use C, C++ you need to install clangd(or ccls) and uncomment the following lines. Now the language server will start automatically when opening any c,c++ file.
+As an example to use C, C++ you need to install clangd(or ccls) and uncomment
+the following lines. Now the language server will start automatically when
+opening any c,c++ file.
 
-A harder example is Lua. Download the lua-language-server from their git repository, make the lua-language-server file executable at lua-language-server/bin.
-Uncomment the following lines and change the path to the language server executable. Now the language server will work.
-Or add the lua-language-server executable to your path.
+A harder example is Lua. Download the lua-language-server from their git
+repository, make the lua-language-server file executable at
+lua-language-server/bin.  Uncomment the following lines and change the path to
+the language server executable. Now the language server will work.  Or add the
+lua-language-server executable to your path.
 
 If you can use a package manager just install the lsp server and add a hook.
 Use visual block to uncomment easily in Org documents (C-v).
@@ -392,7 +423,7 @@ Use visual block to uncomment easily in Org documents (C-v).
 
     (use-package eglot
       :ensure nil ;; Don't install eglot because it's now built-in
-      :hook ((c-mode c++-mode elixir-mode lua-mode) . eglot-ensure)
+      :hook ((c-mode c++-mode elixir-mode elixir-ts-mode julia-mode julia-ts-mode lua-mode) . eglot-ensure)
       :custom
       ;; Good default
       (eglot-events-buffer-size 0) ;; No event buffers (Lsp server logs)
@@ -419,9 +450,10 @@ If you want to use TreeSitter, check out this [[https://www.masteringemacs.org/a
 Currently it's tedious to use Treesitter, because emacs has not yet fully migrated to it.
 
 #+begin_src emacs-lisp
-    (use-package elixir-mode :mode "\\.ex\\'")
-    (use-package julia-ts-mode :mode "\\.jl\\'")
-    (use-package lua-mode :mode "\\.lua\\'")
+   (use-package elixir-mode :mode "\\.ex\\'")
+   (use-package julia-ts-mode :mode "\\.jl\\'"
+     :hook ((julia-mode julia-ts-mode). eglot-jl-init))
+   (use-package lua-mode :mode "\\.lua\\'")
 #+end_src
 
 This configuration uses projectile to handle projects, but projectile requires that the root of a project have
