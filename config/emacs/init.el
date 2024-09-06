@@ -96,7 +96,10 @@
     "e f" '(eglot-format :wk "Eglot Format")
     "e l" '(consult-flymake :wk "Consult Flymake")
     "e b" '(eval-buffer :wk "Evaluate elisp in buffer")
-    "e r" '(eval-region :wk "Evaluate elisp in region"))
+    "e r" '(eval-region :wk "Evaluate elisp in region")
+    "e d" '(flymake-show-buffer-diagnostics :wk "Show errors in buffer")
+    "e n" '(flymake-goto-next-error :wk "Go to next error")
+    "e p" '(flymake-goto-prev-error :wk "Go to previous error"))
 
   (start/leader-keys
     "g" '(:ignore t :wk "Git")
@@ -124,7 +127,7 @@
     "w -" '(split-window-below :wk "Split window below")
     ; "w n" '(other-window :wk "Next window")
     ; "w p" '((lambda () (interactive) (other-window -1)) :wk "Previous window")
-	"w 0" '(delete-other-windows :wk "Close all other windows")
+    "w 0" '(delete-other-windows :wk "Close all other windows")
     "w q" '(quit-window :wk "Close the current window")
     "w =" '(balance-windows :wk "Balance size of all windows")
     "w h" '(windmove-left :wk "Move to window to left")
@@ -233,7 +236,7 @@
    (yaml-mode . yaml-ts-mode)))
 
 (use-package mise
-  :hook (after-init . global-mise-mode))
+      :hook (after-init . global-mise-mode))
 
 (use-package projectile
   :init
