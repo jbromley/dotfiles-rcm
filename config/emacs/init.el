@@ -248,7 +248,7 @@
 
 (use-package eglot
   :ensure nil ;; Don't install eglot because it's now built-in
-  :hook ((c-mode c++-mode elixir-mode elixir-ts-mode julia-mode julia-ts-mode lua-mode) . eglot-ensure)
+  :hook ((c-mode c++-mode elixir-mode elixir-ts-mode lua-mode) . eglot-ensure)
   :custom
   ;; Good default
   (eglot-events-buffer-size 0) ;; No event buffers (Lsp server logs)

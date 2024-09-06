@@ -5,4 +5,4 @@ vim.g.neovide_transparency = 0.96875
 vim.g.neovide_window_blurred = true
 
 -- Set the font for GUI clients.
-vim.opt.guifont = "Hack Nerd Font:h10"
+vim.opt.guifont = "JetBrainsMono Nerd Font:h10"
