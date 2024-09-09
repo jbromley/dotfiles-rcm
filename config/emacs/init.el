@@ -251,7 +251,7 @@
 
 (use-package eglot
   :ensure nil ;; Don't install eglot because it's now built-in
-  :hook ((c-mode c++-mode elixir-mode elixir-ts-mode lua-mode) . eglot-ensure)
+  :hook ((c-mode c++-mode elixir-mode elixir-ts-mode lua-mode racket-mode) . eglot-ensure)
   :custom
   ;; Good default
   (eglot-events-buffer-size 0) ;; No event buffers (Lsp server logs)
@@ -260,6 +260,7 @@
   ;; Manual lsp servers
   :config
   (add-to-list 'eglot-server-programs
+    `(racket-mode . ("racket" "-l" "racket-langserver"))
     `(lua-mode . ("/home/jayai/.local/share/mise/installs/lua-language-server/3.10.5/bin/lua-language-server" "-lsp"))))
 
 (use-package yasnippet-snippets
@@ -269,6 +270,8 @@
 (use-package julia-ts-mode :mode "\\.jl\\'"
   :hook ((julia-mode julia-ts-mode). eglot-jl-init))
 (use-package lua-mode :mode "\\.lua\\'")
+(use-package racket-mode :mode "\\.rkt\\'")
+(use-package geiser-racket)
 
 (defun elixir/find-mix-project (dir)
   "Try to locate a Elixir project root by 'mix.exs' above DIR."
@@ -304,6 +307,31 @@
 (use-package org-tempo
   :ensure nil
   :after org)
+
+(use-package ligature
+  :config
+  ;; Enable the "www" ligature in every possible major mode
+  ;; (ligature-set-ligatures 't '("www"))
+  ;; Enable traditional ligature support in eww-mode, if the
+  ;; `variable-pitch' face supports it
+  (ligature-set-ligatures 'eww-mode '("ff" "fi" "ffi"))
+  ;; Enable all Cascadia Code ligatures in programming modes
+  (ligature-set-ligatures 'prog-mode '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
+                                       ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
+                                       "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
+                                       "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
+                                       "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
+                                       "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
+                                       "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
+                                       "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
+                                       ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
+                                       "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
+                                       "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
+                                       "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
+                                       "\\\\" "://"))
+  ;; Enables ligature checks globally in all buffers. You can also do it
+  ;; per mode with `ligature-mode'.
+  (global-ligature-mode t))
 
 (use-package eat
   :hook ('eshell-load-hook #'eat-eshell-mode))
