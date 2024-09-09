@@ -1,0 +1,17 @@
+[Desktop Entry]
+Type=Application
+TryExec=foot
+Exec=foot -e tmux
+Icon=foot
+Terminal=false
+Categories=System;TerminalEmulator;
+
+Name=Tmux foot
+GenericName=Terminal
+Comment=A wayland native terminal
+StartupWMClass=foot
+Actions=New;
+
+[Desktop Action New]
+Name=New Terminal
+Exec=foot
