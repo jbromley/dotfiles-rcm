@@ -149,7 +149,7 @@ If you don't want to use evil-mode don't forget to remove:
       (evil-collection-init))
 #+end_src
 
-** General Keybindings
+** TODO General Keybindings
 A keybinding framework to set keybindings easily.  The Leader key is what you
 will press when you want to access your keybindings (SPC + . Find file).  To
 search and replace, use query-replace-regexp to replace one by one C-M-% (SPC to
@@ -225,20 +225,6 @@ replace n to skip).
                 "t" '(:ignore t :wk "Toggle")
                 "t t" '(visual-line-mode :wk "Toggle truncated lines (wrap)")
                 "t l" '(display-line-numbers-mode :wk "Toggle line numbers")))
-
-              (start/leader-keys
-                "w" '(:ignore t :wk "Window")
-                "w |" '(split-window-right :wk "Split window right")
-                "w -" '(split-window-below :wk "Split window below")
-                ; "w n" '(other-window :wk "Next window")
-                ; "w p" '((lambda () (interactive) (other-window -1)) :wk "Previous window")
-                "w 0" '(delete-other-windows :wk "Close all other windows")
-                "w q" '(quit-window :wk "Close the current window")
-                "w =" '(balance-windows :wk "Balance size of all windows")
-                "w h" '(windmove-left :wk "Move to window to left")
-                "w j" '(windmove-down :wk "Move to window below")
-                "w k" '(windmove-up :wk "Move to window above")
-                "w l" '(windmove-right :wk "Move to window to right"))
 #+end_src
 
 ** Good Defaults
