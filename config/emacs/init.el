@@ -5,8 +5,6 @@
 ;; The goal is that you read every line, top-to-bottom, understand
 ;; what your configuration is doing, and modify it to suit your needs.
 
-;; You can delete this when you're done. It's your config now. :)
-
 ;; The default is 800 kilobytes. Measured in bytes.
 (setq gc-cons-threshold (* 50 1000 1000))
 
@@ -143,7 +141,7 @@
   ;;(inhibit-startup-screen t)  ;; Disable welcome screen
 
   (delete-selection-mode t)   ;; Select text and delete it by typing.
-  (electric-indent-mode nil)  ;; Turn off the weird indenting that Emacs does by default.
+  ;; (electric-indent-mode nil)  ;; Turn off the weird indenting that Emacs does by default.
   (electric-pair-mode t)      ;; Turns on automatic parens pairing
 
   (blink-cursor-mode nil)     ;; Don't blink cursor
@@ -152,7 +150,7 @@
   ;;(dired-kill-when-opening-new-dired-buffer t) ;; Dired don't create new buffer
   ;;(recentf-mode t) ;; Enable recent file mode
 
-  ;;(global-visual-line-mode t)           ;; Enable truncated lines
+  (global-visual-line-mode t)           ;; Enable truncated lines
   ;;(display-line-numbers-type 'relative) ;; Relative line numbers
   (global-display-line-numbers-mode t)  ;; Display line numbers
 
@@ -160,6 +158,7 @@
   (scroll-conservatively 10) ;; Smooth scrolling
   ;;(scroll-margin 8)
 
+  (setq-default indent-tabs-mode nil)
   (tab-width 4)
 
   (make-backup-files nil) ;; Stop creating ~ backup files
@@ -189,17 +188,6 @@
 
 (add-to-list 'default-frame-alist '(alpha-background . 95)) ;; For all new frames henceforth
 
-;; (set-frame-font "JetBrains Mono-10" nil t)
-;; (set-face-attribute 'default nil
-;;                     ;; :font "JetBrains Mono" ;; Set your favorite type of font or download JetBrains Mono
-;;                     :height 98
-;;                     :weight 'medium)
-
-;; This sets the default font on all graphical frames created after restarting Emacs.
-;;
-;; Does the same thing as 'set-face-attribute default' above, but emacsclient fonts
-;; are not right unless I also add this method of setting the default font.
-
 (add-to-list 'default-frame-alist '(font . "JetBrains Mono-10")) ;; Set your favorite font
 (setq-default line-spacing 0.05)
 
@@ -213,7 +201,7 @@
 (use-package doom-modeline
   :init (doom-modeline-mode 1)
   :custom
-  (doom-modeline-height 25)     ;; Sets modeline height
+  (doom-modeline-height 24)     ;; Sets modeline height
   (doom-modeline-bar-width 5)   ;; Sets right bar width
   (doom-modeline-persp-name t)  ;; Adds perspective name to modeline
   (doom-modeline-persp-icon t)) ;; Adds folder icon next to persp name
@@ -251,7 +239,7 @@
 
 (use-package eglot
   :ensure nil ;; Don't install eglot because it's now built-in
-  :hook ((c-mode c++-mode elixir-mode elixir-ts-mode lua-mode racket-mode) . eglot-ensure)
+  :hook ((c-mode c++-mode elixir-mode elixir-ts-mode lua-mode python-ts-mode racket-mode) . eglot-ensure)
   :custom
   ;; Good default
   (eglot-events-buffer-size 0) ;; No event buffers (Lsp server logs)
@@ -260,8 +248,8 @@
   ;; Manual lsp servers
   :config
   (add-to-list 'eglot-server-programs
-    `(racket-mode . ("racket" "-l" "racket-langserver"))
-    `(lua-mode . ("/home/jayai/.local/share/mise/installs/lua-language-server/3.10.5/bin/lua-language-server" "-lsp"))))
+    `((python-mode python-ts-mode) . ("ruff" "server"))
+    `(racket-mode . ("racket" "-l" "racket-langserver"))))
 
 (use-package yasnippet-snippets
   :hook (prog-mode . yas-minor-mode))
@@ -271,7 +259,8 @@
   :hook ((julia-mode julia-ts-mode). eglot-jl-init))
 (use-package lua-mode :mode "\\.lua\\'")
 (use-package racket-mode :mode "\\.rkt\\'")
-(use-package geiser-racket)
+(use-package yaml-ts-mode :mode "\\.\\(yaml\\|yml\\)\\'")
+;; (use-package geiser-racket)
 
 (defun elixir/find-mix-project (dir)
   "Try to locate a Elixir project root by 'mix.exs' above DIR."
@@ -490,8 +479,8 @@
 
 (use-package diminish)
 
-(use-package rainbow-delimiters
-  :hook (prog-mode . rainbow-delimiters-mode))
+;; (use-package rainbow-delimiters
+;;   :hook (prog-mode . rainbow-delimiters-mode))
 
 (use-package which-key
   :init
@@ -506,6 +495,11 @@
   (which-key-idle-delay 0.8)       ;; Set the time delay (in seconds) for the which-key popup to appear
   (which-key-max-description-length 25)
   (which-key-allow-imprecise-window-fit nil)) ;; Fixes which-key window slipping out in Emacs Daemon
+
+(use-package paredit
+  :hook ((racket-mode . enable-paredit-mode)
+         (scheme-mode . enable-paredit-mode)
+         (emacs-lisp-mode . enable-paredit-mode)))
 
 ;; Make gc pauses faster by decreasing the threshold.
 (setq gc-cons-threshold (* 2 1000 1000))
