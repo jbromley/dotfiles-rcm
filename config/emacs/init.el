@@ -248,13 +248,13 @@
 (use-package yaml-ts-mode :mode "\\.\\(yaml\\|yml\\)\\'")
 ;; (use-package geiser-racket)
 
-(defun elixir/find-mix-project (dir)
-  "Try to locate a Elixir project root by 'mix.exs' above DIR."
-  (let ((mix_root (locate-dominating-file dir "mix.exs")))
-    (message "Found Elixir project root in '%s' starting from '%s'" mix_root dir)
-    (if (stringp mix_root) `(transient . ,mix_root) nil)))
-
-(add-hook 'project-find-functions 'elixir/find-mix-project nil nil)
+;; (defun elixir/find-mix-project (dir)
+;;   "Try to locate a Elixir project root by 'mix.exs' above DIR."
+;;   (let ((mix_root (locate-dominating-file dir "mix.exs")))
+;;     (message "Found Elixir project root in '%s' starting from '%s'" mix_root dir)
+;;     (if (stringp mix_root) `(transient . ,mix_root) nil)))
+;; 
+;; (add-hook 'project-find-functions 'elixir/find-mix-project nil nil)
 
 (use-package org
   :ensure nil
