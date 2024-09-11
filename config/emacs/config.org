@@ -445,13 +445,13 @@ Elixir umbrella projects. The following function and hook cause projectile to
 look for a ~mix.exs~ file to determine the root of a project.
 
 #+begin_src emacs-lisp
-    (defun elixir/find-mix-project (dir)
-      "Try to locate a Elixir project root by 'mix.exs' above DIR."
-      (let ((mix_root (locate-dominating-file dir "mix.exs")))
-        (message "Found Elixir project root in '%s' starting from '%s'" mix_root dir)
-        (if (stringp mix_root) `(transient . ,mix_root) nil)))
-    
-    (add-hook 'project-find-functions 'elixir/find-mix-project nil nil)
+    ;; (defun elixir/find-mix-project (dir)
+    ;;   "Try to locate a Elixir project root by 'mix.exs' above DIR."
+    ;;   (let ((mix_root (locate-dominating-file dir "mix.exs")))
+    ;;     (message "Found Elixir project root in '%s' starting from '%s'" mix_root dir)
+    ;;     (if (stringp mix_root) `(transient . ,mix_root) nil)))
+    ;; 
+    ;; (add-hook 'project-find-functions 'elixir/find-mix-project nil nil)
 
 #+end_src
 
