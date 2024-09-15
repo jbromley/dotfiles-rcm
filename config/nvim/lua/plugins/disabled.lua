@@ -1,9 +1,9 @@
 -- This file disables plugins that are used by LazyVim.
 return {
-  {
-    "folke/noice.nvim",
-    enabled = false,
-  },
+  -- {
+  --   "folke/noice.nvim",
+  --   enabled = false,
+  -- },
   {
     "folke/flash.nvim",
     enabled = false,
