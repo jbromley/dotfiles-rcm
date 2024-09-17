@@ -5,6 +5,18 @@ return {
     "benknoble/vim-racket",
   },
   {
+    "Olical/conjure",
+    ft = { "clojure", "racket", "python" }, -- etc
+    lazy = true,
+    init = function()
+      -- Set configuration options here
+      -- vim.g["conjure#debug"] = true
+    end,
+
+    -- Optional cmp-conjure integration
+    -- dependencies = { "PaterJason/cmp-conjure" },
+  },
+  {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
