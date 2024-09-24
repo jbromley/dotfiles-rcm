@@ -42,15 +42,7 @@
 
 (use-package almost-mono-themes)
 
-(use-package app-monochrome-themes)
-
-(use-package monotropic-theme)
-
-(use-package nothing-theme)
-
-(use-package tao-theme)
-
-(use-pacakge tok-theme)
+(use-package tok-theme)
 
 (use-package nerd-icons
   :if (display-graphic-p))
