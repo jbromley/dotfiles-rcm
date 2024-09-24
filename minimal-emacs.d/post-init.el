@@ -21,7 +21,8 @@
   :bind
   (;([escape] . keyboard-escape-quit)
    ("C-+" . text-scale-increase)
-   ("C--" . text-scale-decrease))
+   ("C--" . text-scale-decrease)
+   ("C-M-z" . zap-up-to-char))
 
   :hook
   ((after-init . global-auto-revert-mode)
@@ -37,9 +38,19 @@
 (add-to-list 'default-frame-alist '(font . "JetBrains Mono-11"))
 ;; (setq-default line-spacing 0.05)
 
-;; (use-package dracula-theme
-;;   :config
-;;   (load-theme 'dracula t))
+(use-package dracula-theme)
+
+(use-package almost-mono-themes)
+
+(use-package app-monochrome-themes)
+
+(use-package monotropic-theme)
+
+(use-package nothing-theme)
+
+(use-package tao-theme)
+
+(use-pacakge tok-theme)
 
 (use-package nerd-icons
   :if (display-graphic-p))
@@ -237,15 +248,17 @@
    :preview-key '(:debounce 0.4 any))
   (setq consult-narrow-key "<"))
 
+(use-package consult-ag)
+
 (use-package corfu
   ;; Optional customizations
   :custom
-  (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
-  (corfu-auto t)                 ;; Enable auto completion
-  (corfu-auto-prefix 2)          ;; Minimum length of prefix for auto completion.
-  (corfu-popupinfo-mode t)       ;; Enable popup information
-  (corfu-popupinfo-delay 0.5)    ;; Lower popupinfo delay to 0.5 seconds from 2 seconds
-  (corfu-separator ?\s)          ;; Orderless field separator, Use M-SPC to enter separator
+  (corfu-cycle t)          ;; Enable cycling for `corfu-next/previous'
+  (corfu-auto t)           ;; Enable auto completion
+  (corfu-auto-prefix 2)    ;; Minimum length of prefix for auto completion.
+  (corfu-popupinfo-mode t) ;; Enable popup information
+  (corfu-popupinfo-delay 0.5) ;; Lower popupinfo delay to 0.5 seconds from 2 seconds
+  (corfu-separator ?\s) ;; Orderless field separator, Use M-SPC to enter separator
   ;; (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
   ;; (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
   ;; (corfu-preview-current nil)    ;; Disable current candidate preview
@@ -405,6 +418,8 @@
 (use-package org
   :ensure nil
   :custom
+  (org-directory "~/Org")
+  (org-agenda-files '("~/Org"))
   (org-edit-src-content-indentation 4) ;; Set src block automatic indent to 4 instead of 2.
   (set-fill-column 80)
   
