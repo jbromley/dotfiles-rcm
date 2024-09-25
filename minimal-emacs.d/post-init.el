@@ -34,11 +34,13 @@
 (windmove-default-keybindings 'shift)
 
 ;; Appearance
-(add-to-list 'default-frame-alist '(alpha-background . 95))
+;; (add-to-list 'default-frame-alist '(alpha-background . 50))
 (add-to-list 'default-frame-alist '(font . "JetBrains Mono-11"))
 ;; (setq-default line-spacing 0.05)
 
-(use-package dracula-theme)
+(use-package dracula-theme
+  :config
+  (load-theme 'dracula t))
 
 (use-package almost-mono-themes)
 
