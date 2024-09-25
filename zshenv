@@ -5,9 +5,9 @@ export LANG=en_US.UTF-8
 export LC_NUMERIC=en_US.UTF-8
 
 # Editor
-export EDITOR="nvim"
-export VISUAL="neovide"
-export GIT_EDITOR="nvim"
+export EDITOR="emacsclient --tty"
+export VISUAL="emacsclient --no-wait"
+export GIT_EDITOR="emacsclient --tty"
 
 # Zsh environment variables
 export HISTFILE="${HOME}/.zhistory"
