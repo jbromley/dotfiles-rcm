@@ -270,30 +270,6 @@
   :init
   (global-corfu-mode))
 
-;; (use-package cape
-;;   :after corfu
-;;   :init
-;;   ;; Add to the global default value of `completion-at-point-functions' which is
-;;   ;; used by `completion-at-point'.  The order of the functions matters, the
-;;   ;; first function returning a result wins.  Note that the list of buffer-local
-;;   ;; completion functions takes precedence over the global list.
-;;   ;; The functions that are added later will be the first in the list
-;; 
-;;   (add-to-list 'completion-at-point-functions #'cape-dabbrev) ;; Complete word from current buffers
-;;   (add-to-list 'completion-at-point-functions #'cape-dict) ;; Dictionary completion
-;;   (add-to-list 'completion-at-point-functions #'cape-file) ;; Path completion
-;;   (add-to-list 'completion-at-point-functions #'cape-elisp-block) ;; Complete elisp in Org or Markdown mode
-;;   (add-to-list 'completion-at-point-functions #'cape-keyword) ;; Keyword/Snipet completion
-;; 
-;;   ;;(add-to-list 'completion-at-point-functions #'cape-abbrev) ;; Complete abbreviation
-;;   ;;(add-to-list 'completion-at-point-functions #'cape-history) ;; Complete from Eshell, Comint or minibuffer history
-;;   ;;(add-to-list 'completion-at-point-functions #'cape-line) ;; Complete entire line from current buffer
-;;   ;;(add-to-list 'completion-at-point-functions #'cape-elisp-symbol) ;; Complete Elisp symbol
-;;   ;;(add-to-list 'completion-at-point-functions #'cape-tex) ;; Complete Unicode char from TeX command, e.g. \hbar
-;;   ;;(add-to-list 'completion-at-point-functions #'cape-sgml) ;; Complete Unicode char from SGML entity, e.g., &alpha
-;;   ;;(add-to-list 'completion-at-point-functions #'cape-rfc1345) ;; Complete Unicode char using RFC 1345 mnemonics
-;;   )
-
 ;;; Project management
 (use-package projectile
   :init
@@ -415,11 +391,14 @@
   (org-directory "~/Org")
   (org-agenda-files '("~/Org"))
   (org-edit-src-content-indentation 4) ;; Set src block automatic indent to 4 instead of 2.
-  (set-fill-column 80)
+  (org-todo-keywords '((sequence "TODO(t)" "STARTED(s)" "|" "DONE(d)" "CANCELED(c)")))
+  (org-todo-keyword-faces '(("STARTED" . "cyan") ("CANCELED" . "red")))
   
   :hook
   (org-mode . org-indent-mode) ;; Indent text
-  (org-mode . auto-fill-mode)
+  (org-mode . (lambda ()
+                (set-fill-column 80)
+                (auto-fill-mode)))
   ;; The following prevents <> from auto-pairing when electric-pair-mode is on.
   ;; Otherwise, org-tempo is broken when you try to <s TAB...
   (org-mode . (lambda ()
