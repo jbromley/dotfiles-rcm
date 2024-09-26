@@ -288,33 +288,45 @@
       :hook (after-init . global-mise-mode))
 
 ;; Remap modes to treesitter modes where possible
-;; TODO Set treesit-language-source-alist and ensure all desired treesitter
-;;      parsers are installed.
 (setq treesit-language-source-alist
-      '((bash . "https://github.com/tree-sitter/tree-sitter-bash")
-        (c . "https://github.com/tree-sitter/tree-sitter-c")
-        (cpp . "https://github.com/tree-sitter/tree-sitter-cpp")
-        (cmake . "https://github.com/uyha/tree-sitter-cmake" )
-        ; (elixir . "https://github.com/elixir-lang/tree-sitter-elixir")
-        (python . "https://github.com/tree-sitter/tree-sitter-python")
-        (yaml . "https://github.com/ikatyang/tree-sitter-yaml")))
-      
+      '((c . ("https://github.com/tree-sitter/tree-sitter-c" nil nil nil nil))
+        (cpp . ("https://github.com/tree-sitter/tree-sitter-cpp" nil nil nil nil))
+        (cmake . ("https://github.com/uyha/tree-sitter-cmake" nil nil nil nil))
+        (css . ("https://github.com/tree-sitter/tree-sitter-css" nil nil nil nil))
+        (elixir . ("https://github.com/elixir-lang/tree-sitter-elixir" nil nil nil nil))
+        (erlang . ("https://github.com/WhatsApp/tree-sitter-erlang/" nil nil nil nil))
+        (heex . ("https://github.com/phoenixframework/tree-sitter-heex" nil nil nil nil))
+        (html . ("https://github.com/tree-sitter/tree-sitter-html" nil nil nil nil))
+        (json . ("https://github.com/tree-sitter/tree-sitter-json" nil nil nil nil))
+        (julia . ("https://github.com/tree-sitter/tree-sitter-julia" nil nil nil nil))
+        (lua . ("https://github.com/tjdevries/tree-sitter-lua" nil nil nil nil))
+        (python . ("https://github.com/tree-sitter/tree-sitter-python" nil nil nil nil))
+        (rust . ("https://github.com/tree-sitter/tree-sitter-rust" nil nil nil nil))
+        (toml . ("https://github.com/tree-sitter/tree-sitter-toml" nil nil nil nil)) 
+        (yaml . ("https://github.com/ikatyang/tree-sitter-yaml" nil nil nil nil))))
+
+(dolist (lang-src treesit-language-source-alist)
+  (let ((lang (car lang-src)))
+    (unless (treesit-language-available-p lang)
+      (treesit-install-language-grammar lang))))
+
+
 (setq major-mode-remap-alist
- '((bash-mode . bash-ts-mode)
-   (c-mode . c-ts-mode)
-   (c++-mode . c++-ts-mode)
-   (cmake-mode . cmake-ts-mode)
-   (css-mode . css-ts-mode)
-   (elixir-mode . elixir-ts-mode)
-   (heex-mode . heex-ts-mode)
-   (html-mode . html-ts-mode)
-   (json-mode . json-ts-mode)
-   (julia-mode . julia-ts-mode)
-   (lua-mode . lua-ts-mode)
-   (python-mode . python-ts-mode)
-   (rust-mode . rust-ts-mode)
-   (toml-mode . toml-ts-mode)
-   (yaml-mode . yaml-ts-mode)))
+      '((bash-mode . bash-ts-mode)
+        (c-mode . c-ts-mode)
+        (c++-mode . c++-ts-mode)
+        (cmake-mode . cmake-ts-mode)
+        (css-mode . css-ts-mode)
+        (elixir-mode . elixir-ts-mode)
+        (heex-mode . heex-ts-mode)
+        (html-mode . html-ts-mode)
+        (json-mode . json-ts-mode)
+        (julia-mode . julia-ts-mode)
+        (lua-mode . lua-ts-mode)
+        (python-mode . python-ts-mode)
+        (rust-mode . rust-ts-mode)
+        (toml-mode . toml-ts-mode)
+        (yaml-mode . yaml-ts-mode)))
 
 ;; Language modes
 (use-package elixir-mode
@@ -432,3 +444,7 @@
   (which-key-idle-delay 0.5)
   (which-key-max-description-length 25)
   (which-key-allow-imprecise-window-fit nil)) ;; Fixes which-key window slipping out in Emacs Daemon
+
+;;; pomm
+(use-package pomm
+  :commands (pomm pomm-third-time))
