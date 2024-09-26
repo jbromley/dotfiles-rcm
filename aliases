@@ -36,13 +36,7 @@ alias 9='cd -9'
 alias d='dirs -v | head -10'
 
 # Emacs, terminal emacsclient, and windowed emacsclient
-alias e=emacs
-alias et='emacsclient -t'
-alias ew='emacsclient -cn'
-
-# Push and pop directories on directory stack
-alias pu='pushd'
-alias po='popd'
+alias e=emacsclient -a ''
 
 # Open files easily with desktop tools
 alias o='xdg-open'
