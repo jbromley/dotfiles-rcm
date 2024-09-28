@@ -343,6 +343,11 @@
   :mode "\\.rkt\\'")
 (use-package yaml-ts-mode
   :mode "\\.\\(yaml\\|yml\\)\\'")
+(use-package sly
+  :config
+  (setq inferior-lisp-program "sbcl"
+        sly-lisp-implementations '((sbcl ("sbcl" "--core" "/home/jay/.local/lib/sbcl-sly.core")))))
+
 ;; (use-package geiser-racket)
 
 ;; Paredit for Lisp-like languages
