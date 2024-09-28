@@ -15,7 +15,7 @@
   ; (global-display-line-numbers-mode t)  ;; Display line numbers
   (mouse-wheel-progressive-speed nil)   ;; Disable progressive speed when scrolling
   (scroll-conservatively 10)            ;; Smooth scrolling
-  (scroll-margin 8)
+  (scroll-margin 2)
   (setq-default indent-tabs-mode nil)
 
   :bind
@@ -195,7 +195,7 @@
          ("M-g i" . consult-imenu)
          ("M-g I" . consult-imenu-multi)
          ;; M-s bindings in `search-map'
-         ("M-s d" . consult-find)
+         ("M-s d" . consult-fd)
          ("M-s c" . consult-locate)
          ("M-s g" . consult-grep)
          ("M-s G" . consult-git-grep)
@@ -240,7 +240,10 @@
    consult--source-recent-file consult--source-project-recent-file
    ;; :preview-key "M-."
    :preview-key '(:debounce 0.4 any))
-  (setq consult-narrow-key "<"))
+  (setq consult-narrow-key "<")
+
+  :custom
+  (consult-fd-args '((if (executable-find "fd" 'remote) "fd" "fdfind") "--full-path --color=never")))
 
 (use-package consult-ag)
 
