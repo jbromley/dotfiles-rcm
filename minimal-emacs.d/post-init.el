@@ -93,7 +93,7 @@
                                        ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
                                        "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
                                        "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
-                                       "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
+                                       "?=" "?." "??" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)" ; Removed ";;"
                                        "\\\\" "://"))
   ;; Enables ligature checks globally in all buffers. You can also do it
   ;; per mode with `ligature-mode'.
@@ -411,6 +411,7 @@
   (org-directory "~/Org")
   (org-agenda-files '("~/Org"))
   (org-edit-src-content-indentation 4) ;; Set src block automatic indent to 4 instead of 2.
+  (org-hierarchical-todo-statistics nil)
   (org-todo-keywords '((sequence "TODO(t)" "STARTED(s)" "|" "DONE(d)" "CANCELED(c)")))
   (org-todo-keyword-faces '(("STARTED" . "cyan") ("CANCELED" . "red")))
   
