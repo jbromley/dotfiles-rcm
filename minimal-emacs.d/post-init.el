@@ -11,8 +11,8 @@
   (global-auto-revert-mode t) ;; Automatically reload file and show changes if the file has changed
   (recentf-mode t) ;; Enable recent file mode
   (global-visual-line-mode t)           ;; Enable truncated lines
-  ; (display-line-numbers-type t)         ;; Absolute line numbers
-  ; (global-display-line-numbers-mode t)  ;; Display line numbers
+  (display-line-numbers-type t)         ;; Absolute line numbers
+  (global-display-line-numbers-mode t)  ;; Display line numbers
   (mouse-wheel-progressive-speed nil)   ;; Disable progressive speed when scrolling
   (scroll-conservatively 10)            ;; Smooth scrolling
   (scroll-margin 2)
@@ -431,9 +431,29 @@
   :commands toc-org-enable
   :hook (org-mode . toc-org-mode))
 
-(use-package org-superstar
+;; (use-package org-superstar
+;;   :after org
+;;   :hook (org-mode . org-superstar-mode))
+
+(use-package org-modern
   :after org
-  :hook (org-mode . org-superstar-mode))
+  :custom
+  (org-auto-align-tags nil)
+  (org-tags-column 0)
+  (org-catch-invisible-edits 'show-and-error)
+  (org-special-ctrl-a/e t)
+  (org-insert-heading-respect-content t)
+  (org-hide-emphases-markers t)
+  (org-pretty-entities nil)
+  (org-agenda-tags-column 0)
+  (org-agenda-block-separator ?-)
+  (org-ellipsis "...")
+
+  :init
+  (with-eval-after-load 'org (global-org-modern-mode))
+
+  :config
+  (set-face-attribute 'org-ellipsis nil :inherit 'default :box nil))
 
 (use-package org-tempo
   :ensure nil
