@@ -354,11 +354,12 @@
 (use-package paredit
   :hook ((racket-mode . enable-paredit-mode)
          (scheme-mode . enable-paredit-mode)
-         (emacs-lisp-mode . enable-paredit-mode)))
+         (emacs-lisp-mode . enable-paredit-mode)
+         (lisp-interaction-mode . (lambda () (define-key paredit-mode-map (kbd "C-j") 'eval-print-last-sexp)))))
 
 ;; In Lisp interaction mode, remap C-j to eval and print.
-(add-hook 'lisp-interaction-mode-hook
-          #'(lambda () (define-key paredit-mode-map (kbd "C-j") 'eval-print-last-sexp)))
+;; (add-hook 'lisp-interaction-mode-hook
+;;           #'(lambda () (define-key paredit-mode-map (kbd "C-j") 'eval-print-last-sexp)))
 
 ;; Use eglot for LSPs
 (use-package eglot
@@ -384,7 +385,8 @@
   (add-to-list 'eglot-server-programs
                `(racket-mode . ("racket" "-l" "racket-langserver")))
   :bind
-  (("C-c ]" . flymake-goto-next-error)
+  (:map prog-mode-map
+   ("C-c ]" . flymake-goto-next-error)
    ("C-c [" . flymake-goto-prev-error)
    ("C-c d" . flymake-show-buffer-diagnostics)))
 
