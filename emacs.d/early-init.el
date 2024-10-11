@@ -267,7 +267,7 @@ When set to non-nil, Emacs will automatically call `package-initialize' and
         (advice-remove #'tool-bar-setup #'ignore)
         (when tool-bar-mode
           (tool-bar-setup))))))
-(unless (memq 'tool-bar minimal-emacs-ui-features)
+(unless (memq 'tool-bar ui-features)
   (push '(tool-bar-lines . 0) default-frame-alist)
   (setq tool-bar-mode nil))
 
@@ -277,13 +277,13 @@ When set to non-nil, Emacs will automatically call `package-initialize' and
 (when (fboundp 'horizontal-scroll-bar-mode)
   (horizontal-scroll-bar-mode -1))
 
-(unless (memq 'tooltips minimal-emacs-ui-features)
+(unless (memq 'tooltips ui-features)
   (when (bound-and-true-p tooltip-mode)
     (tooltip-mode -1)))
 
 ;; Disable GUIs because they are inconsistent across systems, desktop
 ;; environments, and themes, and they don't match the look of Emacs.
-(unless (memq 'dialogs minimal-emacs-ui-features)
+(unless (memq 'dialogs ui-features)
   (setq use-file-dialog nil)
   (setq use-dialog-box nil))
 
