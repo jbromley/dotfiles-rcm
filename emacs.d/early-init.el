@@ -7,7 +7,7 @@
 ;; SPDX-License-Identifier: GPL-3.0-or-later
 
 ;;; Commentary:
-;; The emacs.d project is a customizable base that provides better Emacs
+;; This emacs configuration is a customizable base that provides better Emacs
 ;; defaults and optimized startup, intended to serve as a solid foundation for
 ;; your vanilla Emacs configuration.
 
@@ -88,7 +88,7 @@ When set to non-nil, Emacs will automatically call `package-initialize' and
 (setq load-prefer-newer t)
 
 ;; Increase how much is read from processes in a single chunk (default is 4kb).
-(setq read-process-output-max (* 512 1024))  ; 512kb
+(setq read-process-output-max (* 4 1024 1024))  ; 4 Mb
 
 ;; Reduce rendering/line scan work by not rendering cursors or regions in
 ;; non-focused windows.
