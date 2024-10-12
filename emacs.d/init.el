@@ -27,11 +27,19 @@
 
 ;; Activate some utility Emacs functions
 (use-package emacs
+  :init
+  ;; Window navigation
+  (windmove-default-keybindings 'shift)
+
+  ;; (add-to-list 'default-frame-alist '(alpha-background . 50))
+  (add-to-list 'default-frame-alist '(font . "JetBrains Mono-11"))
+  ;; (setq-default line-spacing 0.05)
+
   :config
   (setq-default left-fringe-width  8)
   (setq-default right-fringe-width 8)
 
-  ;; Do not show an arrow at the top/bottomin the fringe and empty lines
+  ;; Do not show an arrow at the top/bottom in the fringe and empty lines
   (setq-default indicate-buffer-boundaries nil)
   (setq-default indicate-empty-lines nil)
 
@@ -55,7 +63,6 @@
   (when (memq 'context-menu ui-features)
     (when (and (display-graphic-p) (fboundp 'context-menu-mode))
       (add-hook 'after-init-hook #'context-menu-mode)))
-
   
   :custom
   (auto-revert-stop-on-user-input nil)
@@ -107,6 +114,7 @@
   ; (global-auto-revert-mode t)           ;; Automatically reload file and show changes if the file has changed
   (global-auto-revert-non-file-buffers t)
   ; (global-display-line-numbers-mode t)  ;; Display line numbers
+  (global-hl-line-mode t)               ;; Highlight the current line
   (global-text-scale-adjust-resizes-frames nil)
   (global-visual-line-mode t)           ;; Enable truncated lines
   (history-length 300)                  ;; Maximum history list length
@@ -124,6 +132,8 @@
   (mouse-wheel-scroll-amount-horizontal 1)
   (mouse-wheel-progressive-speed nil)   ;; Disable progressive speed when scrolling
   (mouse-yank-at-point t)
+  (pixel-scroll-precision-mode t)       ;; Enable precise pixel scrolling.
+  (pixel-scroll-precision-use-momentum nil) ;; Disable momentum scrolling for pixel precision.
   (python-indent-guess-indent-offset-verbose nil) ;; Don't complain when can't guess indentation
   (recentf-auto-cleanup 'mode)
   (recentf-max-saved-items 300)         ;; default is 20
@@ -151,6 +161,7 @@
   (tramp-auto-save-directory
    (expand-file-name "tramp-autosave/" user-emacs-directory))
   (tramp-backup-directory-alist backup-directory-alist)
+  (treesit-font-lock-level 4)           ;; Use advanced font locking for Treesit mode.
   (truncate-partial-width-windows nil)  ;; Respect value of truncate-lines for narrow windows
   (uniquify-buffer-name-style 'forward)
   (vc-follow-symlinks t)                ;; Follow symlinks without asking
@@ -176,25 +187,32 @@
    (after-init . savehist-mode)
    (after-init . save-place-mode)
    (after-init . window-divider-mode)
+   (after-init . (lambda ()
+                   (message (format "Loaded %s packages in %s."
+                                    (number-to-string (length package-activated-list))
+                                    (emacs-init-time)))))
    (minibuffer-setup . cursor-intangible-mode)
    (prog-mode . display-line-numbers-mode)))
 
-;; Window navigation
-(windmove-default-keybindings 'shift)
-
-;; Appearance
-;; (add-to-list 'default-frame-alist '(alpha-background . 50))
-(add-to-list 'default-frame-alist '(font . "JetBrains Mono-11"))
-;; (setq-default line-spacing 0.05)
+(use-package isearch
+  :ensure nil
+  :custom
+  (isearch-lazy-count t)
+  (lazy-count-prefix-format "(%s/%s) ")
+  (lazy-count-suffix-format nil)
+  (search-whitespace-regexp ".*?"))
 
 (use-package dracula-theme
+  :defer t
   :config
-  ;(load-theme 'dracula t)
+                                        ;(load-theme 'dracula t)
   )
 
-(use-package almost-mono-themes)
+(use-package almost-mono-themes
+  :defer t)
 
-(use-package tok-theme)
+(use-package tok-theme
+  :defer t)
 
 (use-package nerd-icons
   :if (display-graphic-p))
@@ -316,9 +334,10 @@
   :bind (;; C-c bindings in `mode-specific-map'
          ("C-c M-x" . consult-mode-command)
          ("C-c h" . consult-history)
+         ("C-c i" . consult-info)
          ("C-c k" . consult-kmacro)
          ("C-c m" . consult-man)
-         ("C-c i" . consult-info)
+         ("C-c t" . consult-theme)
          ([remap Info-search] . consult-info)
          ;; C-x bindings in `ctl-x-map'
          ("C-x M-:" . consult-complex-command)
