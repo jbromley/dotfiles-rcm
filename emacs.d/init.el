@@ -140,7 +140,7 @@
   (recentf-mode t)                      ;; Enable recent file mode
   (require-final-newline t)
   (resize-mini-windows 'grow-only)
-  (revert-without-query (list "."))     ;; Do not prompt to revert these files
+  (revert-without-query (list "."))      ;; Do not prompt to revert these files
   (ring-bell-function #'ignore)         ;; Do nothing when bell is to ring
   (savehist-save-minibuffer-history t)  ;; Save all recorded mini-buffer histories
   (save-place-file (expand-file-name "saveplace" user-emacs-directory))
@@ -209,6 +209,9 @@
   )
 
 (use-package almost-mono-themes
+  :defer t)
+
+(use-package tao-theme
   :defer t)
 
 (use-package tok-theme

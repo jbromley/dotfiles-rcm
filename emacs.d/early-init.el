@@ -144,11 +144,11 @@ When set to non-nil, Emacs will automatically call `package-initialize' and
 
       ;; Reset the above variables to prevent Emacs from appearing frozen or
       ;; visually corrupted after startup or if a startup error occurs.
-      (defun minimal-emacs--reset-inhibited-vars-h ()
+      (defun my-emacs--reset-inhibited-vars-h ()
         (setq-default inhibit-redisplay nil
                       inhibit-message nil)
-        (remove-hook 'post-command-hook #'minimal-emacs--reset-inhibited-vars-h))
-      (add-hook 'post-command-hook #'minimal-emacs--reset-inhibited-vars-h -100)
+        (remove-hook 'post-command-hook #'my-emacs--reset-inhibited-vars-h))
+      (add-hook 'post-command-hook #'my-emacs--reset-inhibited-vars-h -100)
 
       (dolist (buf (buffer-list))
         (with-current-buffer buf
@@ -158,7 +158,7 @@ When set to non-nil, Emacs will automatically call `package-initialize' and
            (default-toplevel-value 'mode-line-format))
       (setq-default mode-line-format nil)
 
-      (defun minimal-emacs--startup-load-user-init-file (fn &rest args)
+      (defun my-emacs--startup-load-user-init-file (fn &rest args)
         "Advice for startup--load-user-init-file to reset mode-line-format."
         (unwind-protect
             (progn
@@ -172,7 +172,7 @@ When set to non-nil, Emacs will automatically call `package-initialize' and
                           (get 'mode-line-format 'initial-value)))))
 
       (advice-add 'startup--load-user-init-file :around
-                  #'minimal-emacs--startup-load-user-init-file))
+                  #'my-emacs--startup-load-user-init-file))
 
     ;; Without this, Emacs will try to resize itself to a specific column size
     (setq frame-inhibit-implied-resize t)
