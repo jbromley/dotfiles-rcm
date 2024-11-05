@@ -103,6 +103,9 @@ function set_term_title() {
 }
 precmd_functions+=(set_term_title)
 
+# Set up OCaml environment
+[[ ! -r '/home/jayai/.opam/opam-init/init.zsh' ]] || source '/home/jayai/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
+
 # Functions
 
 # Check ps for a process
@@ -164,7 +167,4 @@ function yy() {
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 source ~/.zsh/powerlevel10k/powerlevel10k.zsh-theme
-# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
