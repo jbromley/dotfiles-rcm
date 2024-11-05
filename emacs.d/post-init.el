@@ -42,9 +42,14 @@
   :config
   (load-theme 'dracula t))
 
-(use-package almost-mono-themes)
+(use-package ef-themes
+  :defer t)
 
-(use-package tok-theme)
+(use-package almost-mono-themes
+  :defer t)
+
+(use-package tok-theme
+  :defer t)
 
 (use-package nerd-icons
   :if (display-graphic-p))
