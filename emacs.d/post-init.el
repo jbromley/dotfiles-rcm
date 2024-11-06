@@ -321,6 +321,7 @@
         (json . ("https://github.com/tree-sitter/tree-sitter-json" nil nil nil nil))
         (julia . ("https://github.com/tree-sitter/tree-sitter-julia" nil nil nil nil))
         (lua . ("https://github.com/tjdevries/tree-sitter-lua" nil nil nil nil))
+        (ocaml . ("https://github.com/tree-sitter/tree-sitter-ocaml" nil "grammars/ocaml/src" nil nil))
         (python . ("https://github.com/tree-sitter/tree-sitter-python" nil nil nil nil))
         (rust . ("https://github.com/tree-sitter/tree-sitter-rust" nil nil nil nil))
         (toml . ("https://github.com/tree-sitter/tree-sitter-toml" nil nil nil nil)) 
@@ -344,6 +345,7 @@
         (json-mode . json-ts-mode)
         (julia-mode . julia-ts-mode)
         (lua-mode . lua-ts-mode)
+        (ocaml-mode . ocaml-ts-mode)
         (python-mode . python-ts-mode)
         (rust-mode . rust-ts-mode)
         (toml-mode . toml-ts-mode)
@@ -365,6 +367,17 @@
   :config
   (setq inferior-lisp-program "sbcl"
         sly-lisp-implementations '((sbcl ("sbcl" "--core" "/home/jay/.local/lib/sbcl-sly.core")))))
+(use-package tuareg
+  :custom
+  (tuareg-match-patterns-aligned t)
+  :hook
+  (tuareg-mode . (lambda ()
+                   (setq-local comment-style 'multi-line
+                               comment-continue "   ")
+                   (setq tuareg-mode-name "🐫")
+                   (merlin-mode))))
+(use-package merlin)
+(use-package ocp-indent)
 
 ;; (use-package geiser-racket)
 
@@ -401,6 +414,7 @@
   (setq jsonrpc-event-hook nil)
   ;; Additional language servers
   (add-to-list 'eglot-server-programs
+               ;; `(ocaml-ts-mode . ("ocamllsp" "--stdio"))
                `(racket-mode . ("racket" "-l" "racket-langserver")))
   :bind
   (:map prog-mode-map
