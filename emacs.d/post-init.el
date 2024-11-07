@@ -28,12 +28,13 @@
   ((after-init . global-auto-revert-mode)
    (after-init . recentf-mode)
    (after-init . savehist-mode)
-   (after-init . save-place-mode)))
+   (after-init . save-place-mode)
+   (prog-mode . (lambda () (hs-minor-mode t)))))
 
-;; Window navigation
+;; ;; Window navigation
 (windmove-default-keybindings 'shift)
 
-;; Appearance
+;; ;; Appearance
 ;; (add-to-list 'default-frame-alist '(alpha-background . 50))
 (add-to-list 'default-frame-alist '(font . "JetBrains Mono-10"))
 ;; (setq-default line-spacing 0.05)
@@ -300,7 +301,6 @@
   (projectile-project-search-path '("~/Code/")))
 ;; Use Bookmarks for smaller, not standard projects
 
-
 ;;; Programming language mode configurations
 
 ;; Integrate Emacs with tools installed with mise.
@@ -367,10 +367,8 @@
   (setq inferior-lisp-program "sbcl"
         sly-lisp-implementations '((sbcl ("sbcl" "--core" "/home/jay/.local/lib/sbcl-sly.core")))))
 
-;; OCaml setup 
-(require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
-
-;; (use-package geiser-racket)
+;; ;; OCaml setup 
+;; (require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
 
 ;; Paredit for Lisp-like languages
 (use-package paredit
@@ -378,10 +376,6 @@
          (scheme-mode . enable-paredit-mode)
          (emacs-lisp-mode . enable-paredit-mode)
          (lisp-interaction-mode . (lambda () (define-key paredit-mode-map (kbd "C-j") 'eval-print-last-sexp)))))
-
-;; In Lisp interaction mode, remap C-j to eval and print.
-;; (add-hook 'lisp-interaction-mode-hook
-;;           #'(lambda () (define-key paredit-mode-map (kbd "C-j") 'eval-print-last-sexp)))
 
 ;; Use eglot for LSPs
 (use-package eglot
@@ -412,11 +406,6 @@
    ("C-c ]" . flymake-goto-next-error)
    ("C-c [" . flymake-goto-prev-error)
    ("C-c d" . flymake-show-buffer-diagnostics)))
-
-;; Hideshow mode for folding
-(use-package emacs
-  :hook
-  (prog-mode . (lambda () (hs-minor-mode t))))
 
 ;;; Version control with magit
 (use-package magit
