@@ -35,12 +35,11 @@
 
 ;; Appearance
 ;; (add-to-list 'default-frame-alist '(alpha-background . 50))
-(add-to-list 'default-frame-alist '(font . "JetBrains Mono-11"))
+(add-to-list 'default-frame-alist '(font . "JetBrains Mono-10"))
 ;; (setq-default line-spacing 0.05)
 
 (use-package dracula-theme
-  :config
-  (load-theme 'dracula t))
+  :defer t)
 
 (use-package ef-themes
   :defer t)
@@ -367,17 +366,9 @@
   :config
   (setq inferior-lisp-program "sbcl"
         sly-lisp-implementations '((sbcl ("sbcl" "--core" "/home/jay/.local/lib/sbcl-sly.core")))))
-(use-package tuareg
-  :custom
-  (tuareg-match-patterns-aligned t)
-  :hook
-  (tuareg-mode . (lambda ()
-                   (setq-local comment-style 'multi-line
-                               comment-continue "   ")
-                   (setq tuareg-mode-name "🐫")
-                   (merlin-mode))))
-(use-package merlin)
-(use-package ocp-indent)
+
+;; OCaml setup 
+(require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
 
 ;; (use-package geiser-racket)
 
