@@ -368,7 +368,7 @@
         sly-lisp-implementations '((sbcl ("sbcl" "--core" "/home/jay/.local/lib/sbcl-sly.core")))))
 
 ;; ;; OCaml setup 
-;; (require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
+(require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
 
 ;; Paredit for Lisp-like languages
 (use-package paredit
