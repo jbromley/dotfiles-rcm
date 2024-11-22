@@ -29,6 +29,7 @@
    (after-init . recentf-mode)
    (after-init . savehist-mode)
    (after-init . save-place-mode)
+   ; (after-init . fido-vertical-mode)
    (prog-mode . (lambda () (hs-minor-mode t)))))
 
 ;; ;; Window navigation
@@ -491,3 +492,15 @@
 ;;; pomm
 (use-package pomm
   :commands (pomm pomm-third-time))
+
+;;; hardtime
+(use-package hardtime
+  :init
+  (unless (package-installed-p 'hardtime)
+    (package-vc-install
+     '(hardtime
+       :vc-backend Git
+       :url "https://github.com/ichernyshovvv/hardtime.el"
+       :branch "master")))
+  :config
+  (hardtime-mode))
