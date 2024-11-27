@@ -22,6 +22,7 @@
   (;([escape] . keyboard-escape-quit)
    ("C-+" . text-scale-increase)
    ("C--" . text-scale-decrease)
+   ("C-z" . zap-to-char)
    ("C-M-z" . zap-up-to-char))
 
   :hook
