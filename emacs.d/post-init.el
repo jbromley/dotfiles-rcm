@@ -369,8 +369,8 @@
   (setq inferior-lisp-program "sbcl"
         sly-lisp-implementations '((sbcl ("sbcl" "--core" "/home/jay/.local/lib/sbcl-sly.core")))))
 
-;; ;; OCaml setup 
-(require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
+;; OCaml setup 
+(minimal-emacs-load-user-init "~/.emacs.d/ocaml-setup.el")
 
 ;; Paredit for Lisp-like languages
 (use-package paredit
@@ -446,10 +446,6 @@
 (use-package toc-org
   :commands toc-org-enable
   :hook (org-mode . toc-org-mode))
-
-;; (use-package org-superstar
-;;   :after org
-;;   :hook (org-mode . org-superstar-mode))
 
 (use-package org-modern
   :after org

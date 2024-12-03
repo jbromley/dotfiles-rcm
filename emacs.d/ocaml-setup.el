@@ -48,8 +48,7 @@
   (let ((reply (opam-shell-command-to-string "opam var share --safe")))
     (when reply (substring reply 0 -1))))
 
-(add-to-list 'load-path (concat opam-share "/emacs/site-lisp"))
-
+;(add-to-list 'load-path (concat opam-share "/emacs/site-lisp"))
 
 (use-package company)
 
@@ -71,6 +70,7 @@
    (caml-mode . ocp-indent-caml-mode-setup)))
 
 (use-package ocp-index
+  :load-path (lambda () (concat opam-share "/emacs/site-lisp"))
   :autoload ocp-index-mode
   :hook
   ((tuareg-mode . ocp-index-mode)
@@ -79,19 +79,20 @@
 (use-package merlin
   :config
   (set-face-background 'merlin-type-face "skyblue")
-  :bindings
+  :bind
   (:map merlin-mode-map
         ("C-c <up>" . merlin-type-enclosing-go-up)
         ("C-c <down>" . merlin-type-enclosing-go-down))
   :hook
   ((tuareg-mode . merlin-mode)
-   (caml-mode . merlin-mode)))
+   (caml-mode . merlin-mode)
+   (merlin-mode . company-mode)))
 
 (use-package utop
   :autoload (utop utop-minor-mode)
   :hook (tuareg-mode . utop-minor-mode))
 
 (use-package ocamlformat
-  :bindings
+  :bind
   (:map tuareg-mode-map
         ("C-c C-f" . ocamlformat)))
