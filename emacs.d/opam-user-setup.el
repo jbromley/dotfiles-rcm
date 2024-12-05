@@ -49,6 +49,8 @@
   (let ((reply (opam-shell-command-to-string "opam var share --safe")))
     (when reply (substring reply 0 -1))))
 
+(use-package dune)
+
 (add-to-list 'load-path (concat opam-share "/emacs/site-lisp"))
 ;; OPAM-installed tools automated detection and initialisation
 
