@@ -369,8 +369,8 @@
   (setq inferior-lisp-program "sbcl"
         sly-lisp-implementations '((sbcl ("sbcl" "--core" "/home/jay/.local/lib/sbcl-sly.core")))))
 
-;; ;; OCaml setup 
-(require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
+;; OCaml setup 
+(minimal-emacs-load-user-init "~/.emacs.d/ocaml-setup.el")
 
 ;; Paredit for Lisp-like languages
 (use-package paredit
@@ -447,10 +447,6 @@
   :commands toc-org-enable
   :hook (org-mode . toc-org-mode))
 
-;; (use-package org-superstar
-;;   :after org
-;;   :hook (org-mode . org-superstar-mode))
-
 (use-package org-modern
   :after org
   :custom
@@ -474,6 +470,13 @@
 (use-package org-tempo
   :ensure nil
   :after org)
+
+;;; Markdown mode
+(use-package markdown-mode
+  :mode ("README\\.md\\'" . gfm-mode)
+  :init (setq markdown-command "pandoc")
+  :bind (:map markdown-mode-map
+         ("C-c C-e" . markdown-do)))
 
 ;;; Which key
 (use-package which-key
