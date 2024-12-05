@@ -41,8 +41,7 @@
 (add-to-list 'default-frame-alist '(font . "JetBrains Mono-10"))
 ;; (setq-default line-spacing 0.05)
 
-(use-package dracula-theme
-  :defer t)
+(use-package dracula-theme)
 
 (use-package ef-themes
   :defer t)
@@ -498,13 +497,21 @@
   :commands (pomm pomm-third-time))
 
 ;;; hardtime
-(use-package hardtime
-  :init
-  (unless (package-installed-p 'hardtime)
-    (package-vc-install
-     '(hardtime
-       :vc-backend Git
-       :url "https://github.com/ichernyshovvv/hardtime.el"
-       :branch "master")))
-  :config
-  (hardtime-mode))
+;; (use-package hardtime
+;;   :init
+;;   (unless (package-installed-p 'hardtime)
+;;     (package-vc-install
+;;      '(hardtime
+;;        :vc-backend Git
+;;        :url "https://github.com/ichernyshovvv/hardtime.el"
+;;        :branch "master")))
+;;   :config
+;;   (hardtime-mode))
+
+;;; chatgpt-shell
+
+(use-package chatgpt-shell
+  :custom
+  ((chatgpt-shell-openai-key
+    (lambda ()
+      (auth-source-pick-first-password :host "api.openai.com")))))
