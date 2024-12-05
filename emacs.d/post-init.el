@@ -471,6 +471,13 @@
   :ensure nil
   :after org)
 
+;;; Markdown mode
+(use-package markdown-mode
+  :mode ("README\\.md\\'" . gfm-mode)
+  :init (setq markdown-command "pandoc")
+  :bind (:map markdown-mode-map
+         ("C-c C-e" . markdown-do)))
+
 ;;; Which key
 (use-package which-key
   :init
