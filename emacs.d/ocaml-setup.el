@@ -96,3 +96,5 @@
   :bind
   (:map tuareg-mode-map
         ("C-c C-f" . ocamlformat)))
+
+(use-package dune)
