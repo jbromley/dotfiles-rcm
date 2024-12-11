@@ -104,7 +104,13 @@ function set_term_title() {
 precmd_functions+=(set_term_title)
 
 # Set up OCaml environment
-[[ ! -r '/home/jayai/.opam/opam-init/init.zsh' ]] || source '/home/jayai/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
+[[ ! -r '${HOME}/.opam/opam-init/init.zsh' ]] || source '${HOME}/.opam/opam-init/init.zsh' &> /dev/null
+
+opam_executable="${HOME}/.local/share/mise/installs/opam/latest/bin/opam"
+if [ -x "$opam_executable" ]; then
+  eval "$($opam_executable env)"
+fi
+
 
 # Functions
 
