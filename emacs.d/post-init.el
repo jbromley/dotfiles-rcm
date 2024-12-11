@@ -381,6 +381,7 @@
   :hook ((racket-mode . enable-paredit-mode)
          (scheme-mode . enable-paredit-mode)
          (emacs-lisp-mode . enable-paredit-mode)
+         (tuareg-mode . enable-paredit-mode)
          (lisp-interaction-mode . (lambda () (define-key paredit-mode-map (kbd "C-j") 'eval-print-last-sexp)))))
 
 ;; Use eglot for LSPs
