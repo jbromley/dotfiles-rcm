@@ -41,16 +41,8 @@
 (add-to-list 'default-frame-alist '(font . "JetBrains Mono-10"))
 ;; (setq-default line-spacing 0.05)
 
-(use-package dracula-theme)
-
-(use-package ef-themes
-  :defer t)
-
-(use-package almost-mono-themes
-  :defer t)
-
-(use-package tok-theme
-  :defer t)
+(use-package dracula-theme
+  :init (load-theme 'dracula t))
 
 (use-package nerd-icons
   :if (display-graphic-p))
@@ -88,19 +80,21 @@
   ;; `variable-pitch' face supports it
   (ligature-set-ligatures 'eww-mode '("ff" "fi" "ffi"))
   ;; Enable all Cascadia Code ligatures in programming modes
-  (ligature-set-ligatures 'prog-mode '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
-                                       ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
-                                       "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
-                                       "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
-                                       "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
-                                       "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
-                                       "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
-                                       "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
-                                       ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
-                                       "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
-                                       "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
-                                       "?=" "?." "??" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)" ; Removed ";;"
-                                       "\\\\" "://"))
+  (ligature-set-ligatures
+   '(prog-mode utop-mode)
+   '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "||=" "||>" ; removed "***"
+     ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
+     "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
+     "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
+     "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
+     "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
+     "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
+     "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ; removed ">:"  
+     ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
+     "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
+     "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
+     "?=" "?." "??" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)" ; removed ";;"
+     "\\\\" "://"))
   ;; Enables ligature checks globally in all buffers. You can also do it
   ;; per mode with `ligature-mode'.
   (global-ligature-mode t))
@@ -332,7 +326,6 @@
     (unless (treesit-language-available-p lang)
       (treesit-install-language-grammar lang))))
 
-
 (setq major-mode-remap-alist
       '((bash-mode . bash-ts-mode)
         (c-mode . c-ts-mode)
@@ -370,6 +363,18 @@
 
 ;; OCaml setup 
 (require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
+
+(use-package merlin-eldoc
+  :ensure t
+  :hook ((reason-mode tuareg-mode caml-mode) . merlin-eldoc-setup))
+
+(use-package flycheck-ocaml
+  :ensure t
+  :config
+  (add-hook 'tuareg-mode-hook
+            (lambda ()
+              (setq-local merlin-error-after-save nil)
+              (flycheck-ocaml-setup))))
 
 ;; Paredit for Lisp-like languages
 (use-package paredit
