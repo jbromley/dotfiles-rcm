@@ -99,12 +99,13 @@
     (kbd "C-c <up>") 'merlin-type-enclosing-go-up)
   (define-key merlin-mode-map
     (kbd "C-c <down>") 'merlin-type-enclosing-go-down)
-  (set-face-background 'merlin-type-face "skyblue"))
+  (customize-set-variable 'merlin-type-face "SkyBlue4"))
 
 (defun opam-setup-utop ()
   (autoload 'utop "utop" "Toplevel for OCaml" t)
   (autoload 'utop-minor-mode "utop" "Minor mode for utop" t)
   (add-hook 'tuareg-mode-hook 'utop-minor-mode))
+ 
 
 (defun opam-setup-ocamlformat ()
   (load (concat opam-share "/emacs/site-lisp/ocamlformat"))
