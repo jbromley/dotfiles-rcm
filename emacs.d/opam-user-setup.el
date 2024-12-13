@@ -139,8 +139,6 @@
 
 (opam-auto-tools-setup)
 
-(provide 'opam-user-setup)
-
 ;;; opam-user-setup.el ends here
 ;; ## added by OPAM user-setup for emacs / base ## 6bcc7eb91f2a0005a1719b379c22ad99 ## you can edit, but keep this line
 (provide 'opam-user-setup)

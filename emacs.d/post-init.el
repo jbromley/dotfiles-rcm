@@ -362,7 +362,7 @@
         sly-lisp-implementations '((sbcl ("sbcl" "--core" "/home/jay/.local/lib/sbcl-sly.core")))))
 
 ;; OCaml setup 
-(require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
+(require 'ocaml-setup "" t)
 
 (use-package merlin-eldoc
   :ensure t
