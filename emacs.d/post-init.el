@@ -368,14 +368,6 @@
   :ensure t
   :hook ((reason-mode tuareg-mode caml-mode) . merlin-eldoc-setup))
 
-(use-package flycheck-ocaml
-  :ensure t
-  :config
-  (add-hook 'tuareg-mode-hook
-            (lambda ()
-              (setq-local merlin-error-after-save nil)
-              (flycheck-ocaml-setup))))
-
 ;; Paredit for Lisp-like languages
 (use-package paredit
   :hook ((racket-mode . enable-paredit-mode)
