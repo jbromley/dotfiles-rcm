@@ -362,11 +362,42 @@
         sly-lisp-implementations '((sbcl ("sbcl" "--core" "/home/jay/.local/lib/sbcl-sly.core")))))
 
 ;; OCaml setup 
-(require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
+
+(use-package tuareg
+  :ensure t
+  :mode (("\\.ocamlinit\\'" . tuareg-mode)))
+
+(use-package ocp-indent
+  :ensure t
+  :commands (ocp-setup-indent)
+  :hook (tuareg-mode . ocp-setup-indent))
+
+(use-package dune
+  :ensure t)
+
+;; Merlin configuration
+(use-package merlin
+  :ensure t
+  :config
+  (add-hook 'tuareg-mode-hook #'merlin-mode)
+  (add-hook 'merlin-mode-hook #'company-mode)
+  ;; we're using flycheck instead
+  (setq merlin-error-after-save nil))
 
 (use-package merlin-eldoc
   :ensure t
-  :hook ((reason-mode tuareg-mode caml-mode) . merlin-eldoc-setup))
+  :hook (tuareg-mode . merlin-eldoc-setup))
+
+;; This uses Merlin internally
+(use-package flycheck-ocaml
+  :ensure t
+  :config
+  (flycheck-ocaml-setup))
+
+(use-package utop
+  :ensure t
+  :config
+  :hook (tuareg-mode . utop-minor-mode))
 
 ;; Paredit for Lisp-like languages
 (use-package paredit
