@@ -82,12 +82,12 @@
   ;; Enable all Cascadia Code ligatures in programming modes
   (ligature-set-ligatures
    '(prog-mode utop-mode)
-   '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "||=" "||>" ; removed "***"
-     ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
+   '("|||>" "<|||" "<==>" "<!--" "~~>" "||=" "||>" ; removed "***", "####"
+     "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!==" ; removed ":::"
      "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
      "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
      "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
-     "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
+     "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~=" ; removed "..."
      "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
      "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ; removed ">:"  
      ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
@@ -364,6 +364,9 @@
 ;; OCaml setup 
 (require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
 
+(use-package dune
+  :ensure t)
+
 (use-package merlin-eldoc
   :ensure t
   :hook ((reason-mode tuareg-mode caml-mode) . merlin-eldoc-setup))
@@ -373,7 +376,6 @@
   :hook ((racket-mode . enable-paredit-mode)
          (scheme-mode . enable-paredit-mode)
          (emacs-lisp-mode . enable-paredit-mode)
-         (tuareg-mode . enable-paredit-mode)
          (lisp-interaction-mode . (lambda () (define-key paredit-mode-map (kbd "C-j") 'eval-print-last-sexp)))))
 
 ;; Use eglot for LSPs
