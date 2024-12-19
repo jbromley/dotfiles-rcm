@@ -361,6 +361,19 @@
   (setq inferior-lisp-program "sbcl"
         sly-lisp-implementations '((sbcl ("sbcl" "--core" "/home/jay/.local/lib/sbcl-sly.core")))))
 
+;; Use eldoc where possible
+(use-package eldoc
+  :custom
+  (eldoc-echo-area-use-multiline-p t)
+  :config
+  (global-eldoc-mode))
+
+(use-package eldoc-box
+  :custom
+  (eldoc-box-clear-with-C-g t)
+  :config
+  (eldoc-box-hover-mode))
+
 ;; OCaml setup 
 (require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
 
