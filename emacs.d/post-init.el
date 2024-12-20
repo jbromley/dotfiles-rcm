@@ -378,7 +378,9 @@
 (require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
 
 (use-package dune
-  :ensure t)
+  :ensure t
+  :custom
+  (utop-command "dune utop . -- -emacs"))
 
 (use-package merlin-eldoc
   :ensure t
